@@ -91,12 +91,14 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dmitrii" ];
+    uid = 1000;
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
     ];
   };
+  users.groups.dmitrii.gid = 1000;
 
   # Install firefox.
   programs.firefox.enable = true;
