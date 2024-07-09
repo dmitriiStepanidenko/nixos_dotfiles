@@ -1,0 +1,3 @@
+--target /etc
+--ignore .stowrc
+--verbose 5
