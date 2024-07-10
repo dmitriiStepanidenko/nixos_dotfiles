@@ -2,3 +2,4 @@
 */**/wireguard.nix
 wireguard.nix
 *.key
+.config/discord
