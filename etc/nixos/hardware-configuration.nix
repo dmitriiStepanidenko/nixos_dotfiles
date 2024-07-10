@@ -28,13 +28,6 @@
     { device = "/dev/disk/by-uuid/1757BB2B0F01D736";
       fsType = "ntfs";
       options = [ "uid=1000" "gid=1000" "dmask=0022" "fmask=0022" ];
-      #options = [ 
-      	#"fmask=0755" 
-      #"dmask=0755" 
-	#"users"
-	#"rw"
-	#"auto"
-      #];
     };
 
   swapDevices = [ ];
@@ -64,11 +57,11 @@
     # Enable this if you have graphical corruption issues or application crashes after waking
     # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
     # of just the bare essentials.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
 
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
@@ -89,11 +82,11 @@
 
   hardware.nvidia.prime = {
 
-  	offload = {
-		enable = true;
-		enableOffloadCmd = true;
-	};
-  	# Make sure to use the correct Bus ID values for your system!
+  offload = {
+    enable = true;
+    enableOffloadCmd = true;
+  };
+  # Make sure to use the correct Bus ID values for your system!
 	nvidiaBusId = "PCI:1:0:0";
   	amdgpuBusId = "PCI:5:0:0";
   };

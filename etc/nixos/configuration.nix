@@ -7,6 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/wireguard.nix
     ];
 
   # Bootloader.
@@ -151,6 +152,8 @@
      hunspell
      hunspellDicts.ru_RU
      hunspellDicts.en_US
+     gnumake
+     v2raya
   ];
 
   swapDevices = [ {
@@ -170,6 +173,8 @@
 
   # Needs for yubikey
   services.pcscd.enable = true;
+
+  services.v2raya.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -1,1 +1,4 @@
 .config/nvim/bin
+*/**/wireguard.nix
+wireguard.nix
+*.key
