@@ -27,6 +27,8 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
 
@@ -58,6 +60,9 @@
     layout = "us";
     xkbVariant = "";
   };
+
+  # Firmwares updates 
+  services.fwupd.enable = true;
 
   services.xserver.videoDrivers = [ "displaylink" 
   #"modesetting" 

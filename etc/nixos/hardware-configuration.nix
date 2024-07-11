@@ -77,18 +77,16 @@
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
+    package = config.boot.kernelPackages.nvidiaPackages.production;
   };
 
   hardware.nvidia.prime = {
-
-  offload = {
-    enable = true;
-    enableOffloadCmd = true;
-  };
-  # Make sure to use the correct Bus ID values for your system!
-	nvidiaBusId = "PCI:1:0:0";
-  	amdgpuBusId = "PCI:5:0:0";
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:5:0:0";
   };
   ###### GPU tweaks end
 }
