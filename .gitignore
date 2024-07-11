@@ -3,3 +3,4 @@
 wireguard.nix
 *.key
 .config/discord
+*.log

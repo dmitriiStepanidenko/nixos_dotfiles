@@ -168,7 +168,6 @@
     v2raya
     discord
     alejandra
-    #mako
     libnotify
   ];
 
