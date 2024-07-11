@@ -6,15 +6,14 @@
     nixpkgsunstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = { nixpkgs, ... } @ inputs: 
+  outputs = {nixpkgs, ...} @ inputs:
   #let
   #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
   #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
   #in
   {
-
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = { inherit inputs; };
+      specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
       ];

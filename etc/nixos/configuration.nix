@@ -1,15 +1,18 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ inputs, config, pkgs,  ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      #/home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
-      modules/wireguard.nix
-    ];
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    #/home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
+    modules/wireguard.nix
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -28,7 +31,7 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
@@ -62,13 +65,14 @@
     xkbVariant = "";
   };
 
-  # Firmwares updates 
+  # Firmwares updates
   services.fwupd.enable = true;
 
-  services.xserver.videoDrivers = [ "displaylink" 
-  #"modesetting" 
-  "nvidia"
-  #"nvidia" "amdgpu-pro" 
+  services.xserver.videoDrivers = [
+    "displaylink"
+    #"modesetting"
+    "nvidia"
+    #"nvidia" "amdgpu-pro"
   ];
   #"modesetting" - FOSS drivers for nvidia
   #services.xserver.displayManager.sessionCommands = ''
@@ -101,11 +105,11 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = [ "networkmanager" "wheel" "dmitrii" ];
+    extraGroups = ["networkmanager" "wheel" "dmitrii"];
     uid = 1000;
     packages = with pkgs; [
       kdePackages.kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
   users.groups.dmitrii.gid = 1000;
@@ -128,50 +132,52 @@
     fira-code-symbols
   ];
 
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-     wget
-     neovim
-     displaylink
-     neofetch
-     tmux
-     alacritty
-     yubioath-flutter
-     lshw
-     htop
-     gparted
-     enpass
-     rustup
-     python312
-     python312Packages.pip
-     git
-     stow
-     gcc14
-     rocmPackages.llvm.clang-unwrapped
-     nodejs_22
-     telegram-desktop
-     surrealdb
-     surrealist
-     surrealdb-migrations
-     nerdfonts
-     libreoffice-qt
-     hunspell
-     hunspellDicts.ru_RU
-     hunspellDicts.en_US
-     gnumake
-     v2raya
-     discord
-     alejandra
-     mako
+    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    wget
+    neovim
+    displaylink
+    neofetch
+    tmux
+    alacritty
+    yubioath-flutter
+    lshw
+    htop
+    gparted
+    enpass
+    rustup
+    python312
+    python312Packages.pip
+    git
+    stow
+    gcc14
+    rocmPackages.llvm.clang-unwrapped
+    nodejs_22
+    telegram-desktop
+    surrealdb
+    surrealist
+    surrealdb-migrations
+    nerdfonts
+    libreoffice-qt
+    hunspell
+    hunspellDicts.ru_RU
+    hunspellDicts.en_US
+    gnumake
+    v2raya
+    discord
+    alejandra
+    #mako
+    libnotify
   ];
 
-  swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 16*1024;
-  } ];
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024;
+    }
+  ];
 
   programs.neovim = {
     enable = true;
@@ -200,7 +206,7 @@
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
-    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead 
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
     # of just the bare essentials.
     powerManagement.enable = true;
 
@@ -210,15 +216,15 @@
 
     # Use the NVidia open source kernel module (not to be confused with the
     # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of 
-    # supported GPUs is at: 
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
@@ -261,5 +267,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
