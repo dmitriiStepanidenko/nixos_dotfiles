@@ -164,6 +164,8 @@
      gnumake
      v2raya
      discord
+     alejandra
+     mako
   ];
 
   swapDevices = [ {

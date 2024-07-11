@@ -13,7 +13,7 @@
 set -e
 
 # Edit your config
-$EDITOR configuration.nix
+#$EDITOR configuration.nix
 
 # cd to your config dir
 pushd /home/dmitrii/shared/dotfiles/etc/nixos
