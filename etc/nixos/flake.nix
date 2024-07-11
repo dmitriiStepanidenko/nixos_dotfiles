@@ -7,10 +7,10 @@
   };
 
   outputs = { nixpkgs, ... } @ inputs: 
-  let
-    pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    pkgsold = inputs.nixpkgsveryold.legacyPackages.x86_64-linux;
-  in
+  #let
+  #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
+  #in
   {
 
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
@@ -21,7 +21,7 @@
     };
 
     #packages.x86_64-linux.hello = pkgs.hello;
-    #packages.x86_64-linux.default = pkgs.hello;
+    #packages.x86_64-linux.default = pkgs;
 
     #devShells.x86_linux.default = pkgs.mkShell {
     #  buildInputs = [ pkgs.neovim pkgsold.vim ];

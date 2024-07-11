@@ -16,18 +16,18 @@ set -e
 $EDITOR configuration.nix
 
 # cd to your config dir
-pushd ~/dotfiles/etc/nixos
+pushd /home/dmitrii/shared/dotfiles/etc/nixos
 
 # Early return if no changes were detected (thanks @singiamtel!)
-if git diff --quiet '*.nix'; then
-    echo "No changes detected, exiting."
-    popd
-    exit 0
-fi
+#if git diff --quiet '*.nix'; then
+#    echo "No changes detected, exiting."
+#    popd
+#    exit 0
+#fi
 
 # Autoformat your nix files
-alejandra . &>/dev/null \
-  || ( alejandra . ; echo "formatting failed!" && exit 1)
+#alejandra . &>/dev/null \
+#  || ( alejandra . ; echo "formatting failed!" && exit 1)
 
 # Shows your changes
 git diff -U0 '*.nix'
@@ -35,7 +35,7 @@ git diff -U0 '*.nix'
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
