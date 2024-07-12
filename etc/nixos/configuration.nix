@@ -173,6 +173,7 @@
     alejandra
     libnotify
     memtest86plus
+    memtester
   ];
 
   swapDevices = [
