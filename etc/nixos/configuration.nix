@@ -18,6 +18,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Memtesting of Ram during boot
+  boot.loader.systemd-boot.memtest86.enable = true;
+
   # Because Nvivia?
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
@@ -169,6 +172,7 @@
     discord
     alejandra
     libnotify
+    memtest86plus
   ];
 
   swapDevices = [
