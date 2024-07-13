@@ -174,6 +174,7 @@
     libnotify
     memtest86plus
     memtester
+    anki-bin
   ];
 
   swapDevices = [
