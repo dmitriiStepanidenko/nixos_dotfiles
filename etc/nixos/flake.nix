@@ -19,11 +19,13 @@
       ];
     };
 
-    #packages.x86_64-linux.hello = pkgs.hello;
+    #packages.x86_64-linux.hello = nixpkgs.anki-bin;
     #packages.x86_64-linux.default = pkgs;
 
-    #devShells.x86_linux.default = pkgs.mkShell {
-    #  buildInputs = [ pkgs.neovim pkgsold.vim ];
+    #packages.x86_linux.default = nixpkgs.mkShell {
+    #  buildInputs = [
+    #    nixpkgs.anki-bin
+    #  ];
     #};
   };
 }
