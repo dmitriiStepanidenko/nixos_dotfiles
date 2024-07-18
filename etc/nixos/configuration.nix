@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.memtest86.enable = true;
 
   # Because Nvivia?
-  boot.kernelParams = ["module_blacklist=amdgpu"];
+  #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   boot.initrd.kernelModules = ["nvidia"];
   boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
