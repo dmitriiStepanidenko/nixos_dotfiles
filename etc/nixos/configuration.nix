@@ -178,6 +178,8 @@
     memtest86plus
     memtester
     anki-bin
+    google-chrome
+    chromium
   ];
 
   swapDevices = [
