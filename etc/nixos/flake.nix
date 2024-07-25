@@ -3,17 +3,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
-    nixpkgsunstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    inputs.nixpkgsunstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
-  outputs = {nixpkgs, ...} @ inputs:
-  #let
-  #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
-  #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
-  #in
-  {
+  outputs = {
+    self,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    system = "x86_64-linux";
+    #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
+  in {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs;};
+      #specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
       ];
