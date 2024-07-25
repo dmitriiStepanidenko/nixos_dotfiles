@@ -11,8 +11,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #/home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
-    modules/wireguard.nix
+    /home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
+    #modules/wireguard.nix
   ];
 
   # Bootloader.
@@ -70,9 +70,9 @@
   services.desktopManager.plasma6.enable = true;
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Firmwares updates
