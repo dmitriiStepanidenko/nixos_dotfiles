@@ -11,8 +11,8 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    /home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
-    #modules/wireguard.nix
+    #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
+    #./modules/wireguard.nix
   ];
 
   # Bootloader.
