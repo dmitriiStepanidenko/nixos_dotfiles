@@ -15,6 +15,11 @@
     #./modules/wireguard.nix
   ];
 
+  # Cuz Nvidia. I need 535 version
+  #boot.kernelPackages = inputs.nixpkgsunstable.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.unstable.nixpkgsunstable.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -25,8 +30,9 @@
   # Because Nvivia?
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
-  boot.initrd.kernelModules = ["nvidia"];
-  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  #boot.initrd.kernelModules = ["nvidia"];
+  #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  #boot.extraModulePackages = with config.boot.kernelPackages; [nvidia_x11];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -146,7 +152,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     inputs.nixpkgs.legacyPackages.${pkgs.system}.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    vim
+    #vim
     wget
     neovim
     displaylink
@@ -238,7 +244,7 @@
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
-    forceFullCompositionPipeline = true;
+    forceFullCompositionPipeline = false;
 
     # Enable the Nvidia settings menu,
     # accessible via `nvidia-settings`.
@@ -247,7 +253,13 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
     #package = config.boot.kernelPackages.nvidiaPackages.production;
     # downgrade to 535 because: https://forums.developer.nvidia.com/t/series-550-freezes-laptop/284772/214
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    #package = config.boot.kernelPackages.nvidiaPackages.production;
+    #package = inputs.nixpkgsunstable.kernelPackages.nvidiaPackages.legacy_535;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+
+    #package = (inputs.nixpkgsunstable.linuxPackagesFor config.boot.kernelPackages.kernel).nvidiaPackages.legacy_535;
+    #package = (linuxPackagesFor inputs.nixpkgsunstalbe.linuxPackages.kernel.nvidiaPackages.legacy_535);
+    #linuxPackages_5_10 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_10);
   };
 
   hardware.nvidia.prime = {

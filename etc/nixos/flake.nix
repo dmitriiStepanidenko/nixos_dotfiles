@@ -2,7 +2,8 @@
   description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     nixpkgsunstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
@@ -17,6 +18,7 @@
   in {
     nixosConfigurations = {
       nixos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
           ./configuration.nix
@@ -30,7 +32,7 @@
     #  ];
     #};
 
-    packages.x86_64-linux.anki-bin = nixpkgs.anki-bin;
+    #packages.x86_64-linux.anki-bin = nixpkgs.anki-bin;
     #packages.x86_64-linux.default = nixpkgs;
 
     #packages.x86_linux.default = nixpkgs.mkShell {
