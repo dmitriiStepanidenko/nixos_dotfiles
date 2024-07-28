@@ -86,8 +86,9 @@
 
   services.xserver.videoDrivers = [
     "displaylink"
+    "amdgpu"
     #"modesetting"
-    "nvidia"
+    #"nvidia"
     #"nvidia" "amdgpu-pro"
   ];
   #"modesetting" - FOSS drivers for nvidia
@@ -247,7 +248,7 @@
     forceFullCompositionPipeline = false;
 
     # Enable the Nvidia settings menu,
-    # accessible via `nvidia-settings`.
+    # accessible via `nviia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
