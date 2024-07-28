@@ -12,6 +12,22 @@
         "type": "indirect"
       }
     },
+    "nixpkgs-nvidia-beta": {
+      "locked": {
+        "lastModified": 1721767290,
+        "narHash": "sha256-nfEviVDq39EftKBqkCwfLyt6TMOsWwTX/6LPNHgo+fo=",
+        "owner": "Kiskae",
+        "repo": "nixpkgs",
+        "rev": "bfeb6e74cf4db5674a837aed5e4ecafca6fea353",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Kiskae",
+        "ref": "nvidia/560.28.03",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1722087241,
@@ -47,6 +63,7 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
+        "nixpkgs-nvidia-beta": "nixpkgs-nvidia-beta",
         "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable"
       }
