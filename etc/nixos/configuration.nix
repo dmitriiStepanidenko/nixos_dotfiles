@@ -217,7 +217,7 @@
 
   ###### GPU tweaks
   # Enable OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
   };
 
@@ -242,7 +242,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
+    open = false;
 
     forceFullCompositionPipeline = false;
 
@@ -253,9 +253,8 @@
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
 
     # downgrade to 535 because: https://forums.developer.nvidia.com/t/series-550-freezes-laptop/284772/214
-
-    #package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
+    #package = config.boot.kernelPackages.nvidiaPackages.production;
 
     #package = (inputs.nixpkgsunstable.linuxPackagesFor config.boot.kernelPackages.kernel).nvidiaPackages.legacy_535;
     #package = (linuxPackagesFor inputs.nixpkgsunstalbe.linuxPackages.kernel.nvidiaPackages.legacy_535);
