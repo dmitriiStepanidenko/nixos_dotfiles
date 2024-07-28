@@ -30,9 +30,8 @@
   # Because Nvivia?
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
-  #boot.initrd.kernelModules = ["nvidia"];
-  #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
-  #boot.extraModulePackages = with config.boot.kernelPackages; [nvidia_x11];
+  boot.initrd.kernelModules = ["nvidia"];
+  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
