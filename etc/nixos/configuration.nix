@@ -165,8 +165,6 @@
     gparted
     enpass
     rustup
-    python312
-    python312Packages.pip
     git
     stow
     gcc14
@@ -191,6 +189,20 @@
     anki-bin
     google-chrome
     chromium
+    busybox
+    # PYTHON
+    python312
+    python312Packages.pip
+    python312Packages.ansible-core
+
+    obsidian
+
+    # For thermal sensor plugin (have no idea if this will work, suppose, no)
+    # https://invent.kde.org/olib/thermalmonitor
+    kdePackages.ksystemstats
+    kdePackages.libksysguard
+    kdePackages.kitemmodels
+    kdePackages.kdeclarative
   ];
 
   swapDevices = [

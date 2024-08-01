@@ -3,9 +3,10 @@
 
   inputs = {
     #nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05";
-    nixpkgs-nvidia-beta.url = "github:Kiskae/nixpkgs?ref=nvidia/560.28.03";
+    #nixpkgs-nvidia-beta.url = "github:Kiskae/nixpkgs?ref=nvidia/560.28.03";
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
+    nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
   };
 
   outputs = inputs @ {
@@ -18,7 +19,7 @@
     #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
   in {
     nixosConfigurations = {
-      nixos = inputs.nixpkgs-nvidia-beta.lib.nixosSystem {
+      nixos = inputs.nixpkgs-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
