@@ -208,6 +208,8 @@
 
     age
     ssh-to-age
+
+    mtr
   ];
 
   swapDevices = [
