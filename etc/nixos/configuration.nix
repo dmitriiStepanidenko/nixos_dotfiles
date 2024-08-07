@@ -43,7 +43,13 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
+
+  # Enable CROOON
+  services.cron = {
+    enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Moscow";
