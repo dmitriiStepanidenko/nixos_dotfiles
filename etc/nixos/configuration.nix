@@ -205,6 +205,8 @@
     kdePackages.kdeclarative
 
     cht-sh
+
+    age
   ];
 
   swapDevices = [

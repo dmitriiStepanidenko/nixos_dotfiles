@@ -7,6 +7,10 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+    };
   };
 
   outputs = inputs @ {
