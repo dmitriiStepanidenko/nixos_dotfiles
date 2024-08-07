@@ -207,6 +207,7 @@
     cht-sh
 
     age
+    ssh-to-age
   ];
 
   swapDevices = [
