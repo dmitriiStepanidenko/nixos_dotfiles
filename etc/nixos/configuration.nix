@@ -203,6 +203,8 @@
     kdePackages.libksysguard
     kdePackages.kitemmodels
     kdePackages.kdeclarative
+
+    cht-sh
   ];
 
   swapDevices = [
