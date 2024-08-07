@@ -218,6 +218,7 @@
     mtr
 
     kdePackages.kdialog
+    sox
   ];
 
   swapDevices = [
