@@ -216,6 +216,8 @@
     ssh-to-age
 
     mtr
+
+    kdePackages.kdialog
   ];
 
   swapDevices = [
