@@ -121,6 +121,8 @@
     #media-session.enable = true;
   };
 
+  virtualisation.docker.enable = true;
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
@@ -128,7 +130,7 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = ["networkmanager" "wheel" "dmitrii"];
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker"];
     uid = 1000;
     packages = with pkgs; [
       kdePackages.kate
