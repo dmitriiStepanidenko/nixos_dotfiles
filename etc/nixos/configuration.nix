@@ -6,6 +6,7 @@
   pkgs,
   lib,
   inputs,
+  #nixpkgs-stable-unstable,
   ...
 }: {
   imports = [
@@ -158,6 +159,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     inputs.nixpkgs.legacyPackages.${pkgs.system}.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #nixpkgs-stable-unstable.vim
     #vim
     wget
     neovim
@@ -177,8 +179,11 @@
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
     telegram-desktop
-    surrealdb
-    surrealist
+    #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
+    #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
+    #surrealdb
+    # nixpkgs-stable-unstable.surrealdb
+    # surrealist
     surrealdb-migrations
     nerdfonts
     libreoffice-qt
