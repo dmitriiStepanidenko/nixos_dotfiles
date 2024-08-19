@@ -47,6 +47,22 @@
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
+  # Power management
+  powerManagement.powertop.enable = true;
+
+  #services.tlp.enable = false;
+  #services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.settings = {
+  #    battery = {
+  #       governor = "powersave";
+  #       turbo = "never";
+  #    };
+  #    charger = {
+  #       governor = "performance";
+  #       turbo = "auto";
+  #    };
+  #};
+
   # Enable CROOON
   services.cron = {
     enable = true;
