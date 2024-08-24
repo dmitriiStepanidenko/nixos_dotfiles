@@ -238,6 +238,7 @@
     google-chrome
     chromium
     busybox
+    wireshark
     # PYTHON
     python312
     python312Packages.pip
