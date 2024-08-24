@@ -239,6 +239,8 @@
     chromium
     busybox
     wireshark
+    noisetorch
+
     # PYTHON
     python312
     python312Packages.pip
