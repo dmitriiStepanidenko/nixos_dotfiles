@@ -266,6 +266,8 @@
 
     kdePackages.kdialog
     sox
+
+    ledger-live-desktop
   ];
 
   swapDevices = [
