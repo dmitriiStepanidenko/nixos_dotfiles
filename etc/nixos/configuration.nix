@@ -292,6 +292,14 @@
 
   services.v2raya.enable = true;
 
+  # For ledger
+  hardware.ledger.enable = true;
+  services = {
+    udev.packages = with pkgs; [
+      ledger-udev-rules
+    ];
+  };
+
   ###### GPU tweaks
   # Enable OpenGL
   hardware.graphics = {
