@@ -269,6 +269,10 @@
     sox
 
     ledger-live-desktop
+
+    appimage-run
+
+    ripgrep
   ];
 
   swapDevices = [
