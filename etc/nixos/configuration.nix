@@ -112,10 +112,12 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
+  services.xserver.windowManager.leftwm.enable = true;
+
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.defaultSession = "plasmax11";
+  # services.displayManager.sddm.enable = true;
+  # services.desktopManager.plasma6.enable = true;
+  # services.displayManager.defaultSession = "plasmax11";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -168,10 +170,10 @@
     description = "Dmitrii";
     extraGroups = ["networkmanager" "wheel" "dmitrii" "docker"];
     uid = 1000;
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    #packages = with pkgs; [
+    #  # kdePackages.kate
+    #  #  thunderbird
+    #];
   };
   users.groups.dmitrii.gid = 1000;
 
@@ -253,10 +255,10 @@
 
     # For thermal sensor plugin (have no idea if this will work, suppose, no)
     # https://invent.kde.org/olib/thermalmonitor
-    kdePackages.ksystemstats
-    kdePackages.libksysguard
-    kdePackages.kitemmodels
-    kdePackages.kdeclarative
+    #kdePackages.ksystemstats
+    #kdePackages.libksysguard
+    #kdePackages.kitemmodels
+    #kdePackages.kdeclarative
 
     cht-sh
 
@@ -265,7 +267,7 @@
 
     mtr
 
-    kdePackages.kdialog
+    # kdePackages.kdialog
     sox
 
     ledger-live-desktop
