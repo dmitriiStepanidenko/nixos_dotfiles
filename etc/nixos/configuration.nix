@@ -284,6 +284,11 @@
     rofi
     dunst
 
+    xkb-switch
+
+    networkmanager
+    networkmanager_dmenu
+
     #- leftwm
     #- polybar
     #- feh
