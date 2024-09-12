@@ -113,6 +113,7 @@
   services.xserver.enable = true;
 
   services.xserver.windowManager.leftwm.enable = true;
+  services.xserver.displayManager.lightdm.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   # services.displayManager.sddm.enable = true;
@@ -277,6 +278,8 @@
     ripgrep
 
     dmenu-rs
+
+    eww
   ];
 
   swapDevices = [
