@@ -120,10 +120,11 @@
   #services.desktopManager.plasma6.enable = true;
   #services.displayManager.defaultSession = "plasmax11";
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us,ru";
-    variant = "";
+  # Configure keymas
+  services.xserver = {
+    xkb.layout = "us,ru";
+    xkbVariant = "";
+    xkbOptions = "grp:win_space_toggle";
   };
   console.keyMap = "us";
 
