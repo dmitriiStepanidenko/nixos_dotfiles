@@ -275,6 +275,8 @@
     appimage-run
 
     ripgrep
+
+    dmenu-rs
   ];
 
   swapDevices = [
