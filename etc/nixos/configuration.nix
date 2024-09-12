@@ -122,9 +122,10 @@
 
   # Configure keymap in X11
   services.xserver.xkb = {
-    layout = "us";
+    layout = "us,ru";
     variant = "";
   };
+  console.keyMap = "us";
 
   # Firmwares updates
   services.fwupd.enable = true;
