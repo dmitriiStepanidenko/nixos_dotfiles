@@ -112,13 +112,13 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  services.xserver.windowManager.leftwm.enable = true;
-  services.xserver.displayManager.lightdm.enable = true;
+  #services.xserver.windowManager.leftwm.enable = true;
+  #services.xserver.displayManager.lightdm.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
-  # services.displayManager.defaultSession = "plasmax11";
+  services.displayManager.sddm.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.defaultSession = "plasmax11";
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -278,8 +278,17 @@
     ripgrep
 
     dmenu-rs
-
     eww
+    polybarFull
+    feh
+    rofi
+    dunst
+
+    #- leftwm
+    #- polybar
+    #- feh
+    #- rofi _(optional)_
+    #- dunst _(optional)_
   ];
 
   swapDevices = [
