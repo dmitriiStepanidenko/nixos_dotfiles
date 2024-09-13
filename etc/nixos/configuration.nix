@@ -335,6 +335,8 @@
     light
     xorg.xbacklight
     xorg.xev
+    xorg.xrandr
+    autorandr
 
     xss-lock
   ];
