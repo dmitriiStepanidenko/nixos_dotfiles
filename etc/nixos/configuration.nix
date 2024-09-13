@@ -293,11 +293,11 @@
     networkmanager
     networkmanager_dmenu
 
-    #- leftwm
-    #- polybar
-    #- feh
-    #- rofi _(optional)_
-    #- dunst _(optional)_
+    gparted
+    qalculate-gtk
+    flameshot
+    vlc
+    geany
   ];
 
   swapDevices = [
