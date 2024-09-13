@@ -325,23 +325,26 @@
 
     gparted
     qalculate-gtk
-    flameshot
-    vlc
-    geany
+    flameshot # screenshots
 
-    slock
-    xsecurelock
+    vlc # videos
+    mplayer # live wallpapers
 
-    light
-    xorg.xbacklight
-    xorg.xev
-    xorg.xrandr
-    autorandr
+    geany # text editor
 
-    xss-lock
+    xsecurelock # lock
+
+    light # set backlight
+    #xorg.xbacklight
+
+    xorg.xev # get key number/name
+    xorg.xrandr # screen
+    autorandr # screen
+
+    xss-lock # auto lock?
 
     ueberzugpp # Display images in alacritty
-    yazi
+    yazi # terminal file manager
 
     ffmpeg-full
   ];
