@@ -190,7 +190,12 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  programs.slock.enable = true;
+  services.logind.extraConfig = ''
+    HandlePowerKey=suspend
+    IdleAction=suspend
+    IdleActionSec=1m
+  '';
+  #programs.slock.enable = true;
   #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
 
