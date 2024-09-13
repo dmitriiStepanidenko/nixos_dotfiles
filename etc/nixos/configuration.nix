@@ -348,6 +348,7 @@
     yazi # terminal file manager
 
     #komorebi
+    xwinwrap
 
     ffmpeg-full
   ];
