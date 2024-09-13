@@ -343,7 +343,7 @@
     ueberzugpp # Display images in alacritty
     yazi
 
-    ffmpeg
+    ffmpeg-full
   ];
 
   # swapDevices = [
