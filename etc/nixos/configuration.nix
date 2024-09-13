@@ -366,9 +366,14 @@
   # For ledger
   hardware.ledger.enable = true;
   services = {
-    udev.packages = with pkgs; [
-      ledger-udev-rules
-    ];
+    udev = {
+      packages = with pkgs; [
+        ledger-udev-rules
+      ];
+      extraRules = ''
+        ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash /etc/local/bin/monitor-hotplug"
+      '';
+    };
   };
 
   ###### GPU tweaks
