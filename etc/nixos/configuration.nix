@@ -183,7 +183,8 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  programs.slock.enable = true;
+  #programs.slock.enable = true;
+  security.pam.services.swaylock.fprintAuth = false;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -298,6 +299,8 @@
     flameshot
     vlc
     geany
+
+    swaylock
   ];
 
   swapDevices = [
