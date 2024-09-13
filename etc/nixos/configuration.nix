@@ -311,6 +311,7 @@
     xsecurelock
 
     light
+    xorg.xbacklight
   ];
 
   # swapDevices = [
