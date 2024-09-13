@@ -136,7 +136,7 @@
   console.keyMap = "us";
 
   # Firmwares updates
-  services.fwupd.enable = true;
+  # services.fwupd.enable = true;
 
   services.xserver.videoDrivers = [
     "displaylink"
@@ -217,6 +217,10 @@
   ];
 
   programs.noisetorch.enable = true;
+
+  #services.screen-locker.xss-lock = {
+
+  #};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
