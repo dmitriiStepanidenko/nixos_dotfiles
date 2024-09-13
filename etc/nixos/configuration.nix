@@ -328,6 +328,7 @@
     flameshot # screenshots
 
     vlc # videos
+    mpv
     mplayer # live wallpapers
 
     geany # text editor
@@ -346,7 +347,7 @@
     ueberzugpp # Display images in alacritty
     yazi # terminal file manager
 
-    komorebi
+    #komorebi
 
     ffmpeg-full
   ];
