@@ -309,6 +309,8 @@
 
     slock
     xsecurelock
+
+    light
   ];
 
   # swapDevices = [
