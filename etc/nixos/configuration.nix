@@ -183,8 +183,7 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-  #programs.slock.enable = true;
-  security.pam.services.swaylock.fprintAuth = false;
+  programs.slock.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -300,15 +299,16 @@
     vlc
     geany
 
-    swaylock
+    slock
+    xsecurelock
   ];
 
-  swapDevices = [
-    {
-      device = "/var/lib/swapfile";
-      size = 16 * 1024;
-    }
-  ];
+  # swapDevices = [
+  #   {
+  #     device = "/var/lib/swapfile";
+  #     size = 16 * 1024;
+  #   }
+  # ];
 
   programs.neovim = {
     enable = true;

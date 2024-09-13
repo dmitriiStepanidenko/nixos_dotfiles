@@ -34,7 +34,14 @@
     options = ["uid=1000" "gid=1000" "dmask=0022" "fmask=0022"];
   };
 
-  swapDevices = [];
+  # mkswap: /dev/nvme0n1p7: warning: wiping old swap signature.
+  # Setting up swapspace version 1, size = 16 GiB (17179865088 by
+  # tes)
+  # no label, UUID=a2840690-a68d-43e4-8dd0-6efa4b4958b6
+
+  swapDevices = [
+    {device = "/dev/disk/by-uuid/a2840690-a68d-43e4-8dd0-6efa4b4958b6";}
+  ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
