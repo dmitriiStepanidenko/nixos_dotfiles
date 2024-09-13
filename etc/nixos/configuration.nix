@@ -178,7 +178,7 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker"];
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video"];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
