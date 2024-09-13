@@ -183,6 +183,8 @@
   # Install firefox.
   programs.firefox.enable = true;
 
+  programs.slock.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
