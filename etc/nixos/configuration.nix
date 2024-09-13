@@ -346,6 +346,8 @@
     ueberzugpp # Display images in alacritty
     yazi # terminal file manager
 
+    komorebi
+
     ffmpeg-full
   ];
 
