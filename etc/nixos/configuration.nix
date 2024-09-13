@@ -356,6 +356,7 @@
 
     unrar-wrapper
     p7zip
+    _7zz # rar archives
   ];
 
   # swapDevices = [
