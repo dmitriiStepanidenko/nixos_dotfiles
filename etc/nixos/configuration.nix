@@ -322,6 +322,8 @@
     light
     xorg.xbacklight
     xorg.xev
+
+    xss-lock
   ];
 
   # swapDevices = [
