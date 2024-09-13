@@ -192,6 +192,7 @@
 
   programs.slock.enable = true;
   #security.setuidPrograms = [ "slock" ];
+  programs.light.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
