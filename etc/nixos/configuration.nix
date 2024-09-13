@@ -12,6 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
   ];
@@ -184,6 +185,7 @@
   programs.firefox.enable = true;
 
   programs.slock.enable = true;
+  #security.setuidPrograms = [ "slock" ];
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
