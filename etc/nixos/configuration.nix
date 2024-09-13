@@ -351,6 +351,8 @@
     xwinwrap
 
     ffmpeg-full
+
+    imagemagick
   ];
 
   # swapDevices = [
