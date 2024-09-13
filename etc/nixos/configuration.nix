@@ -363,6 +363,13 @@
 
   services.v2raya.enable = true;
 
+  environment.etc."local/bin/monitor-hotplug".text = ''
+    #!${pkgs.bash}/bin/bash
+    export DISPLAY=:0
+    export XAUTHORITY=/home/yourusername/.Xauthority
+    ${pkgs.su}/bin/su yourusername -c '${pkgs.autorandr}/bin/autorandr --change'
+  '';
+
   # For ledger
   hardware.ledger.enable = true;
   services = {
