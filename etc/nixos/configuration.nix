@@ -353,6 +353,9 @@
     ffmpeg-full
 
     imagemagick
+
+    unrar-wrapper
+    p7zip
   ];
 
   # swapDevices = [
