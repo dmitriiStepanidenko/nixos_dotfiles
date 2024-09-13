@@ -242,6 +242,7 @@
     # surrealist
     surrealdb-migrations
     nerdfonts
+    terminus-nerdfont
     libreoffice-qt
     hunspell
     hunspellDicts.ru_RU
@@ -314,8 +315,6 @@
     light
     xorg.xbacklight
     xorg.xev
-
-    nerdfonts
   ];
 
   # swapDevices = [
