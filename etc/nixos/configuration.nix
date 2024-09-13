@@ -339,6 +339,9 @@
     autorandr
 
     xss-lock
+
+    ueberzugpp # Display images in alacritty
+    yazi
   ];
 
   # swapDevices = [
