@@ -366,8 +366,8 @@
   environment.etc."local/bin/monitor-hotplug".text = ''
     #!${pkgs.bash}/bin/bash
     export DISPLAY=:0
-    export XAUTHORITY=/home/yourusername/.Xauthority
-    ${pkgs.su}/bin/su yourusername -c '${pkgs.autorandr}/bin/autorandr --change'
+    export XAUTHORITY=/home/dmitrii/.Xauthority
+    ${pkgs.su}/bin/su dmitrii -c '${pkgs.autorandr}/bin/autorandr --change'
   '';
 
   # For ledger
