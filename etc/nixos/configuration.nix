@@ -313,6 +313,9 @@
 
     light
     xorg.xbacklight
+    xorg.xev
+
+    nerdfonts
   ];
 
   # swapDevices = [
