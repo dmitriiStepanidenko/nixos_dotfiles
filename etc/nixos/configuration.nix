@@ -359,6 +359,10 @@
     _7zz # rar archives
 
     lazygit
+
+    gtkwave
+    verilog # icarus verilog
+    verilator
   ];
 
   # swapDevices = [
