@@ -363,6 +363,8 @@
     gtkwave
     verilog # icarus verilog
     verilator
+
+    xorg.xdpyinfo
   ];
 
   # swapDevices = [
