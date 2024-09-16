@@ -364,7 +364,10 @@
     verilog # icarus verilog
     verilator
 
-    xorg.xdpyinfo
+    xorg.xdpyinfo # dpi info for scaling
+    # TODO
+
+    ghdl
   ];
 
   # swapDevices = [
