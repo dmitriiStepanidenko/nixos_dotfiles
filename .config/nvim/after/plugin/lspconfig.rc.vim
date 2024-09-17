@@ -9,7 +9,7 @@ lua << EOF
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "tsserver", "svelte", "verible", "svlangserver", "wgsl_analyzer", "pyright", "pylsp", "graphql", 
+  ensure_installed = { "lua_ls", "tsserver", "svelte", "verible", "svlangserver", "wgsl_analyzer", "pyright", "pylsp", "graphql", "vhdl_ls", 
   --"terraformls", 
   "ansiblels" }
 })
@@ -61,6 +61,7 @@ require("lspconfig").graphql.setup({})
 require("lspconfig").terraformls.setup({})
 require("lspconfig").ansiblels.setup({})
 require("lspconfig").nil_ls.setup({})
+require("lspconfig").vhdl_ls.setup({})
 -- require("lspconfig").ansible_lint.setup({})
 
 -- require('lspconfig').rust_analyzer.setup({

@@ -368,6 +368,8 @@
     # TODO
 
     ghdl
+
+    logisim-evolution
   ];
 
   # swapDevices = [
