@@ -370,6 +370,8 @@
     ghdl
 
     logisim-evolution
+
+    systemc
   ];
 
   # swapDevices = [

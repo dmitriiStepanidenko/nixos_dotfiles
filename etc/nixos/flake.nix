@@ -28,16 +28,7 @@
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;
-          # pkgs = import nixpkgs {
-          #   system = "x86_64-linux";
-          #   config.allowUnfree = true;
-          # };
-          # nixpkgs-stable-unstable = import inputs.nixpkgs-stable-unstable {
-          #   system = "x86_64-linux";
-          #   config.allowUnfree = true;
-          # };
         };
-
         modules = [
           ./configuration.nix
         ];
@@ -53,10 +44,10 @@
     #packages.x86_64-linux.anki-bin = nixpkgs.anki-bin;
     #packages.x86_64-linux.default = nixpkgs;
 
-    #packages.x86_linux.default = nixpkgs.mkShell {
-    #  buildInputs = [
-    #    nixpkgs.anki-bin
-    #  ];
-    #};
+    # packages.x86_64-linux.develop = nixpkgs.mkShell {
+    #   buildInputs = [
+    #     nixpkgs.anki-bin
+    #   ];
+    # };
   };
 }
