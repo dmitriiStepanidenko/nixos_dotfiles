@@ -62,6 +62,7 @@ require("lspconfig").terraformls.setup({})
 require("lspconfig").ansiblels.setup({})
 require("lspconfig").nil_ls.setup({})
 require("lspconfig").vhdl_ls.setup({})
+require("lspconfig").clangd.setup({})
 -- require("lspconfig").ansible_lint.setup({})
 
 -- require('lspconfig').rust_analyzer.setup({

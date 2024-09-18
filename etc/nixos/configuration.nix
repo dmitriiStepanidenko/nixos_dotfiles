@@ -372,6 +372,8 @@
     logisim-evolution
 
     systemc
+
+    clang-tools
   ];
 
   # swapDevices = [
