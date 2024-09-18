@@ -12,7 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./suspend_and_hibernate.nix
+    #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
   ];

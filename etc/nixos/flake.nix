@@ -34,7 +34,7 @@
         ];
       };
     };
-    devShells.x86_64-linux.default =
+    devShells.system.default =
       inputs.nixpkgs-unstable.mkShell
       {
         nativeBuildInputs = with inputs.nixpkgs-unstable; [
