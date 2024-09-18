@@ -34,6 +34,15 @@
         ];
       };
     };
+    devShells.x86_64-linux.default =
+      inputs.nixpkgs-unstable.mkShell
+      {
+        nativeBuildInputs = with inputs.nixpkgs-unstable; [
+          #nodejs
+          clang-tools
+          inputs.nixpkgs-stable.legacyPackages.${system}.systemc
+        ];
+      };
     #nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
     #  specialArgs = {inherit inputs outputs;};
     #  modules = [
