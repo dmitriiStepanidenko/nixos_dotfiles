@@ -377,6 +377,8 @@
     systemc
 
     clang-tools
+
+    pavucontrol # gui for sound
   ];
 
   # swapDevices = [
