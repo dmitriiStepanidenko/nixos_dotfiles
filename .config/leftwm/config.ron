@@ -77,7 +77,7 @@
         (command: CloseWindow, value: "", modifier: ["modkey", "Shift"], key: "q"),
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),
-        (command: Execute, value: "xsecurelock", modifier: ["modkey", "Control"], key: "l"),
+        (command: Execute, value: "xset s activate", modifier: ["modkey", "Control"], key: "l"),
         (command: Execute, value: "systemctl hybrid-sleep", modifier: ["modkey", "Control"], key: "s"),
         (command: Execute, value: "flameshot gui", modifier: ["modkey"], key: "s"),
         (command: MoveToLastWorkspace, value: "", modifier: ["modkey", "Shift"], key: "w"),

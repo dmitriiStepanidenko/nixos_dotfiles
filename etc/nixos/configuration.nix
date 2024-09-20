@@ -125,7 +125,8 @@
     displayManager = with pkgs; {
       sessionCommands = ''
         # Trigger xlock on suspend.
-        ${xss-lock}/bin/xss-lock -- ${xsecurelock}/bin/xsecurelock &
+        ${xorg.xset}/bin/xset 300 5
+        ${xss-lock}/bin/xss-lock -l  -- ${xsecurelock}/bin/xsecurelock &
       '';
       lightdm.enable = true;
     };
@@ -343,6 +344,8 @@
     autorandr # screen
 
     xss-lock # auto lock?
+
+    xorg.xset
 
     ueberzugpp # Display images in alacritty
     yazi # terminal file manager
