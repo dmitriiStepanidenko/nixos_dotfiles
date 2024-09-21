@@ -209,6 +209,40 @@
   #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
 
+  systemd.services.autoranr = {
+    enable = true;
+    description = "autorandr execution hook";
+    after = ["sleep.target"];
+    startLimitBurst = 1;
+    startLimitIntervalSec = 5;
+    serviceConfig = {
+      ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
+      Type = "oneshot";
+      RemainAfterExit = "false";
+    };
+  };
+
+  #services.autorandr = {
+  #  enable = true;
+  #  after = "sleep.target";
+  #  descrit
+  #};
+  # [Unit]
+  # Description=autorandr execution hook
+  # After=sleep.target
+  # # Note: StartLimitInterval was renamed to StartLimitIntervalSec in systemd-230.
+  # # See autorandr bug #69. Do not rename for now, as the old name is kept for
+  # # compatibility.
+  # StartLimitInterval=5
+  # StartLimitBurst=1
+  #
+  # [Service]
+  # ExecStart=/usr/bin/autorandr --batch --change --default default
+  # Type=oneshot
+  # RemainAfterExit=false
+  #
+  # [Install]
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
