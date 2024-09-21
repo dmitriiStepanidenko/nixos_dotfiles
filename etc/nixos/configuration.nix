@@ -403,12 +403,12 @@
 
   services.v2raya.enable = true;
 
-  environment.etc."local/bin/monitor-hotplug".text = ''
-    #!${pkgs.bash}/bin/bash
-    export DISPLAY=:0
-    export XAUTHORITY=/home/dmitrii/.Xauthority
-    ${pkgs.su}/bin/su dmitrii -c '${pkgs.autorandr}/bin/autorandr --change'
-  '';
+  #environment.etc."local/bin/monitor-hotplug".text = ''
+  #  #!${pkgs.bash}/bin/bash
+  #  export DISPLAY=:0
+  #  export XAUTHORITY=/home/dmitrii/.Xauthority
+  #  ${pkgs.su}/bin/su dmitrii -c '${pkgs.autorandr}/bin/autorandr --change'
+  #'';
 
   # For ledger
   hardware.ledger.enable = true;
