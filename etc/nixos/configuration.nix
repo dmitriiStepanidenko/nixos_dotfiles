@@ -379,6 +379,7 @@
     clang-tools
 
     pavucontrol # gui for sound
+    arandr
 
     xorg.xinit
   ];
