@@ -456,6 +456,7 @@
       ];
       extraRules = ''
         ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash /etc/local/bin/monitor-hotplug"
+        ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl start --no-block autorandr.service"
       '';
     };
   };
