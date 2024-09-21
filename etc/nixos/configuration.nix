@@ -379,6 +379,8 @@
     clang-tools
 
     pavucontrol # gui for sound
+
+    xorg.xinit
   ];
 
   # swapDevices = [
