@@ -215,6 +215,7 @@
     after = ["sleep.target"];
     startLimitBurst = 1;
     startLimitIntervalSec = 5;
+    wantedBy = ["sleep.target"];
     serviceConfig = {
       ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
       Type = "oneshot";
@@ -242,6 +243,7 @@
   # RemainAfterExit=false
   #
   # [Install]
+  # WantedBy=sleep.target
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
