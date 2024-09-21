@@ -126,7 +126,7 @@
       sessionCommands = ''
         # Trigger xlock on suspend.
         ${xorg.xset}/bin/xset 300 5
-        ${xss-lock}/bin/xss-lock -l  -- ${xsecurelock}/bin/xsecurelock &
+        ${xss-lock}/bin/xss-lock -l  -- ${xsecurelock}/bin/xsecurelock
       '';
       lightdm.enable = true;
     };
