@@ -258,9 +258,9 @@
     telegram-desktop
     #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
     #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
-    #surrealdb
+    surrealdb
     # nixpkgs-stable-unstable.surrealdb
-    # surrealist
+    surrealist
     surrealdb-migrations
     nerdfonts
     terminus-nerdfont
