@@ -209,7 +209,7 @@
   #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
 
-  systemd.services.autoranr = {
+  systemd.services.autorandr = {
     enable = true;
     description = "autorandr execution hook";
     after = ["sleep.target"];
@@ -448,6 +448,7 @@
   #  export XAUTHORITY=/home/dmitrii/.Xauthority
   #  ${pkgs.su}/bin/su dmitrii -c '${pkgs.autorandr}/bin/autorandr --change'
   #'';
+  #ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash /etc/local/bin/monitor-hotplug"
 
   # For ledger
   hardware.ledger.enable = true;
@@ -457,7 +458,6 @@
         ledger-udev-rules
       ];
       extraRules = ''
-        ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash /etc/local/bin/monitor-hotplug"
         ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl start --no-block autorandr.service"
       '';
     };
