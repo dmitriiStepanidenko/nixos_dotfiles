@@ -162,6 +162,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [pkgs.hplipWithPlugin];
+  services.avahi.enable = true;
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -419,7 +421,7 @@
 
     xorg.xinit
 
-    hplipWithPlugin
+    #hplipWithPlugin
     #hplip
   ];
 
