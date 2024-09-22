@@ -418,6 +418,8 @@
     arandr
 
     xorg.xinit
+
+    hplip
   ];
 
   # swapDevices = [
