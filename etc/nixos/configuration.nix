@@ -419,7 +419,7 @@
 
     xorg.xinit
 
-    hplip
+    hplipWithPlugin
   ];
 
   # swapDevices = [
