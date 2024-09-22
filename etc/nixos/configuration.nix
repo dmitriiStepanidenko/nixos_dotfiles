@@ -421,7 +421,7 @@
 
     xorg.xinit
 
-    #hplipWithPlugin
+    hplipWithPlugin
     #hplip
   ];
 
