@@ -225,27 +225,10 @@
     };
   };
 
-  #services.autorandr = {
-  #  enable = true;
-  #  after = "sleep.target";
-  #  descrit
-  #};
-  # [Unit]
-  # Description=autorandr execution hook
-  # After=sleep.target
-  # # Note: StartLimitInterval was renamed to StartLimitIntervalSec in systemd-230.
-  # # See autorandr bug #69. Do not rename for now, as the old name is kept for
-  # # compatibility.
-  # StartLimitInterval=5
-  # StartLimitBurst=1
-  #
-  # [Service]
-  # ExecStart=/usr/bin/autorandr --batch --change --default default
-  # Type=oneshot
-  # RemainAfterExit=false
-  #
-  # [Install]
-  # WantedBy=sleep.target
+  # Needs for Telegram popup windows
+  qt = {
+    enable = true;
+  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -265,10 +248,6 @@
   ];
 
   programs.noisetorch.enable = true;
-
-  #services.screen-locker.xss-lock = {
-
-  #};
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -297,7 +276,6 @@
     #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
     #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
     surrealdb
-    # nixpkgs-stable-unstable.surrealdb
     surrealist
     surrealdb-migrations
     nerdfonts
@@ -324,15 +302,9 @@
     python312
     python312Packages.pip
     python312Packages.ansible-core
+    python312Packages.pipx
 
     obsidian
-
-    # For thermal sensor plugin (have no idea if this will work, suppose, no)
-    # https://invent.kde.org/olib/thermalmonitor
-    #kdePackages.ksystemstats
-    #kdePackages.libksysguard
-    #kdePackages.kitemmodels
-    #kdePackages.kdeclarative
 
     cht-sh
 
@@ -341,7 +313,6 @@
 
     mtr
 
-    # kdePackages.kdialog
     sox
 
     ledger-live-desktop
@@ -425,13 +396,6 @@
     #hplip
   ];
 
-  # swapDevices = [
-  #   {
-  #     device = "/var/lib/swapfile";
-  #     size = 16 * 1024;
-  #   }
-  # ];
-
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -446,14 +410,6 @@
   services.pcscd.enable = true;
 
   services.v2raya.enable = true;
-
-  #environment.etc."local/bin/monitor-hotplug".text = ''
-  #  #!${pkgs.bash}/bin/bash
-  #  export DISPLAY=:0
-  #  export XAUTHORITY=/home/dmitrii/.Xauthority
-  #  ${pkgs.su}/bin/su dmitrii -c '${pkgs.autorandr}/bin/autorandr --change'
-  #'';
-  #ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash /etc/local/bin/monitor-hotplug"
 
   # For ledger
   hardware.ledger.enable = true;
