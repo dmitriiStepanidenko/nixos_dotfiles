@@ -400,6 +400,8 @@
 
     getent
     auto-cpufreq
+
+    taskwarrior
   ];
 
   programs.neovim = {
