@@ -85,6 +85,7 @@
       enable_thresholds = "true";
       start_threshold = 20;
       stop_threshold = 80;
+      ideapad_laptop_conservation_mode = "true";
     };
     charger = {
       governor = "performance";
