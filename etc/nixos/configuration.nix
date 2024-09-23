@@ -402,6 +402,7 @@
     auto-cpufreq
 
     taskwarrior
+    taskwarrior-tui
   ];
 
   programs.neovim = {
