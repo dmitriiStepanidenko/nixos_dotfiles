@@ -406,6 +406,7 @@
 
     cargo
     rustc
+    rust-analyzer
   ];
 
   programs.neovim = {
