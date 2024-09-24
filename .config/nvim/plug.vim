@@ -104,6 +104,9 @@ if has("nvim")
   Plug 'andythigpen/nvim-coverage'
 
   Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+
+  Plug 'vimwiki/vimwiki'
+  Plug 'tools-life/taskwiki'
 endif
 
 call plug#end()

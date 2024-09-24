@@ -270,7 +270,7 @@
     htop
     gparted
     enpass
-    rustup
+    #rustup
     git
     stow
     gcc14
@@ -403,6 +403,9 @@
 
     taskwarrior
     taskwarrior-tui
+
+    cargo
+    rustc
   ];
 
   programs.neovim = {
