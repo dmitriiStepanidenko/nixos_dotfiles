@@ -194,7 +194,7 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty"];
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd"];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
@@ -202,6 +202,18 @@
     #];
   };
   users.groups.dmitrii.gid = 1000;
+
+  # Virtual Box
+  virtualisation.virtualbox.host.enable = true;
+  users.extraGroups.vboxusers.members = [ "dmitrii" ];
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+  #virtualisation.virtualbox.guest.enable = true;
+  #virtualisation.virtualbox.guest.draganddrop = true;
+
+  # Libvirt
+  virtualisation.libvirtd.enable = true;
+  programs.virt-manager.enable = true;
+
 
   # Install firefox.
   programs.firefox.enable = true;
