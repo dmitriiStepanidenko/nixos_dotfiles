@@ -452,6 +452,10 @@
     };
   };
 
+  # bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = false; # powers up the default Bluetooth controller on bo
+
   ###### GPU tweaks
   # Enable OpenGL
   hardware.graphics = {

@@ -9,7 +9,7 @@ lua << EOF
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "tsserver", "svelte", "verible", "svlangserver", "wgsl_analyzer", "pyright", "pylsp", "graphql", "vhdl_ls", 
+  ensure_installed = { "lua_ls", "ts_ls", "svelte", "verible", "svlangserver", "wgsl_analyzer", "pyright", "pylsp", "graphql", "vhdl_ls", 
   --"terraformls", 
   "ansiblels" }
 })
@@ -49,7 +49,7 @@ require("lspconfig").lua_ls.setup {
 }
 
 require("lspconfig").solargraph.setup({})
-require("lspconfig").tsserver.setup({})
+require("lspconfig").ts_ls.setup({})
 require("lspconfig").svelte.setup({})
 -- require("lspconfig").svls.setup({})
 require("lspconfig").verible.setup({})
