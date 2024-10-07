@@ -153,10 +153,10 @@
   # services.fwupd.enable = true;
 
   services.xserver.videoDrivers = [
-    "displaylink"
     "amdgpu"
     #"modesetting"
     "nvidia"
+    "displaylink"
     #"nvidia" "amdgpu-pro"
   ];
   #"modesetting" - FOSS drivers for nvidia
