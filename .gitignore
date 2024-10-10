@@ -1,6 +1,8 @@
 .config/nvim/bin
+config/nvim/bin
 */**/wireguard.nix
 wireguard.nix
 *.key
 .config/discord
+config/discord
 *.log
