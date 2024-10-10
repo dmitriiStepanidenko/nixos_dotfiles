@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+SCRIPTPATH="/home/dmitrii/dotfiles/config/leftwm/themes/Ascent"
+
+leftwm-command UnloadTheme
+
+pkill polybar
+pkill compton
+pkill picom
+pkill polybar
