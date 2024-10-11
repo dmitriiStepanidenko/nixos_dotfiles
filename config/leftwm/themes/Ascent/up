@@ -39,4 +39,3 @@ if [ -x "$(command -v polybar)" ]; then
   done <<< "$monitors"
   exit 0
 fi
-
