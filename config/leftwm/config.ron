@@ -124,6 +124,9 @@
         (command: Execute, value: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", modifier: [], key: "XF86AudioRaiseVolume"),
         (command: Execute, value: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", modifier: [], key: "XF86AudioLowerVolume"),
         (command: Execute, value: "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", modifier: [], key: "XF86AudioMute"),
+        (command: Execute, value: "", modifier: [], key: "XF86AudioPlay"),
+        (command: Execute, value: "", modifier: [], key: "XF86AudioMute"),
+        (command: Execute, value: "", modifier: [], key: "XF86AudioMute"),
     ],
     state_path: None,
 )

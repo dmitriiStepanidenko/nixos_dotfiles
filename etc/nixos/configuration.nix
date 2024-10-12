@@ -450,6 +450,8 @@
 
   services.v2raya.enable = true;
 
+  services.playerctld.enable = true; # Media keys
+
   # For ledger
   hardware.ledger.enable = true;
   services = {
