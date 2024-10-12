@@ -121,6 +121,9 @@
         (command: DecreaseMainWidth, value: "5", modifier: ["modkey"], key: "x"),
         (command: Execute, value: "light -A 2", modifier: [], key: "XF86MonBrightnessUp"),
         (command: Execute, value: "light -U 2", modifier: [], key: "XF86MonBrightnessDown"),
+        (command: Execute, value: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+", modifier: [], key: "XF86AudioRaiseVolume"),
+        (command: Execute, value: "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-", modifier: [], key: "XF86AudioLowerVolume"),
+        (command: Execute, value: "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle", modifier: [], key: "XF86AudioMute"),
     ],
     state_path: None,
 )

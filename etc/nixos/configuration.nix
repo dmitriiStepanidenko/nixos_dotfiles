@@ -431,6 +431,8 @@
     rustc
     rust-analyzer
     rustfmt
+
+    playerctl # Media keys: Play/Pause / etc
   ];
 
   programs.neovim = {
