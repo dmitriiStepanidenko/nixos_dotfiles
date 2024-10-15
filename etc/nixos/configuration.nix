@@ -158,7 +158,8 @@
     "amdgpu"
     #"modesetting"
     "nvidia"
-    "displaylink"
+
+    #"displaylink"
     #"nvidia" "amdgpu-pro"
   ];
   #"modesetting" - FOSS drivers for nvidia
