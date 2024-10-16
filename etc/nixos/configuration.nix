@@ -435,7 +435,8 @@
 
     playerctl # Media keys: Play/Pause / etc
 
-    cmake # needs for cargo-semver-checks
+    # cmake # needs for cargo-semver-checks
+    cargo-semver-checks
   ];
 
   programs.neovim = {
