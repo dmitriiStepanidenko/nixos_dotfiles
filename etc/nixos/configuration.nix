@@ -197,7 +197,8 @@
   users.users.dmitrii = {
     isNormalUser = true;
     description = "Dmitrii";
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd"];
+    # Needs groups input and uinput for kanata to work without sudo
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput"];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
@@ -437,6 +438,8 @@
 
     # cmake # needs for cargo-semver-checks
     cargo-semver-checks
+
+    kanata # for remapping of keys
   ];
 
   programs.neovim = {
@@ -456,6 +459,8 @@
 
   services.playerctld.enable = true; # Media keys
 
+  #services.kanata.enable = true; # keys
+
   # For ledger
   hardware.ledger.enable = true;
   services = {
@@ -468,6 +473,7 @@
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[0-2]", RUN+="${pkgs.systemd}/bin/systemctl hybrid-sleep"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[5-10]", RUN+="${pkgs.libnotify}/bin/notify-send Battery EXTREMELY Low"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[10-15]", RUN+="${pkgs.libnotify}/bin/notify-send Battery Low"
+        KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
       '';
     };
   };
