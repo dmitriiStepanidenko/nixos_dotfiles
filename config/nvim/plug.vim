@@ -107,6 +107,9 @@ if has("nvim")
 
   Plug 'vimwiki/vimwiki'
   Plug 'tools-life/taskwiki'
+
+  Plug 'zaldih/themery.nvim'
+  Plug 'wuelnerdotexe/vim-enfocado'
 endif
 
 call plug#end()
