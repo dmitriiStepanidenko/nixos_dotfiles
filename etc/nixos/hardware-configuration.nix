@@ -31,7 +31,17 @@
   fileSystems."/home/dmitrii/shared" = {
     device = "/dev/disk/by-uuid/1757BB2B0F01D736";
     fsType = "ntfs";
-    options = ["uid=1000" "gid=1000" "dmask=0022" "fmask=0022"];
+    options = [
+      "uid=1000"
+      "gid=1000"
+      "dmask=0022"
+      "fmask=0022"
+      "windows_names"
+      "norecover"
+      "big_writes"
+      "streams_interface=windows"
+      "inherit"
+    ];
   };
 
   # mkswap: /dev/nvme0n1p7: warning: wiping old swap signature.

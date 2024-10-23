@@ -442,6 +442,14 @@
     kanata # for remapping of keys
 
     xorg.xbacklight
+
+    lm_sensors # reding hardware temperature sensors
+
+    # Undervolting !
+    undervolt
+    s-tui
+    stress
+    # Undervolting !
   ];
 
   programs.neovim = {
@@ -458,6 +466,8 @@
   services.pcscd.enable = true;
 
   services.v2raya.enable = true;
+  # TODO:
+  #services.sing-box.enable = true;
 
   services.playerctld.enable = true; # Media keys
 
