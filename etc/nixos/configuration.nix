@@ -449,11 +449,13 @@
 
     lm_sensors # reding hardware temperature sensors
 
-    # Undervolting !
+    # Undervolting (for Intel :(  ) !
     undervolt
     s-tui
     stress
     # Undervolting !
+
+    acpi
   ];
 
   programs.neovim = {
