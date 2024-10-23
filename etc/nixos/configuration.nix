@@ -60,6 +60,8 @@
   powerManagement.powertop.enable = true;
 
   #services.thermald.enable = true;
+  services.acpid.enable = true; # acpi thermal readings??
+  hardware.acpilight.enable = true; # light control ?
   services.tlp = {
     enable = true;
     settings = {
