@@ -56,7 +56,6 @@
   # Enable flakes
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-
   services.acpid.enable = true; # acpi thermal readings??
   hardware.acpilight.enable = true; # light control ?
 
@@ -86,17 +85,20 @@
 
   # THis piece of shit does not work!
   services.auto-cpufreq.settings = {
-    battery = {
-      governor = "powersave";
-      turbo = "never";
-      enable_thresholds = "true";
-      start_threshold = 20;
-      stop_threshold = 80;
-      ideapad_laptop_conservation_mode = "true";
-    };
-    charger = {
-      governor = "performance";
-      turbo = "auto";
+    enable = true;
+    settings = {
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+        enable_thresholds = "true";
+        start_threshold = 20;
+        stop_threshold = 80;
+        ideapad_laptop_conservation_mode = "true";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
     };
   };
 
