@@ -269,7 +269,7 @@
     options = "--delete-older-than 30d";
   };
 
-  fonts.enableDefaultFonts = true;
+  fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
