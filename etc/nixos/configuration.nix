@@ -152,9 +152,11 @@
 
   # Configure keymas
   services.xserver = {
-    xkb.layout = "us,ru";
-    xkbVariant = "";
-    xkbOptions = "grp:win_space_toggle";
+    xkb = {
+      layout = "us,ru";
+      variant = "";
+      options = "grp:win_space_toggle";
+    };
   };
   console.keyMap = "us";
 
