@@ -38,7 +38,7 @@
   # Because Nvivia?
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
-  #boot.initrd.kernelModules = ["nvidia"];
+  #boot.initrd.kernelModules = ["amdgpu"];
   #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -464,8 +464,9 @@
 
     vhdl-ls
 
-    nvtopPackages.nvidia
-    nvtopPackages.amd
+    #nvtopPackages.nvidia
+    #nvtopPackages.amd
+    nvtopPackages.full
   ];
 
   programs.neovim = {
@@ -515,6 +516,7 @@
   # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    enable32Bit = true;
   };
 
   hardware.nvidia = {
