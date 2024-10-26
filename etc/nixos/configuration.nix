@@ -134,6 +134,8 @@
 
   services.xserver.windowManager.leftwm.enable = true;
 
+  hardware.video.hidpi.enable = true;
+
   services.xserver = {
     displayManager = with pkgs; {
       sessionCommands = ''
@@ -164,7 +166,8 @@
   services.xserver.videoDrivers = [
     "amdgpu"
     #"modesetting"
-    "nvidia"
+
+    #"nvidia"
 
     #"displaylink"
     #"nvidia" "amdgpu-pro"
