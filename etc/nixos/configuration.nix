@@ -461,6 +461,8 @@
     acpi
 
     dmidecode
+
+    vhdl-ls
   ];
 
   programs.neovim = {
