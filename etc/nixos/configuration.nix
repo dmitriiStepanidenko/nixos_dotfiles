@@ -39,7 +39,7 @@
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   #boot.initrd.kernelModules = ["amdgpu"];
-  #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -133,8 +133,6 @@
   services.xserver.enable = true;
 
   services.xserver.windowManager.leftwm.enable = true;
-
-  hardware.video.hidpi.enable = true;
 
   services.xserver = {
     displayManager = with pkgs; {
@@ -435,9 +433,6 @@
 
     getent
     auto-cpufreq
-
-    taskwarrior
-    taskwarrior-tui
 
     cargo
     rustc
