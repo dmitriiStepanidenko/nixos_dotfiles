@@ -463,6 +463,9 @@
     dmidecode
 
     vhdl-ls
+
+    nvtopPackages.nvidia
+    nvtopPackages.amd
   ];
 
   programs.neovim = {
