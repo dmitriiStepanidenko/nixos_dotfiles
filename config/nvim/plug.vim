@@ -110,6 +110,10 @@ if has("nvim")
 
   Plug 'zaldih/themery.nvim'
   Plug 'wuelnerdotexe/vim-enfocado'
+
+  Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
+
+  Plug 'folke/which-key.nvim'
 endif
 
 call plug#end()
