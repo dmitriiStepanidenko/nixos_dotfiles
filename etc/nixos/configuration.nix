@@ -39,7 +39,8 @@
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   #boot.initrd.kernelModules = ["amdgpu"];
-  boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
+  #boot.kernelPackages = [];
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -167,7 +168,7 @@
     "amdgpu"
     #"modesetting"
 
-    #"nvidia"
+    "nvidia"
 
     #"displaylink"
     #"nvidia" "amdgpu-pro"
