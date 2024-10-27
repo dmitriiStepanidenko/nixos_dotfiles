@@ -202,12 +202,13 @@
   virtualisation.docker.enable = true;
 
   # run Android apps
-  virtualisation.waydroid.enable = true;
+  # currently disabled. crushed whole system several times
+  #virtualisation.waydroid.enable = true;
 
-  users.extraUsers.waydroid-desktop.isNormalUser = true;
-  services.cage.user = "waydroid-desktop";
-  services.cage.program = "${pkgs.waydroid}/bin/waydroid show-full-ui";
-  services.cage.enable = true;
+  #users.extraUsers.waydroid-desktop.isNormalUser = true;
+  #services.cage.user = "waydroid-desktop";
+  #services.cage.program = "${pkgs.waydroid}/bin/waydroid show-full-ui";
+  #services.cage.enable = true;
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
@@ -477,7 +478,7 @@
     #nvtopPackages.amd
     nvtopPackages.full
 
-    waydroid
+    #waydroid
   ];
 
   programs.neovim = {
