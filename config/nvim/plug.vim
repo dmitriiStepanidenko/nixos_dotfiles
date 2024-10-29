@@ -70,7 +70,6 @@ if has("nvim")
   Plug 'rcarriga/nvim-notify'   " optional
   Plug 'stevearc/dressing.nvim' " optional, UI for :JupyniumKernelSelect
 
-  Plug 'hrsh7th/nvim-cmp'
 
   Plug 'dccsillag/magma-nvim', { 'do': ':UpdateRemotePlugins' }
   
