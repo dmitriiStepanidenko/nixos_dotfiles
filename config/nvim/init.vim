@@ -166,3 +166,11 @@ augroup end
 
 " Localization
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+
+
+" resize
+nmap <Esc>> :vertical res +1<Enter>
+nmap <Esc>< :vertical res -1<Enter>
+nmap ^[+ :res +1^M
+nmap ^[- :res -1^M
+

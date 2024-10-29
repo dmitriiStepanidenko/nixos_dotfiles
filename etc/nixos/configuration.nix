@@ -450,6 +450,7 @@
     rustc
     rust-analyzer
     rustfmt
+    clippy
 
     playerctl # Media keys: Play/Pause / etc
 
