@@ -60,8 +60,12 @@ if has("nvim")
   Plug 'mrcjkb/rustaceanvim'
   " Plug 'simrat39/rust-tools.nvim'  " --- DEPRECATED
   "
-  Plug 'hrsh7th/nvim-cmp'
   Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
 

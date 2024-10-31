@@ -90,7 +90,8 @@
     settings = {
       battery = {
         governor = "powersave";
-        turbo = "never";
+        #turbo = "never";
+        turbo = "auto";
         enable_thresholds = "true";
         start_threshold = 20;
         stop_threshold = 80;
@@ -315,7 +316,6 @@
     htop
     gparted
     enpass
-    #rustup
     git
     stow
     gcc14
@@ -446,6 +446,7 @@
     getent
     auto-cpufreq
 
+    #rustup
     cargo
     rustc
     rust-analyzer
