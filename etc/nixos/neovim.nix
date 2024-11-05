@@ -1,33 +1,33 @@
 # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/utils.nix#L27
-{
-  pkgs,
-  inputs,
-  neovimUtils,
-  wrapNeovimUnstable,
-  ...
-}: let
-  config = pkgs.neovimUtils.makeNeovimConfig {
-    extraLuaPackages = p: [p.magick];
-    extraPackages = p: [p.imagemagick];
-    enable = true;
-    defaultEditor = true;
-    neovimRcContent = builtins.readFile ../../config/nvim/plug.vim;
-    # ... other config
-    #security.pki.certificates = [ (builtins.readFile ./ca-bundle.crt) ];
-  };
-in {
-  nixpkgs.overlays = [
-    (_: super: {
-      neovim-custom =
-        pkgs.wrapNeovimUnstable
-        (super.neovim-unwrapped.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs; #++ [super.tree-sitter];
-        }))
-        config;
-    })
-  ];
-  environment.systemPackages = with pkgs; [neovim-custom];
-}
+# {
+#   pkgs,
+#   inputs,
+#   neovimUtils,
+#   wrapNeovimUnstable,
+#   ...
+# }: let
+#   config = pkgs.neovimUtils.makeNeovimConfig {
+#     extraLuaPackages = p: [p.magick];
+#     extraPackages = p: [p.imagemagick];
+#     enable = true;
+#     defaultEditor = true;
+#     neovimRcContent = builtins.readFile ../../config/nvim/plug.vim;
+#     # ... other config
+#     #security.pki.certificates = [ (builtins.readFile ./ca-bundle.crt) ];
+#   };
+# in {
+#   nixpkgs.overlays = [
+#     (_: super: {
+#       neovim-custom =
+#         pkgs.wrapNeovimUnstable
+#         (super.neovim-unwrapped.overrideAttrs (oldAttrs: {
+#           buildInputs = oldAttrs.buildInputs; #++ [super.tree-sitter];
+#         }))
+#         config;
+#     })
+#   ];
+#   environment.systemPackages = with pkgs; [neovim-custom];
+# }
 #{
 #  pkgs,
 #  inputs,

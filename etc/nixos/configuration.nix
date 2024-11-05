@@ -12,7 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./neovim.nix
+    #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
@@ -489,12 +489,12 @@
     via # for lily58. Change layouts
   ];
 
-  #programs.neovim = {
-  #  enable = true;
-  #  defaultEditor = true;
-  #  #extraLuaPackages = ps: [ps.magick];
-  #  package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-  #};
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    #extraLuaPackages = ps: [ps.magick];
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = false;
