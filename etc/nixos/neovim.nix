@@ -1,6 +1,7 @@
 # https://github.com/NixOS/nixpkgs/blob/master/pkgs/applications/editors/neovim/utils.nix#L27
 {
   pkgs,
+  inputs,
   neovimUtils,
   wrapNeovimUnstable,
   ...
@@ -10,7 +11,9 @@
     extraPackages = p: [p.imagemagick];
     enable = true;
     defaultEditor = true;
+    neovimRcContent = builtins.readFile ../../config/nvim/plug.vim;
     # ... other config
+    #security.pki.certificates = [ (builtins.readFile ./ca-bundle.crt) ];
   };
 in {
   nixpkgs.overlays = [

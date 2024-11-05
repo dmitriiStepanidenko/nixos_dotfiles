@@ -1,5 +1,5 @@
 "if has("nvim")
-let g:plug_home = stdpath('data') . '/plugged'
+" let g:plug_home = stdpath('data') . '/plugged'
 "endif
 
 call plug#begin()
