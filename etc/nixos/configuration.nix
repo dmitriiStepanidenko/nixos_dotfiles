@@ -12,6 +12,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
@@ -308,7 +309,7 @@
     #nixpkgs-stable-unstable.vim
     #vim
     wget
-    neovim
+    #neovim
     displaylink
     neofetch
     tmux
@@ -491,6 +492,8 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    extraLuaPackages = ps: [ps.magick];
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
   programs.steam = {
     enable = true;

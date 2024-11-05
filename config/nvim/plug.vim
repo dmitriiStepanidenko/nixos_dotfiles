@@ -117,6 +117,8 @@ if has("nvim")
   Plug 'mistricky/codesnap.nvim', { 'do': 'make' }
 
   Plug 'folke/which-key.nvim'
+
+  Plug '3rd/image.nvim'
 endif
 
 call plug#end()

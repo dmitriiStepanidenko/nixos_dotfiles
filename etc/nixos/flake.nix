@@ -8,6 +8,7 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable-unstable.url = "github:nixos/nixpkgs?ref=5e0ca22929f3342b19569b21b2f3462f053e497b";
+    neovim-nightly-overlay.url = "https://github.com/nix-community/neovim-nightly-overlay/archive/1f54e89757bd951470a9dcc8d83474e363f130c5.tar.gz";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -20,6 +21,9 @@
     ...
   }: let
     system = "x86_64-linux";
+    overlays = [
+      inputs.neovim-nightly-overlay.overlays.default
+    ];
     #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
     #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
   in {
@@ -31,6 +35,7 @@
         };
         modules = [
           ./configuration.nix
+          ./neovim.nix
         ];
       };
     };
