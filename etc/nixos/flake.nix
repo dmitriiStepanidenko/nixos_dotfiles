@@ -29,9 +29,9 @@
     ...
   }: let
     system = "x86_64-linux";
-    overlays = [
-      inputs.neovim-nightly-overlay.overlays.default
-    ];
+    #overlays = [
+    #  inputs.neovim-nightly-overlay.overlays.default
+    #];
     #  pkgs = nixpkgs.legacyPackages.x86_64-linux;
     #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
   in {
