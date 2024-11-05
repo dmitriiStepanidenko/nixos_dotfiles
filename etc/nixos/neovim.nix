@@ -8,6 +8,8 @@
   config = pkgs.neovimUtils.makeNeovimConfig {
     extraLuaPackages = p: [p.magick];
     extraPackages = p: [p.imagemagick];
+    enable = true;
+    defaultEditor = true;
     # ... other config
   };
 in {
