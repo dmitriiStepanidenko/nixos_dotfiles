@@ -9,6 +9,14 @@
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixpkgs-stable-unstable.url = "github:nixos/nixpkgs?ref=5e0ca22929f3342b19569b21b2f3462f053e497b";
     neovim-nightly-overlay.url = "https://github.com/nix-community/neovim-nightly-overlay/archive/1f54e89757bd951470a9dcc8d83474e363f130c5.tar.gz";
+    nixvim = {
+      #url = "github:nix-community/nixvim";
+      url = "github:nix-community/nixvim?ref=3d24cb72618738130e6af9c644c81fe42aa34ebc";
+      # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
+      # url = "github:nix-community/nixvim/nixos-24.05";
+
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -35,7 +43,7 @@
         };
         modules = [
           ./configuration.nix
-          ./neovim.nix
+          # ./neovim.nix
         ];
       };
     };
