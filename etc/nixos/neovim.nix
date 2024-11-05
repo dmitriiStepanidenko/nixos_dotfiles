@@ -18,7 +18,7 @@ in {
       neovim-custom =
         pkgs.wrapNeovimUnstable
         (super.neovim-unwrapped.overrideAttrs (oldAttrs: {
-          buildInputs = oldAttrs.buildInputs ++ [super.tree-sitter];
+          buildInputs = oldAttrs.buildInputs; #++ [super.tree-sitter];
         }))
         config;
     })
