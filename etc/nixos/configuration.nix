@@ -200,6 +200,8 @@
     #media-session.enable = true;
   };
 
+  hardware.keyboard.qmk.enable = true; # - lily58 firmware
+
   virtualisation.docker.enable = true;
 
   # run Android apps
@@ -481,6 +483,9 @@
     nvtopPackages.full
 
     #waydroid
+    graphviz
+
+    via # for lily58. Change layouts
   ];
 
   programs.neovim = {
@@ -510,6 +515,7 @@
     udev = {
       packages = with pkgs; [
         ledger-udev-rules
+        pkgs.via
       ];
       extraRules = ''
         ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl start --no-block autorandr.service"

@@ -10,11 +10,14 @@ lua << EOF
 -- nvim-cmp setup
 local cmp = require 'cmp'
 cmp.setup {
-  snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
-  },
+  -- snippet = {
+  --   expand = function(args)
+  --     luasnip.lsp_expand(args.body)
+  --   end,
+  -- },
+  -- completion = {
+  --   autocomplete = false
+  -- },
   mapping = cmp.mapping.preset.insert({
     ['<C-u>'] = cmp.mapping.scroll_docs(-4), -- Up
     ['<C-d>'] = cmp.mapping.scroll_docs(4), -- Down
@@ -24,29 +27,29 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      --elseif luasnip.jumpable(-1) then
+      --  luasnip.jump(-1)
       else
         fallback()
       end
     end, { 'i', 's' }),
   }),
-  sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-  },
+  -- sources = {
+  --   { name = 'nvim_lsp' },
+  --   { name = 'luasnip' },
+  -- },
 }
 
 require("mason").setup()
@@ -136,7 +139,7 @@ require("lspconfig").clangd.setup({})
 -- })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 require("lspconfig").html.setup({
   capabilities = capabilities 
 })
@@ -203,7 +206,7 @@ require("aerial").setup({
 vim.keymap.set("n", "<leader>l", "<cmd>AerialToggle!<CR>")
 
 -- luasnip setup
-local luasnip = require 'luasnip'
+-- local luasnip = require 'luasnip'
 
 
 -- OLD CODE! START !!!
@@ -311,3 +314,13 @@ local luasnip = require 'luasnip'
 -- OLD CODE! START !!!
 
 EOF
+
+" let s:timer = 0
+" autocmd TextChangedI * call s:on_text_changed()
+" function! s:on_text_changed() abort
+"   call timer_stop(s:timer)
+"   let s:timer = timer_start(200, function('s:complete'))
+" endfunction
+" function! s:complete(...) abort
+"   lua require('cmp').complete({ reason = require('cmp').ContextReason.Auto })
+" endfunction

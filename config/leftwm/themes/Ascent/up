@@ -31,7 +31,8 @@ fi
 leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
 
 #set background
-feh --bg-scale "/home/dmitrii/dotfiles/config/leftwm/themes/Ascent/wallpaper.jpg"
+#feh --bg-scale "/home/dmitrii/dotfiles/config/leftwm/themes/Ascent/wallpaper.jpg"
+feh --bg-fill "/home/dmitrii/dotfiles/config/leftwm/themes/Ascent/wanderer.jpg"
 
 #boot polybar based on the number of monitors found
 if [ -x "$(command -v polybar)" ]; then

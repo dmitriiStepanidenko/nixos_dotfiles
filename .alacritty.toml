@@ -1,6 +1,6 @@
 general.import = [
-    #"~/.config/alacritty/themes/tokyo-night.toml",
-    "~/.config/alacritty/themes/atom_one_light.toml"
+    "~/.config/alacritty/themes/tokyo-night.toml",
+    #"~/.config/alacritty/themes/atom_one_light.toml"
 ]
 
 [font]
