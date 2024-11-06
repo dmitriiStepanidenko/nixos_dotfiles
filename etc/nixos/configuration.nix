@@ -492,8 +492,9 @@
   programs.neovim = {
     enable = true;
     defaultEditor = true;
+    withNodeJs = true;
     #extraLuaPackages = ps: [ps.magick];
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
   programs.steam = {
     enable = true;
