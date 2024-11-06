@@ -487,6 +487,8 @@
     graphviz
 
     via # for lily58. Change layouts
+
+    luajitPackages.magick
   ];
 
   programs.neovim = {
