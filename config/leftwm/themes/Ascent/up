@@ -20,11 +20,11 @@ kanata -c $SCRIPTPATH/config.kbd &
 
 
 #boot compton or picom if it exists
-if [ -x "$(command -v compton)" ]; then
-  compton &> /dev/null &
-elif [ -x "$(command -v picom)" ]; then
-  picom &> /dev/null &
-fi
+#if [ -x "$(command -v compton)" ]; then
+#  compton &> /dev/null &
+#elif [ -x "$(command -v picom)" ]; then
+picom --backend glx &> /dev/null &
+#fi
 
 
 #set the theme.toml config

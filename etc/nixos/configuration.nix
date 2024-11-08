@@ -300,6 +300,7 @@
     "x-scheme-handler/https" = "firefox.desktop";
     "x-scheme-handler/about" = "firefox.desktop";
     "x-scheme-handler/unknown" = "firefox.desktop";
+    "inode/directory" = "yazi.desktop";
   };
 
   # List packages installed in system profile. To search, run:
