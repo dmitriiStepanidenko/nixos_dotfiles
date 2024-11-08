@@ -506,6 +506,9 @@ in {
     luajitPackages.magick
 
     picom
+
+    obsidian
+    logseq
   ];
 
   programs.neovim = {
