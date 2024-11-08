@@ -8,7 +8,14 @@
   inputs,
   #nixpkgs-stable-unstable,
   ...
-}: {
+}: let
+  tokyoNightTheme = pkgs.fetchFromGitHub {
+    owner = "BennyOe";
+    repo = "tokyo-night.yazi";
+    rev = "main";
+    sha256 = "112r9b7gan3y4shm0dfgbbgnxasi7ywlbk1pksdbpaglkczv0412";
+  };
+in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
@@ -303,6 +310,13 @@
     "inode/directory" = "yazi.desktop";
   };
 
+  programs.yazi = {
+    enable = true;
+    flavors = {
+      tokyo-night = tokyoNightTheme;
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -411,7 +425,6 @@
     xorg.xset
 
     ueberzugpp # Display images in alacritty
-    yazi # terminal file manager
 
     #komorebi
     xwinwrap
