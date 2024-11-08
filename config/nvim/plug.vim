@@ -27,17 +27,15 @@ if has("nvim")
 
   Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 
-  Plug 'Chiel92/vim-autoformat'
-  Plug 'mhartington/formatter.nvim'
-  Plug 'easymotion/vim-easymotion'
+  " Plug 'Chiel92/vim-autoformat'
+  " Plug 'mhartington/formatter.nvim'
+  " Plug 'easymotion/vim-easymotion'
   " Plug 'tmhedberg/SimpylFold'
 
   let g:vimspector_enable_mappings = 'HUMAN'
   Plug 'puremourning/vimspector'
 
   Plug 'vim-test/vim-test'
-
-  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
   Plug 'othree/html5.vim'
   Plug 'pangloss/vim-javascript'
@@ -118,7 +116,13 @@ if has("nvim")
 
   Plug 'folke/which-key.nvim'
 
-  Plug '3rd/image.nvim'
+  "Plug '3rd/image.nvim'
+  "Plug 'edluffy/hologram.nvim'
+  Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
+  Plug 'm4xshen/hardtime.nvim'
+
+  Plug 'ggandor/leap.nvim'
 endif
 
 call plug#end()

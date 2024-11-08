@@ -355,6 +355,7 @@
     python312Packages.pip
     python312Packages.ansible-core
     python312Packages.pipx
+    python312Packages.pynvim
 
     obsidian
 
@@ -489,12 +490,15 @@
     via # for lily58. Change layouts
 
     luajitPackages.magick
+
+    picom
   ];
 
   programs.neovim = {
     enable = true;
     defaultEditor = true;
     withNodeJs = true;
+    withPython3 = true;
     #extraLuaPackages = ps: [ps.magick];
     #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
