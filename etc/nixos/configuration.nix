@@ -520,6 +520,8 @@ in {
     usbutils
     udiskie
     udisks
+
+    spacedrive
   ];
 
   programs.direnv.enable = true;
