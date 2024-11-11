@@ -300,6 +300,7 @@ in {
     fira-code
     fira-code-symbols
     nerdfonts
+    corefonts # Times New Roman
   ];
 
   programs.noisetorch.enable = true;

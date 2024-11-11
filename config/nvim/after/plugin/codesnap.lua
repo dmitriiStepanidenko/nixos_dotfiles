@@ -6,5 +6,12 @@ require("codesnap").setup({
   -- parsed: "~/Pictures/CodeSnap_y-m-d_at_h:m:s.png"
   -- save_path = "~/Pictures/foo.png"
   -- parsed: "~/Pictures/foo.png"
-  save_path = "~"
+  save_path = "~",
+  watermark = "",
+  bg_theme = "sea",
+  bg_x_padding = 97,
+  bg_y_padding = 65,
+  bg_padding = nil,
+  has_line_number = true,
+  has_breadcrumbs = true,
 })
