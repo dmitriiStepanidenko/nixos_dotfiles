@@ -68,6 +68,10 @@ in {
   services.acpid.enable = true; # acpi thermal readings??
   hardware.acpilight.enable = true; # light control ?
 
+  # Auto mount
+  services.gvfs.enable = true;
+  services.udisks2.enable = true;
+
   powerManagement.enable = true;
   # Power management
   #powerManagement.powertop.enable = true; # This thing make my usb devices "laggy" at connection
