@@ -508,8 +508,12 @@ in {
     picom
 
     obsidian
-    logseq
+    #logseq
+
+    nix-template
   ];
+
+  programs.direnv.enable = true;
 
   programs.neovim = {
     enable = true;
