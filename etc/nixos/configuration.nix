@@ -515,6 +515,10 @@ in {
     #logseq
 
     nix-template
+
+    usbutils
+    udiskie
+    udisks
   ];
 
   programs.direnv.enable = true;
