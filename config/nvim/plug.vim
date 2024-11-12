@@ -123,6 +123,7 @@ if has("nvim")
   Plug 'm4xshen/hardtime.nvim'
 
   Plug 'ggandor/leap.nvim'
+  Plug 'wakatime/vim-wakatime'
 endif
 
 call plug#end()

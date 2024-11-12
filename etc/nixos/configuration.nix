@@ -523,6 +523,8 @@ in {
     udisks
 
     spacedrive
+
+    wakatime
   ];
 
   programs.direnv.enable = true;
