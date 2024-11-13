@@ -552,7 +552,10 @@ in {
 
   services.playerctld.enable = true; # Media keys
 
-  #services.kanata.enable = true; # keys
+  # services.kanata.enable = true; # keys
+  services.interception-tools = {
+    enable = true;
+  };
 
   # For ledger
   hardware.ledger.enable = true;
