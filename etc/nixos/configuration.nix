@@ -583,6 +583,7 @@ in {
     input = {
       General = {
         UserspaceHID = true;
+        Experimental = true;
       };
     };
   };
