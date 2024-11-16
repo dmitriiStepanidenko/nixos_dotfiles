@@ -525,6 +525,8 @@ in {
     spacedrive
 
     wakatime
+
+    logisim-evolution
   ];
 
   programs.direnv.enable = true;
