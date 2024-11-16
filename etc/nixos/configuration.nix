@@ -527,6 +527,7 @@ in {
     wakatime
 
     logisim-evolution
+    qucs-s
   ];
 
   programs.direnv.enable = true;
