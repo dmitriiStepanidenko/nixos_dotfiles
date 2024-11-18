@@ -489,7 +489,6 @@ in {
     xorg.xbacklight
 
     lm_sensors # reding hardware temperature sensors
-    fanctl
 
     # Undervolting (for Intel :(  ) !
     undervolt
@@ -536,6 +535,9 @@ in {
 
     coolercontrol.coolercontrol-gui
     coolercontrol.coolercontrold
+    fanctl
+
+    lenovo-legion
   ];
 
   programs.direnv.enable = true;
