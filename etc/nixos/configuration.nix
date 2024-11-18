@@ -24,6 +24,7 @@ in {
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
   ];
+  boot.kernelModules = ["coretemp"];
 
   # Cuz Nvidia. I need 535 version
   #boot.kernelPackages = inputs.nixpkgsunstable.linuxPackages_latest;
