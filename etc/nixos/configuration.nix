@@ -489,6 +489,7 @@ in {
     xorg.xbacklight
 
     lm_sensors # reding hardware temperature sensors
+    fanctl
 
     # Undervolting (for Intel :(  ) !
     undervolt
