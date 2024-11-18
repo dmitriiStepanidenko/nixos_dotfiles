@@ -97,6 +97,8 @@ in {
   #  };
   #};
 
+  programs.coolercontrol.enable = true;
+
   # THis piece of shit does not work!
   services.auto-cpufreq = {
     enable = true;
@@ -530,6 +532,9 @@ in {
     qucs-s
 
     nekoray
+
+    coolercontrol.coolercontrol-gui
+    coolercontrol.coolercontrold
   ];
 
   programs.direnv.enable = true;
