@@ -539,6 +539,8 @@ in {
     fanctl
 
     lenovo-legion
+
+    yosys
   ];
 
   programs.direnv.enable = true;
