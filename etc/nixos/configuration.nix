@@ -542,6 +542,8 @@ in {
 
     yosys
     zotero
+
+    amdctl
   ];
 
   programs.direnv.enable = true;
