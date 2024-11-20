@@ -541,6 +541,7 @@ in {
     lenovo-legion
 
     yosys
+    zotero
   ];
 
   programs.direnv.enable = true;
