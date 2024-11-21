@@ -544,6 +544,8 @@ in {
     zotero
 
     amdctl
+
+    ryzenadj
   ];
 
   programs.direnv.enable = true;
