@@ -113,7 +113,7 @@ in {
         stop_threshold = 80;
         ideapad_laptop_conservation_mode = "true";
         scaling_min_freq = 400000;
-        scaling_max_freq = 3200000;
+        scaling_max_freq = 3000000;
       };
       charger = {
         governor = "performance";
