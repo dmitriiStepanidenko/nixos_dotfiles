@@ -115,7 +115,7 @@ in {
       };
       charger = {
         governor = "performance";
-        turbo = "auto";
+        turbo = "never";
       };
     };
   };
