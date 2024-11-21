@@ -123,6 +123,8 @@ in {
       };
     };
   };
+  hardware.cpu.amd.ryzen-smu.enable = true;
+  programs.ryzen-monitor-ng.enable = true;
 
   # Enable CROOON
   services.cron = {
