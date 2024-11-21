@@ -115,7 +115,8 @@ in {
       };
       charger = {
         governor = "performance";
-        turbo = "never";
+        turbo = "auto";
+        scaling_min_freq = 400000;
       };
     };
   };
