@@ -24,7 +24,7 @@ in {
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
     #./modules/wireguard.nix
   ];
-  boot.kernelModules = ["coretemp" "ideapad-laptop"];
+  boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
   # Cuz Nvidia. I need 535 version
   #boot.kernelPackages = inputs.nixpkgsunstable.linuxPackages_latest;
