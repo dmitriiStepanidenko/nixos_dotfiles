@@ -386,8 +386,6 @@ in {
     python312Packages.pipx
     python312Packages.pynvim
 
-    obsidian
-
     cht-sh
 
     age
@@ -522,7 +520,8 @@ in {
     picom
 
     obsidian
-    #logseq
+    logseq
+    #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
 
     nix-template
 
@@ -555,6 +554,11 @@ in {
     syncthing
 
     pdfannots2json
+  ];
+
+  # Because of logseq
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-27.3.11"
   ];
 
   programs.direnv.enable = true;
