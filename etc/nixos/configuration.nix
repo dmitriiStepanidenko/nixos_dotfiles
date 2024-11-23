@@ -553,6 +553,8 @@ in {
     ryzenadj
 
     syncthing
+
+    pdfannots2json
   ];
 
   programs.direnv.enable = true;
