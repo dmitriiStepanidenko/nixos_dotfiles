@@ -242,7 +242,7 @@ in {
     isNormalUser = true;
     description = "Dmitrii";
     # Needs groups input and uinput for kanata to work without sudo
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput" "plugdev"];
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput" "plugdev" "dialout"];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
@@ -567,6 +567,15 @@ in {
     enable = true;
     remotePlay.openFirewall = false;
     dedicatedServer.openFirewall = false;
+  };
+
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+    settings.gui = {
+      user = "myuser";
+      password = "mypassword";
+    };
   };
 
   # Needs for yubikey
