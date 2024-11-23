@@ -242,7 +242,7 @@ in {
     isNormalUser = true;
     description = "Dmitrii";
     # Needs groups input and uinput for kanata to work without sudo
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput"];
+    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput" "plugdev"];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
