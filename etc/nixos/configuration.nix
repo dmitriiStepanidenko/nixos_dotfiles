@@ -551,6 +551,8 @@ in {
     amdctl
 
     ryzenadj
+
+    syncthing
   ];
 
   programs.direnv.enable = true;
@@ -572,10 +574,9 @@ in {
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
-    settings.gui = {
-      user = "myuser";
-      password = "mypassword";
-    };
+    user = "dmitrii";
+    group = "dmitrii";
+    dataDir = "/home/dmitrii/education";
   };
 
   # Needs for yubikey
