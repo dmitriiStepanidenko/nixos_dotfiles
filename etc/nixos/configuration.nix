@@ -15,6 +15,15 @@
     rev = "main";
     sha256 = "112r9b7gan3y4shm0dfgbbgnxasi7ywlbk1pksdbpaglkczv0412";
   };
+  unstable = import inputs.nixos-unstable {
+    system = "x86_64-linux";
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "electron-27.3.11"
+      ];
+    };
+  };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -354,11 +363,10 @@ in {
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
     telegram-desktop
-    #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
-    #inputs.nixpkgs-stable-unstable.legacyPackages.${pkgs.system}.surrealdb
-    surrealdb
-    surrealist
-    surrealdb-migrations
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb
+    unstable.surrealdb
+    inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
+    inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
     nerdfonts
     terminus-nerdfont
     libreoffice-qt
@@ -519,8 +527,9 @@ in {
 
     picom
 
-    obsidian
-    logseq
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.obsidian
+    unstable.obsidian
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.logseq
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
 
     nix-template
@@ -545,6 +554,8 @@ in {
     lenovo-legion
 
     yosys
+    sby
+
     zotero
 
     amdctl
@@ -557,7 +568,8 @@ in {
   ];
 
   # Because of logseq
-  nixpkgs.config.permittedInsecurePackages = [
+  nixpkgs.config.
+  permittedInsecurePackages = [
     "electron-27.3.11"
   ];
 
