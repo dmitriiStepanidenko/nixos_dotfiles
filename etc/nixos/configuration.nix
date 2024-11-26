@@ -554,7 +554,14 @@ in {
     lenovo-legion
 
     yosys
+    #unstable.yosys-synlig
+    yosys-ghdl
+    netlistsvg
+    mcy
     sby
+    boolector
+    btor2tools
+    z3
 
     zotero
 
