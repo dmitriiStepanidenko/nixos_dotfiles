@@ -572,6 +572,8 @@ in {
     syncthing
 
     pdfannots2json
+
+    openhantek6022
   ];
 
   # Because of logseq
