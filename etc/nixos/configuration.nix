@@ -574,6 +574,8 @@ in {
     pdfannots2json
 
     openhantek6022
+
+    kicad
   ];
 
   # Because of logseq
