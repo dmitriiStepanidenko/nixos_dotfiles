@@ -316,7 +316,9 @@ in {
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
-    nerdfonts
+    #nerdfonts.symbols-only
+    #nerdfonts.meslo-lg
+    freefont_ttf
     corefonts # Times New Roman
   ];
 
@@ -367,8 +369,8 @@ in {
     unstable.surrealdb
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
-    nerdfonts
-    terminus-nerdfont
+    #nerdfonts
+    #terminus-nerdfont
     libreoffice-qt
     hunspell
     hunspellDicts.ru_RU
