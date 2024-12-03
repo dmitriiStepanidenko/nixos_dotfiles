@@ -128,7 +128,7 @@ in {
         governor = "performance";
         turbo = "never";
         scaling_min_freq = 400000;
-        scaling_max_freq = 3200000;
+        # scaling_max_freq = 3200000;
       };
     };
   };
@@ -316,8 +316,8 @@ in {
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
-    #nerdfonts.symbols-only
-    #nerdfonts.meslo-lg
+    nerd-fonts.symbols-only
+    nerd-fonts.meslo-lg
     freefont_ttf
     corefonts # Times New Roman
   ];
@@ -345,7 +345,8 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    inputs.nixpkgs.legacyPackages.${pkgs.system}.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    #inputs.nixpkgs.legacyPackages.${pkgs.system}.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     #nixpkgs-stable-unstable.vim
     #vim
     wget
@@ -578,6 +579,8 @@ in {
     openhantek6022
 
     kicad
+
+    pdfsam-basic
   ];
 
   # Because of logseq
