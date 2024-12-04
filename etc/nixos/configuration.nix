@@ -128,7 +128,7 @@ in {
         governor = "performance";
         turbo = "never";
         scaling_min_freq = 400000;
-        # scaling_max_freq = 3200000;
+        scaling_max_freq = 3800000;
       };
     };
   };
@@ -372,6 +372,8 @@ in {
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
     #nerdfonts
     #terminus-nerdfont
+    nerd-fonts.symbols-only
+    nerd-fonts.meslo-lg
     libreoffice-qt
     hunspell
     hunspellDicts.ru_RU
@@ -581,6 +583,8 @@ in {
     kicad
 
     pdfsam-basic
+
+    plantuml-c4
   ];
 
   # Because of logseq
