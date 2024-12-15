@@ -577,6 +577,8 @@ in {
     pdfsam-basic
 
     plantuml-c4
+
+    wgpu-utils
   ];
 
   # Because of logseq
