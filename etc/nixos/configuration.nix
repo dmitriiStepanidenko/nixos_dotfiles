@@ -35,11 +35,6 @@ in {
   ];
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
-  # Cuz Nvidia. I need 535 version
-  #boot.kernelPackages = inputs.nixpkgsunstable.linuxPackages_latest;
-  #boot.kernelPackages = pkgs.unstable.nixpkgsunstable.linuxPackages_latest;
-  #boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.kernelParams = ["mem_sleep_default=deep"];
   #systemd.sleep.extraConfig = ''
   #  HibernateDelaySec=30m
@@ -57,7 +52,6 @@ in {
   #boot.kernelParams = [ "module_blacklist=amdgpu" ];
 
   #boot.initrd.kernelModules = ["amdgpu"];
-  #boot.extraModulePackages = [config.boot.kernelPackages.nvidia_x11];
   #boot.kernelPackages = [];
 
   networking.hostName = "nixos"; # Define your hostname.
@@ -106,8 +100,6 @@ in {
   #    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
   #  };
   #};
-
-  programs.coolercontrol.enable = true;
 
   # THis piece of shit does not work!
   services.auto-cpufreq = {
@@ -318,6 +310,10 @@ in {
     fira-code-symbols
     nerd-fonts.symbols-only
     nerd-fonts.meslo-lg
+    #nerd-fonts.hurmit
+    #nerd-fonts.iosevka-term
+    #nerd-fonts.monoid
+    font-awesome
     freefont_ttf
     corefonts # Times New Roman
   ];
@@ -551,10 +547,6 @@ in {
     qucs-s
 
     nekoray
-
-    coolercontrol.coolercontrol-gui
-    coolercontrol.coolercontrold
-    fanctl
 
     lenovo-legion
 
