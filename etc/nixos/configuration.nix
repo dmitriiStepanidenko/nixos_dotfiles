@@ -594,8 +594,6 @@ in {
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
-    #extraLuaPackages = ps: [ps.magick];
-    #package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
   programs.steam = {
     enable = true;
