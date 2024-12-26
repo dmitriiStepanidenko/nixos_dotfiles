@@ -579,6 +579,8 @@ in {
     plantuml-c4
 
     wgpu-utils
+
+    xclip
   ];
 
   # Because of logseq
