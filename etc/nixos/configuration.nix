@@ -581,6 +581,8 @@ in {
     wgpu-utils
 
     xclip
+
+    jdk23
   ];
 
   # Because of logseq
