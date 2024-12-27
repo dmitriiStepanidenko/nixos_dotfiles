@@ -80,6 +80,7 @@
         (command: Execute, value: "xset s activate", modifier: ["modkey", "Control"], key: "l"),
         (command: Execute, value: "systemctl hybrid-sleep", modifier: ["modkey", "Control"], key: "s"),
         (command: Execute, value: "flameshot gui -r | xclip -selection clipboard -t image/png", modifier: ["modkey"], key: "s"),
+        (command: ToggleFloating, value: "", modifier: ["modkey", "Control"], key: "f"),
         (command: MoveToLastWorkspace, value: "", modifier: ["modkey", "Shift"], key: "w"),
         (command: SwapTags, value: "", modifier: ["modkey"], key: "w"),
         (command: MoveWindowUp, value: "", modifier: ["modkey", "Shift"], key: "k"),

@@ -583,6 +583,7 @@ in {
     xclip
 
     jdk23
+    ethtool
   ];
 
   # Because of logseq
