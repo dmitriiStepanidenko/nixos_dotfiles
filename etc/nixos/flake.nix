@@ -6,7 +6,8 @@
     #nixpkgs-nvidia-beta.url = "github:Kiskae/nixpkgs?ref=nvidia/560.28.03";
     #nixpkgs-stable.url = "github:nixos/nixpkgs?ref=nixos-24.05";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixos-24-11-stable-xsecurelock.url = "github:nixos/nixpkgs?ref=d3c42f187194c26d9f0309a8ecc469d6c878ce33";
     neovim-nightly-overlay.url = "https://github.com/nix-community/neovim-nightly-overlay/archive/1f54e89757bd951470a9dcc8d83474e363f130c5.tar.gz";
     nixvim = {
       #url = "github:nix-community/nixvim";
@@ -35,7 +36,7 @@
     #  pkgsold = inputs.nixpkgsunstable.legacyPackages.x86_64-linux;
   in {
     nixosConfigurations = {
-      nixos = inputs.nixos-24-11.lib.nixosSystem {
+      nixos = inputs.nixos-unstable.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
           inherit inputs;

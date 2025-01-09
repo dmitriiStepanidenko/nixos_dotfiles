@@ -237,6 +237,8 @@ in {
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
+  # multi-touch gesture recognizer
+  services.touchegg.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dmitrii = {
@@ -428,7 +430,8 @@ in {
 
     vlc # videos
     mpv
-    mplayer # live wallpapers
+    #mplayer # live wallpapers
+    inputs.nixos-24-11-stable-xsecurelock.legacyPackages.${pkgs.system}.mplayer
 
     geany # text editor
 
@@ -584,6 +587,8 @@ in {
 
     jdk23
     ethtool
+
+    teamspeak3
   ];
 
   # Because of logseq
