@@ -589,6 +589,8 @@ in {
     ethtool
 
     teamspeak3
+
+    nextcloud-client
   ];
 
   # Because of logseq
