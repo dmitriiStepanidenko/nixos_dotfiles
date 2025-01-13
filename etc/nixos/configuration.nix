@@ -396,6 +396,7 @@ in {
     python312Packages.ansible-core
     python312Packages.pipx
     python312Packages.pynvim
+    python312Packages.virtualenv
 
     cht-sh
 
