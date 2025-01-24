@@ -397,6 +397,11 @@ in {
     python312Packages.pipx
     python312Packages.pynvim
     python312Packages.virtualenv
+    python312Packages.pandas
+    python312Packages.numpy
+    python312Packages.matplotlib
+    python312Packages.scipy
+    pandoc
 
     cht-sh
 
@@ -592,6 +597,8 @@ in {
     teamspeak3
 
     nextcloud-client
+
+    ocrmypdf
   ];
 
   # Because of logseq
@@ -687,6 +694,8 @@ in {
         ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608e", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
 
         LABEL="openhantek_rules_end"
+
+
       '';
     };
   };
