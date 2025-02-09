@@ -27,13 +27,14 @@
   };
 in {
   imports = [
+    #(modulesPath + "/desktop.nix")
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    #(modulesPath + "/desktop.nix")
     ./modules/desktop.nix
     ./modules/window_manager.nix
-    ./modules/fpga_hardware.nix
-    ./modules/virtualization.nix
+    #./modules/fpga_hardware.nix
+    #./modules/virtualization.nix
+
     #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
@@ -212,22 +213,6 @@ in {
   services.printing.drivers = [pkgs.hplipWithPlugin];
   services.avahi.enable = true;
 
-  # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
   hardware.keyboard.qmk.enable = true; # - lily58 firmware
 
   virtualisation.docker.enable = true;
@@ -260,8 +245,6 @@ in {
   };
   users.groups.dmitrii.gid = 1000;
 
-
-
   services.logind.extraConfig = ''
     HandlePowerKey=suspend
     IdleAction=suspend
@@ -270,7 +253,6 @@ in {
   #programs.slock.enable = true;
   #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
-
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -416,7 +398,6 @@ in {
 
     clang-tools
 
-    pavucontrol # gui for sound
     arandr
 
     xorg.xinit
@@ -469,7 +450,6 @@ in {
 
     picom
 
-
     nix-template
 
     usbutils
@@ -489,8 +469,6 @@ in {
     amdctl
 
     ryzenadj
-
-    syncthing
 
     pdfannots2json
 
@@ -514,7 +492,6 @@ in {
     lldb
   ];
 
-
   programs.direnv.enable = true;
 
   programs.neovim = {
@@ -524,13 +501,13 @@ in {
     withPython3 = true;
   };
 
-  services.syncthing = {
-    enable = true;
-    openDefaultPorts = true;
-    user = "dmitrii";
-    group = "dmitrii";
-    dataDir = "/home/dmitrii/education";
-  };
+  #services.syncthing = {
+  #  enable = true;
+  #  openDefaultPorts = true;
+  #  user = "dmitrii";
+  #  group = "dmitrii";
+  #  dataDir = "/home/dmitrii/education";
+  #};
 
   # Needs for yubikey
   services.pcscd.enable = true;
