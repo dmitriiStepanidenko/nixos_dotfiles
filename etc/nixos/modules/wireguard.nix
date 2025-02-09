@@ -21,7 +21,7 @@
           presharedKeyFile = "/root/wireguard-keys/preshared.key";
           allowedIPs = ["10.252.1.0/24"];
           endpoint = "${server_ip}:51820";
-          persistentKeepalive = 15;
+          persistentKeepalive = 7;
         }
       ];
     };
