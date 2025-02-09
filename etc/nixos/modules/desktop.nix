@@ -47,6 +47,8 @@ in {
     unstable.obsidian
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.logseq
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
+
+    ledger-live-desktop
   ];
 
   # Because of logseq
@@ -78,5 +80,15 @@ in {
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
+  };
+
+  # For ledger
+  hardware.ledger.enable = true;
+  services = {
+    udev = {
+      packages = with pkgs; [
+        ledger-udev-rules
+      ];
+    };
   };
 }

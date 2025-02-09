@@ -362,8 +362,6 @@ in {
 
     sox
 
-    ledger-live-desktop
-
     appimage-run
 
     ripgrep
@@ -523,12 +521,9 @@ in {
     enable = true;
   };
 
-  # For ledger
-  hardware.ledger.enable = true;
   services = {
     udev = {
       packages = with pkgs; [
-        ledger-udev-rules
         pkgs.via
       ];
       extraRules = ''
