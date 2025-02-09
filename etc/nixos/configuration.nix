@@ -499,6 +499,8 @@ in {
 
   programs.direnv.enable = true;
 
+  programs.ssh.startAgent = true;
+
   programs.neovim = {
     enable = true;
     defaultEditor = true;
