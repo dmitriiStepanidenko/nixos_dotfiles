@@ -4,3 +4,5 @@ config/nvim/bin
 .config/discord
 config/discord
 *.log
+.env
+.envrc

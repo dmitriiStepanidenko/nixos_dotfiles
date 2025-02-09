@@ -355,6 +355,8 @@ in {
 
     cht-sh
 
+    go
+
     age
     ssh-to-age
 
