@@ -39,7 +39,6 @@ in {
     #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
-    #./modules/wireguard.nix
   ];
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
