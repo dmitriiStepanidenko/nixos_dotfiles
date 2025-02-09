@@ -488,6 +488,8 @@ in {
     ocrmypdf
 
     lldb
+
+    colmena
   ];
 
   programs.direnv.enable = true;
