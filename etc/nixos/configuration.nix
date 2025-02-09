@@ -32,6 +32,7 @@ in {
     #(modulesPath + "/desktop.nix")
     ./modules/desktop.nix
     ./modules/window_manager.nix
+    ./modules/fpga_hardware.nix
     #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
@@ -409,16 +410,12 @@ in {
 
     ripgrep
 
-
     xkb-switch
 
     networkmanager
     networkmanager_dmenu
 
     qalculate-gtk
-
-
-
 
     light # set backlight
     #xorg.xbacklight
@@ -446,18 +443,8 @@ in {
 
     lazygit
 
-    gtkwave
-    verilog # icarus verilog
-    verilator
-
     xorg.xdpyinfo # dpi info for scaling
     # TODO
-
-    ghdl
-
-    logisim-evolution
-
-    systemc
 
     clang-tools
 
@@ -529,22 +516,9 @@ in {
 
     wakatime
 
-    logisim-evolution
-    qucs-s
-
     nekoray
 
     lenovo-legion
-
-    yosys
-    #unstable.yosys-synlig
-    yosys-ghdl
-    netlistsvg
-    mcy
-    sby
-    boolector
-    btor2tools
-    z3
 
     zotero
 
@@ -555,10 +529,6 @@ in {
     syncthing
 
     pdfannots2json
-
-    openhantek6022
-
-    kicad
 
     pdfsam-basic
 

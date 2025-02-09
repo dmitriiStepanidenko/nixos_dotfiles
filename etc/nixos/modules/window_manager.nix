@@ -5,7 +5,6 @@
   inputs,
   ...
 }: {
-
   environment.systemPackages = with pkgs; [
     dmenu-rs
     eww
