@@ -29,8 +29,9 @@ in {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (modulesPath + "/desktop.nix")
-    #./modules/desktop.nix
+    #(modulesPath + "/desktop.nix")
+    ./modules/desktop.nix
+    ./modules/window_manager.nix
     #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
@@ -294,11 +295,6 @@ in {
     };
   };
 
-  # Needs for Telegram popup windows
-  qt = {
-    enable = true;
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -360,13 +356,11 @@ in {
     lshw
     htop
     gparted
-    enpass
     git
     stow
     gcc14
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
-    telegram-desktop
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb
     unstable.surrealdb
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
@@ -375,7 +369,6 @@ in {
     #terminus-nerdfont
     nerd-fonts.symbols-only
     nerd-fonts.meslo-lg
-    libreoffice-qt
     hunspell
     hunspellDicts.ru_RU
     hunspellDicts.en_US
@@ -383,14 +376,9 @@ in {
     v2raya
     discord
     alejandra
-    libnotify
     memtest86plus
     memtester
-    anki-bin
-    google-chrome
-    chromium
     busybox
-    wireshark
     noisetorch
 
     # PYTHON
@@ -421,30 +409,16 @@ in {
 
     ripgrep
 
-    dmenu-rs
-    eww
-    polybarFull
-    feh
-    rofi
-    dunst
 
     xkb-switch
 
     networkmanager
     networkmanager_dmenu
 
-    gparted
     qalculate-gtk
-    flameshot # screenshots
 
-    vlc # videos
-    mpv
-    #mplayer # live wallpapers
-    inputs.nixos-24-11-stable-xsecurelock.legacyPackages.${pkgs.system}.mplayer
 
-    geany # text editor
 
-    xsecurelock # lock
 
     light # set backlight
     #xorg.xbacklight
