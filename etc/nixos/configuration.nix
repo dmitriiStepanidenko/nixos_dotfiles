@@ -33,6 +33,7 @@ in {
     ./modules/desktop.nix
     ./modules/window_manager.nix
     ./modules/fpga_hardware.nix
+    ./modules/virtualization.nix
     #./neovim.nix
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
@@ -259,19 +260,7 @@ in {
   };
   users.groups.dmitrii.gid = 1000;
 
-  # Virtual Box
-  virtualisation.virtualbox.host.enable = true;
-  users.extraGroups.vboxusers.members = ["dmitrii"];
-  virtualisation.virtualbox.host.enableExtensionPack = true;
-  #virtualisation.virtualbox.guest.enable = true;
-  #virtualisation.virtualbox.guest.draganddrop = true;
 
-  # Libvirt
-  virtualisation.libvirtd.enable = true;
-  programs.virt-manager.enable = true;
-
-  # Install firefox.
-  programs.firefox.enable = true;
 
   services.logind.extraConfig = ''
     HandlePowerKey=suspend
@@ -282,19 +271,6 @@ in {
   #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
 
-  systemd.services.autorandr = {
-    enable = true;
-    description = "autorandr execution hook";
-    after = ["sleep.target"];
-    startLimitBurst = 1;
-    startLimitIntervalSec = 5;
-    wantedBy = ["sleep.target"];
-    serviceConfig = {
-      ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
-      Type = "oneshot";
-      RemainAfterExit = "false";
-    };
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -420,14 +396,6 @@ in {
     light # set backlight
     #xorg.xbacklight
 
-    xorg.xev # get key number/name
-    xorg.xrandr # screen
-    autorandr # screen
-
-    xss-lock # auto lock?
-
-    xorg.xset
-
     ueberzugpp # Display images in alacritty
 
     #komorebi
@@ -501,10 +469,6 @@ in {
 
     picom
 
-    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.obsidian
-    unstable.obsidian
-    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.logseq
-    #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
 
     nix-template
 
@@ -550,11 +514,6 @@ in {
     lldb
   ];
 
-  # Because of logseq
-  nixpkgs.config.
-  permittedInsecurePackages = [
-    "electron-27.3.11"
-  ];
 
   programs.direnv.enable = true;
 
@@ -563,11 +522,6 @@ in {
     defaultEditor = true;
     withNodeJs = true;
     withPython3 = true;
-  };
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = false;
-    dedicatedServer.openFirewall = false;
   };
 
   services.syncthing = {
@@ -609,42 +563,6 @@ in {
         SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="acpi_video0", ATTR{brightness}="8"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
         SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
-
-        # rules for OpenHantek6022 (DSO program) as well as Hankek6022API (python tools)
-        ACTION!="add|change", GOTO="openhantek_rules_end"
-        SUBSYSTEM!="usb|usbmisc|usb_device", GOTO="openhantek_rules_end"
-        ENV{DEVTYPE}!="usb_device", GOTO="openhantek_rules_end"
-
-        # Hantek DSO-6022BE, without FW, with FW
-        ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="6022", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="04b5", ATTRS{idProduct}=="6022", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # Instrustar isds-205b, without FW, with FW
-        ATTRS{idVendor}=="d4a2", ATTRS{idProduct}=="5661", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="1d50", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # Hantek DSO-6022BL, without FW, with FW
-        ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="602a", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="04b5", ATTRS{idProduct}=="602a", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # Voltcraft DSO-2020, without FW (becomes DSO-6022BE when FW is uploaded)
-        ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="2020", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # BUUDAI DDS120, without FW, with FW
-        ATTRS{idVendor}=="8102", ATTRS{idProduct}=="8102", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="04b5", ATTRS{idProduct}=="0120", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # Hantek DSO-6021, without FW, with FW
-        ATTRS{idVendor}=="04b4", ATTRS{idProduct}=="6021", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="04b5", ATTRS{idProduct}=="6021", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        # YiXingDianZiKeJi MDSO, without FW, with FW
-        ATTRS{idVendor}=="d4a2", ATTRS{idProduct}=="5660", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-        ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="608e", TAG+="uaccess", TAG+="udev-acl", MODE="660", GROUP="plugdev"
-
-        LABEL="openhantek_rules_end"
-
-
       '';
     };
   };

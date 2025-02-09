@@ -30,5 +30,25 @@
     mpv
     #mplayer # live wallpapers
     inputs.nixos-24-11-stable-xsecurelock.legacyPackages.${pkgs.system}.mplayer
+
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.obsidian
+    unstable.obsidian
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.logseq
+    #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
   ];
+
+  # Because of logseq
+  nixpkgs.config.
+  permittedInsecurePackages = [
+    "electron-27.3.11"
+  ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = false;
+    dedicatedServer.openFirewall = false;
+  };
+
+  # Install firefox.
+  programs.firefox.enable = true;
 }
