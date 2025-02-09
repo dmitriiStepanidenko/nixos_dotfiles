@@ -32,6 +32,7 @@ in {
     ./hardware-configuration.nix
     ./modules/desktop.nix
     ./modules/window_manager.nix
+    ./modules/wireguard.nix
     #./modules/fpga_hardware.nix
     #./modules/virtualization.nix
 
