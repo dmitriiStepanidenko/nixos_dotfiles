@@ -32,8 +32,8 @@ if has("nvim")
   " Plug 'easymotion/vim-easymotion'
   " Plug 'tmhedberg/SimpylFold'
 
-  let g:vimspector_enable_mappings = 'HUMAN'
-  Plug 'puremourning/vimspector'
+  " let g:vimspector_enable_mappings = 'HUMAN'
+  " Plug 'puremourning/vimspector'
 
   Plug 'vim-test/vim-test'
 
@@ -50,9 +50,10 @@ if has("nvim")
   Plug 'williamboman/mason-lspconfig.nvim'
 
   Plug 'mfussenegger/nvim-dap'
-  Plug 'theHamsta/nvim-dap-virtual-text'
-  Plug 'rcarriga/nvim-dap-ui'
+  "Plug 'theHamsta/nvim-dap-virtual-text'
+  Plug 'mfussenegger/nvim-dap'
   Plug 'nvim-neotest/nvim-nio'
+  Plug 'rcarriga/nvim-dap-ui'
 
 
   Plug 'mrcjkb/rustaceanvim'
