@@ -490,6 +490,9 @@ in {
     lldb
 
     colmena
+
+    terraform
+    opentofu
   ];
 
   programs.direnv.enable = true;
