@@ -54,8 +54,9 @@ cmp.setup {
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-  ensure_installed = { "lua_ls", "ts_ls", "svelte", "verible", "svlangserver", "wgsl_analyzer", "pyright", "pylsp", "graphql", "vhdl_ls", 
-  --"terraformls", 
+  ensure_installed = { "lua_ls", "ts_ls",  "svelte", "verible", "svlangserver",  "wgsl_analyzer",  "pyright", "pylsp", "graphql", "vhdl_ls", 
+  "nil_ls",
+  "terraformls", 
   "ansiblels" }
 })
 
@@ -75,21 +76,53 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
   require('cmp_nvim_lsp').default_capabilities()
 )
 
-require("lspconfig").lua_ls.setup {
+--require("lspconfig").lua_ls.setup {
+--  settings = {
+--    Lua = {
+--      diagnostics = {
+--        globals = { "vim" },
+--      },
+--      workspace = {
+--        library = {
+--          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+--          [vim.fn.stdpath "config" .. "/lua"] = true,
+--        },
+--      },
+--    },
+--  }
+--}
 
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
+require'lspconfig'.lua_ls.setup {
+  on_init = function(client)
+    if client.workspace_folders then
+      local path = client.workspace_folders[1].name
+      if path ~= vim.fn.stdpath('config') and (vim.loop.fs_stat(path..'/.luarc.json') or vim.loop.fs_stat(path..'/.luarc.jsonc')) then
+        return
+      end
+    end
+
+    client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+      runtime = {
+        -- Tell the language server which version of Lua you're using
+        -- (most likely LuaJIT in the case of Neovim)
+        version = 'LuaJIT'
       },
+      -- Make the server aware of Neovim runtime files
       workspace = {
+        checkThirdParty = false,
         library = {
-
-          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-          [vim.fn.stdpath "config" .. "/lua"] = true,
-        },
-      },
-    },
+          vim.env.VIMRUNTIME
+          -- Depending on the usage, you might want to add additional paths here.
+          -- "${3rd}/luv/library"
+          -- "${3rd}/busted/library",
+        }
+        -- or pull in all of 'runtimepath'. NOTE: this is a lot slower and will cause issues when working on your own configuration (see https://github.com/neovim/nvim-lspconfig/issues/3189)
+        -- library = vim.api.nvim_get_runtime_file("", true)
+      }
+    })
+  end,
+  settings = {
+    Lua = {}
   }
 }
 
@@ -97,7 +130,7 @@ require("lspconfig").solargraph.setup({})
 require("lspconfig").ts_ls.setup({})
 require("lspconfig").svelte.setup({})
 -- require("lspconfig").svls.setup({})
-require("lspconfig").verible.setup({})
+-- require("lspconfig").verible.setup({})
 -- require("lspconfig").pyright.setup({})
 require("lspconfig").pylsp.setup({})
 require("lspconfig").svlangserver.setup({})
@@ -105,7 +138,23 @@ require("lspconfig").wgsl_analyzer.setup({})
 require("lspconfig").graphql.setup({})
 require("lspconfig").terraformls.setup({})
 require("lspconfig").ansiblels.setup({})
-require("lspconfig").nil_ls.setup({})
+require("lspconfig").nil_ls.setup({
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = {"alejandra", "--"},
+      },
+    },
+    nix = {
+      flake = {
+        -- calls `nix flake archive` to put a flake and its output to store
+        autoArchive = true,
+        -- auto eval flake inputs for improved completion
+        autoEvalInputs = true,
+      },
+    },
+  },
+})
 require("lspconfig").vhdl_ls.setup({})
 require("lspconfig").clangd.setup({})
 -- require("lspconfig").ansible_lint.setup({})

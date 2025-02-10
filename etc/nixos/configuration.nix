@@ -314,6 +314,7 @@ in {
     yubioath-flutter
     lshw
     htop
+    btop
     gparted
     git
     stow
@@ -499,6 +500,8 @@ in {
     nixos-generators
 
     nil
+
+    git-crypt
   ];
 
   programs.direnv.enable = true;
