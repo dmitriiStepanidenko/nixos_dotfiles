@@ -502,6 +502,7 @@ in {
     nil
 
     git-crypt
+    gnupg
   ];
 
   programs.direnv.enable = true;
