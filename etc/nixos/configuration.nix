@@ -495,6 +495,8 @@ in {
 
     terraform
     opentofu
+
+    nixos-generators
   ];
 
   programs.direnv.enable = true;
