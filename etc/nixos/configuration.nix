@@ -268,8 +268,9 @@ in {
   fonts.packages = with pkgs; [
     fira-code
     fira-code-symbols
-    nerd-fonts.symbols-only
-    nerd-fonts.meslo-lg
+    meslo-lg
+    #nerd-fonts.symbols-only
+    #nerd-fonts.meslo-lg
     #nerd-fonts.hurmit
     #nerd-fonts.iosevka-term
     #nerd-fonts.monoid
@@ -321,14 +322,23 @@ in {
     gcc14
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
+
+    #unstable.surrealdb
+    #unstable.surrealist
+    #unstable.surrealdb-migrations
+
+    #unstable.surrealdb
+    #unstable.surrealist
+    #unstable.surrealdb-migrations
+
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb
-    unstable.surrealdb
-    inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
-    inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
     #nerdfonts
     #terminus-nerdfont
-    nerd-fonts.symbols-only
-    nerd-fonts.meslo-lg
+    #nerd-fonts.symbols-only
+    #nerd-fonts.meslo-lg
+
     hunspell
     hunspellDicts.ru_RU
     hunspellDicts.en_US

@@ -27,8 +27,8 @@
     modulesPath = "./modules";
   in {
     nixosConfigurations = {
-      nixos = inputs.nixos-unstable.lib.nixosSystem {
-        system = "x86_64-linux";
+      nixos = inputs.nixos-24-11.lib.nixosSystem {
+        inherit system;
         specialArgs = {
           inherit inputs;
         };
