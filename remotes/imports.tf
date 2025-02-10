@@ -1,4 +1,4 @@
-# import {
-#   to = proxmox_virtual_environment_vm.nixos
-#   id = "pve/200"
-# }
+import {
+  to = proxmox_virtual_environment_vm.nixos_template
+  id = "pve/103"
+}

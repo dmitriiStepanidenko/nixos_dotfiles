@@ -185,9 +185,9 @@ resource "proxmox_virtual_environment_file" "nixos_dump" {
   }
 }
 
-data "local_file" "ssh_public_key" {
-  filename = "../id_rsa.pub"
-}
+#data "local_file" "ssh_public_key" {
+#  filename = "../../id_rsa.pub"
+#}
 
 #resource "proxmox_virtual_environment_vm" "nixos_clone" {
 #  name      = "nixos-clone"

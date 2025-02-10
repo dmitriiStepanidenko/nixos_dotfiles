@@ -13,10 +13,10 @@
 
   config = {
     #Provide a default hostname
-    #networking.hostName = lib.mkDefault "base";
+    networking.hostName = lib.mkDefault "base";
 
     # Enable QEMU Guest for Proxmox
-    services.qemuGuest.enable = lib.mkDefault true;
+    services.qemuGuest.enable = true;
 
     # Use the boot drive for grub
     boot.loader.grub.enable = lib.mkDefault true;
@@ -42,7 +42,15 @@
       neovim
       git # for pulling nix flakes
       python3 # for ansible
+      htop
+      wget
+      curl
     ];
+
+    services.fail2ban = {
+      enable = true;
+      maxretry = 5;
+    };
 
     # Don't ask for passwords
     security.sudo.wheelNeedsPassword = false;
@@ -55,9 +63,9 @@
     };
     users.users."dmitrii" = {
       uid = 1000;
-      isSystemUser = true;
+      isNormalUser = true;
       group = "dmitrii";
-      extraGroups = ["wheel" "docker"];
+      extraGroups = ["wheel" "docker" "networkmanager"];
       openssh.authorizedKeys.keyFiles = [
         ../../id_rsa.pub
       ];

@@ -1,54 +1,29 @@
 {
-  description = "Template flake";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
-    nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
-
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-    };
-
-    nixos-generators = {
-      url = "github:nix-community/nixos-generators";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
+  outputs = { nixpkgs, ... }: {
+    colmena = {
+      meta = {
+        nixpkgs = import nixpkgs {
+          system = "x86_64-linux";
+        };
+      };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    nixos-generators,
-    ...
-  }: let
-    system = "x86_64-linux";
-  in {
-    packages.${system} = {
-      proxmox = nixos-generators.nixosGenerate {
-        inherit system;
-        modules = [
-          ./vm-profile.nix
-        ];
-        format = "proxmox";
+      # Also see the non-Flakes hive.nix example above.
+      #host-a = { name, nodes, pkgs, ... }: {
+      #  boot.isContainer = true;
+      #  time.timeZone = nodes.host-b.config.time.timeZone;
+      #};
+      host-b = {
+        deployment = {
+          targetHost = "192.168.0.210";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        boot.isContainer = true;
+        time.timeZone = "Europe/Moscow";
       };
     };
-    #nixosConfigurations = {
-    #  nixos = inputs.nixos-unstable.lib.nixosSystem {
-    #    inherit system;
-    #    specialArgs = {
-    #      inherit inputs;
-    #    };
-    #    modules = [
-    #      ./vm-profile.nix
-    #      {
-    #        _module.args = {
-    #          #modulesPath = "./modules";
-    #          inherit modulesPath;
-    #        };
-    #      }
-    #      # ./neovim.nix
-    #    ];
-    #  };
-    #};
   };
 }
