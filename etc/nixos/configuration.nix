@@ -513,7 +513,7 @@ in {
 
     git-crypt
     gnupg
-    pinentry-all
+    pinentry-curses
   ];
 
   programs.gnupg.agent = {
