@@ -497,6 +497,8 @@ in {
     opentofu
 
     nixos-generators
+
+    nil
   ];
 
   programs.direnv.enable = true;
