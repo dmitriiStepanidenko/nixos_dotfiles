@@ -508,7 +508,7 @@ in {
 
   programs.gnupg.agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-all;
+    pinentryPackage = pkgs.pinentry-curses;
   };
 
   programs.direnv.enable = true;
