@@ -503,7 +503,12 @@ in {
 
     git-crypt
     gnupg
+    pinentry-all
   ];
+
+  programs.gnupg = {
+    agent.enable = true;
+  };
 
   programs.direnv.enable = true;
 
