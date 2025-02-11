@@ -18,6 +18,7 @@
       },
       "original": {
         "owner": "zhaofengli",
+        "ref": "main",
         "repo": "colmena",
         "type": "github"
       }

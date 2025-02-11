@@ -17,6 +17,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    colmena.url = "github:zhaofengli/colmena?ref=main";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +28,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    colmena,
     #sops-nix,
     ...
   }: let
@@ -38,6 +41,11 @@
           inherit inputs;
         };
         modules = [
+          ({pkgs, ...}: {
+            environment.systemPackages = [
+              colmena.defaultPackage.x86_64-linux
+            ];
+          })
           ./configuration.nix
           #sops-nix.nixosModules.sops
           #{
