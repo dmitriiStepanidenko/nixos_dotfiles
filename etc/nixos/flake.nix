@@ -2,9 +2,13 @@
   description = "Mine flake";
 
   inputs = {
-    nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+
+    nixpkgs.follows = "nixos-24-11";
+
     nixos-24-11-stable-xsecurelock.url = "github:nixos/nixpkgs?ref=d3c42f187194c26d9f0309a8ecc469d6c878ce33";
+
     neovim-nightly-overlay.url = "https://github.com/nix-community/neovim-nightly-overlay/archive/1f54e89757bd951470a9dcc8d83474e363f130c5.tar.gz";
     nixvim = {
       #url = "github:nix-community/nixvim";
@@ -15,6 +19,7 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -27,7 +32,7 @@
     system = "x86_64-linux";
   in {
     nixosConfigurations = {
-      nixos = inputs.nixos-24-11.lib.nixosSystem {
+      nixos = inputs.nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
