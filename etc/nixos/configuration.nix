@@ -308,6 +308,8 @@ in {
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
 
+    sops
+
     #unstable.surrealdb
     #unstable.surrealist
     #unstable.surrealdb-migrations
