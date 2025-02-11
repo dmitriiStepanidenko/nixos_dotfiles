@@ -1,0 +1,10 @@
+keys:
+  - &mine_laptop age19vefp7y0y8jdc4gcy4l4yq6r4q3a9u2xevj3uy8dnf6v9ak7hfls3hjejc
+  #- &mine_laptop CD2D81F85FB394F1DD35C94C81863C9163B76778
+  #- &mine_laptop age1j0n00cgkcprhr7ue7kj27hd598xa296n5u4vcd044ax6y4x64epq6klnju
+creation_rules:
+  - path_regex: secrets/secrets.yaml$
+    key_groups:
+    - age:
+      - *mine_laptop
+

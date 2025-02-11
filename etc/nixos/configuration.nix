@@ -44,6 +44,8 @@ in {
 
   sops.age.keyFile = "/home/dmitrii/.config/sops/age/keys.txt";
 
+  sops.secrets.wireguard_ip = {};
+
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
   boot.kernelParams = ["mem_sleep_default=deep"];
