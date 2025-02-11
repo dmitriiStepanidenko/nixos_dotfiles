@@ -53,20 +53,7 @@ in {
   # Memtesting of Ram during boot
   boot.loader.systemd-boot.memtest86.enable = true;
 
-  # Because Nvivia?
-  #boot.kernelParams = [ "module_blacklist=amdgpu" ];
-
-  #boot.initrd.kernelModules = ["amdgpu"];
-  #boot.kernelPackages = [];
-
   networking.hostName = "nixos"; # Define your hostname.
-
-  #networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  #networking.wireless.iwd.enable = true;
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
