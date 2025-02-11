@@ -44,7 +44,9 @@ in {
 
   sops.age.keyFile = "/home/dmitrii/.config/sops/age/keys.txt";
 
-  sops.secrets.wireguard_ip = {};
+  sops.secrets.wireguard_ip = {
+    owner = config.users.users.dmitrii.name;
+  };
 
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
