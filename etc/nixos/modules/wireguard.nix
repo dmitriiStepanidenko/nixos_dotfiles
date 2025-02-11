@@ -1,4 +1,9 @@
-{...}: {
+{
+  config,
+  inputs,
+  sops,
+  ...
+}: {
   networking.wg-quick.interfaces = let
     server_ip = "176.123.169.17";
     publicKey = "grqz6c5gF9BUrm3pMVukCT1BN1MGt7pnI6xZOT0dUQ4=";
@@ -32,6 +37,11 @@
         }
       ];
     };
+  };
+  systemd.services.wireguard-wg0 = {
+    serviceConfig.LoadCredential = [
+      "server_ip:${config.sops.secrets.wireguard_ip.path}"
+    ];
   };
   networking.networkmanager.dns = "systemd-resolved";
   services.resolved.enable = true;
