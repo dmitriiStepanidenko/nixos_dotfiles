@@ -5,7 +5,7 @@ config/nvim/bin
 config/discord
 *.log
 .env
-.envrc
+#.envrc
 remotes/**/result
 
 
