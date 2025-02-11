@@ -1,5 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
+# Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
@@ -39,13 +38,21 @@ in {
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
   ];
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
 
-  sops.age.keyFile = "/home/dmitrii/.config/sops/age/keys.txt";
+  sops = {
+    defaultSopsFile = ./secrets/secrets.yaml;
+    defaultSopsFormat = "yaml";
 
-  sops.secrets.wireguard_ip = {
-    owner = config.users.users.dmitrii.name;
+    age = {
+      #keyFilePaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      keyFile = "/var/lib/sops-nix/key.txt";
+      generateKey = true;
+    };
+
+    secrets.wireguard_ip = {
+      owner = config.users.users.dmitrii.name;
+    };
   };
 
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
@@ -553,7 +560,7 @@ in {
 
   services = {
     udev = {
-      packages = with pkgs; [
+      packages = [
         pkgs.via
       ];
       extraRules = ''
