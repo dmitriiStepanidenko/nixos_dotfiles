@@ -27,6 +27,7 @@
 in {
   imports = [
     # Include the results of the hardware scan.
+    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ./modules/desktop.nix
     ./modules/window_manager.nix
@@ -38,6 +39,11 @@ in {
     #./suspend_and_hibernate.nix
     #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
   ];
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+
+  sops.age.keyFile = "/home/dmitrii/.config/sops/age/keys.txt";
+
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
   boot.kernelParams = ["mem_sleep_default=deep"];

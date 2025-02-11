@@ -26,7 +26,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    sops-nix,
+    #sops-nix,
     ...
   }: let
     system = "x86_64-linux";
@@ -39,7 +39,7 @@
         };
         modules = [
           ./configuration.nix
-          sops-nix.nixosModules.sops
+          #sops-nix.nixosModules.sops
           #{
           #  _module.args = {
           #    modulesPath = "./modules";
