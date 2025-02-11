@@ -1,12 +1,13 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     colmena.url = "github:zhaofengli/colmena";
   };
   outputs = {
     self,
-    nixpkgs,
     colmena,
+    nixpkgs,
     ...
   }: {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;

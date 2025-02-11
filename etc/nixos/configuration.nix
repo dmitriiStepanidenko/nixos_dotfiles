@@ -6,7 +6,6 @@
   pkgs,
   lib,
   inputs,
-  modulesPath,
   #nixpkgs-stable-unstable,
   ...
 }: let
@@ -27,7 +26,6 @@
   };
 in {
   imports = [
-    #(modulesPath + "/desktop.nix")
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/desktop.nix

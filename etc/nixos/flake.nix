@@ -21,10 +21,10 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    sops-nix,
     ...
   }: let
     system = "x86_64-linux";
-    modulesPath = "./modules";
   in {
     nixosConfigurations = {
       nixos = inputs.nixos-24-11.lib.nixosSystem {
@@ -34,11 +34,12 @@
         };
         modules = [
           ./configuration.nix
-          {
-            _module.args = {
-              modulesPath = "./modules";
-            };
-          }
+          sops-nix.nixosModules.sops
+          #{
+          #  _module.args = {
+          #    modulesPath = "./modules";
+          #  };
+          #}
           # ./neovim.nix
         ];
       };
