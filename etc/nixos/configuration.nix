@@ -502,7 +502,7 @@ in {
 
     lldb
 
-    colmena
+    unstable.colmena
 
     terraform
     opentofu

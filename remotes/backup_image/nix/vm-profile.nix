@@ -67,7 +67,7 @@
       group = "dmitrii";
       extraGroups = ["wheel" "docker" "networkmanager"];
       openssh.authorizedKeys.keyFiles = [
-        ../../id_rsa.pub
+        ../../../id_rsa.pub
       ];
     };
     programs.ssh.startAgent = true;
@@ -77,7 +77,7 @@
 
     users.users."root" = {
       openssh.authorizedKeys.keyFiles = [
-        ../../id_rsa.pub
+        ../../../id_rsa.pub
       ];
     };
 

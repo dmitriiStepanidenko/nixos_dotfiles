@@ -2,7 +2,6 @@ let
   NixOS_24_11 = builtins.fetchTarball {
     name = "NixOS-24.11";
     url = "https://github.com/nixos/nixpkgs/archive/nixos-24.11.tar.gz";
-    sha256 = "1cb6dmpfsz4zyk41b6z07nhrf20c8b6ryb103kc6088c2vm63ycv";
   };
 in
 {
@@ -30,4 +29,3 @@ in
   # We can define as many hosts as we want, and they will all be deployed
   # when we run `colmena apply`.
 }
-
