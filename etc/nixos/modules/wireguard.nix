@@ -73,4 +73,5 @@ in {
       ip link set up dev wg0
     '';
   };
+  systemd.network.wait-online.ignoredInterfaces = ["wg0"];
 }
