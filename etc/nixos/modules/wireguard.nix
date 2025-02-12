@@ -47,6 +47,16 @@ in {
     };
 
     script = ''
+      # Check if the wg0 interface exists
+      if ip link show wg0 &> /dev/null; then
+          echo "wg0 interface exists. Deleting it..."
+          sudo ip link delete wg0
+          echo "wg0 interface deleted."
+      else
+          echo "wg0 interface does not exist."
+      fi
+
+
       ip link add dev wg0 type wireguard
       ip address add dev wg0 10.252.1.1/24
       if ! ip link show wg0 > /dev/null 2>&1; then
@@ -60,6 +70,7 @@ in {
         allowed-ips 10.252.1.0/24 \
         persistent-keepalive 7 \
         endpoint $(cat ${config.sops.secrets."wireguard/wireguard_ip".path}):51820
+      ip link set up dev wg0
     '';
   };
   #networking.interfaces."wg0" = {
