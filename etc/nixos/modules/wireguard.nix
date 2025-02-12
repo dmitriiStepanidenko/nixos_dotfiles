@@ -1,77 +1,126 @@
 {
   pkgs,
   config,
+  lib,
   ...
-}: let
+}:
+with lib; let
+  cfg = config.services.wireguard;
 in {
-  boot.kernelModules = ["wireguard"];
+  options.services.wireguard = {
+    enable = mkEnableOption "WireGuard with sops-nix integration";
 
-  environment.systemPackages = with pkgs; [
-    wireguard-tools
-  ];
-  networking.firewall.allowedUDPPorts = [51820];
-  #networking.useNetworkd = true;
-
-  #systemd.network = {
-  #  enable = true;
-  #  netdevs = {
-  #    "wg0" = {
-  #      netdevConfig = {
-  #        Kind = "wireguard";
-  #        Name = "wg0";
-  #      };
-  #    };
-  #  };
-  #  networks.wg0 = {
-  #    matchConfig.Name = "wg0";
-  #    address = ["10.252.1.1/32"];
-  #    networkConfig = {
-  #      IPMasquerade = "ipv4";
-  #      IPv4Forwarding = true;
-  #    };
-  #  };
-  #};
-
-  systemd.services."wireguard-setup" = {
-    description = "Setup WireGuard with secrets";
-    wantedBy = ["multi-user.target"];
-    after = ["network-online.target" "nss-lookup.target"]; #"sops-nix.service"];
-    wants = ["network-online.target" "nss-lookup.target"]; #"sops-nix.service"];
-    path = with pkgs; [kmod iproute2 wireguard-tools];
-
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-      User = config.users.users.root.name;
-      NetworkInterface = "wg0";
+    interface = mkOption {
+      type = types.str;
+      default = "wg0";
+      description = "Wireguard interface name";
     };
 
-    script = ''
-      # Check if the wg0 interface exists
-      if ip link show wg0 &> /dev/null; then
-          echo "wg0 interface exists. Deleting it..."
-          sudo ip link delete wg0
-          echo "wg0 interface deleted."
-      else
-          echo "wg0 interface does not exist."
-      fi
+    ips = mkOption {
+      type = types.str;
+      description = "IP address of interface";
+    };
 
+    listenPort = mkOption {
+      type = types.port;
+      default = 51820;
+      description = "WireGuard listen port";
+    };
 
-      ip link add dev wg0 type wireguard
-      ip address add dev wg0 10.252.1.1/24
-      if ! ip link show wg0 > /dev/null 2>&1; then
-        echo "WireGuard interface wg0 does not exist"
-        exit 1
-      fi
-      ${pkgs.wireguard-tools}/bin/wg set wg0 \
-        private-key ${config.sops.secrets."wireguard/private_key".path} \
-        peer "grqz6c5gF9BUrm3pMVukCT1BN1MGt7pnI6xZOT0dUQ4=" \
-        preshared-key ${config.sops.secrets."wireguard/preshared_key".path} \
-        allowed-ips 10.252.1.0/24 \
-        persistent-keepalive 7 \
-        endpoint $(cat ${config.sops.secrets."wireguard/wireguard_ip".path}):51820
-      ip link set up dev wg0
-    '';
+    privateKeyFile = mkOption {
+      type = types.str;
+      description = "Private key file path";
+    };
+
+    peers = mkOption {
+      type = types.listOf (types.submodule {
+        options = {
+          publicKeyFile = mkOption {
+            type = types.str;
+            description = "Peer public key file";
+          };
+          presharedKeyFile = mkOption {
+            type = types.str;
+            description = "Peer preshared key file";
+          };
+          allowedIPs = mkOption {
+            type = types.str;
+            description = "Allowed IP ranges for this peer";
+          };
+          endpointFile = mkOption {
+            type = types.nullOr types.str;
+            description = "Peer endpoint address file";
+          };
+          endpointPort = mkOption {
+            type = types.port;
+            default = 51820;
+            description = "WireGuard endpoint port";
+          };
+        };
+      });
+      default = [];
+      description = "WireGuard peers configuration";
+    };
   };
-  systemd.network.wait-online.ignoredInterfaces = ["wg0"];
+
+  config = mkIf cfg.enable (let
+    wgScript = let
+      peerConfigs =
+        map (
+          peer:
+            "${pkgs.wireguard-tools}/bin/wg set ${cfg.interface} "
+            + "private-key ${cfg.privateKeyFile} "
+            + "peer $(cat ${peer.publicKeyFile}) "
+            + "preshared-key ${peer.presharedKeyFile} "
+            + "allowed-ips ${peer.allowedIPs} "
+            + "persistent-keepalive 7 "
+            + "endpoint $(cat ${peer.endpointFile}):${toString peer.endpointPort}"
+        )
+        cfg.peers;
+    in ''
+      ${concatStringsSep "\n" peerConfigs}
+    '';
+  in {
+    boot.kernelModules = ["wireguard"];
+
+    environment.systemPackages = with pkgs; [
+      wireguard-tools
+    ];
+
+    networking.firewall.allowedUDPPorts = [cfg.listenPort];
+
+    systemd.services."wireguard-setup" = {
+      description = "Setup WireGuard with secrets";
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target" "nss-lookup.target"];
+      wants = ["network-online.target" "nss-lookup.target"];
+      path = with pkgs; [kmod iproute2 wireguard-tools];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        User = "root";
+        NetworkNamespacePath = "";
+      };
+
+      script = ''
+        if ip link show ${cfg.interface} &> /dev/null; then
+          echo "${cfg.interface} interface exists. Deleting it... "
+          ip link delete ${cfg.interface}
+          echo "${cfg.interface} interface deleted."
+        else
+          echo "${cfg.interface} interface does not exist."
+        fi
+
+        ip link add dev ${cfg.interface} type wireguard
+        ip address add dev ${cfg.interface} ${cfg.ips}
+
+        ${wgScript}
+
+        ip link set up dev ${cfg.interface}
+      '';
+    };
+
+    systemd.network.wait-online.ignoredInterfaces = [cfg.interface];
+  });
 }

@@ -1,5 +1,3 @@
-# Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
 {
   config,
   pkgs,
@@ -31,12 +29,27 @@ in {
     ./modules/desktop.nix
     ./modules/window_manager.nix
     ./modules/wireguard.nix
-    #./modules/fpga_hardware.nix
-    #./modules/virtualization.nix
-
-    #./neovim.nix
-    #./suspend_and_hibernate.nix
-    #./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
+    {
+      services.wireguard = {
+        enable = true;
+        ips = "10.252.1.1/24";
+        privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+        peers = [
+          {
+            publicKeyFile = config.sops.secrets."wireguard/public_key".path;
+            presharedKeyFile = config.sops.secrets."wireguard/preshared_key".path;
+            allowedIPs = "10.252.1.0/24";
+            endpointFile = config.sops.secrets."wireguard/wireguard_ip".path;
+            endpointPort = 51820;
+          }
+        ];
+      };
+    }
+    # ./modules/fpga_hardware.nix
+    # ./modules/virtualization.nix
+    # ./neovim.nix
+    # ./suspend_and_hibernate.nix
+    # ./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
   ];
 
   sops = {
@@ -55,12 +68,14 @@ in {
       mode = "0400";
     };
     secrets."wireguard/private_key" = {
-      #owner = config.users.users.dmitrii.name;
       owner = config.users.users.systemd-network.name;
       mode = "0400";
     };
     secrets."wireguard/preshared_key" = {
-      #owner = config.users.users.dmitrii.name;
+      owner = config.users.users.systemd-network.name;
+      mode = "0400";
+    };
+    secrets."wireguard/public_key" = {
       owner = config.users.users.systemd-network.name;
       mode = "0400";
     };
