@@ -50,8 +50,19 @@ in {
       generateKey = true;
     };
 
-    secrets.wireguard_ip = {
-      owner = config.users.users.dmitrii.name;
+    secrets."wireguard/wireguard_ip" = {
+      owner = config.users.users.systemd-network.name;
+      mode = "0400";
+    };
+    secrets."wireguard/private_key" = {
+      #owner = config.users.users.dmitrii.name;
+      owner = config.users.users.systemd-network.name;
+      mode = "0400";
+    };
+    secrets."wireguard/preshared_key" = {
+      #owner = config.users.users.dmitrii.name;
+      owner = config.users.users.systemd-network.name;
+      mode = "0400";
     };
   };
 

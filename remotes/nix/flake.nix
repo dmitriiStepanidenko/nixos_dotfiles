@@ -2,12 +2,19 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     colmena.url = "github:zhaofengli/colmena?ref=main";
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     self,
     colmena,
     nixpkgs,
+    sops-nix,
     ...
   }: {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
@@ -20,7 +27,10 @@
       };
 
       defaults = {pkgs, ...}: {
-        imports = [../backup_image/nix/vm-profile.nix];
+        imports = [
+          sops-nix.nixosModules.sops
+          ../backup_image/nix/vm-profile.nix
+        ];
       };
 
       # Also see the non-Flakes hive.nix example above.
@@ -28,13 +38,16 @@
       #  boot.isContainer = true;
       #  time.timeZone = nodes.host-b.config.time.timeZone;
       #};
-      vpn = {
+      vpn = {pkgs, ...}: {
         deployment = {
           targetHost = "192.168.0.210";
           targetPort = 22;
           targetUser = "root";
         };
         time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/vpn.nix
+        ];
       };
     };
   };
