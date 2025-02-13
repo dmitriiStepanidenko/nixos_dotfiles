@@ -87,11 +87,11 @@ in {
     };
   };
 
-  systemd.services.nix-daemon.environment = {
-    # socks5h mean that the hostname is resolved by the SOCKS server
-    https_proxy = "socks5h://localhost:10808";
-    # https_proxy = "http://localhost:7890"; # or use http prctocol instead of socks5
-  };
+  #systemd.services.nix-daemon.environment = {
+  #  # socks5h mean that the hostname is resolved by the SOCKS server
+  #  https_proxy = "socks5h://localhost:10808";
+  #  # https_proxy = "http://localhost:7890"; # or use http prctocol instead of socks5
+  #};
 
   services.xray = {
     enable = true;
@@ -106,6 +106,8 @@ in {
       LogsDirectory = "xray";
     };
   };
+  #networking.proxy.httpsProxy = "socks5h://127.0.0.1:10808";
+  networking.proxy.default = "socks5h://127.0.0.1:10808";
   users.users.xray = {
     isSystemUser = true;
     description = "xray service user";
