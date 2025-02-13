@@ -81,12 +81,6 @@ in {
       owner = config.users.users.systemd-network.name;
       mode = "0400";
     };
-    secrets."xray_config.json" = {
-      #owner = config.users.users.dmitrii.name;
-      #owner = "xray";
-      owner = config.users.users.xray.name;
-      mode = "0400";
-    };
   };
 
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];

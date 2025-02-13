@@ -1,8 +1,15 @@
 {
   config,
   pkgs,
+  sops,
   ...
 }: {
+  sops.secrets."xray_config.json" = {
+    #owner = config.users.users.dmitrii.name;
+    #owner = "xray";
+    owner = config.users.users.xray.name;
+    mode = "0400";
+  };
   environment.systemPackages = with pkgs; [
     xray
   ];
