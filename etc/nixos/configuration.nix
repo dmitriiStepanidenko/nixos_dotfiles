@@ -79,11 +79,32 @@ in {
       owner = config.users.users.systemd-network.name;
       mode = "0400";
     };
-    secrets."xray_config" = {
-      owner = config.users.users.dmitrii.name;
+    secrets."xray_config.json" = {
+      #owner = config.users.users.dmitrii.name;
+      #owner = "xray";
+      owner = config.users.users.xray.name;
       mode = "0400";
     };
   };
+
+  services.xray = {
+    enable = true;
+    settingsFile = config.sops.secrets."xray_config.json".path;
+    #settingsFile = "/etc/xray/config.json";
+  };
+  systemd.services.xray = {
+    serviceConfig = {
+      #LoadCredential = "xray_config.json:${config.sops.secrets."xray_config.json".path}";
+      #BindPaths = "${config.sops.secrets."xray_config.json".path}:/etc/xray/config.json:ro";
+      User = config.users.users.xray.name;
+    };
+  };
+  users.users.xray = {
+    isSystemUser = true;
+    description = "xray service user";
+    group = "xray";
+  };
+  users.groups.xray = {};
 
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
@@ -268,7 +289,20 @@ in {
     isNormalUser = true;
     description = "Dmitrii";
     # Needs groups input and uinput for kanata to work without sudo
-    extraGroups = ["networkmanager" "wheel" "dmitrii" "docker" "video" "tty" "libvirtd" "input" "uinput" "plugdev" "dialout"];
+    extraGroups = [
+      "dmitrii"
+      "networkmanager"
+      "wheel"
+      "docker"
+      "video"
+      "tty"
+      "libvirtd"
+      "input"
+      "uinput"
+      "plugdev"
+      "dialout"
+      "xray"
+    ];
     uid = 1000;
     #packages = with pkgs; [
     #  # kdePackages.kate
