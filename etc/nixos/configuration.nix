@@ -28,6 +28,7 @@ in {
     ./hardware-configuration.nix
     ./modules/desktop.nix
     ./modules/window_manager.nix
+    ./modules/fonts_icons.nix
     ./modules/xray.nix
     ./modules/wireguard.nix
     {
@@ -312,22 +313,6 @@ in {
     options = "--delete-older-than 30d";
   };
 
-  fonts.enableDefaultPackages = true;
-  fonts.packages = with pkgs; [
-    fira-code
-    fira-code-symbols
-    meslo-lg
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
-    #nerd-fonts.symbols-only
-    #nerd-fonts.meslo-lg
-    #nerd-fonts.hurmit
-    #nerd-fonts.iosevka-term
-    #nerd-fonts.monoid
-    font-awesome
-    freefont_ttf
-    corefonts # Times New Roman
-  ];
-
   programs.noisetorch.enable = true;
 
   # Default browser
@@ -387,10 +372,6 @@ in {
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
-    #nerdfonts
-    #terminus-nerdfont
-    #nerd-fonts.symbols-only
-    #nerd-fonts.meslo-lg
 
     hunspell
     hunspellDicts.ru_RU
