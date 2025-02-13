@@ -97,6 +97,7 @@ in {
       #LoadCredential = "xray_config.json:${config.sops.secrets."xray_config.json".path}";
       #BindPaths = "${config.sops.secrets."xray_config.json".path}:/etc/xray/config.json:ro";
       User = config.users.users.xray.name;
+      LogsDirectory = "xray";
     };
   };
   users.users.xray = {
