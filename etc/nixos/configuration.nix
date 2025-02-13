@@ -372,6 +372,8 @@ in {
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #colmena.defaultPackage.x86_64-linux
 
+    xray
+
     vim
     #nixpkgs-stable-unstable.vim
     #vim
