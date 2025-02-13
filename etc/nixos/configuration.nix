@@ -106,8 +106,10 @@ in {
       LogsDirectory = "xray";
     };
   };
-  #networking.proxy.httpsProxy = "socks5h://127.0.0.1:10808";
-  networking.proxy.default = "socks5h://127.0.0.1:10808";
+  networking.proxy = {
+    httpsProxy = "socks5h://127.0.0.1:10808";
+    default = "socks5h://127.0.0.1:10808";
+  };
   users.users.xray = {
     isSystemUser = true;
     description = "xray service user";
