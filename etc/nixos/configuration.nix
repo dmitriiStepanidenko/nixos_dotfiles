@@ -317,6 +317,7 @@ in {
     fira-code
     fira-code-symbols
     meslo-lg
+    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
     #nerd-fonts.symbols-only
     #nerd-fonts.meslo-lg
     #nerd-fonts.hurmit
@@ -564,6 +565,8 @@ in {
     git-crypt
     gnupg
     pinentry-curses
+
+    papirus-icon-theme
   ];
 
   programs.gnupg.agent = {
