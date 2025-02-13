@@ -1,4 +1,11 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
+  environment.systemPackages = with pkgs; [
+    xray
+  ];
   services.xray = {
     enable = true;
     settingsFile = config.sops.secrets."xray_config.json".path;
