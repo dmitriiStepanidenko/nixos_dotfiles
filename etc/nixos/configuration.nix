@@ -107,8 +107,12 @@ in {
     };
   };
   networking.proxy = {
-    httpsProxy = "socks5h://localhost:10808";
-    default = "socks5h://localhost:10808";
+    #httpsProxy = "socks5h://localhost:10808";
+    default = "socks5://127.0.0.1:10808";
+  };
+  environment.variables = {
+    HTTP_PROXY = "socks5://127.0.0.1:10808";
+    HTTPS_PROXY = "socks5://127.0.0.1:10808";
   };
   users.users.xray = {
     isSystemUser = true;
