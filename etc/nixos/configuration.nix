@@ -30,7 +30,7 @@ in {
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
     ./modules/xray.nix
-    ./modules/wireguard.nix
+    ../../nix/modules/wireguard.nix
     {
       services.wireguard = {
         enable = true;

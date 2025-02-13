@@ -1,40 +1,126 @@
 {
-  server_ip,
-  publicKey,
-  privateKeyFile,
+  pkgs,
+  config,
+  lib,
   ...
-}: {
-  networking.wg-quick.interfaces = {
-    wg0 = {
-      # IP address of this machine in the *tunnel network*
-      address = [
-        "10.252.1.1/32"
-      ];
+}:
+with lib; let
+  cfg = config.services.wireguard;
+in {
+  options.services.wireguard = {
+    enable = mkEnableOption "WireGuard with sops-nix integration";
 
-      # To match firewall allowedUDPPorts (without this wg
-      # uses random port numbers).
-      listenPort = 51820;
+    interface = mkOption {
+      type = types.str;
+      default = "wg0";
+      description = "Wireguard interface name";
+    };
 
-      # Path to the private key file.
-      inherit privateKeyFile;
-      # this is what we use instead of persistentKeepalive, the resulting PostUp
-      # script looks something like the following:
-      #     wg set wg0 private-key <(cat /path/to/keyfile)
-      #     wg set wg0 peer <public key> persistent-keepalive 25
-      #postUp = ["wg set wgnet0 peer ${publicKey} persistent-keepalive 7"];
+    ips = mkOption {
+      type = types.str;
+      description = "IP address of interface";
+    };
 
-      peers = [
-        {
-          #publicKey = "grqz6c5gF9BUrm3pMVukCT1BN1MGt7pnI6xZOT0dUQ4=";
-          inherit publicKey;
-          presharedKeyFile = "/root/wireguard-keys/preshared.key";
-          allowedIPs = ["10.252.1.0/24"];
-          endpoint = "${server_ip}:51820";
-          persistentKeepalive = 7;
-        }
-      ];
+    listenPort = mkOption {
+      type = types.port;
+      default = 51820;
+      description = "WireGuard listen port";
+    };
+
+    privateKeyFile = mkOption {
+      type = types.str;
+      description = "Private key file path";
+    };
+
+    peers = mkOption {
+      type = types.listOf (types.submodule {
+        options = {
+          publicKeyFile = mkOption {
+            type = types.str;
+            description = "Peer public key file";
+          };
+          presharedKeyFile = mkOption {
+            type = types.str;
+            description = "Peer preshared key file";
+          };
+          allowedIPs = mkOption {
+            type = types.str;
+            description = "Allowed IP ranges for this peer";
+          };
+          endpointFile = mkOption {
+            type = types.nullOr types.str;
+            description = "Peer endpoint address file";
+          };
+          endpointPort = mkOption {
+            type = types.port;
+            default = 51820;
+            description = "WireGuard endpoint port";
+          };
+        };
+      });
+      default = [];
+      description = "WireGuard peers configuration";
     };
   };
-  networking.networkmanager.dns = "systemd-resolved";
-  services.resolved.enable = true;
+
+  config = mkIf cfg.enable (let
+    wgScript = let
+      peerConfigs =
+        map (
+          peer:
+            "${pkgs.wireguard-tools}/bin/wg set ${cfg.interface} "
+            + "private-key ${cfg.privateKeyFile} "
+            + "peer $(cat ${peer.publicKeyFile}) "
+            + "preshared-key ${peer.presharedKeyFile} "
+            + "allowed-ips ${peer.allowedIPs} "
+            + "persistent-keepalive 7 "
+            + "endpoint $(cat ${peer.endpointFile}):${toString peer.endpointPort}"
+        )
+        cfg.peers;
+    in ''
+      ${concatStringsSep "\n" peerConfigs}
+    '';
+  in {
+    boot.kernelModules = ["wireguard"];
+
+    environment.systemPackages = with pkgs; [
+      wireguard-tools
+    ];
+
+    networking.firewall.allowedUDPPorts = [cfg.listenPort];
+
+    systemd.services."wireguard-setup" = {
+      description = "Setup WireGuard with secrets";
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target" "nss-lookup.target"];
+      wants = ["network-online.target" "nss-lookup.target"];
+      path = with pkgs; [kmod iproute2 wireguard-tools];
+
+      serviceConfig = {
+        Type = "oneshot";
+        RemainAfterExit = true;
+        User = "root";
+        NetworkNamespacePath = "";
+      };
+
+      script = ''
+        if ip link show ${cfg.interface} &> /dev/null; then
+          echo "${cfg.interface} interface exists. Deleting it... "
+          ip link delete ${cfg.interface}
+          echo "${cfg.interface} interface deleted."
+        else
+          echo "${cfg.interface} interface does not exist."
+        fi
+
+        ip link add dev ${cfg.interface} type wireguard
+        ip address add dev ${cfg.interface} ${cfg.ips}
+
+        ${wgScript}
+
+        ip link set up dev ${cfg.interface}
+      '';
+    };
+
+    systemd.network.wait-online.ignoredInterfaces = [cfg.interface];
+  });
 }
