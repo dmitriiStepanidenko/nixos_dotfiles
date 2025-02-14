@@ -38,7 +38,7 @@
       #  boot.isContainer = true;
       #  time.timeZone = nodes.host-b.config.time.timeZone;
       #};
-      vpn = {pkgs, ...}: {
+      gitea_woker_1 = {pkgs, ...}: {
         deployment = {
           targetHost = "192.168.0.210";
           targetPort = 22;
@@ -46,7 +46,7 @@
         };
         time.timeZone = "Europe/Moscow";
         imports = [
-          ../../nix/hosts/vpn.nix
+          ../../nix/hosts/gitea_worker/default.nix
         ];
       };
     };

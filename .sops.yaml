@@ -3,15 +3,15 @@ keys:
     - &mine age19vefp7y0y8jdc4gcy4l4yq6r4q3a9u2xevj3uy8dnf6v9ak7hfls3hjejc
   - hosts:
     - &mine_laptop age1ggpnjskft839vcjzunmpdwhs9easwxr7cvd350mlqmvptw3aqdnsqpms42
-    - &vpn age1putdegsz5q696knqry2xjk0qjhfnczcqkmsnhkk9233j7l7jcqcs7hlef7
+    - &gitea_worker_1 age1putdegsz5q696knqry2xjk0qjhfnczcqkmsnhkk9233j7l7jcqcs7hlef7
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
     - age:
       - *mine_laptop
       - *mine
-  - path_regex: nix/hosts/vpn/.*\.(yaml)$
+  - path_regex: nix/hosts/gitea_worker/.*\.(yaml)$
     key_groups:
     - age:
       - *mine
-      - *vpn
+      - *gitea_worker_1
