@@ -84,6 +84,7 @@ in {
 
   # For woodpecker-cli
   services.passSecretService.enable = true;
+  services.gnome.gnome-keyring.enable = true;
 
   boot.kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
 
