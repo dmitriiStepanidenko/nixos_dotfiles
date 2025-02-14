@@ -49,6 +49,17 @@
           ../../nix/hosts/gitea_worker/default.nix
         ];
       };
+      woodpecker_agent_1 = {pkgs, ...}: {
+        deployment = {
+          targetHost = "192.168.0.211";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/woodpecker_agent/default.nix
+        ];
+      };
     };
   };
 }

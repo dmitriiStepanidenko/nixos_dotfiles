@@ -353,6 +353,7 @@ in {
     nodejs_22
 
     act
+    woodpecker-cli
 
     sops
 
