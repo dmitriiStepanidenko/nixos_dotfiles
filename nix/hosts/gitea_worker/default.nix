@@ -29,7 +29,6 @@
   ];
 
   config = {
-    #Provide a default hostname
     networking.hostName = "gitea_worker";
     sops = {
       defaultSopsFile = ./secrets.yaml;

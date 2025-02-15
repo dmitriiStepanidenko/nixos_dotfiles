@@ -25,13 +25,11 @@
         ];
       };
     }
-    #../../../nix/modules/gitea_action_runner.nix
     ../../../nix/modules/woodpecker_agent.nix
   ];
 
   config = {
-    #Provide a default hostname
-    networking.hostName = "gitea_worker";
+    networking.hostName = "woodpecker_agent";
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";

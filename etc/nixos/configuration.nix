@@ -54,6 +54,9 @@ in {
     # ./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
   ];
 
+  #nixpkgs.overlays = [ (final: prev: ) ];
+  nixpkgs.overlays = [(import ../../nix/overlays/surrealdb-bin.nix)];
+
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
@@ -80,7 +83,16 @@ in {
       owner = config.users.users.systemd-network.name;
       mode = "0400";
     };
+    #secrets."woodpecker/ip" = {
+    #  owner = config.users.users.systemd-network.name;
+    #  mode = "0400";
+    #};
   };
+
+  #environment.variables = {
+  #  HTTP_PROXY = "socks5://127.0.0.1:10808";
+  #  HTTPS_PROXY = "socks5://127.0.0.1:10808";
+  #};
 
   # For woodpecker-cli
   services.passSecretService.enable = true;
