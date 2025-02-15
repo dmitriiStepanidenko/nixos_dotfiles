@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     xray
+    tsocks
   ];
   services.xray = {
     enable = true;
@@ -23,11 +24,12 @@
     };
   };
   networking.proxy = {
+    httpProxy = "http://127.0.0.1:10810";
     default = "socks5://127.0.0.1:10808";
   };
 
   environment.variables = {
-    #HTTP_PROXY = "socks5://127.0.0.1:10808";
+    HTTP_PROXY = "http://127.0.0.1:10810";
     HTTPS_PROXY = "socks5://127.0.0.1:10808";
   };
   users.users.xray = {
