@@ -27,7 +27,7 @@
   };
 
   environment.variables = {
-    HTTP_PROXY = "socks5://127.0.0.1:10808";
+    #HTTP_PROXY = "socks5://127.0.0.1:10808";
     HTTPS_PROXY = "socks5://127.0.0.1:10808";
   };
   users.users.xray = {

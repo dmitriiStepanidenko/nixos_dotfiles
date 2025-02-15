@@ -1,3 +1,3 @@
 self: super: {
-  surrealdb-bin = super.callPackage ../packages/surrealdb-nix {};
+  surrealdb-bin = super.callPackage ../packages/surrealdb-bin.nix {};
 }

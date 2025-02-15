@@ -368,6 +368,8 @@ in {
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
 
+    #surrealdb-bin
+
     act
     woodpecker-cli
 
