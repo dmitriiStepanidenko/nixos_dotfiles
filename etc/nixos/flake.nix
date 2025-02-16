@@ -39,11 +39,11 @@
   }: let
     system = "x86_64-linux";
   in {
-    packages.${system}.default =
+    packages."x86_64-linux".default =
       (
         nvf.lib.neovimConfiguration {
           pkgs = nixpkgs_unstable.legacyPackages.${system};
-          modules = [../../nix/module/nvf-configuration.nix];
+          modules = [../../nix/modules/nvf-configuration.nix];
         }
       )
       .neovim;
