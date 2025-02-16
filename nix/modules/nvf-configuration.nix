@@ -68,6 +68,7 @@
           enable = true;
         };
       };
+      vim-wakatime.enable = true;
       outline = {
         aerial-nvim = {
           enable = true;
