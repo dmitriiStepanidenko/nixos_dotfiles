@@ -29,8 +29,18 @@
       }
     ];
 
+    searchCase = "ignore";
+
     statusline.lualine.enable = true;
-    telescope.enable = true;
+    telescope = {
+      enable = true;
+      mappings = {
+        findFiles = ";f";
+        liveGrep = ";r";
+        buffers = "\\";
+        helpTags = ";;";
+      };
+    };
     autocomplete.nvim-cmp.enable = true;
     languages = {
       enableLSP = true;
