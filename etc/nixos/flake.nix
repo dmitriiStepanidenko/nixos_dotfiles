@@ -6,6 +6,7 @@
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     nixpkgs.follows = "nixos-24-11";
+    nixpkgs_unstable.follows = "nixos-unstable";
 
     nixos-24-11-stable-xsecurelock.url = "github:nixos/nixpkgs?ref=d3c42f187194c26d9f0309a8ecc469d6c878ce33";
 
@@ -16,6 +17,8 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nvf.url = "github:notashelf/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
@@ -28,12 +31,23 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    nixpkgs_unstable,
     colmena,
+    nvf,
     #sops-nix,
     ...
   }: let
     system = "x86_64-linux";
   in {
+    packages.${system}.default =
+      (
+        nvf.lib.neovimConfiguration {
+          pkgs = nixpkgs_unstable.legacyPackages.${system};
+          modules = [../../nix/modules/nvf-configuration.nix];
+        }
+      )
+      .neovim;
+
     nixosConfigurations = {
       nixos = inputs.nixpkgs.lib.nixosSystem {
         inherit system;
@@ -47,6 +61,7 @@
             ];
           })
           ./configuration.nix
+          nvf.nixosModules.default
           #sops-nix.nixosModules.sops
           #{
           #  _module.args = {

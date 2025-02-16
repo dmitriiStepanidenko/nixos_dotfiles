@@ -352,21 +352,20 @@ in {
     #nixpkgs-stable-unstable.vim
     #vim
     wget
-    #neovim
     displaylink
     neofetch
     tmux
     alacritty
     yubioath-flutter
     lshw
-    htop
+    unstable.htop
     btop
     gparted
     git
     stow
     gcc14
     rocmPackages.llvm.clang-unwrapped
-    nodejs_22
+    #nodejs_22
 
     surrealdb-bin
 
@@ -573,12 +572,13 @@ in {
 
   programs.ssh.startAgent = true;
 
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-    withNodeJs = true;
-    withPython3 = true;
-  };
+  #programs.neovim = {
+  #  enable = true;
+  #  defaultEditor = true;
+  #  withNodeJs = true;
+  #  withPython3 = true;
+  #  package = unstable.neovim;
+  #};
 
   #services.syncthing = {
   #  enable = true;
