@@ -43,7 +43,7 @@
       mappings = {
         findFiles = ";f";
         liveGrep = ";r";
-        buffers = "\\";
+        buffers = "\\\\";
         helpTags = ";;";
       };
     };
