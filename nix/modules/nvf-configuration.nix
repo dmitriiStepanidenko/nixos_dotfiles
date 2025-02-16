@@ -31,7 +31,7 @@
         key = "\v";
         mode = "n";
         silent = true;
-        action = ":NvimTreeToggle";
+        action = ":NvimTreeToggle<CR>";
       }
     ];
 
