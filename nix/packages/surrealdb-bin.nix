@@ -11,7 +11,7 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     url = "https://github.com/surrealdb/surrealdb/releases/download/v${version}/surreal-v${version}.linux-amd64.tgz";
-    hash = "";
+    hash = "sha256-mPH6NKg/wpizQ7CDbeA/U3zPIT0qmDywhgf4VDjVH9Q=";
   };
 
   nativeBuildInputs = [autoPatchelfHook];
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    install -m755 PACKAGE_BINARY_FILE_NAME $out/bin
+    install -m755 surreal $out/bin
     runHook postInstall
   '';
 }
