@@ -55,6 +55,10 @@ in {
     # ./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
   ];
 
+  programs.nvf = {
+    enable = true;
+  };
+
   #nixpkgs.overlays = [ (final: prev: ) ];
   nixpkgs.overlays = [(import ../../nix/overlays/surrealdb-bin.nix)];
 
