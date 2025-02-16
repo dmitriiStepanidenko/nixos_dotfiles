@@ -51,6 +51,7 @@
         listReferences = "gr";
         nextDiagnostic = "]d";
         previousDiagnostic = "[d";
+        renameSymbol = "\rn";
       };
     };
 
