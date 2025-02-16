@@ -11,8 +11,23 @@
     filetree = {
       nvimTree = {
         enable = true;
+        #mappings
       };
     };
+    keymaps = [
+      {
+        key = "H";
+        mode = "n";
+        silent = true;
+        action = "gT";
+      }
+      {
+        key = "L";
+        mode = "n";
+        silent = true;
+        action = "gt";
+      }
+    ];
 
     statusline.lualine.enable = true;
     telescope.enable = true;
