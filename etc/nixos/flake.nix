@@ -39,7 +39,7 @@
   }: let
     system = "x86_64-linux";
   in {
-    packages."x86_64-linux".default =
+    packages."x86_64-linux".my-neovim =
       (
         nvf.lib.neovimConfiguration {
           pkgs = nixpkgs.legacyPackages."x86_64-linux";
@@ -60,8 +60,11 @@
               colmena.defaultPackage.x86_64-linux
             ];
           })
-          nvf.nixosModules.default
+          #nvf.nixosModules.default
           ./configuration.nix
+          ({pkgs, ...}: {
+            environment.systemPackages = [self.packages.${system}.my-neovim];
+          })
           #sops-nix.nixosModules.sops
           #{
           #  _module.args = {

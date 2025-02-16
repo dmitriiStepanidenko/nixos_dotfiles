@@ -3,10 +3,10 @@
   lib,
   ...
 }: {
-  vim = {
+  config.vim = {
     theme.enable = true;
     theme.name = "tokyonight";
-    theme.style = "dark";
+    theme.style = "night";
 
     statusline.lualine.enable = true;
     telescope.enable = true;
