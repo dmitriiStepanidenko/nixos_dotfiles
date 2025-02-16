@@ -460,7 +460,7 @@ in {
     xorg.xdpyinfo # dpi info for scaling
     # TODO
 
-    clang-tools
+    unstable.clang-tools
 
     arandr
 
