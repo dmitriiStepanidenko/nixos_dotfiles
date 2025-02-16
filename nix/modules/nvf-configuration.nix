@@ -40,9 +40,9 @@
 
     lsp = {
       mappings = {
-        addWorkspaceFolder = "\\wa";
+        addWorkspaceFolder = "\\\\wa";
         format = "<space>f";
-        codeAction = "\\ca";
+        codeAction = "\\\\ca";
         goToDeclaration = "gD";
         goToDefinition = "gd";
         goToType = "gt";
@@ -51,7 +51,7 @@
         listReferences = "gr";
         nextDiagnostic = "]d";
         previousDiagnostic = "[d";
-        renameSymbol = "\\rn";
+        renameSymbol = "\\\\rn";
       };
     };
 
