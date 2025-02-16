@@ -25,7 +25,7 @@
   };
   networking.proxy = {
     httpProxy = "http://127.0.0.1:10810";
-    default = "socks5://127.0.0.1:10808";
+    #default = "socks5://127.0.0.1:10808";
   };
 
   environment.variables = {

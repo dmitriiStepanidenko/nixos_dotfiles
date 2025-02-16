@@ -18,6 +18,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nvf.url = "github:notashelf/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
@@ -34,6 +39,7 @@
     nixpkgs_unstable,
     colmena,
     nvf,
+    rust-overlay,
     #sops-nix,
     ...
   }: let
@@ -62,8 +68,24 @@
           })
           #nvf.nixosModules.default
           ./configuration.nix
-          ({pkgs, ...}: {
-            environment.systemPackages = [self.packages.${system}.my-neovim];
+          ({pkgs, ...}: let
+            rust =
+              pkgs.rust-bin.nightly."2025-01-31".default.override # nightly for 1.84.1
+              
+              {
+                extensions = [
+                  "rust-src" # for rust-analyzer
+                  "rust-analyzer"
+                  "rustc-codegen-cranelift-preview"
+                  "clippy"
+                ];
+              };
+          in {
+            nixpkgs.overlays = [rust-overlay.overlays.default];
+            environment.systemPackages = [
+              self.packages.${system}.my-neovim
+              rust
+            ];
           })
           #sops-nix.nixosModules.sops
           #{

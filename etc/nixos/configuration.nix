@@ -3,6 +3,7 @@
   pkgs,
   lib,
   inputs,
+  rust-overlay,
   #nixpkgs-stable-unstable,
   ...
 }: let
@@ -471,11 +472,11 @@ in {
     auto-cpufreq
 
     #rustup
-    cargo
-    rustc
-    rust-analyzer
-    rustfmt
-    clippy
+    #unstable.cargo
+    #unstable.rustc
+    #unstable.rust-analyzer
+    #unstable.rustfmt
+    #unstable.clippy
 
     playerctl # Media keys: Play/Pause / etc
 

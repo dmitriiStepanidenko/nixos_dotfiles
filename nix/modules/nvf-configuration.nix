@@ -79,6 +79,9 @@
           enable = true;
         };
       };
+      motion.leap = {
+        enable = true;
+      };
       vim-wakatime.enable = true;
       outline = {
         aerial-nvim = {
