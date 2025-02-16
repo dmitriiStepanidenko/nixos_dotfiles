@@ -45,11 +45,23 @@
   }: let
     system = "x86_64-linux";
   in {
-    packages.${system}.my-neovim =
+    packages.${system}.my-neovim = let
+      pkgs = nixpkgs_unstable.legacyPackages.${system}.extend rust-overlay.overlays.default;
+    in
       (
         nvf.lib.neovimConfiguration {
-          pkgs = nixpkgs_unstable.legacyPackages.${system};
-          modules = [../../nix/modules/nvf-configuration.nix];
+          #pkgs = nixpkgs_unstable.legacyPackages.${system};
+          inherit pkgs;
+          modules = [
+            ../../nix/modules/nvf-configuration.nix
+            ({
+              config,
+              pkgs,
+              ...
+            }: {
+              config.vim.languages.rust.lsp.package = pkgs.rust-analyzer;
+            })
+          ];
         }
       )
       .neovim;
