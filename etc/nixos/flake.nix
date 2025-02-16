@@ -44,19 +44,21 @@
     ...
   }: let
     system = "x86_64-linux";
+    pkgs = nixpkgs_unstable.legacyPackages.${system}.extend rust-overlay.overlays.default;
+
+    getRust = toolchain:
+      toolchain.default.override {
+        extensions = [
+          "rust-src"
+          "rust-analyzer"
+          "rustc-codegen-cranelift-preview"
+          "clippy"
+        ];
+      };
+
+    rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
   in {
-    packages.${system}.my-neovim = let
-      pkgs = nixpkgs_unstable.legacyPackages.${system}.extend rust-overlay.overlays.default;
-      rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
-        toolchain.default.override {
-          extensions = [
-            "rust-src" # for rust-analyzer
-            "rust-analyzer"
-            "rustc-codegen-cranelift-preview"
-            "clippy"
-          ];
-        });
-    in
+    packages.${system}.my-neovim =
       (
         nvf.lib.neovimConfiguration {
           #pkgs = nixpkgs_unstable.legacyPackages.${system};
@@ -89,18 +91,7 @@
           })
           #nvf.nixosModules.default
           ./configuration.nix
-          ({pkgs, ...}: let
-            #.nightly."2025-02-14".default.override # nightly for 1.84.1
-            rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
-              toolchain.default.override {
-                extensions = [
-                  "rust-src" # for rust-analyzer
-                  "rust-analyzer"
-                  "rustc-codegen-cranelift-preview"
-                  "clippy"
-                ];
-              });
-          in {
+          ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [
               self.packages.${system}.my-neovim
