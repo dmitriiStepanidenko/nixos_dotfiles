@@ -54,13 +54,24 @@
 
       nix.enable = true;
       terraform.enable = true;
+      bash.enable = true;
 
       markdown.enable = true;
 
       ts.enable = true;
       lua.enable = true;
       python.enable = true;
-      rust.enable = true;
+      rust = {
+        enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+        crates.enable = true;
+      };
+      svelte = {
+        enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+      };
     };
     utility = {
       preview = {
