@@ -38,6 +38,22 @@
 
     searchCase = "ignore";
 
+    lsp = {
+      mappings = {
+        addWorkspaceFolder = "\\wa";
+        format = "<space>f";
+        codeAction = "\\ca";
+        goToDeclaration = "gD";
+        goToDefinition = "gd";
+        goToType = "gt";
+        hover = "K";
+        listImplementations = "gi";
+        listReferences = "gr";
+        nextDiagnostic = "]d";
+        previousDiagnostic = "[d";
+      };
+    };
+
     statusline.lualine.enable = true;
     telescope = {
       enable = true;
@@ -99,5 +115,6 @@
     visuals = {
       nvim-web-devicons.enable = true;
     };
+    notify.nvim-notify.enable = true;
   };
 }
