@@ -47,6 +47,15 @@
   in {
     packages.${system}.my-neovim = let
       pkgs = nixpkgs_unstable.legacyPackages.${system}.extend rust-overlay.overlays.default;
+      rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
+        toolchain.default.override {
+          extensions = [
+            "rust-src" # for rust-analyzer
+            "rust-analyzer"
+            "rustc-codegen-cranelift-preview"
+            "clippy"
+          ];
+        });
     in
       (
         nvf.lib.neovimConfiguration {
@@ -59,7 +68,7 @@
               pkgs,
               ...
             }: {
-              config.vim.languages.rust.lsp.package = pkgs.rust-analyzer;
+              config.vim.languages.rust.lsp.package = rust;
             })
           ];
         }
