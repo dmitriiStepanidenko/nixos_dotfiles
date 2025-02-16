@@ -104,6 +104,10 @@
       };
       motion.leap = {
         enable = true;
+        mappings = {
+          leapForwardTo = "\s";
+          leapBackwardTo = "\S";
+        };
       };
       vim-wakatime.enable = true;
       outline = {
