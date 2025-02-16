@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   config.vim = {
@@ -66,6 +67,11 @@
         format.enable = true;
         treesitter.enable = true;
         crates.enable = true;
+        lsp = {
+          enable = true;
+          #package =
+          #  inputs.nixos_unstable.legacyPackages.${pkgs.system}.rust-analyzer;
+        };
       };
       svelte = {
         enable = true;

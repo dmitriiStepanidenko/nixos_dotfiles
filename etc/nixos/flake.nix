@@ -45,10 +45,10 @@
   }: let
     system = "x86_64-linux";
   in {
-    packages."x86_64-linux".my-neovim =
+    packages.${system}.my-neovim =
       (
         nvf.lib.neovimConfiguration {
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          pkgs = nixpkgs_unstable.legacyPackages.${system};
           modules = [../../nix/modules/nvf-configuration.nix];
         }
       )
@@ -63,23 +63,22 @@
         modules = [
           ({pkgs, ...}: {
             environment.systemPackages = [
-              colmena.defaultPackage.x86_64-linux
+              colmena.defaultPackage.${system}
             ];
           })
           #nvf.nixosModules.default
           ./configuration.nix
           ({pkgs, ...}: let
-            rust =
-              pkgs.rust-bin.nightly."2025-02-14".default.override # nightly for 1.84.1
-              
-              {
+            #.nightly."2025-02-14".default.override # nightly for 1.84.1
+            rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain:
+              toolchain.default.override {
                 extensions = [
                   "rust-src" # for rust-analyzer
                   "rust-analyzer"
                   "rustc-codegen-cranelift-preview"
                   "clippy"
                 ];
-              };
+              });
           in {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [
