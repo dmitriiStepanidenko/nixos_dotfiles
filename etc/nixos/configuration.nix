@@ -365,7 +365,7 @@ in {
     stow
     gcc14
     rocmPackages.llvm.clang-unwrapped
-    #nodejs_22
+    unstable.nodejs_22
 
     surrealdb-bin
 
