@@ -27,6 +27,12 @@
         silent = true;
         action = "gt";
       }
+      {
+        key = "\v";
+        mode = "n";
+        silent = true;
+        action = ":NvimTreeToggle";
+      }
     ];
 
     searchCase = "ignore";
