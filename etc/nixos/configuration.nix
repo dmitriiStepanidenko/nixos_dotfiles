@@ -368,7 +368,7 @@ in {
     rocmPackages.llvm.clang-unwrapped
     nodejs_22
 
-    #surrealdb-bin
+    surrealdb-bin
 
     act
     woodpecker-cli
