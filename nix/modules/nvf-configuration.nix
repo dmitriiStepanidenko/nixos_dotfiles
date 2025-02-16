@@ -55,10 +55,25 @@
       nix.enable = true;
       terraform.enable = true;
 
+      markdown.enable = true;
+
       ts.enable = true;
       lua.enable = true;
       python.enable = true;
       rust.enable = true;
+    };
+    utility = {
+      preview = {
+        markdownPreview = {
+          enable = true;
+        };
+      };
+      outline = {
+        aerial-nvim = {
+          enable = true;
+          mappings.toggle = "\l";
+        };
+      };
     };
   };
 }
