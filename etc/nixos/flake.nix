@@ -84,6 +84,9 @@
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment.systemPackages = [
               self.packages.${system}.my-neovim
+              pkgs.pkg-config
+              pkgs.mold
+              pkgs.clang
               rust
             ];
           })
