@@ -70,7 +70,7 @@
           ./configuration.nix
           ({pkgs, ...}: let
             rust =
-              pkgs.rust-bin.nightly."2025-02-01".default.override # nightly for 1.84.1
+              pkgs.rust-bin.nightly."2025-01-03".default.override # nightly for 1.84.1
               
               {
                 extensions = [
