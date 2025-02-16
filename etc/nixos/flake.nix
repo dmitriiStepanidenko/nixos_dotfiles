@@ -43,7 +43,7 @@
       (
         nvf.lib.neovimConfiguration {
           pkgs = nixpkgs_unstable.legacyPackages.${system};
-          modules = [../../nix/modules/nvf-configuration.nix];
+          modules = [../../nix/module/nvf-configuration.nix];
         }
       )
       .neovim;

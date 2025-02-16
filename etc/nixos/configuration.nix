@@ -47,6 +47,7 @@ in {
         ];
       };
     }
+    #../../nix/modules/nvf-configuration.nix
     # ./modules/fpga_hardware.nix
     # ./modules/virtualization.nix
     # ./neovim.nix
