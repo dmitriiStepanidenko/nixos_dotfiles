@@ -42,7 +42,7 @@
     packages."x86_64-linux".default =
       (
         nvf.lib.neovimConfiguration {
-          pkgs = nixpkgs_unstable.legacyPackages.${system};
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
           modules = [../../nix/modules/nvf-configuration.nix];
         }
       )
@@ -60,8 +60,8 @@
               colmena.defaultPackage.x86_64-linux
             ];
           })
-          ./configuration.nix
           nvf.nixosModules.default
+          ./configuration.nix
           #sops-nix.nixosModules.sops
           #{
           #  _module.args = {
