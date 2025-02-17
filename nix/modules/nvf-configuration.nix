@@ -9,6 +9,8 @@
     theme.name = "tokyonight";
     theme.style = "night";
 
+    lineNumberMode = "number";
+
     filetree = {
       nvimTree = {
         enable = true;
@@ -58,16 +60,31 @@
       mappings = {
         addWorkspaceFolder = "\\\\wa";
         format = "<space>f";
-        codeAction = "\\\\ca";
         goToDeclaration = "gD";
         goToDefinition = "gd";
         goToType = "gt";
         hover = "K";
         listImplementations = "gi";
         listReferences = "gr";
-        nextDiagnostic = "]d";
-        previousDiagnostic = "[d";
-        renameSymbol = "\\\\rn";
+      };
+      lightbulb.enable = true;
+      lsplines.enable = true;
+      #lspsaga = {
+      #  enable = true;
+      #  mappings = {
+      #    codeAction = "\\\\ca";
+      #    nextDiagnostic = "]d";
+      #    previousDiagnostic = "[d";
+      #    rename = "\\\\rn";
+      #  };
+      #};
+    };
+    snippets = {
+      luasnip = {
+        #providers = [
+        #  "rustaceanvim"
+        #];
+        enable = true;
       };
     };
 
