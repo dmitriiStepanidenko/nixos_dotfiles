@@ -68,18 +68,19 @@
         listReferences = "gr";
         nextDiagnostic = "]d";
         previousDiagnostic = "[d";
-        #codeAction = "\\\\ca";
-        #rename = "\\\\rn";
+        codeAction = "\\\\ca";
+        renameSymbol = "\\\\rn";
       };
       lightbulb.enable = true;
       lsplines.enable = true;
-      lspsaga = {
-        enable = true;
-        mappings = {
-          codeAction = "\\ca";
-          rename = "\\rn";
-        };
-      };
+      # Currentrly does not work
+      #lspsaga = {
+      #  enable = true;
+      #  mappings = {
+      #    codeAction = "\\ca";
+      #    rename = "\\rn";
+      #  };
+      #};
     };
     snippets = {
       luasnip = {
