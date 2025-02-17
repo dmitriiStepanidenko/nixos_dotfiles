@@ -69,15 +69,15 @@
       };
       lightbulb.enable = true;
       lsplines.enable = true;
-      #lspsaga = {
-      #  enable = true;
-      #  mappings = {
-      #    codeAction = "\\\\ca";
-      #    nextDiagnostic = "]d";
-      #    previousDiagnostic = "[d";
-      #    rename = "\\\\rn";
-      #  };
-      #};
+      lspsaga = {
+        enable = true;
+        #mappings = {
+        #  codeAction = "\\\\ca";
+        #  nextDiagnostic = "]d";
+        #  previousDiagnostic = "[d";
+        #  rename = "\\\\rn";
+        #};
+      };
     };
     snippets = {
       luasnip = {
