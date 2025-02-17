@@ -23,7 +23,7 @@
           };
           hijack_cursor = true;
           renderer = {
-            ident.enable = true;
+            indent.enable = true;
           };
           tab.sync.close = true;
           update_focused_file.enable = true;
