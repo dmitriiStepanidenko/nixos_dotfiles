@@ -29,7 +29,7 @@
         action = "gt";
       }
       {
-        key = "\v";
+        key = "\\\\v";
         mode = "n";
         silent = true;
         action = ":NvimTreeToggle<CR>";
@@ -105,15 +105,15 @@
       motion.leap = {
         enable = true;
         mappings = {
-          leapForwardTo = "\s";
-          leapBackwardTo = "\S";
+          leapForwardTo = "\\\\s";
+          leapBackwardTo = "\\\\S";
         };
       };
       vim-wakatime.enable = true;
       outline = {
         aerial-nvim = {
           enable = true;
-          mappings.toggle = "\l";
+          mappings.toggle = "\\\\l";
         };
       };
     };
