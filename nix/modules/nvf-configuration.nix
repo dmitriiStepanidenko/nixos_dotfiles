@@ -71,12 +71,12 @@
       lsplines.enable = true;
       lspsaga = {
         enable = true;
-        #mappings = {
-        #  codeAction = "\\\\ca";
-        #  nextDiagnostic = "]d";
-        #  previousDiagnostic = "[d";
-        #  rename = "\\\\rn";
-        #};
+        mappings = {
+          codeAction = "\\\\ca";
+          nextDiagnostic = "]d";
+          previousDiagnostic = "[d";
+          rename = "\\\\rn";
+        };
       };
     };
     snippets = {
