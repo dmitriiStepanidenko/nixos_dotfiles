@@ -66,16 +66,18 @@
         hover = "K";
         listImplementations = "gi";
         listReferences = "gr";
+        nextDiagnostic = "]d";
+        previousDiagnostic = "[d";
+        #codeAction = "\\\\ca";
+        #rename = "\\\\rn";
       };
       lightbulb.enable = true;
       lsplines.enable = true;
       lspsaga = {
         enable = true;
         mappings = {
-          codeAction = "\\\\ca";
-          nextDiagnostic = "]d";
-          previousDiagnostic = "[d";
-          rename = "\\\\rn";
+          codeAction = "\\ca";
+          rename = "\\rn";
         };
       };
     };
