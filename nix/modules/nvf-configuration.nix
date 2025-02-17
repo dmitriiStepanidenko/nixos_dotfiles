@@ -29,7 +29,7 @@
         action = "gt";
       }
       {
-        key = "\\\\v";
+        key = "\\v";
         mode = "n";
         silent = true;
         action = ":NvimTreeToggle<CR>";
