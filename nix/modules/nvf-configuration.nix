@@ -12,7 +12,10 @@
     filetree = {
       nvimTree = {
         enable = true;
-        #mappings
+        mappings = {
+          toggle = "\\v";
+
+        };
       };
     };
     keymaps = [
@@ -28,12 +31,12 @@
         silent = true;
         action = "gt";
       }
-      {
-        key = "\\v";
-        mode = "n";
-        silent = true;
-        action = ":NvimTreeToggle<CR>";
-      }
+      #{
+      #  key = "\\v";
+      #  mode = "n";
+      #  silent = true;
+      #  action = ":NvimTreeToggle<CR>";
+      #}
     ];
 
     searchCase = "ignore";
