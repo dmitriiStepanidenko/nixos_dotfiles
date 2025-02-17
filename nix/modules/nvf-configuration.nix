@@ -14,7 +14,20 @@
         enable = true;
         mappings = {
           toggle = "\\v";
-
+        };
+        setupOpts = {
+          diagnostics = {
+            debounce_delay = 500;
+            show_on_dirs = true;
+            enable = true;
+          };
+          hijack_cursor = true;
+          renderer = {
+            ident.enable = true;
+          };
+          tab.sync.close = true;
+          update_focused_file.enable = true;
+          view.centralize_selection = true;
         };
       };
     };
