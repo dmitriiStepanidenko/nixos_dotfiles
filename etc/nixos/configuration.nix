@@ -478,6 +478,8 @@ in {
     #unstable.rustfmt
     #unstable.clippy
 
+    mdbook
+
     playerctl # Media keys: Play/Pause / etc
 
     # cmake # needs for cargo-semver-checks
