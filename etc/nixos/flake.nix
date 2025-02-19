@@ -56,7 +56,8 @@
         ];
       };
 
-    rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
+    #rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
+    rust = pkgs.rust-bin.stable.latest.default;
   in {
     packages.${system}.my-neovim =
       (
