@@ -46,18 +46,22 @@
     system = "x86_64-linux";
     pkgs = nixpkgs_unstable.legacyPackages.${system}.extend rust-overlay.overlays.default;
 
-    getRust = toolchain:
-      toolchain.default.override {
-        extensions = [
-          "rust-src"
-          "rust-analyzer"
-          "rustc-codegen-cranelift-preview"
-          "clippy"
-        ];
-      };
+    extensions = [
+      "rust-src"
+      "rust-analyzer"
+      #"rustc-codegen-cranelift-preview"
+      "clippy"
+    ];
 
+    #getRust = toolchain:
+    #  toolchain.default.override {
+    #    inherit extensions;
+    #  };
     #rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
-    rust = pkgs.rust-bin.stable.latest.default;
+
+    rust = pkgs.rust-bin.beta.latest.default.override {
+      inherit extensions;
+    };
   in {
     packages.${system}.my-neovim =
       (
