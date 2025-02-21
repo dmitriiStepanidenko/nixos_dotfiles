@@ -343,7 +343,8 @@ in {
     };
   };
 
-  environment.memoryAllocator.provider = "jemalloc";
+  # bad idea
+  #environment.memoryAllocator.provider = "jemalloc";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget

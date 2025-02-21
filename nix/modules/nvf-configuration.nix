@@ -11,6 +11,10 @@
 
     lineNumberMode = "number";
 
+    options = {
+        tabstop = 4;
+    };
+
     filetree = {
       nvimTree = {
         enable = true;
