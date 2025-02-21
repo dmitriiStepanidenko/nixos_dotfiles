@@ -59,7 +59,7 @@
     #  };
     #rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
 
-    rust = pkgs.rust-bin.beta.latest.default.override {
+    rust = pkgs.rust-bin.stable.latest.default.override {
       inherit extensions;
     };
   in {
