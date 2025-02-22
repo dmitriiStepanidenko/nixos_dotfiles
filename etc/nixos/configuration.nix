@@ -378,6 +378,8 @@ in {
 
     sops
 
+    cargo-hakari
+
     #unstable.surrealdb
     #unstable.surrealist
     #unstable.surrealdb-migrations
@@ -622,6 +624,7 @@ in {
         SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="acpi_video0", ATTR{brightness}="8"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
         SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
+        SUBSYSTEM=="usb", ACTION="add", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
       '';
     };
   };
