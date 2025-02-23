@@ -4,6 +4,7 @@
   inputs,
   ...
 }: {
+
   config.vim = {
     theme.enable = true;
     theme.name = "tokyonight";

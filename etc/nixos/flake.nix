@@ -106,6 +106,7 @@
               rust
             ];
             environment.variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/neovim";
+            programs.neovim.defaultEditor = true;
           })
           #sops-nix.nixosModules.sops
           #{
