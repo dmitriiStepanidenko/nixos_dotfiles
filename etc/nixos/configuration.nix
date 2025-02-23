@@ -342,7 +342,7 @@ in {
       tokyo-night = tokyoNightTheme;
     };
   };
-  environment.variables.EDITOR = "nvim";
+  #environment.variables.EDITOR = "nvim";
   programs.neovim.defaultEditor = true;
 
   # bad idea
