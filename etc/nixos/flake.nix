@@ -105,6 +105,7 @@
               pkgs.clang
               rust
             ];
+            environment.variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/neovim";
           })
           #sops-nix.nixosModules.sops
           #{

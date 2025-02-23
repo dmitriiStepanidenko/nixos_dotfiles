@@ -12,7 +12,7 @@
     lineNumberMode = "number";
 
     options = {
-        tabstop = 4;
+        tabstop = 2;
     };
 
     filetree = {
