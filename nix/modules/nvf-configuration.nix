@@ -112,9 +112,13 @@
       enableTreesitter = true;
 
       nix = {
-                                enable = true;
-                                format.enable = true;
-        };
+        enable = true;
+        format.enable = true;
+        format.type = "alejandra";
+        extraDiagnostics.enable = true;
+        lsp.enable = true;
+        treesitter.enable = true;
+      };
       terraform.enable = true;
       bash.enable = true;
 

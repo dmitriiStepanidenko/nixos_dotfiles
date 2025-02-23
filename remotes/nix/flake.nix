@@ -60,6 +60,17 @@
           ../../nix/hosts/woodpecker_agent/default.nix
         ];
       };
+      container_registry = {pkgs, ...}: {
+        deployment = {
+          targetHost = "192.168.0.212";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/container_registry/default.nix
+        ];
+      };
     };
   };
 }
