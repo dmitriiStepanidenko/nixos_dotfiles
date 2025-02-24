@@ -1,0 +1,70 @@
+{
+  config,
+  pkgs,
+  modulesPath,
+  lib,
+  system,
+  ...
+}: {
+
+  imports = [
+        
+
+    ../../../nix/modules/wireguard.nix
+    {
+      services.wireguard = {
+        enable = true;
+        ips = "10.252.1.8/24";
+        privateKeyFile = config.sops.secrets."wireguard/private_key".path;
+        peers = [
+          {
+            publicKeyFile = config.sops.secrets."wireguard/public_key".path;
+            presharedKeyFile = config.sops.secrets."wireguard/preshared_key".path;
+            allowedIPs = "10.252.1.0/24";
+            endpointFile = config.sops.secrets."wireguard/wireguard_ip".path;
+            endpointPort = 51820;
+          }
+        ];
+      };
+    }
+  ];
+  config = {
+    networking.hostName = "container_registry";
+          services.dockerRegistry = {
+            enable = true;
+            enableDelete = true;
+            enableGarbageCollect = true;
+            garbageCollectDates = "daily";
+            port = 5000;
+            storagePath = "/var/lib/docker-registry";
+            openFirewall = true;
+            listenAddress = "10.252.1.8";
+          };
+    sops = {
+      defaultSopsFile = ./secrets.yaml;
+      defaultSopsFormat = "yaml";
+      age = {
+        #keyFilePaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+        sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+        keyFile = "/var/lib/sops-nix/key.txt";
+        generateKey = true;
+      };
+      secrets."wireguard/wireguard_ip" = {
+        owner = config.users.users.systemd-network.name;
+        mode = "0400";
+      };
+      secrets."wireguard/private_key" = {
+        owner = config.users.users.systemd-network.name;
+        mode = "0400";
+      };
+      secrets."wireguard/preshared_key" = {
+        owner = config.users.users.systemd-network.name;
+        mode = "0400";
+      };
+      secrets."wireguard/public_key" = {
+        owner = config.users.users.systemd-network.name;
+        mode = "0400";
+      };
+    };
+  };
+}

@@ -376,7 +376,7 @@ in {
     surrealdb-bin
 
     act
-    woodpecker-cli
+    unstable.woodpecker-cli
 
     sops
 
