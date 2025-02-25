@@ -261,12 +261,16 @@ in {
 
   hardware.keyboard.qmk.enable = true; # - lily58 firmware
 
+  virtualisation.podman = {
+    enable = true;
+  };
   virtualisation.docker = {
     enable = true;
     rootless = {
       enable = true;
       setSocketVariable = true;
     };
+    package = unstable.docker;
   };
   virtualisation.oci-containers.backend = "docker";
 
