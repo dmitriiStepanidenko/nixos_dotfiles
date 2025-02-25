@@ -261,7 +261,14 @@ in {
 
   hardware.keyboard.qmk.enable = true; # - lily58 firmware
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
+    };
+  };
+  virtualisation.oci-containers.backend = "docker";
 
   # run Android apps
   # currently disabled. crushed whole system several times
