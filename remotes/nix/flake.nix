@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
@@ -14,9 +15,15 @@
     self,
     colmena,
     nixpkgs,
+    nixpkgs-unstable,
     sops-nix,
     ...
-  }: {
+  }: let
+    system = "x86_64-linux";
+    pkgs_unstable = import nixpkgs-unstable {
+      inherit system;
+    };
+  in {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
     colmena = {
       meta = {
@@ -26,7 +33,7 @@
         };
       };
 
-      defaults = {pkgs, ...}: {
+      defaults = { ...}: {
         imports = [
           sops-nix.nixosModules.sops
           ../backup_image/nix/vm-profile.nix
@@ -38,7 +45,7 @@
       #  boot.isContainer = true;
       #  time.timeZone = nodes.host-b.config.time.timeZone;
       #};
-      gitea_woker_1 = {pkgs, ...}: {
+      gitea_woker_1 = { ...}: {
         deployment = {
           targetHost = "192.168.0.210";
           targetPort = 22;
@@ -49,7 +56,9 @@
           ../../nix/hosts/gitea_worker/default.nix
         ];
       };
-      woodpecker_agent_1 = {pkgs, ...}: {
+      woodpecker_agent_1 = {
+        ...
+      }: {
         deployment = {
           targetHost = "192.168.0.211";
           targetPort = 22;
@@ -58,9 +67,12 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/woodpecker_agent/default.nix
+          {
+            woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
+          }
         ];
       };
-      container_registry = {pkgs, ...}: {
+      container_registry = { ...}: {
         deployment = {
           targetHost = "192.168.0.212";
           targetPort = 22;

@@ -1,12 +1,13 @@
 {
   config,
   pkgs,
-  modulesPath,
   lib,
-  system,
   ...
 }: {
-
+  options.woodpecker_agent.package = lib.mkOption {
+    type = lib.types.package;
+    default = pkgs.woodpecker-agent;
+  };
   imports = [
     ../../../nix/modules/wireguard.nix
     {
@@ -26,6 +27,9 @@
       };
     }
     ../../../nix/modules/woodpecker_agent.nix
+                #{
+                #  woodpecker_agent.package = config.woodpecker_agent.package;
+                #}
   ];
 
   config = {
