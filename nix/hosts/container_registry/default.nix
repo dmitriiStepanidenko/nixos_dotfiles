@@ -6,10 +6,7 @@
   system,
   ...
 }: {
-
   imports = [
-        
-
     ../../../nix/modules/wireguard.nix
     {
       services.wireguard = {
@@ -30,16 +27,19 @@
   ];
   config = {
     networking.hostName = "container_registry";
-          services.dockerRegistry = {
-            enable = true;
-            enableDelete = true;
-            enableGarbageCollect = true;
-            garbageCollectDates = "daily";
-            port = 5000;
-            storagePath = "/var/lib/docker-registry";
-            openFirewall = true;
-            listenAddress = "10.252.1.8";
-          };
+    services.dockerRegistry = {
+      enable = true;
+      enableDelete = true;
+      enableGarbageCollect = true;
+      garbageCollectDates = "daily";
+      port = 5000;
+      storagePath = "/var/lib/docker-registry";
+      openFirewall = true;
+      listenAddress = "10.252.1.8";
+      extraConfig = {
+        insecure-registries = ["10.252.1.8:5000"];
+      };
+    };
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";

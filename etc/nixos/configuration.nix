@@ -431,6 +431,8 @@ in {
         --insecure-registry 10.252.1.8:5000
       '';
     };
+    containerd.enable = false;
+    containerd.settings = {};
     oci-containers.backend = "docker";
   };
 
