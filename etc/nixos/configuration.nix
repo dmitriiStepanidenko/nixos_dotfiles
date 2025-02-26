@@ -22,6 +22,14 @@
       ];
     };
   };
+  configFile =
+    pkgs.writeText "hosts.toml"
+    ''
+      server = "http://10.252.1.8:5000"
+      [host."http://10.252.1.8:5000"]
+        capabilities = ["pull" "resolve" "push"]
+        skip_verify = true
+    '';
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -433,14 +441,15 @@ in {
     };
     containerd.enable = true;
     containerd.settings = {
-      server = "http://10.252.1.8:5000";
-      host."http://10.252.1.8:5000" = {
-        capabilities = ["pull" "resolve" "push"];
-        skip_verify = true;
+      plugins."io.containerd.grpc.v1.cri".registry = {
+        config_path = "${configFile}";
       };
     };
     oci-containers.backend = "docker";
   };
+  #        [plugins."io.containerd.grpc.v1.cri".registry]
+  #   config_path = "/etc/containerd/certs.d"
+
   #        server = "https://docker.io"
   #
   #[host."https://registry-1.docker.io"]
