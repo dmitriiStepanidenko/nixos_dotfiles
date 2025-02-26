@@ -431,10 +431,19 @@ in {
         --insecure-registry 10.252.1.8:5000
       '';
     };
-    containerd.enable = false;
-    containerd.settings = {};
+    containerd.enable = true;
+    containerd.settings = {
+      server = "http://10.252.1.8:5000";
+      host."http://10.252.1.8:5000" = {
+        capabilities = ["pull" "resolve" "push"];
+      };
+    };
     oci-containers.backend = "docker";
   };
+  #        server = "https://docker.io"
+  #
+  #[host."https://registry-1.docker.io"]
+  #  capabilities = ["pull", "resolve"]
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.dmitrii = {
