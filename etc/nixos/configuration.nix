@@ -446,9 +446,9 @@ in {
         config_path = "/etc/containerd/certs.d";
       };
     };
-    oci-containers.backend = "docker";
+    oci-containers.backend = "podman";
     containers.enable = true;
-    containers.registries.insecure = ["10.252.1.8:5000"];
+    containers.registries.insecure = ["10.252.1.8:5000" "http://10.252.1.8:5000"];
   };
   #        [plugins."io.containerd.grpc.v1.cri".registry]
   #   config_path = "/etc/containerd/certs.d"
@@ -523,6 +523,10 @@ in {
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.vim
     #colmena.defaultPackage.x86_64-linux
     cri-tools
+    dive # look into docker image layers
+    podman-tui # status of containers in the terminal
+    docker-compose # start group of containers for dev
+    #podman-compose # start group of containers for dev
 
     #vim
     #nixpkgs-stable-unstable.vim
