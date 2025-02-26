@@ -448,7 +448,7 @@ in {
     };
     oci-containers.backend = "podman";
     containers.enable = true;
-    containers.registries.insecure = ["10.252.1.8:5000" "http://10.252.1.8:5000"];
+    containers.registries.insecure = ["10.252.1.8:5000"];
   };
   #        [plugins."io.containerd.grpc.v1.cri".registry]
   #   config_path = "/etc/containerd/certs.d"
