@@ -428,7 +428,7 @@ in {
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
       extraOptions = ''
-        --insecure-registry "http://10.252.1.8:5000"
+        --insecure-registry "10.252.1.8:5000"
       '';
     };
     oci-containers.backend = "docker";
