@@ -433,7 +433,7 @@ in {
       #  enable = true;
       #  setSocketVariable = true;
       #};
-      package = unstable.docker;
+      package = pkgs.docker;
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
       extraOptions = ''
@@ -519,6 +519,7 @@ in {
   environment.systemPackages = with pkgs; [
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.vim
     #colmena.defaultPackage.x86_64-linux
+    cri-tools
 
     #vim
     #nixpkgs-stable-unstable.vim
