@@ -22,7 +22,7 @@
       ];
     };
   };
-  "_configFile" = pkgs.writeTextFile {
+  configFile = pkgs.writeTextFile {
     name = "hosts.toml";
     destination = "/etc/containerd/certs.d/10.252.1.8:5000";
     text = ''
