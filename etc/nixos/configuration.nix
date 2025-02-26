@@ -429,10 +429,10 @@ in {
     };
     docker = {
       enable = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
+      #rootless = {
+      #  enable = true;
+      #  setSocketVariable = true;
+      #};
       package = unstable.docker;
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
