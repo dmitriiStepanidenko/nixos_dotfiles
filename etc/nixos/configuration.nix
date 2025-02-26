@@ -22,13 +22,15 @@
       ];
     };
   };
-  configFile =
-    pkgs.writeText "hosts.toml"
-    ''
+  "_configFile" = pkgs.writeTextFile {
+    name = "hosts.toml";
+    destination = "/etc/containerd/certs.d/10.252.1.8:5000";
+    text = ''
       [host."http://10.252.1.8:5000"]
         capabilities = ["pull", "resolve", "push"]
         skip_verify = true
     '';
+  };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -435,13 +437,13 @@ in {
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
       extraOptions = ''
-        --insecure-registry http://10.252.1.8:5000
+        --insecure-registry 10.252.1.8:5000
       '';
     };
     containerd.enable = true;
     containerd.settings = {
       plugins."io.containerd.grpc.v1.cri".registry = {
-        config_path = "${configFile}";
+        config_path = "/etc/containerd/certs.d";
       };
     };
     oci-containers.backend = "docker";
