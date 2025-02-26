@@ -429,10 +429,10 @@ in {
     };
     docker = {
       enable = true;
-      #rootless = {
-      #  enable = true;
-      #  setSocketVariable = true;
-      #};
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
       package = pkgs.docker;
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
@@ -466,6 +466,7 @@ in {
       "networkmanager"
       "wheel"
       "docker"
+      "podman"
       "video"
       "tty"
       "libvirtd"
