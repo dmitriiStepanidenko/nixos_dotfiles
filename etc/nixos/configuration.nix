@@ -25,9 +25,8 @@
   configFile =
     pkgs.writeText "hosts.toml"
     ''
-      server = "http://10.252.1.8:5000"
       [host."http://10.252.1.8:5000"]
-        capabilities = ["pull" "resolve" "push"]
+        capabilities = ["pull", "resolve", "push"]
         skip_verify = true
     '';
 in {
