@@ -435,7 +435,7 @@ in {
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
       extraOptions = ''
-        --insecure-registry 10.252.1.8:5000
+        --insecure-registry http://10.252.1.8:5000
       '';
     };
     containerd.enable = true;
