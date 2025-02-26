@@ -447,6 +447,8 @@ in {
       };
     };
     oci-containers.backend = "docker";
+    containers.enable = true;
+    containers.registries.insecure = ["10.252.1.8:5000"];
   };
   #        [plugins."io.containerd.grpc.v1.cri".registry]
   #   config_path = "/etc/containerd/certs.d"
