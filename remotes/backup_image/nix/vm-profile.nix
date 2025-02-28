@@ -12,28 +12,63 @@
   ];
 
   config = {
+    nix = {
+      optimise.automatic = true;
+      gc = {
+        automatic = true;
+        dates = "daily";
+        options = "--delete-older-than 7d";
+      };
+      extraOptions = ''
+        min-free = ${toString (100 * 1024 * 1024)}
+        max-free = ${toString (1024 * 1024 * 1024)}
+      '';
+      settings = {
+        auto-optimise-store = true;
+
+        # Allow remote updates with flakes and non-root users
+        trusted-users = ["root" "@wheel" "dmitrii"];
+        experimental-features = ["nix-command" "flakes"];
+      };
+    };
+
     #Provide a default hostname
     networking.hostName = lib.mkDefault "base";
+    services = {
+      # Enable QEMU Guest for Proxmox
+      qemuGuest.enable = true;
+      avahi = {
+        # Enable mDNS for `hostname.local` addresses
+        enable = true;
+        nssmdns4 = true;
+        publish = {
+          enable = true;
+          addresses = true;
+        };
+      };
 
-    # Enable QEMU Guest for Proxmox
-    services.qemuGuest.enable = true;
+      fail2ban = {
+        enable = true;
+        maxretry = 5;
+      };
 
-    # Use the boot drive for grub
-    boot.loader.grub.enable = lib.mkDefault true;
-    boot.loader.grub.devices = ["nodev"];
+      # Enable ssh
+      openssh = {
+        enable = true;
+        settings.PasswordAuthentication = false;
+        settings.KbdInteractiveAuthentication = false;
+      };
 
-    boot.growPartition = lib.mkDefault true;
+      openssh.openFirewall = true;
 
-    # Allow remote updates with flakes and non-root users
-    nix.settings.trusted-users = ["root" "@wheel" "dmitrii"];
-    nix.settings.experimental-features = ["nix-command" "flakes"];
+      cloud-init.enable = true;
+    };
+    boot = {
+      # Use the boot drive for grub
+      loader.grub.enable = lib.mkDefault true;
+      loader.grub.devices = ["nodev"];
 
-    # Enable mDNS for `hostname.local` addresses
-    services.avahi.enable = true;
-    services.avahi.nssmdns4 = true;
-    services.avahi.publish = {
-      enable = true;
-      addresses = true;
+      growPartition = lib.mkDefault true;
     };
 
     # Some sane packages we need on every system
@@ -47,39 +82,26 @@
       curl
     ];
 
-    services.fail2ban = {
-      enable = true;
-      maxretry = 5;
-    };
-
     # Don't ask for passwords
     security.sudo.wheelNeedsPassword = false;
+    users = {
+      users = {
+        "dmitrii".uid = 1000;
+        "dmitrii".isNormalUser = true;
+        "dmitrii".group = "dmitrii";
+        "dmitrii".extraGroups = ["wheel" "docker" "networkmanager"];
+        "dmitrii".openssh.authorizedKeys.keyFiles = [
+          ../../../id_rsa.pub
+        ];
 
-    # Enable ssh
-    services.openssh = {
-      enable = true;
-      settings.PasswordAuthentication = false;
-      settings.KbdInteractiveAuthentication = false;
+        "root".openssh.authorizedKeys.keyFiles = [
+          ../../../id_rsa.pub
+        ];
+      };
+      groups.dmitrii.gid = 1000;
     };
-    users.users."dmitrii" = {
-      uid = 1000;
-      isNormalUser = true;
-      group = "dmitrii";
-      extraGroups = ["wheel" "docker" "networkmanager"];
-      openssh.authorizedKeys.keyFiles = [
-        ../../../id_rsa.pub
-      ];
-    };
+
     programs.ssh.startAgent = true;
-    users.groups.dmitrii.gid = 1000;
-
-    services.openssh.openFirewall = true;
-
-    users.users."root" = {
-      openssh.authorizedKeys.keyFiles = [
-        ../../../id_rsa.pub
-      ];
-    };
 
     # Default filesystem
     fileSystems."/" = lib.mkDefault {
@@ -89,8 +111,6 @@
     };
 
     system.stateVersion = lib.mkDefault "24.11";
-
-    services.cloud-init.enable = true;
     #services.cloud-init.network.enable = true;
   };
 }

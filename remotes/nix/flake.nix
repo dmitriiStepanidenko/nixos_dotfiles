@@ -83,6 +83,17 @@
           ../../nix/hosts/container_registry/default.nix
         ];
       };
+      nginx_local = { ...}: {
+        deployment = {
+          targetHost = "192.168.0.213";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/nginx_local/default.nix
+        ];
+      };
     };
   };
 }

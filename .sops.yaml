@@ -6,6 +6,7 @@ keys:
     - &gitea_worker_1 age1glh3xkjqh5a4zxj835g0rxhg8ypdk9ywj3p83557c3e9lleq243s6jvc4r
     - &woodpecker_agent_1 age1zeh3kcd7qqx0g7qgra975ls0u9dwhe64anr0m5lthr0aq73nuu7q6xg9ve
     - &container_registry age1kqasman7j5fguy8xfwkkvz2aad38ugk437enstcz4kg9r8tjeg3q6f5v5c
+    - &nginx_local age1xctyl8g4lezw4glhhaggpd8u54vryff5jkwz3e9v4srlgphwe5jqsgsvvw
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
@@ -27,3 +28,9 @@ creation_rules:
     - age:
       - *mine
       - *container_registry
+  - path_regex: nix/hosts/nginx_local/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *nginx_local
+
