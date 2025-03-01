@@ -41,22 +41,18 @@
         ];
       };
 
-      # Also see the non-Flakes hive.nix example above.
-      #host-a = { name, nodes, pkgs, ... }: {
-      #  boot.isContainer = true;
-      #  time.timeZone = nodes.host-b.config.time.timeZone;
+      # Disabled for now
+      #gitea_woker_1 = {...}: {
+      #  deployment = {
+      #    targetHost = "192.168.0.210";
+      #    targetPort = 22;
+      #    targetUser = "root";
+      #  };
+      #  time.timeZone = "Europe/Moscow";
+      #  imports = [
+      #    ../../nix/hosts/gitea_worker/default.nix
+      #  ];
       #};
-      gitea_woker_1 = {...}: {
-        deployment = {
-          targetHost = "192.168.0.210";
-          targetPort = 22;
-          targetUser = "root";
-        };
-        time.timeZone = "Europe/Moscow";
-        imports = [
-          ../../nix/hosts/gitea_worker/default.nix
-        ];
-      };
       woodpecker_agent_1 = {...}: {
         deployment = {
           targetHost = "192.168.0.211";
@@ -92,7 +88,7 @@
         imports = [
           ../../nix/hosts/nginx_local/default.nix
           {
-            sftpgo.package = pkgs_unstable.sftpgo;
+            #sftpgo.package = pkgs_unstable.sftpgo;
           }
         ];
       };

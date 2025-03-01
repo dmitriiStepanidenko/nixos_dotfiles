@@ -33,7 +33,8 @@ in {
   ];
 
   config = {
-    systemd.tmpfiles.rules = ["Z ${dataDir} 0750 sftpgo nginx - -"];
+    systemd.services.sftpgo.serviceConfig.UMask = lib.mkForce "022";
+    systemd.tmpfiles.rules = ["Z ${dataDir} 755 sftpgo nginx - -"];
     networking = {
       hostName = "nginx_local";
       firewall = {
@@ -50,10 +51,11 @@ in {
       enable = true;
       dataDir = "/var/lib/sftpgo";
       user = "sftpgo";
-      group = "sftpgo";
+      group = "nginx";
       extraReadWriteDirs = [dataDir];
       inherit (config.sftpgo) package;
       settings = {
+        umask = "022";
         sftpd.bindings = [
           {
             address = "10.252.1.9";
@@ -78,7 +80,17 @@ in {
       user = "nginx";
       group = "nginx";
       virtualHosts."10.252.1.9" = {
-        root = dataDir + "/";
+        root = dataDir;
+        locations."/" = {
+          extraConfig = ''
+            autoindex on;
+          '';
+        };
+        #locations."/gamechanger-docs" = {
+        #  extraConfig = ''
+        #    autoindex on;
+        #  '';
+        #};
         #enableACME = false;
         #forceSSL = false;
         #default = true;

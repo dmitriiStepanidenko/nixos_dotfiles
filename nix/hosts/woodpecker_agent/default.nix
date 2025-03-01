@@ -27,9 +27,9 @@
       };
     }
     ../../../nix/modules/woodpecker_agent.nix
-                #{
-                #  woodpecker_agent.package = config.woodpecker_agent.package;
-                #}
+    #{
+    #  woodpecker_agent.package = config.woodpecker_agent.package;
+    #}
   ];
 
   config = {
@@ -42,21 +42,23 @@
         keyFile = "/var/lib/sops-nix/key.txt";
         generateKey = true;
       };
-      secrets."wireguard/wireguard_ip" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/private_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/preshared_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/public_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
+      secrets = {
+        "wireguard/wireguard_ip" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+        };
+        "wireguard/private_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+        };
+        "wireguard/preshared_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+        };
+        "wireguard/public_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+        };
       };
     };
   };

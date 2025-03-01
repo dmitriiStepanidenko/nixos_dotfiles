@@ -16,7 +16,7 @@
       optimise.automatic = true;
       gc = {
         automatic = true;
-        dates = "daily";
+        dates = "5:00";
         options = "--delete-older-than 7d";
       };
       extraOptions = ''
@@ -24,7 +24,8 @@
         max-free = ${toString (1024 * 1024 * 1024)}
       '';
       settings = {
-        auto-optimise-store = true;
+        # Cuz of this, I will need to recompile everything from store again
+        #auto-optimise-store = true;
 
         # Allow remote updates with flakes and non-root users
         trusted-users = ["root" "@wheel" "dmitrii"];
