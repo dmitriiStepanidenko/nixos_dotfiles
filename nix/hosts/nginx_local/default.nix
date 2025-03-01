@@ -8,6 +8,10 @@
 }: let
   dataDir = "/data/webserver/root";
 in {
+  options.sftpgo.package = lib.mkOption {
+    type = lib.types.package;
+    default = pkgs.sftpgo;
+  };
   imports = [
     ../../../nix/modules/wireguard.nix
     {
@@ -27,27 +31,71 @@ in {
       };
     }
   ];
+
   config = {
-    networking.hostName = "container_registry";
-    services.sftpgo = {
-      enable = true;
-      inherit dataDir;
-      settings.httpd.bindings.default = {
-        address = "10.252.1.9";
-        port = "8080";
+    systemd.tmpfiles.rules = ["Z ${dataDir} 0750 sftpgo nginx - -"];
+    networking = {
+      hostName = "nginx_local";
+      firewall = {
+        interfaces.wg0 = {
+          allowedTCPPorts = [80 22 8080 2222];
+          allowedUDPPorts = [80 22 8080 2222];
+        };
+        allowedTCPPorts = [80 22 8080 2222];
+        allowedUDPPorts = [80 22 8080 2222];
+        enable = true;
       };
     };
-    services.nginx.virtualHosts.default = {
+    services.sftpgo = {
       enable = true;
-      default = true;
-      data = dataDir;
-      listen = [
-        {
-          addr = "10.252.1.9";
-          port = "80";
-          ssl = false;
-        }
-      ];
+      dataDir = "/var/lib/sftpgo";
+      user = "sftpgo";
+      group = "sftpgo";
+      extraReadWriteDirs = [dataDir];
+      inherit (config.sftpgo) package;
+      settings = {
+        sftpd.bindings = [
+          {
+            address = "10.252.1.9";
+            port = 2222;
+          }
+          {
+            address = "192.168.0.213";
+            port = 2222;
+          }
+        ];
+        httpd.bindings = [
+          {
+            address = "10.252.1.9";
+            port = 8080;
+            enable_web_admin = true;
+          }
+        ];
+      };
+    };
+    services.nginx = {
+      enable = true;
+      user = "nginx";
+      group = "nginx";
+      virtualHosts."10.252.1.9" = {
+        root = dataDir + "/";
+        #enableACME = false;
+        #forceSSL = false;
+        #default = true;
+        #listen = [
+        #  {
+        #    addr = "10.252.1.9";
+        #    port = 80;
+        #    ssl = false;
+        #  }
+        #];
+      };
+      #defaultListen = [
+      #  {
+      #    addr = "0.0.0.0";
+      #    ssl = false;
+      #  }
+      #];
     };
     sops = {
       defaultSopsFile = ./secrets.yaml;

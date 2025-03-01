@@ -11,36 +11,46 @@
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
-
-  boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
-  boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-amd"];
-  boot.extraModulePackages = [];
-
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/aa2e6941-0c79-4ffa-aab7-425cc306b0cd";
-    fsType = "ext4";
+  boot = {
+    initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
+    initrd.kernelModules = [];
+    kernelModules = ["kvm-amd"];
+    extraModulePackages = [];
   };
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/aa2e6941-0c79-4ffa-aab7-425cc306b0cd";
+      fsType = "ext4";
+    };
 
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/BADC-E961";
-    fsType = "vfat";
-    options = ["fmask=0022" "dmask=0022"];
+    "/boot" = {
+      device = "/dev/disk/by-uuid/BADC-E961";
+      fsType = "vfat";
+      options = ["fmask=0022" "dmask=0022"];
+    };
+
+    "/home/dmitrii/shared" = {
+      device = "/dev/disk/by-uuid/1757BB2B0F01D736";
+      fsType = "ntfs";
+      options = [
+        "uid=1000"
+        "gid=1000"
+        "dmask=0022"
+        "fmask=0022"
+        "windows_names"
+        "norecover"
+        "big_writes"
+        "streams_interface=windows"
+        "inherit"
+      ];
+    };
   };
-
-  fileSystems."/home/dmitrii/shared" = {
-    device = "/dev/disk/by-uuid/1757BB2B0F01D736";
-    fsType = "ntfs";
-    options = [
-      "uid=1000"
-      "gid=1000"
-      "dmask=0022"
-      "fmask=0022"
-      "windows_names"
-      "norecover"
-      "big_writes"
-      "streams_interface=windows"
-      "inherit"
+  services.smartd = {
+    enable = true;
+    devices = [
+      {
+        device = "/dev/disk/by-id/nvme-eui.0025384b3142ae19"; # FIXME: Change this to your actual disk
+      }
     ];
   };
 

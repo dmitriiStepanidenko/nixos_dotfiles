@@ -22,6 +22,7 @@
     system = "x86_64-linux";
     pkgs_unstable = import nixpkgs-unstable {
       inherit system;
+      config.allowUnfree = true;
     };
   in {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
@@ -33,7 +34,7 @@
         };
       };
 
-      defaults = { ...}: {
+      defaults = {...}: {
         imports = [
           sops-nix.nixosModules.sops
           ../backup_image/nix/vm-profile.nix
@@ -45,7 +46,7 @@
       #  boot.isContainer = true;
       #  time.timeZone = nodes.host-b.config.time.timeZone;
       #};
-      gitea_woker_1 = { ...}: {
+      gitea_woker_1 = {...}: {
         deployment = {
           targetHost = "192.168.0.210";
           targetPort = 22;
@@ -56,9 +57,7 @@
           ../../nix/hosts/gitea_worker/default.nix
         ];
       };
-      woodpecker_agent_1 = {
-        ...
-      }: {
+      woodpecker_agent_1 = {...}: {
         deployment = {
           targetHost = "192.168.0.211";
           targetPort = 22;
@@ -72,7 +71,7 @@
           }
         ];
       };
-      container_registry = { ...}: {
+      container_registry = {...}: {
         deployment = {
           targetHost = "192.168.0.212";
           targetPort = 22;
@@ -83,7 +82,7 @@
           ../../nix/hosts/container_registry/default.nix
         ];
       };
-      nginx_local = { ...}: {
+      nginx_local = {...}: {
         deployment = {
           targetHost = "192.168.0.213";
           targetPort = 22;
@@ -92,6 +91,9 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/nginx_local/default.nix
+          {
+            sftpgo.package = pkgs_unstable.sftpgo;
+          }
         ];
       };
     };
