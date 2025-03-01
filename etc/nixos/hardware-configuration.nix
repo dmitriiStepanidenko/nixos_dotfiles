@@ -53,6 +53,9 @@
       }
     ];
   };
+  environment.systemPackages = with pkgs; [
+    smartmontools
+  ];
 
   # mkswap: /dev/nvme0n1p7: warning: wiping old swap signature.
   # Setting up swapspace version 1, size = 16 GiB (17179865088 by
