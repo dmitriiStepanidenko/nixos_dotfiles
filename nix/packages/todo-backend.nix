@@ -24,9 +24,7 @@ stdenv.mkDerivation rec {
   #];
 
   installPhase = ''
-    runHook preInstall
     mkdir -p $out/bin
     install -m755 todo-backend $out/bin
-    runHook postInstall
   '';
 }
