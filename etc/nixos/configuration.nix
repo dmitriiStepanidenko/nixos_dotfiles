@@ -65,7 +65,7 @@ in {
   #nixpkgs.overlays = [ (final: prev: ) ];
   nixpkgs.overlays = [
     (import ../../nix/overlays/surrealdb-bin.nix)
-    #(import ../../nix/overlays/todo-backend.nix)
+    (import ../../nix/overlays/todo-backend.nix)
   ];
 
   sops = {

@@ -14,8 +14,6 @@ stdenv.mkDerivation rec {
     url = "http://10.252.1.0:3000/api/packages/graph-learning/generic/todo/${version}/todo-backend.tgz";
     hash = "sha256-FKJT7uPO7lhAVqSS5OEHCP23cz/gwgqOjHDR6cIDlnQ=";
   };
-  dontConfigure = true;
-  dontBuild = true;
 
   #nativeBuildInputs = [autoPatchelfHook];
   #buildInputs = [
