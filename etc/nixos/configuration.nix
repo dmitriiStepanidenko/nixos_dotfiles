@@ -21,6 +21,9 @@
         "electron-27.3.11"
       ];
     };
+    overlays = [
+      (import ../../nix/overlays/todo-backend.nix)
+    ];
   };
 in {
   imports = [
@@ -65,7 +68,6 @@ in {
   #nixpkgs.overlays = [ (final: prev: ) ];
   nixpkgs.overlays = [
     (import ../../nix/overlays/surrealdb-bin.nix)
-    (import ../../nix/overlays/todo-backend.nix)
   ];
 
   sops = {
@@ -547,7 +549,7 @@ in {
 
     surrealdb-bin
 
-    #todo-backend
+    unstable.todo-backend
 
     act
     unstable.woodpecker-cli

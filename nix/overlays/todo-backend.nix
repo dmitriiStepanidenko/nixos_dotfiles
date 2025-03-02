@@ -1,3 +1,3 @@
 final: prev: {
-  todo-backend = final.callPackage ../packages/todo-backend.nix {};
+  todo-backend = prev.callPackage ../packages/todo-backend.nix {};
 }

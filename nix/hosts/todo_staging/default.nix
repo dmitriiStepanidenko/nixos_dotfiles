@@ -32,6 +32,12 @@ in {
   ];
 
   config = {
+    nixpkgs.overlays = [
+      (import ../../overlays/todo-backend.nix)
+    ];
+    environment.systemPackages = [
+      pkgs.todo-backend
+    ];
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";

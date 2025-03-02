@@ -98,15 +98,17 @@
           ./configuration.nix
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
-            environment.systemPackages = [
-              self.packages.${system}.my-neovim
-              pkgs.pkg-config
-              pkgs.mold
-              pkgs.clang
-              rust
-            ];
-            environment.variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
-            environment.variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+            environment = {
+              systemPackages = [
+                self.packages.${system}.my-neovim
+                pkgs.pkg-config
+                pkgs.mold
+                pkgs.clang
+                rust
+              ];
+              variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+              variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+            };
             #programs.neovim.defaultEditor = true;
           })
           #sops-nix.nixosModules.sops
