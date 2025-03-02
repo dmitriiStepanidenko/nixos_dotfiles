@@ -22,15 +22,6 @@
       ];
     };
   };
-  configFile = pkgs.writeTextFile {
-    name = "hosts.toml";
-    destination = "/etc/containerd/certs.d/10.252.1.8:5000";
-    text = ''
-      [host."http://10.252.1.8:5000"]
-        capabilities = ["pull", "resolve", "push"]
-        skip_verify = true
-    '';
-  };
 in {
   imports = [
     # Include the results of the hardware scan.
@@ -72,7 +63,10 @@ in {
   #};
 
   #nixpkgs.overlays = [ (final: prev: ) ];
-  nixpkgs.overlays = [(import ../../nix/overlays/surrealdb-bin.nix)];
+  nixpkgs.overlays = [
+    #(import ../../nix/overlays/surrealdb-bin.nix)
+    (import ../../nix/overlays/todo-backend.nix)
+  ];
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -551,7 +545,9 @@ in {
     rocmPackages.llvm.clang-unwrapped
     unstable.nodejs_22
 
-    surrealdb-bin
+    #surrealdb-bin
+
+    todo-backend
 
     act
     unstable.woodpecker-cli

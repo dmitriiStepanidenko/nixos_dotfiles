@@ -92,6 +92,17 @@
           }
         ];
       };
+      todo-staging = {...}: {
+        deployment = {
+          targetHost = "192.168.0.220";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/todo_staging/default.nix
+        ];
+      };
     };
   };
 }

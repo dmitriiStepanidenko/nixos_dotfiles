@@ -6,12 +6,12 @@
   gcc-unwrapped,
 }:
 stdenv.mkDerivation rec {
-  pname = "surrealdb-bin";
-  version = "2.2.1";
+  pname = "todo-backend";
+  version = "0.0.1";
 
   src = fetchzip {
-    url = "https://github.com/surrealdb/surrealdb/releases/download/v${version}/surreal-v${version}.linux-amd64.tgz";
-    hash = "sha256-FKJT7uPO7lhAVqSS5OEHCP23cz/gwgqOjHDR6cIDlnQ=";
+    url = "http://10.252.1.0:3000/api/packages/graph-learning/generic/todo/${version}/app.tgz";
+    hash = "";
   };
 
   nativeBuildInputs = [autoPatchelfHook];
@@ -23,7 +23,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    install -m755 surreal $out/bin
+    install -m755 app $out/bin
     runHook postInstall
   '';
 }
