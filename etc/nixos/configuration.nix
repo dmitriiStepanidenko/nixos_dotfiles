@@ -159,7 +159,7 @@ in {
           governor = "performance";
           turbo = "never";
           scaling_min_freq = 400000;
-          scaling_max_freq = 3800000;
+          scaling_max_freq = 3500000;
         };
       };
     };

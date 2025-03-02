@@ -5,7 +5,10 @@
   lib,
   system,
   ...
-}: {
+}: let 
+        pubKeys = lib.filesystem.listFilesRecursive ../../../etc/nixos/keys/users/ssh;
+
+in {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     #(modulesPath + "/virtualisation/proxmox-image.nix")
@@ -89,15 +92,9 @@
       users = {
         "dmitrii".uid = 1000;
         "dmitrii".isNormalUser = true;
-        "dmitrii".group = "dmitrii";
-        "dmitrii".extraGroups = ["wheel" "docker" "networkmanager"];
-        "dmitrii".openssh.authorizedKeys.keyFiles = [
-          ../../../id_rsa.pub
-        ];
-
-        "root".openssh.authorizedKeys.keyFiles = [
-          ../../../id_rsa.pub
-        ];
+        "dmitrii".group = "dmitrii"; "dmitrii".extraGroups = ["wheel" "docker" "networkmanager"];
+        "dmitrii".openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
+        "root".openssh.authorizedKeys.keys = lib.lists.forEach pubKeys (key: builtins.readFile key);
       };
       groups.dmitrii.gid = 1000;
     };
