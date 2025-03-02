@@ -52,6 +52,7 @@
       "|1|a0cQ1Kgz85EuF0vd/MD9zNrjmrc=|zTRGVsvBt6hiFEc/R4WXHE4y+Oo=".publicKey = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCiMy6RcI4bPA06yjOZcW2+ULNC25DvYFI7PBIxdAqD9g3VgYXdLHsI+dKJKJMhC7PIXQ9Rl8yyVPFGBJqRP4Nh2OyA20grnf2dzGxPQ5P53WX5vkxjULhr4DXZZbUATBCA0edlw0hHDurRpedkPeWHleW0QweHzkODbN9oJ69901bq/4X+x6lBQsSlFfJJe2Y7+uNUbDy60WriByT9N2OGavxMdfUX4teVpwYBLR3QnXrffTqH4QT/vxPeQPfsLJtBVKKpcCFjv6hYd3Ure1we5mmRV+XgO28P30iTTtJuoKcloOI2bnoeLAGN/IwrToOow0GXCnzUr8Rs7T2XAi8kKMkAjy3My0zk8mxVWKXYOe+FC2/9pxxggwce20YoFJVFdA6zaSNVNuo3IR9HyTj9PFq+hKmGdqe2gcLe7oMtgtz32YIGw84Mv2uIdK6xFIvO1wfAZCfU/t5UcxzqOX1Y4cbR8ggitipV6Xbtl2Yi7e3xKpMwFimHqUFyRGYpxI0=";
       "|1|dPXZQAbzb6tjmQBYcUsHa/4BNOw=|01L9s5ZON51QRzDXxqTvabGn9I8=".publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILfxO4/rs/m27OGWxo4eZDvrDhA6IWPm0DfQGpauD0D/";
     };
+    programs.ssh.startAgent = true;
   };
   config.services.woodpecker-agents.agents.woodpecker-agent = {
     enable = true;
@@ -68,6 +69,7 @@
       pkgs.curl
       pkgs.gnutar
       pkgs.gzip
+      pkgs.cargo-binstall
     ];
   };
 }

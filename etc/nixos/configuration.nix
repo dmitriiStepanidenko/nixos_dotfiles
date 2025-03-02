@@ -40,6 +40,8 @@ in {
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
     ./modules/xray.nix
+    ./modules/ssh.nix
+    ./modules/yubikey.nix
     ../../nix/modules/wireguard.nix
     {
       services.wireguard = {
@@ -256,9 +258,6 @@ in {
     #  group = "dmitrii";
     #  dataDir = "/home/dmitrii/education";
     #};
-
-    # Needs for yubikey
-    pcscd.enable = true;
 
     v2raya.enable = true;
     # TODO:
@@ -542,7 +541,6 @@ in {
     neofetch
     tmux
     alacritty
-    yubioath-flutter
     lshw
     unstable.htop
     btop
