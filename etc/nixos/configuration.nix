@@ -64,8 +64,8 @@ in {
 
   #nixpkgs.overlays = [ (final: prev: ) ];
   nixpkgs.overlays = [
-    #(import ../../nix/overlays/surrealdb-bin.nix)
-    (import ../../nix/overlays/todo-backend.nix)
+    (import ../../nix/overlays/surrealdb-bin.nix)
+    #(import ../../nix/overlays/todo-backend.nix)
   ];
 
   sops = {
@@ -545,9 +545,9 @@ in {
     rocmPackages.llvm.clang-unwrapped
     unstable.nodejs_22
 
-    #surrealdb-bin
+    surrealdb-bin
 
-    todo-backend
+    #todo-backend
 
     act
     unstable.woodpecker-cli
