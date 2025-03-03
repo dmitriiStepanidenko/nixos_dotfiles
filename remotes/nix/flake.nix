@@ -2,27 +2,40 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    flake-utils.url = "github:numtide/flake-utils";
+    todo-backend = {
+      url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
-    colmena.url = "github:zhaofengli/colmena?ref=main";
+    colmena = {
+      url = "github:zhaofengli/colmena?ref=main";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.flake-utils.follows = "flake-utils";
+    };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
-  outputs = {
+  outputs = inputs @ {
     self,
     colmena,
     nixpkgs,
     nixpkgs-unstable,
     sops-nix,
+    todo-backend,
     ...
   }: let
     system = "x86_64-linux";
     pkgs_unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
+      #overlays = [
+      #  (import ../../nix/overlays/todo-backend.nix)
+      #];
     };
   in {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
@@ -31,6 +44,13 @@
         nixpkgs = import nixpkgs {
           config.allowUnfree = true;
           system = "x86_64-linux";
+        };
+        nodeSpecialArgs = {
+          todo-staging = {
+          };
+        };
+        specialArgs = {
+          inherit inputs system;
         };
       };
 
@@ -101,7 +121,11 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/todo_staging/default.nix
+          #todo-backend.nixosModules.default
         ];
+        #services.todo-backend = {
+        #  enable = true;
+        #};
       };
     };
   };

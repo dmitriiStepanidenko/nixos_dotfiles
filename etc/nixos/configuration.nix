@@ -31,6 +31,7 @@ in {
     inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
     ./modules/desktop.nix
+    ./modules/cpu.nix
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
     ./modules/xray.nix
@@ -137,28 +138,6 @@ in {
     #};
 
     # THis piece of shit does not work!
-    auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-          #turbo = "auto";
-          enable_thresholds = "true";
-          start_threshold = 20;
-          stop_threshold = 80;
-          ideapad_laptop_conservation_mode = "true";
-          scaling_min_freq = 400000;
-          scaling_max_freq = 3000000;
-        };
-        charger = {
-          governor = "performance";
-          turbo = "never";
-          scaling_min_freq = 400000;
-          scaling_max_freq = 3500000;
-        };
-      };
-    };
 
     # Enable CROOON
     cron = {
@@ -277,17 +256,12 @@ in {
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[10-15]", RUN+="${pkgs.libnotify}/bin/notify-send Battery Low"
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
         SUBSYSTEM=="backlight", ACTION=="add", KERNEL=="acpi_video0", ATTR{brightness}="8"
-        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
-        SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
-        SUBSYSTEM=="usb", ACTION="add", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85"
       '';
     };
 
     blueman.enable = true;
   };
   boot = {
-    kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
-
     kernelParams = ["mem_sleep_default=deep"];
     loader = {
       #systemd.sleep.extraConfig = ''
@@ -322,7 +296,6 @@ in {
   hardware = {
     # acpi thermal readings??
     acpilight.enable = true;
-    cpu.amd.ryzen-smu.enable = true;
 
     keyboard.qmk.enable = true;
 
@@ -711,8 +684,6 @@ in {
     zotero
 
     amdctl
-
-    ryzenadj
 
     pdfannots2json
 

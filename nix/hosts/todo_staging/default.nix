@@ -4,8 +4,16 @@
   modulesPath,
   lib,
   system,
+  inputs,
   ...
 }: let
+  #unstable = import inputs.nixpkgs-unstable {
+  #  inherit system;
+  #  config.allowUnfree = true;
+  #  overlays = [
+  #    (import inputs.todo-backend)
+  #  ];
+  #};
 in {
   options.sftpgo.package = lib.mkOption {
     type = lib.types.package;
@@ -29,15 +37,15 @@ in {
         ];
       };
     }
+    inputs.todo-backend.nixosModules.default
   ];
 
   config = {
-    nixpkgs.overlays = [
-      (import ../../overlays/todo-backend.nix)
-    ];
-    environment.systemPackages = [
-      pkgs.todo-backend
-    ];
+    services.todo-backend = {
+      enable = true;
+      pkg =
+        inputs.todo-backend.packages.${system}.todo-backend;
+    };
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
