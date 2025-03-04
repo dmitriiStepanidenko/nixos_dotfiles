@@ -25,22 +25,28 @@
 
     xorg.xset
   ];
+  #programs.i3lock.enable = true;
   services.xserver = {
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     enable = true;
+    xautolock = {
+      enable = true;
+      time = 10;
+      locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+    };
 
     windowManager.leftwm.enable = true;
 
     displayManager = with pkgs; {
-      sessionCommands = ''
-        # Trigger xlock on suspend.
-        ${xorg.xset}/bin/xset s 300 5
-        ${xorg.xset}/bin/xset -dpms
-        ${xss-lock}/bin/xss-lock -l  -- ${xsecurelock}/bin/xsecurelock &
-      '';
+      #sessionCommands = ''
+      #  # Trigger xlock on suspend.
+      #  ${xorg.xset}/bin/xset s 300 5
+      #  ${xorg.xset}/bin/xset -dpms
+      #'';
       lightdm.enable = true;
     };
+    #${xss-lock}/bin/xss-lock -l  -- ${i3lock}/bin/xsecurelock i3lock &
 
     # Enable the KDE Plasma Desktop Environment.
     #services.displayManager.sddm.enable = true;

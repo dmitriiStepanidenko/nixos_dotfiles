@@ -77,7 +77,7 @@
         (command: CloseWindow, value: "", modifier: ["modkey", "Shift"], key: "q"),
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),
-        (command: Execute, value: "xset s activate", modifier: ["modkey", "Control"], key: "l"),
+        (command: Execute, value: "i3lock-fancy", modifier: ["modkey", "Control"], key: "l"),
         (command: Execute, value: "systemctl hybrid-sleep", modifier: ["modkey", "Control"], key: "s"),
         (command: Execute, value: "flameshot gui -r | xclip -selection clipboard -t image/png", modifier: ["modkey"], key: "s"),
         (command: ToggleFloating, value: "", modifier: ["modkey", "Control"], key: "f"),
