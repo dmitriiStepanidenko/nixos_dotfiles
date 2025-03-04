@@ -61,6 +61,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -114,6 +132,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1741010256,
+        "narHash": "sha256-WZNlK/KX7Sni0RyqLSqLPbK8k08Kq7H7RijPJbq9KHM=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ba487dbc9d04e0634c64e3b1f0d25839a0a68246",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "colmena": "colmena",
@@ -121,6 +155,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
+        "surrealdb": "surrealdb",
         "todo-backend": "todo-backend"
       }
     },
@@ -160,7 +195,38 @@
         "type": "github"
       }
     },
+    "surrealdb": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1741119110,
+        "narHash": "sha256-WcgKsebUhS3g62/KvnCj20iUKDWkb3xW2h+ISEsByCk=",
+        "path": "/home/dmitrii/shared/tmp/surrealdb-nixos",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/dmitrii/shared/tmp/surrealdb-nixos",
+        "type": "path"
+      }
+    },
     "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -185,11 +251,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741113815,
-        "narHash": "sha256-iiKV/Fn+B9tTarJvLI8PeVD1a3gB/CeQ8Cap9gxy/Lc=",
+        "lastModified": 1741119316,
+        "narHash": "sha256-KS/vqjcyc38rx0X5AveOYLDVykcOBkzUhQKJLFr++3c=",
         "ref": "refs/heads/master",
-        "rev": "49263100b84f9bb5313bfbabff43b2fff3a99c41",
-        "revCount": 11,
+        "rev": "f576edea0d3d76697194df883528d40aeb1f0da3",
+        "revCount": 12,
         "type": "git",
         "url": "ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git"
       },

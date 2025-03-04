@@ -1,5 +1,6 @@
 {
   inputs = {
+    surrealdb.url = "path:/home/dmitrii/shared/tmp/surrealdb-nixos";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";

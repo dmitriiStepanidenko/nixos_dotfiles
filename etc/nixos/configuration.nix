@@ -146,48 +146,6 @@ in {
 
     # for ssd
     fstrim.enable = true;
-    xserver = {
-      # Enable the X11 windowing system.
-      # You can disable this if you're only using the Wayland session.
-      enable = true;
-
-      windowManager.leftwm.enable = true;
-
-      displayManager = with pkgs; {
-        sessionCommands = ''
-          # Trigger xlock on suspend.
-          ${xorg.xset}/bin/xset s 300 5
-          ${xss-lock}/bin/xss-lock -l  -- ${xsecurelock}/bin/xsecurelock &
-        '';
-        lightdm.enable = true;
-      };
-
-      # Enable the KDE Plasma Desktop Environment.
-      #services.displayManager.sddm.enable = true;
-      #services.desktopManager.plasma6.enable = true;
-      #services.displayManager.defaultSession = "plasmax11";
-
-      # Configure keymas
-
-      xkb = {
-        layout = "us,ru";
-        variant = "";
-        options = "grp:win_space_toggle";
-      };
-
-      # Firmwares updates
-      # services.fwupd.enable = true;
-
-      videoDrivers = [
-        "amdgpu"
-        #"modesetting"
-
-        "nvidia"
-
-        #"displaylink"
-        #"nvidia" "amdgpu-pro"
-      ];
-    };
     #"modesetting" - FOSS drivers for nvidia
     #services.xserver.displayManager.sessionCommands = ''
     #    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0

@@ -47,7 +47,7 @@ in {
     services.todo-backend = {
       enable = true;
       pkg =
-        inputs.todo-backend.packages.${system}.staging;
+        inputs.todo-backend.packages.${system}."0.0.1";
       port = 55000;
       address = "0.0.0.0";
       database = {

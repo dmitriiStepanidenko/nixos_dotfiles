@@ -41,7 +41,6 @@ in {
     vlc # videos
     mpv
     #mplayer # live wallpapers
-    inputs.nixos-24-11-stable-xsecurelock.legacyPackages.${pkgs.system}.mplayer
 
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.obsidian
     unstable.obsidian
