@@ -25,6 +25,8 @@
 
     xorg.xset
     i3lock-fancy
+
+    inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
   ];
   #programs.i3lock.enable = true;
 
@@ -40,6 +42,13 @@
 
     windowManager = {
       leftwm.enable = true;
+      session = pkgs.lib.singleton {
+        name = "leftwm";
+        start = ''
+          ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
+          waitPID=$!
+        '';
+      };
     };
 
     displayManager = with pkgs; {
