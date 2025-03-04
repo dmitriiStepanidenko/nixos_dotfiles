@@ -14,12 +14,20 @@
     yubikeys
   );
 in {
-  environment.systemPackages = [pkgs.ssh-askpass-fullscreen];
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-curses;
+    enableSSHSupport = true;
+  };
+  environment.systemPackages = [
+    pkgs.ssh-askpass-fullscreen
+    pkgs.gnupg
+    pkgs.pinentry-curses
+  ];
   programs.ssh = {
-    #enable = true;
-    startAgent = true;
+    #startAgent = true;
 
-    enableAskPassword = true;
+    #enableAskPassword = true;
     askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
 
     extraConfig = ''

@@ -672,20 +672,12 @@ in {
     nil
 
     git-crypt
-    gnupg
-    pinentry-curses
 
     papirus-icon-theme
   ];
 
-  programs.gnupg.agent = {
-    enable = true;
-    pinentryPackage = pkgs.pinentry-curses;
-  };
-
   programs.direnv.enable = true;
 
-  programs.ssh.startAgent = true;
   ###### GPU tweaks end
 
   # Some programs need SUID wrappers, can be configured further or are
