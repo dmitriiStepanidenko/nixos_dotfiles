@@ -13,7 +13,7 @@
     rofi
     dunst
 
-    inputs.nixos-unstable.legacyPackages.${pkgs.system}.xsecurelock # lock
+    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.xsecurelock # lock
 
     libnotify
 
@@ -24,8 +24,10 @@
     xss-lock # auto lock?
 
     xorg.xset
+    i3lock-fancy
   ];
   #programs.i3lock.enable = true;
+
   services.xserver = {
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
