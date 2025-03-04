@@ -1,6 +1,7 @@
 {
   lib,
   configLib,
+  pkgs,
   ...
 }: let
   pathtokeys = "../../etc/nixos/keys/users";
@@ -13,9 +14,13 @@
     yubikeys
   );
 in {
+  environment.systemPackages = [pkgs.ssh-askpass-fullscreen];
   programs.ssh = {
     #enable = true;
     startAgent = true;
+
+    enableAskPassword = true;
+    askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
 
     extraConfig = ''
       AddKeysToAgent yes

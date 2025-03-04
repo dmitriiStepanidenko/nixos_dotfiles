@@ -38,7 +38,9 @@
       locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
     };
 
-    windowManager.leftwm.enable = true;
+    windowManager = {
+      leftwm.enable = true;
+    };
 
     displayManager = with pkgs; {
       #sessionCommands = ''
