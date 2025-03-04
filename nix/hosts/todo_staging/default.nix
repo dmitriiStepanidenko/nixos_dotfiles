@@ -41,10 +41,30 @@ in {
   ];
 
   config = {
+    #environment.systemPackages = [
+    #  inputs.todo-backend.packages.${system}.staging
+    #];
     services.todo-backend = {
       enable = true;
       pkg =
-        inputs.todo-backend.packages.${system}.todo-backend;
+        inputs.todo-backend.packages.${system}.staging;
+      port = 55000;
+      address = "0.0.0.0";
+      database = {
+        address = "ws://localhost:8000";
+        namespace = "namespace_test";
+        name = "database_test";
+      };
+      admin = {
+        email = "admin@example.com";
+        passwordFile = config.sops.secrets."todo-backend/admin_password".path;
+      };
+      secretFile = config.sops.secrets."todo-backend/secret".path;
+      google = {
+        redirectUrl = "http://localhost:5173/oauth2/google/callback";
+        clientIdFile = config.sops.secrets."todo-backend/google/client_id".path;
+        clientSecretFile = config.sops.secrets."todo-backend/google/secret".path;
+      };
     };
     sops = {
       defaultSopsFile = ./secrets.yaml;
@@ -56,21 +76,45 @@ in {
         generateKey = true;
       };
       secrets = {
+        "todo-backend/admin_password" = {
+          owner = "todo-backend";
+          mode = "0400";
+          restartUnits = ["todo-backend.service"];
+        };
+        "todo-backend/secret" = {
+          owner = "todo-backend";
+          mode = "0400";
+          restartUnits = ["todo-backend.service"];
+        };
+        "todo-backend/google/client_id" = {
+          owner = "todo-backend";
+          mode = "0400";
+          restartUnits = ["todo-backend.service"];
+        };
+        "todo-backend/google/secret" = {
+          owner = "todo-backend";
+          mode = "0400";
+          restartUnits = ["todo-backend.service"];
+        };
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
       };
     };

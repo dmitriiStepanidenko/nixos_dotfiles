@@ -185,11 +185,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1740955072,
-        "narHash": "sha256-hrF/9K9+KGukjb8yiAIbecYTxiZGYP1vJh04n/nRxb8=",
+        "lastModified": 1741113815,
+        "narHash": "sha256-iiKV/Fn+B9tTarJvLI8PeVD1a3gB/CeQ8Cap9gxy/Lc=",
         "ref": "refs/heads/master",
-        "rev": "705273633e55e3150cdf64fca34bcdf3118abc0a",
-        "revCount": 5,
+        "rev": "49263100b84f9bb5313bfbabff43b2fff3a99c41",
+        "revCount": 11,
         "type": "git",
         "url": "ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git"
       },
