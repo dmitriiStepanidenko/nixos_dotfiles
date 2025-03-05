@@ -1,9 +1,8 @@
 {
   config,
   pkgs,
-  modulesPath,
   lib,
-  system,
+  inputs,
   ...
 }: let
   dataDir = "/data/webserver/root";
@@ -13,7 +12,7 @@ in {
     default = pkgs.sftpgo;
   };
   imports = [
-    ../../../nix/modules/wireguard.nix
+    inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;
@@ -86,34 +85,12 @@ in {
             autoindex on;
           '';
         };
-        #locations."/gamechanger-docs" = {
-        #  extraConfig = ''
-        #    autoindex on;
-        #  '';
-        #};
-        #enableACME = false;
-        #forceSSL = false;
-        #default = true;
-        #listen = [
-        #  {
-        #    addr = "10.252.1.9";
-        #    port = 80;
-        #    ssl = false;
-        #  }
-        #];
       };
-      #defaultListen = [
-      #  {
-      #    addr = "0.0.0.0";
-      #    ssl = false;
-      #  }
-      #];
     };
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
       age = {
-        #keyFilePaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
         sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
         keyFile = "/var/lib/sops-nix/key.txt";
         generateKey = true;
@@ -122,18 +99,22 @@ in {
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
       };
     };

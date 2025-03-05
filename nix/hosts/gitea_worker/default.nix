@@ -1,14 +1,10 @@
 {
   config,
-  pkgs,
-  modulesPath,
-  lib,
-  system,
+  inputs,
   ...
 }: {
-
   imports = [
-    ../../../nix/modules/wireguard.nix
+    inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;
@@ -38,21 +34,27 @@
         keyFile = "/var/lib/sops-nix/key.txt";
         generateKey = true;
       };
-      secrets."wireguard/wireguard_ip" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/private_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/preshared_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
-      };
-      secrets."wireguard/public_key" = {
-        owner = config.users.users.systemd-network.name;
-        mode = "0400";
+      secrets = {
+        "wireguard/wireguard_ip" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+          restartUnits = ["wireguard.service"];
+        };
+        "wireguard/private_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+          restartUnits = ["wireguard.service"];
+        };
+        "wireguard/preshared_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+          restartUnits = ["wireguard.service"];
+        };
+        "wireguard/public_key" = {
+          owner = config.users.users.systemd-network.name;
+          mode = "0400";
+          restartUnits = ["wireguard.service"];
+        };
       };
     };
   };

@@ -1,6 +1,8 @@
 {
   inputs = {
     surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
+    wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
+
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
@@ -108,9 +110,6 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/nginx_local/default.nix
-          {
-            #sftpgo.package = pkgs_unstable.sftpgo;
-          }
         ];
       };
       todo-staging = {...}: {
@@ -122,11 +121,7 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/todo_staging/default.nix
-          #todo-backend.nixosModules.default
         ];
-        #services.todo-backend = {
-        #  enable = true;
-        #};
       };
     };
   };

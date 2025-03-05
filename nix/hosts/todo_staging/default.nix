@@ -20,7 +20,7 @@ in {
     default = pkgs.sftpgo;
   };
   imports = [
-    ../../../nix/modules/wireguard.nix
+    inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;

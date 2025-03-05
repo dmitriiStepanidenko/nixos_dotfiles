@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  inputs,
   ...
 }: {
   options.woodpecker_agent.package = lib.mkOption {
@@ -9,7 +10,7 @@
     default = pkgs.woodpecker-agent;
   };
   imports = [
-    ../../../nix/modules/wireguard.nix
+    inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;
@@ -27,9 +28,6 @@
       };
     }
     ../../../nix/modules/woodpecker_agent.nix
-    #{
-    #  woodpecker_agent.package = config.woodpecker_agent.package;
-    #}
   ];
 
   config = {
@@ -46,18 +44,22 @@
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
+          restartUnits = ["wireguard.service"];
         };
       };
     };
