@@ -70,6 +70,8 @@
       pkgs.gnutar
       pkgs.gzip
       pkgs.cargo-binstall
+      pkgs.sd
+      pkgs.alejandra
     ];
   };
 }

@@ -38,7 +38,7 @@ in {
     ./modules/xray.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
-    ../../nix/modules/wireguard.nix
+    inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;
@@ -77,18 +77,22 @@ in {
       "wireguard/wireguard_ip" = {
         owner = config.users.users.systemd-network.name;
         mode = "0400";
+        restartUnits = ["wireguard.service"];
       };
       "wireguard/private_key" = {
         owner = config.users.users.systemd-network.name;
         mode = "0400";
+        restartUnits = ["wireguard.service"];
       };
       "wireguard/preshared_key" = {
         owner = config.users.users.systemd-network.name;
         mode = "0400";
+        restartUnits = ["wireguard.service"];
       };
       "wireguard/public_key" = {
         owner = config.users.users.systemd-network.name;
         mode = "0400";
+        restartUnits = ["wireguard.service"];
       };
     };
     #secrets."woodpecker/ip" = {

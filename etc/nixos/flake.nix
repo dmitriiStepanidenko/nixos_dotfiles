@@ -3,6 +3,7 @@
 
   inputs = {
     surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
+    wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
 
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -123,7 +124,7 @@
         ];
       };
     };
-    devShells.system.default =
+    devShells.${system}.default =
       inputs.nixpkgs-unstable.mkShell
       {
         nativeBuildInputs = with inputs.nixpkgs-unstable; [
