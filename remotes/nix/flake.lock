@@ -201,14 +201,17 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1741119110,
-        "narHash": "sha256-WcgKsebUhS3g62/KvnCj20iUKDWkb3xW2h+ISEsByCk=",
-        "path": "/home/dmitrii/shared/tmp/surrealdb-nixos",
-        "type": "path"
+        "lastModified": 1741191435,
+        "narHash": "sha256-DLndk06xORh0Ghx9GLmUY0iE9Xw69OD20tKSksRpM8A=",
+        "owner": "dmitriiStepanidenko",
+        "repo": "surrealdb-nixos",
+        "rev": "c9212aa952e24323c6050526968ac1491b025b38",
+        "type": "github"
       },
       "original": {
-        "path": "/home/dmitrii/shared/tmp/surrealdb-nixos",
-        "type": "path"
+        "owner": "dmitriiStepanidenko",
+        "repo": "surrealdb-nixos",
+        "type": "github"
       }
     },
     "systems": {
@@ -251,11 +254,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741119316,
-        "narHash": "sha256-KS/vqjcyc38rx0X5AveOYLDVykcOBkzUhQKJLFr++3c=",
+        "lastModified": 1741189923,
+        "narHash": "sha256-oe9Mv4rDQrig9rTsOHHpsTr+a3mziAM/CeT+NpRq0jE=",
         "ref": "refs/heads/master",
-        "rev": "f576edea0d3d76697194df883528d40aeb1f0da3",
-        "revCount": 12,
+        "rev": "9163a4849a29d54106a7f5bd8400a4d75e92e382",
+        "revCount": 25,
         "type": "git",
         "url": "ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git"
       },

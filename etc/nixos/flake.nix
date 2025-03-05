@@ -2,6 +2,8 @@
   description = "Mine flake";
 
   inputs = {
+    surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
+
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 

@@ -7,6 +7,7 @@
   #nixpkgs-stable-unstable,
   ...
 }: let
+  system = "x86_64-linux";
   tokyoNightTheme = pkgs.fetchFromGitHub {
     owner = "BennyOe";
     repo = "tokyo-night.yazi";
@@ -14,7 +15,7 @@
     sha256 = "112r9b7gan3y4shm0dfgbbgnxasi7ywlbk1pksdbpaglkczv0412";
   };
   unstable = import inputs.nixos-unstable {
-    system = "x86_64-linux";
+    inherit system;
     config = {
       allowUnfree = true;
       permittedInsecurePackages = [
@@ -54,12 +55,7 @@ in {
         ];
       };
     }
-    #../../nix/modules/nvf-configuration.nix
-    # ./modules/fpga_hardware.nix
-    # ./modules/virtualization.nix
-    # ./neovim.nix
-    # ./suspend_and_hibernate.nix
-    # ./home/dmitrii/shared/dotfiles/etc/nixos/modules/wireguard.nix
+    inputs.surrealdb.nixosModules.default
   ];
 
   #programs.nvf = {
@@ -67,9 +63,6 @@ in {
   #};
 
   #nixpkgs.overlays = [ (final: prev: ) ];
-  nixpkgs.overlays = [
-    (import ../../nix/overlays/surrealdb-bin.nix)
-  ];
 
   sops = {
     defaultSopsFile = ./secrets/secrets.yaml;
@@ -114,30 +107,6 @@ in {
     devmon.enable = true;
     gvfs.enable = true;
     udisks2.enable = true;
-    # Power management
-    #powerManagement.powertop.enable = true; # This thing make my usb devices "laggy" at connection
-    #services.thermald.enable = true;
-    #services.tlp = {
-    #  enable = true;
-    #  settings = {
-    #    CPU_SCALING_GOVERNOR_ON_AC = "performance";
-    #    CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-
-    #    CPU_ENERGY_PERF_POLICY_ON_BAT = "power";
-    #    CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-
-    #    CPU_MIN_PERF_ON_AC = 0;
-    #    CPU_MAX_PERF_ON_AC = 90;
-    #    CPU_MIN_PERF_ON_BAT = 0;
-    #    CPU_MAX_PERF_ON_BAT = 40;
-
-    #    #Optional helps save long term battery health
-    #    START_CHARGE_THRESH_BAT0 = 40; # 40 and bellow it starts to charge
-    #    STOP_CHARGE_THRESH_BAT0 = 80; # 80 and above it stops charging
-    #  };
-    #};
-
-    # THis piece of shit does not work!
 
     # Enable CROOON
     cron = {
@@ -478,8 +447,6 @@ in {
     rocmPackages.llvm.clang-unwrapped
     unstable.nodejs_22
 
-    surrealdb-bin
-
     unstable.todo-backend
 
     act
@@ -488,18 +455,6 @@ in {
     sops
 
     cargo-hakari
-
-    #unstable.surrealdb
-    #unstable.surrealist
-    #unstable.surrealdb-migrations
-
-    #unstable.surrealdb
-    #unstable.surrealist
-    #unstable.surrealdb-migrations
-
-    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb
-    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealist
-    #inputs.nixos-unstable.legacyPackages.${pkgs.system}.surrealdb-migrations
 
     hunspell
     hunspellDicts.ru_RU
@@ -674,31 +629,11 @@ in {
     git-crypt
 
     papirus-icon-theme
+
+    inputs.surrealdb.packages.${system}.latest
   ];
 
   programs.direnv.enable = true;
 
-  ###### GPU tweaks end
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  #system.stateVersion = "24.05"; # Did you read the comment?
-  system.stateVersion = "24.11"; # Did you read the comment?
+  system.stateVersion = "24.11";
 }

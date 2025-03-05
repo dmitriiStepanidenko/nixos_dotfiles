@@ -38,16 +38,28 @@ in {
       };
     }
     inputs.todo-backend.nixosModules.default
+    inputs.surrealdb.nixosModules.default
   ];
 
   config = {
-    #environment.systemPackages = [
-    #  inputs.todo-backend.packages.${system}.staging
-    #];
+    networking.firewall.allowedUDPPorts = [55000 8000];
+    networking.firewall.allowedTCPPorts = [55000 8000];
+    environment.systemPackages = [
+      #inputs.todo-backend.packages.${system}.staging
+      inputs.surrealdb.packages.${system}.latest
+    ];
+    services.surrealdb-bin = {
+      enable = true;
+      package = inputs.surrealdb.packages.${system}.latest;
+      auth = {
+        username = "root";
+        passwordFile = config.sops.secrets."surrealdb/password".path;
+      };
+    };
     services.todo-backend = {
       enable = true;
       pkg =
-        inputs.todo-backend.packages.${system}."0.0.1";
+        inputs.todo-backend.packages.${system}.staging;
       port = 55000;
       address = "0.0.0.0";
       database = {
@@ -65,6 +77,7 @@ in {
         clientIdFile = config.sops.secrets."todo-backend/google/client_id".path;
         clientSecretFile = config.sops.secrets."todo-backend/google/secret".path;
       };
+      additionalAfterServices = ["surrealdb.service"];
     };
     sops = {
       defaultSopsFile = ./secrets.yaml;
@@ -76,6 +89,12 @@ in {
         generateKey = true;
       };
       secrets = {
+        "surrealdb/password" = {
+          owner = "surrealdb";
+          group = "surrealdb";
+          mode = "0400";
+          restartUnits = ["surrealdb.service"];
+        };
         "todo-backend/admin_password" = {
           owner = "todo-backend";
           mode = "0400";
