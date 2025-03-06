@@ -99,7 +99,7 @@
           ../../nix/hosts/woodpecker_server/default.nix
         ];
       };
-      woodpecker_agent_1 = {...}: {
+      woodpecker_agent = {...}: {
         deployment = {
           targetHost = "192.168.0.211";
           targetPort = 22;

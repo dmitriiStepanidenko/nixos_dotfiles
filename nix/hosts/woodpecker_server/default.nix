@@ -47,21 +47,29 @@
       inputs.colmena.defaultPackage.${system}
     ];
     networking = {
-      firewall.allowedUDPPorts = [
-        8888
-        9000
-      ];
-      firewall.allowedTCPPorts = [
-        8888
-        9000
-      ];
+      firewall = {
+        interfaces.wg0 = {
+          allowedUDPPorts = [
+            8000
+            9000
+          ];
+          allowedTCPPorts = [
+            8000
+            9000
+            22
+          ];
+        };
+        enable = true;
+        allowedTCPPorts = [22 8000 9000];
+      };
 
       hostName = "woodpecker_server";
     };
     services.woodpecker-server = {
       enable = true;
       environmentFile = [config.sops.secrets."woodpecker_server".path];
-      package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
+      #package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
+      package = pkgs.callPackage ../../packages/woodpecker-server.nix {};
     };
     sops = {
       defaultSopsFile = ./secrets.yaml;
