@@ -5,6 +5,11 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
 
+    vm-profile = {
+      url = "github:dmitriiStepanidenko/my-proxmox-vm-profile-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
     };
@@ -15,9 +20,8 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
+  outputs =  {
+    vm-profile,
     nixos-generators,
     ...
   }: let
@@ -27,28 +31,10 @@
       proxmox = nixos-generators.nixosGenerate {
         inherit system;
         modules = [
-          ./vm-profile.nix
+          vm-profile.nixosModules.default
         ];
         format = "proxmox";
       };
     };
-    #nixosConfigurations = {
-    #  nixos = inputs.nixos-unstable.lib.nixosSystem {
-    #    inherit system;
-    #    specialArgs = {
-    #      inherit inputs;
-    #    };
-    #    modules = [
-    #      ./vm-profile.nix
-    #      {
-    #        _module.args = {
-    #          #modulesPath = "./modules";
-    #          inherit modulesPath;
-    #        };
-    #      }
-    #      # ./neovim.nix
-    #    ];
-    #  };
-    #};
   };
 }

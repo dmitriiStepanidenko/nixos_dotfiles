@@ -15,7 +15,7 @@
     {
       services.wireguard = {
         enable = true;
-        ips = "10.252.1.7/24";
+        ips = "10.252.1.5/24";
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         peers = [
           {
@@ -28,14 +28,21 @@
         ];
       };
     }
-    ../../../nix/modules/woodpecker_agent.nix
   ];
   config = {
     environment.systemPackages = [
       inputs.colmena.defaultPackage.${system}
     ];
+    networking.firewall.allowedTCPPorts = [
+      8888
+    ];
+    services.woodpecker-server = {
+      enable = true;
+      environmentFile = [config.sops.secrets."woodpecker_server".path];
+      #package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
+    };
 
-    networking.hostName = "woodpecker_agent";
+    networking.hostName = "woodpecker_server";
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -45,25 +52,30 @@
         generateKey = true;
       };
       secrets = {
+        "woodpecker_server" = {
+          group = "docker";
+          mode = "0440";
+          restartUnits = ["woodpecker-server.service"];
+        };
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          #restartUnits = ["wireguard.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          #restartUnits = ["wireguard.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          #restartUnits = ["wireguard.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          #restartUnits = ["wireguard.service"];
         };
       };
     };

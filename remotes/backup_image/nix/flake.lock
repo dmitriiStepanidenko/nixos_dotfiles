@@ -89,7 +89,8 @@
         "nixos-24-11": "nixos-24-11",
         "nixos-generators": "nixos-generators",
         "nixpkgs": "nixpkgs",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "vm-profile": "vm-profile"
       }
     },
     "sops-nix": {
@@ -107,6 +108,26 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "vm-profile": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1741216525,
+        "narHash": "sha256-luRnhdD7pBVuKYgtBnKC5Xt9eTXfbTVgJXf3AP7h2ac=",
+        "owner": "dmitriiStepanidenko",
+        "repo": "my-proxmox-vm-profile-nixos",
+        "rev": "d21d76848a931cbe64b88493456bfc3b386e91c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmitriiStepanidenko",
+        "repo": "my-proxmox-vm-profile-nixos",
         "type": "github"
       }
     }

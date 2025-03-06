@@ -1,11 +1,25 @@
 {
   inputs = {
-    surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
-    wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
+    surrealdb = {
+      url = "github:dmitriiStepanidenko/surrealdb-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    wireguard = {
+      url = "github:dmitriiStepanidenko/wireguard-nixos-private";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    vm-profile = {
+      url = "github:dmitriiStepanidenko/my-proxmox-vm-profile-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+
     todo-backend = {
       url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -29,25 +43,23 @@
     nixpkgs,
     nixpkgs-unstable,
     sops-nix,
-    todo-backend,
+    vm-profile,
     ...
   }: let
     system = "x86_64-linux";
     pkgs_unstable = import nixpkgs-unstable {
       inherit system;
       config.allowUnfree = true;
-      #overlays = [
-      #  (import ../../nix/overlays/todo-backend.nix)
-      #];
+    };
+    pkgs = import nixpkgs {
+      config.allowUnfree = true;
+      system = "x86_64-linux";
     };
   in {
     colmenaHive = colmena.lib.makeHive self.outputs.colmena;
     colmena = {
       meta = {
-        nixpkgs = import nixpkgs {
-          config.allowUnfree = true;
-          system = "x86_64-linux";
-        };
+        nixpkgs = pkgs;
         nodeSpecialArgs = {
           todo-staging = {
           };
@@ -60,7 +72,7 @@
       defaults = {...}: {
         imports = [
           sops-nix.nixosModules.sops
-          ../backup_image/nix/vm-profile.nix
+          vm-profile.nixosModules.default
         ];
       };
 
@@ -90,6 +102,31 @@
           }
         ];
       };
+      woodpecker_server = {...}: {
+        deployment = {
+          targetHost = "192.168.0.215";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/woodpecker_server/default.nix
+        ];
+      };
+      #woodpecker_agent_docker = {...}: {
+      #  deployment = {
+      #    targetHost = "192.168.0.216";
+      #    targetPort = 22;
+      #    targetUser = "root";
+      #  };
+      #  time.timeZone = "Europe/Moscow";
+      #  imports = [
+      #    ../../nix/hosts/woodpecker_agent/default.nix
+      #    {
+      #      woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
+      #    }
+      #  ];
+      #};
       container_registry = {...}: {
         deployment = {
           targetHost = "192.168.0.212";
@@ -123,6 +160,12 @@
           ../../nix/hosts/todo_staging/default.nix
         ];
       };
+    };
+    devShells.${system}.default = pkgs.mkShell {
+      packages = [colmena.defaultPackage.${system}];
+      shellHook = ''
+        export PS1='\[\e[32m\][\u@\H:nix-develop:\w]\\$\[\e[0m\] '
+      '';
     };
   };
 }
