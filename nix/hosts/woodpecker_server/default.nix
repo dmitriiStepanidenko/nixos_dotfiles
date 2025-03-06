@@ -30,19 +30,39 @@
     }
   ];
   config = {
+    virtualisation = {
+      oci-containers.backend = "docker";
+      docker = {
+        enable = true;
+        autoPrune.enable = true;
+        daemon.settings = {
+          insecure-registries = ["10.252.1.8:5000"];
+        };
+      };
+    };
+    users.users.dmitrii.extraGroups = ["docker"];
+    users.groups.docker = {};
+
     environment.systemPackages = [
       inputs.colmena.defaultPackage.${system}
     ];
-    networking.firewall.allowedTCPPorts = [
-      8888
-    ];
+    networking = {
+      firewall.allowedUDPPorts = [
+        8888
+        9000
+      ];
+      firewall.allowedTCPPorts = [
+        8888
+        9000
+      ];
+
+      hostName = "woodpecker_server";
+    };
     services.woodpecker-server = {
       enable = true;
       environmentFile = [config.sops.secrets."woodpecker_server".path];
-      #package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
+      package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
     };
-
-    networking.hostName = "woodpecker_server";
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -53,6 +73,7 @@
       };
       secrets = {
         "woodpecker_server" = {
+          #inherit (config.users.users.docker) group;
           group = "docker";
           mode = "0440";
           restartUnits = ["woodpecker-server.service"];
@@ -60,22 +81,22 @@
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          #restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          #restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          #restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          #restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard.service"];
         };
       };
     };

@@ -22,9 +22,6 @@
         "electron-27.3.11"
       ];
     };
-    overlays = [
-      (import ../../nix/overlays/todo-backend.nix)
-    ];
   };
 in {
   imports = [
@@ -451,8 +448,6 @@ in {
     rocmPackages.llvm.clang-unwrapped
     unstable.nodejs_22
 
-    unstable.todo-backend
-
     act
     unstable.woodpecker-cli
 
@@ -635,6 +630,8 @@ in {
     papirus-icon-theme
 
     inputs.surrealdb.packages.${system}.latest
+
+    hub
   ];
 
   programs.direnv.enable = true;

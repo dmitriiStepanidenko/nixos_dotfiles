@@ -8,7 +8,7 @@
 
     wireguard = {
       url = "github:dmitriiStepanidenko/wireguard-nixos-private";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     vm-profile = {
@@ -34,7 +34,7 @@
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = inputs @ {
@@ -88,6 +88,17 @@
       #    ../../nix/hosts/gitea_worker/default.nix
       #  ];
       #};
+      woodpecker_server = {...}: {
+        deployment = {
+          targetHost = "192.168.0.215";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/woodpecker_server/default.nix
+        ];
+      };
       woodpecker_agent_1 = {...}: {
         deployment = {
           targetHost = "192.168.0.211";
@@ -100,17 +111,6 @@
           {
             woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
           }
-        ];
-      };
-      woodpecker_server = {...}: {
-        deployment = {
-          targetHost = "192.168.0.215";
-          targetPort = 22;
-          targetUser = "root";
-        };
-        time.timeZone = "Europe/Moscow";
-        imports = [
-          ../../nix/hosts/woodpecker_server/default.nix
         ];
       };
       #woodpecker_agent_docker = {...}: {
@@ -161,7 +161,7 @@
         ];
       };
     };
-    devShells.${system}.default = pkgs.mkShell {
+    devShells.${system}.default = pkgs_unstable.mkShell {
       packages = [colmena.defaultPackage.${system}];
       shellHook = ''
         export PS1='\[\e[32m\][\u@\H:nix-develop:\w]\\$\[\e[0m\] '

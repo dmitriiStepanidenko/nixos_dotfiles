@@ -50,4 +50,5 @@ terraform.rc
 
 result
 .envrc
-direnv
+.direnv
+

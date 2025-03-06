@@ -5,10 +5,10 @@ keys:
     - &mine_laptop age1ggpnjskft839vcjzunmpdwhs9easwxr7cvd350mlqmvptw3aqdnsqpms42
     - &gitea_worker_1 age1glh3xkjqh5a4zxj835g0rxhg8ypdk9ywj3p83557c3e9lleq243s6jvc4r
     - &woodpecker_agent_1 age1zeh3kcd7qqx0g7qgra975ls0u9dwhe64anr0m5lthr0aq73nuu7q6xg9ve
-    - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
     - &container_registry age1kqasman7j5fguy8xfwkkvz2aad38ugk437enstcz4kg9r8tjeg3q6f5v5c
     - &nginx_local age1xctyl8g4lezw4glhhaggpd8u54vryff5jkwz3e9v4srlgphwe5jqsgsvvw
     - &todo_staging age142l4r2pd6xylx4s5c7x6kfxuv7cn424eh38v6p95z3ka3g62jfcskx60vf
+    - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
