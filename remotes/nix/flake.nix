@@ -113,20 +113,20 @@
           }
         ];
       };
-      wakapi = {...}: {
-        deployment = {
-          targetHost = "192.168.0.216";
-          targetPort = 22;
-          targetUser = "root";
-        };
-        time.timeZone = "Europe/Moscow";
-        imports = [
-          ../../nix/hosts/wakapi/default.nix
-          {
-            woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
-          }
-        ];
-      };
+      #wakapi = {...}: {
+      #  deployment = {
+      #    targetHost = "192.168.0.216";
+      #    targetPort = 22;
+      #    targetUser = "root";
+      #  };
+      #  time.timeZone = "Europe/Moscow";
+      #  imports = [
+      #    ../../nix/hosts/wakapi/default.nix
+      #    {
+      #      woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
+      #    }
+      #  ];
+      #};
       container_registry = {...}: {
         deployment = {
           targetHost = "192.168.0.212";

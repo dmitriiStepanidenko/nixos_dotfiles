@@ -61,6 +61,24 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "inputs": {
+        "systems": "systems_2"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
@@ -201,6 +219,21 @@
         "type": "github"
       }
     },
+    "systems_2": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
     "todo-backend": {
       "inputs": {
         "flake-utils": [
@@ -246,16 +279,17 @@
     },
     "wireguard": {
       "inputs": {
+        "flake-utils": "flake-utils_2",
         "nixpkgs": [
           "nixpkgs-unstable"
         ]
       },
       "locked": {
-        "lastModified": 1741206638,
-        "narHash": "sha256-vLXa8ih1olMvH5iqQaxAAuJ7R3SBx3FXxCCi2SZjhgI=",
+        "lastModified": 1741374836,
+        "narHash": "sha256-2h4/xwQtjFhjvRawgnqa57IYWp2vxYojUzj/XV7CP8Y=",
         "owner": "dmitriiStepanidenko",
         "repo": "wireguard-nixos-private",
-        "rev": "48ce9f562cc57e029550fd8d8cf9ddb9a2a73de4",
+        "rev": "80dadc4032719e951c19b197a9c1df7a54a0d452",
         "type": "github"
       },
       "original": {

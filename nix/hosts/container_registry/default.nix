@@ -49,22 +49,22 @@
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard-setup.service"];
         };
         "wireguard/private_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard-setup.service"];
         };
         "wireguard/preshared_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard-setup.service"];
         };
         "wireguard/public_key" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
-          restartUnits = ["wireguard.service"];
+          restartUnits = ["wireguard-setup.service"];
         };
       };
     };

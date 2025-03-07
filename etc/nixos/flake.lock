@@ -994,15 +994,15 @@
       "locked": {
         "lastModified": 1741374836,
         "narHash": "sha256-2h4/xwQtjFhjvRawgnqa57IYWp2vxYojUzj/XV7CP8Y=",
-        "ref": "refs/heads/master",
+        "owner": "dmitriiStepanidenko",
+        "repo": "wireguard-nixos-private",
         "rev": "80dadc4032719e951c19b197a9c1df7a54a0d452",
-        "revCount": 8,
-        "type": "git",
-        "url": "file:/home/dmitrii/tmp/wireguard-nixos-private"
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:/home/dmitrii/tmp/wireguard-nixos-private"
+        "owner": "dmitriiStepanidenko",
+        "repo": "wireguard-nixos-private",
+        "type": "github"
       }
     }
   },
