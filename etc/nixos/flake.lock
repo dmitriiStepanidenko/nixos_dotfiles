@@ -992,17 +992,17 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1741373847,
-        "narHash": "sha256-rEHvotU8MDBMulEKFqm5ad/so7zji9UA9S7sSpOe8Cs=",
-        "owner": "dmitriiStepanidenko",
-        "repo": "wireguard-nixos-private",
-        "rev": "774b9e089f1b7b05ae6ceb0ada7fc3568e45d91e",
-        "type": "github"
+        "lastModified": 1741374687,
+        "narHash": "sha256-1usBG9REbFukXaeVpagZ0/Oz12u/kNMAl1X94uEk8vo=",
+        "ref": "refs/heads/master",
+        "rev": "8bdf9d794215a65c7cff9709128a1c20c2d36962",
+        "revCount": 7,
+        "type": "git",
+        "url": "file:/home/dmitrii/tmp/wireguard-nixos-private"
       },
       "original": {
-        "owner": "dmitriiStepanidenko",
-        "repo": "wireguard-nixos-private",
-        "type": "github"
+        "type": "git",
+        "url": "file:/home/dmitrii/tmp/wireguard-nixos-private"
       }
     }
   },
