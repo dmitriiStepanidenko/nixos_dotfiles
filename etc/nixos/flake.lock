@@ -992,11 +992,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1741374687,
-        "narHash": "sha256-1usBG9REbFukXaeVpagZ0/Oz12u/kNMAl1X94uEk8vo=",
+        "lastModified": 1741374836,
+        "narHash": "sha256-2h4/xwQtjFhjvRawgnqa57IYWp2vxYojUzj/XV7CP8Y=",
         "ref": "refs/heads/master",
-        "rev": "8bdf9d794215a65c7cff9709128a1c20c2d36962",
-        "revCount": 7,
+        "rev": "80dadc4032719e951c19b197a9c1df7a54a0d452",
+        "revCount": 8,
         "type": "git",
         "url": "file:/home/dmitrii/tmp/wireguard-nixos-private"
       },
