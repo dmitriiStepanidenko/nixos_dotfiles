@@ -8,6 +8,7 @@ keys:
     - &container_registry age1kqasman7j5fguy8xfwkkvz2aad38ugk437enstcz4kg9r8tjeg3q6f5v5c
     - &nginx_local age1xctyl8g4lezw4glhhaggpd8u54vryff5jkwz3e9v4srlgphwe5jqsgsvvw
     - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
+    - &wakapi age1jwal9267d3tm9azlkprd8lf4vkjytre32pcr2jcflpmruxxn0vfqwupku2
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
@@ -39,3 +40,8 @@ creation_rules:
     - age:
       - *mine
       - *woodpecker_server
+  - path_regex: nix/hosts/wakapi/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *wakapi
