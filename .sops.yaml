@@ -9,6 +9,7 @@ keys:
     - &nginx_local age1xctyl8g4lezw4glhhaggpd8u54vryff5jkwz3e9v4srlgphwe5jqsgsvvw
     - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
     - &wakapi age1jwal9267d3tm9azlkprd8lf4vkjytre32pcr2jcflpmruxxn0vfqwupku2
+    - &grafana age1cpspdpwe53mqgen6dfkxlhd8892xsxklcpvy9d6typtkvftm2vkqtcysvg
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
@@ -45,3 +46,8 @@ creation_rules:
     - age:
       - *mine
       - *wakapi
+  - path_regex: nix/hosts/grafana/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *grafana

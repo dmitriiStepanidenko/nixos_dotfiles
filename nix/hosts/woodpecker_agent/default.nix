@@ -26,6 +26,11 @@
             endpointPort = 51820;
           }
         ];
+        watchdog = {
+          enable = true;
+          pingIP = "10.252.1.0";
+          interval = 30;
+        };
       };
     }
     ../../../nix/modules/woodpecker_agent.nix

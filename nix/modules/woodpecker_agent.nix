@@ -91,6 +91,7 @@
       pkgs.cargo-binstall
       pkgs.sd
       pkgs.alejandra
+      pkgs.attic-client
     ];
   };
   config.services.woodpecker-agents.agents.docker = {
@@ -99,18 +100,5 @@
     #extraGroups = [config.users.users.docker.group];
     package = pkgs.callPackage ../packages/woodpecker-agent.nix {};
     extraGroups = ["docker"];
-    path = [
-      pkgs.bash
-      pkgs.git
-      pkgs.docker
-      pkgs.openssh # sftp + ssh clone
-      pkgs.nix
-      pkgs.curl
-      pkgs.gnutar
-      pkgs.gzip
-      pkgs.cargo-binstall
-      pkgs.sd
-      pkgs.alejandra
-    ];
   };
 }

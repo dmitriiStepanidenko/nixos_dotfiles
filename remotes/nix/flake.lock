@@ -264,11 +264,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1741216525,
-        "narHash": "sha256-luRnhdD7pBVuKYgtBnKC5Xt9eTXfbTVgJXf3AP7h2ac=",
+        "lastModified": 1741397227,
+        "narHash": "sha256-zojXmlrAblTg0yyOrFHZvKjRL1owd773Wbh2JJ9brpk=",
         "owner": "dmitriiStepanidenko",
         "repo": "my-proxmox-vm-profile-nixos",
-        "rev": "d21d76848a931cbe64b88493456bfc3b386e91c4",
+        "rev": "1cff8c66e89b7b3c42c4c6b2daa0236d1e94c82c",
         "type": "github"
       },
       "original": {

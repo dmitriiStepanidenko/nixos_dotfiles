@@ -1,14 +1,21 @@
 {
   config,
+  pkgs,
+  lib,
   inputs,
+  system,
   ...
 }: {
+  options.woodpecker_agent.package = lib.mkOption {
+    type = lib.types.package;
+    default = pkgs.woodpecker-agent;
+  };
   imports = [
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
         enable = true;
-        ips = "10.252.1.4/24";
+        ips = "10.252.1.6/24";
         privateKeyFile = config.sops.secrets."wireguard/private_key".path;
         peers = [
           {
@@ -26,11 +33,61 @@
         };
       };
     }
-    ../../../nix/modules/gitea_action_runner.nix
   ];
-
   config = {
-    networking.hostName = "gitea_worker";
+    environment.systemPackages = [
+      inputs.colmena.defaultPackage.${system}
+    ];
+    networking.firewall = {
+      allowedUDPPorts = [
+        3000
+      ];
+      allowedTCPPorts = [
+        3000
+      ];
+      interfaces.wg0 = {
+        allowedUDPPorts = [
+          3000
+        ];
+        allowedTCPPorts = [
+          3000
+        ];
+      };
+    };
+    services.wakapi = {
+      enable = true;
+      passwordSaltFile = config.sops.secrets."wakapi/salt".path;
+      package = pkgs.callPackage ../../packages/wakapi.nix {};
+      database = {
+        createLocally = true;
+        dialect = "postgres";
+        user = "wakapi";
+        name = "wakapi";
+      };
+      settings = {
+        app = {
+          leaderboard_generation_time = "0 * * * * *";
+          aggregation_time = "*/15 * * * * *";
+        };
+        security = {
+          insecure_cookies = true;
+        };
+        server = {
+          port = 3000;
+          public_url = "http://10.252.1.6:3000";
+          listen_ipv4 = "10.252.1.6";
+        };
+        db = {
+          dialect = "postgres";
+          user = "wakapi";
+          name = "wakapi";
+          host = "127.0.0.1";
+          port = 5432;
+        };
+      };
+    };
+
+    networking.hostName = "wakapi";
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -40,6 +97,11 @@
         generateKey = true;
       };
       secrets = {
+        "wakapi/salt" = {
+          mode = "0440";
+          owner = "wakapi";
+          restartUnits = ["wakapi.service"];
+        };
         "wireguard/wireguard_ip" = {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
