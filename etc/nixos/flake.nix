@@ -2,6 +2,9 @@
   description = "Mine flake";
 
   inputs = {
+    sccache = {
+      url = "git+file:///home/dmitrii/tmp/sccache-nix";
+    };
     surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
     wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
     #wireguard.url = "git+file:/home/dmitrii/tmp/wireguard-nixos-private";
@@ -44,6 +47,7 @@
     colmena,
     nvf,
     rust-overlay,
+    sccache,
     #sops-nix,
     ...
   }: let
@@ -109,6 +113,7 @@
                 pkgs.mold
                 pkgs.clang
                 rust
+                sccache.packages.${system}.sccache
               ];
               variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
               variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";

@@ -11,6 +11,10 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
+    sccache = {
+      url = "git+file:///home/dmitrii/tmp/sccache-nix";
+    };
+
     vm-profile = {
       url = "github:dmitriiStepanidenko/my-proxmox-vm-profile-nixos";
       inputs.nixpkgs.follows = "nixpkgs";

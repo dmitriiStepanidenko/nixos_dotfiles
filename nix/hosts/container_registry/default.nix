@@ -29,6 +29,26 @@
   ];
   config = {
     networking.hostName = "container_registry";
+    networking.firewall = {
+      allowedUDPPorts = [
+        22
+        5000
+      ];
+      allowedTCPPorts = [
+        22
+        5000
+      ];
+      interfaces.wg0 = {
+        allowedUDPPorts = [
+          22
+          5000
+        ];
+        allowedTCPPorts = [
+          22
+          5000
+        ];
+      };
+    };
     services.dockerRegistry = {
       enable = true;
       enableDelete = true;

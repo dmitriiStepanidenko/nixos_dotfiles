@@ -34,6 +34,9 @@
       };
     }
     ../../../nix/modules/woodpecker_agent.nix
+    #inputs.sccache.nixosModules.default # Import all three modules
+    inputs.sccache.nixosModules.sccache_dist_scheduler
+    inputs.sccache.nixosModules.sccache_dist_build_server
   ];
   config = {
     environment.systemPackages = [
@@ -49,12 +52,55 @@
       interfaces.wg0 = {
         allowedUDPPorts = [
           8080
+          10600
         ];
         allowedTCPPorts = [
           8080
+          10600
         ];
       };
     };
+    services.sccache-scheduler = {
+      enable = true;
+      listenAddr = "10.252.1.7:10600";
+      clientAuth = {
+        type = "token";
+        tokenFile = config.sops.secrets."sccache/client_token".path;
+      };
+      serverAuth = {
+        type = "jwt_hs256";
+        secretKeyFile = config.sops.secrets."sccache/server_key".path;
+      };
+    };
+    services.sccache-server = {
+      enable = true;
+      publicAddr = "127.0.0.1:10500";
+      schedulerUrl = "https://sccache-scheduler.example.com";
+
+      # Optionally customize cache settings
+      cacheDir = "/var/lib/sccache/toolchains";
+      toolchainCacheSize = 10737418240; # 10GB
+
+      # Builder configuration
+      builder = {
+        type = "overlay";
+        buildDir = "/var/lib/sccache/build";
+        # bubblewrap path is set to the NixOS package by default
+      };
+
+      # Authentication with the scheduler
+      schedulerAuth = {
+        type = "jwt_token";
+        tokenFile = config.sops.secrets."sccache/server_token".path;
+      };
+
+      # Any additional configuration
+      extraConfig = {
+        # Add any other config sections or values here
+      };
+    };
+
+    # Configure the sccache build server
     services.atticd = {
       enable = true;
       environmentFile = config.sops.secrets."attic/environment".path;
@@ -96,6 +142,21 @@
         generateKey = true;
       };
       secrets = {
+        "sccache/server_token" = {
+          owner = "root";
+          mode = "0400";
+          restartUnits = ["sccache-server.service"];
+        };
+        "sccache/server_key" = {
+          owner = config.users.users.sccache.name;
+          mode = "0440";
+          restartUnits = ["sccache-scheduler.service"];
+        };
+        "sccache/client_token" = {
+          owner = config.users.users.sccache.name;
+          mode = "0440";
+          restartUnits = ["sccache-scheduler.service"];
+        };
         "attic/environment" = {
           mode = "0440";
           restartUnits = ["atticd.service"];
