@@ -1,7 +1,9 @@
 {
   pkgs,
   lib,
+  inputs,
   config,
+  system,
   modulesPath,
   ...
 }: {
@@ -92,6 +94,7 @@
       pkgs.sd
       pkgs.alejandra
       pkgs.attic-client
+      inputs.sccache.packages.${system}.sccache
     ];
   };
   config.services.woodpecker-agents.agents.docker = {

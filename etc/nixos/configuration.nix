@@ -457,6 +457,8 @@ in {
     act
     unstable.woodpecker-cli
 
+    attic-client
+
     sops
 
     cargo-hakari
