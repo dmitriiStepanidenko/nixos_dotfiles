@@ -457,6 +457,8 @@ in {
     act
     unstable.woodpecker-cli
 
+    unstable.nh
+
     attic-client
 
     sops
