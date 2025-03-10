@@ -12,7 +12,7 @@
     };
 
     sccache = {
-      url = "git+file:///home/dmitrii/tmp/sccache-nix";
+      url = "github:dmitriiStepanidenko/sccache-nix";
     };
 
     vm-profile = {

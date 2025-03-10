@@ -3,7 +3,7 @@
 
   inputs = {
     sccache = {
-      url = "git+file:///home/dmitrii/tmp/sccache-nix";
+      url = "github:dmitriiStepanidenko/sccache-nix";
     };
     surrealdb.url = "github:dmitriiStepanidenko/surrealdb-nixos";
     wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";

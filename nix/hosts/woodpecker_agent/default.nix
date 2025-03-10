@@ -45,18 +45,26 @@
     networking.firewall = {
       allowedUDPPorts = [
         8080
+        10500
+        10600
       ];
       allowedTCPPorts = [
         8080
+        10500
+        10600
       ];
       interfaces.wg0 = {
         allowedUDPPorts = [
           8080
           10600
+          10500
+          10501
         ];
         allowedTCPPorts = [
           8080
           10600
+          10500
+          10501
         ];
       };
     };
@@ -71,15 +79,17 @@
         type = "jwt_hs256";
         secretKeyFile = config.sops.secrets."sccache/server_key".path;
       };
+      syslog = "trace";
     };
     services.sccache-server = {
       enable = true;
-      publicAddr = "127.0.0.1:10500";
-      schedulerUrl = "https://sccache-scheduler.example.com";
+      syslog = "trace";
+      publicAddr = "10.252.1.7:10500";
+      schedulerUrl = "http://10.252.1.7:10600";
 
       # Optionally customize cache settings
       cacheDir = "/var/lib/sccache/toolchains";
-      toolchainCacheSize = 10737418240; # 10GB
+      toolchainCacheSize = 1024*1024*1024 * 3; # 10GB * 3 = 30 GB
 
       # Builder configuration
       builder = {
@@ -92,6 +102,8 @@
       schedulerAuth = {
         type = "jwt_token";
         tokenFile = config.sops.secrets."sccache/server_token".path;
+        #type = "token";
+        #tokenFile = config.sops.secrets."sccache/client_token".path;
       };
 
       # Any additional configuration
