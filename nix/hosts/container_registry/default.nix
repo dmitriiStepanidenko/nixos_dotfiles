@@ -49,11 +49,16 @@
         ];
       };
     };
+    systemd.services.docker-registry.serviceConfig = {
+      Type = "simple";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
     services.dockerRegistry = {
       enable = true;
       enableDelete = true;
       enableGarbageCollect = true;
-      garbageCollectDates = "daily";
+      garbageCollectDates = "weekly";
       port = 5000;
       storagePath = "/var/lib/docker-registry";
       openFirewall = true;

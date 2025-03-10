@@ -37,7 +37,12 @@ in {
   ];
 
   config = {
-    systemd.services.sftpgo.serviceConfig.UMask = lib.mkForce "022";
+    systemd.services.sftpgo.serviceConfig = {
+      UMask = lib.mkForce "022";
+      Type = "simple";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
     systemd.tmpfiles.rules = ["Z ${dataDir} 755 sftpgo nginx - -"];
     networking = {
       hostName = "nginx_local";

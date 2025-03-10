@@ -67,7 +67,7 @@
       settings = {
         app = {
           leaderboard_generation_time = "0 * * * * *";
-          aggregation_time = "*/15 * * * * *";
+          aggregation_time = "*/75 * * * * *";
         };
         security = {
           insecure_cookies = true;
