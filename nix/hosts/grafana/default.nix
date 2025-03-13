@@ -63,6 +63,17 @@
         ];
       };
     };
+    systemd.services = {
+      grafana.serviceConfig = {
+        RestartSec = 25;
+      };
+      loki.serviceConfig = {
+        RestartSec = 25;
+      };
+      prometheus.serviceConfig = {
+        RestartSec = 25;
+      };
+    };
     services = {
       grafana = {
         enable = true;

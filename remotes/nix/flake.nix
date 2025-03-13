@@ -5,6 +5,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wireguard = {
       url = "github:dmitriiStepanidenko/wireguard-nixos-private";
@@ -40,6 +44,10 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    buildbot-nix = {
+      url = "github:nix-community/buildbot-nix";
+    };
   };
   outputs = inputs @ {
     self,
@@ -48,6 +56,7 @@
     nixpkgs-unstable,
     sops-nix,
     vm-profile,
+    nixos-generators,
     ...
   }: let
     system = "x86_64-linux";
@@ -167,12 +176,45 @@
           ../../nix/hosts/nginx_local/default.nix
         ];
       };
+      backup = {...}: {
+        deployment = {
+          targetHost = "176.123.169.226";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/backup/default.nix
+        ];
+      };
     };
     devShells.${system}.default = pkgs_unstable.mkShell {
       packages = [colmena.defaultPackage.${system}];
       shellHook = ''
         export PS1='\[\e[32m\][\u@\H:nix-develop:\w]\\$\[\e[0m\] '
       '';
+    };
+    packages.${system} = {
+      iso = nixos-generators.nixosGenerate {
+        specialArgs = {inherit inputs system sops-nix vm-profile;};
+        inherit system;
+        modules = [
+          ../../nix/hosts/isoimage/configuration.nix
+          {
+            services.cloud-init.network.enable = true;
+            #systemd.network.enable = false;
+            networking.useNetworkd = true;
+          }
+        ];
+        format = "iso";
+      };
+    };
+    vm-default-iso = nixpkgs.lib.nixosSystem {
+      specialArgs = {inherit inputs system sops-nix vm-profile;};
+      inherit system;
+      modules = [
+        ../../nix/hosts/isoimage/configuration.nix
+      ];
     };
   };
 }

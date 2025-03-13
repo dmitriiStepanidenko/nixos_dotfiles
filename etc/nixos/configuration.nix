@@ -210,11 +210,16 @@ in {
       systemd-boot.memtest86.enable = true;
     };
   };
+  networking = {
+    hostName = "nixos"; # Define your hostname.
 
-  networking.hostName = "nixos"; # Define your hostname.
+    # Enable networking
+    networkmanager.enable = true;
+    hosts = {
+      "10.252.1.0" = ["dev.graph-learning.ru" "*.dev.graph-learning.ru"];
+    };
+  };
 
-  # Enable networking
-  networking.networkmanager.enable = true;
   nix = {
     # Enable flakes
     settings.experimental-features = ["nix-command" "flakes"];

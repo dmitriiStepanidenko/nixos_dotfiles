@@ -51,3 +51,7 @@ creation_rules:
     - age:
       - *mine
       - *grafana
+  - path_regex: nix/hosts/backup/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine

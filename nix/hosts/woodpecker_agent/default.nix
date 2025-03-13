@@ -37,6 +37,7 @@
     #inputs.sccache.nixosModules.default # Import all three modules
     inputs.sccache.nixosModules.sccache_dist_scheduler
     inputs.sccache.nixosModules.sccache_dist_build_server
+    inputs.buildbot-nix.nixosModules.buildbot-worker
   ];
   config = {
     environment.systemPackages = [
@@ -59,15 +60,64 @@
           10600
           10500
           10501
+          3005
+          55655
         ];
         allowedTCPPorts = [
           8080
           10600
           10500
           10501
+          3005
+          55655
         ];
       };
     };
+    services.hydra = {
+      enable = true;
+      hydraURL = "http://10.252.1.7:3005";
+      notificationSender = "hydra@localhost";
+      buildMachinesFiles = [];
+      useSubstitutes = true;
+      port = 3005;
+      extraConfig = ''
+        Include ${config.sops.secrets."hydra/gitea_authorizations.conf".path}
+        <dynamicruncommand>
+                enable = 1
+        </dynamicruncommand>
+
+      '';
+      #package = inputs.nixpkgs-unstable.legacyPackages.${system}.hydra;
+    };
+    #nix.extraOptions = ''
+    #  allowed-uris = https://github.com/ http://10.252.1.0:3000/
+    #'';
+    nix.settings = {
+      allowed-uris = [
+        "github:"
+        "github:NixOS/nixpkgs"
+        "git+https://github.com/"
+        "git+ssh://github.com/"
+        "git+http://10.252.1.0:3000/"
+      ];
+      # Disable extra on this server
+      extra-substituters = [
+      ];
+      extra-trusted-public-keys = [
+      ];
+    };
+    users.users.nix-serve = {
+      isSystemUser = true;
+      group = "nix-serve";
+    };
+    services.nix-serve = {
+      enable = true;
+      #secretKeyFile = "/var/cache-priv-key.pem";
+      secretKeyFile = config.sops.secrets."nix-serve/cache-priv-key.pem".path;
+      port = 55655;
+    };
+
+    users.groups.nix-serve = {};
     services.sccache-scheduler = {
       enable = true;
       listenAddr = "10.252.1.7:10600";
@@ -89,7 +139,7 @@
 
       # Optionally customize cache settings
       cacheDir = "/var/lib/sccache/toolchains";
-      toolchainCacheSize = 1024*1024*1024 * 3; # 10GB * 3 = 30 GB
+      toolchainCacheSize = 1024 * 1024 * 1024 * 3; # 10GB * 3 = 30 GB
 
       # Builder configuration
       builder = {
@@ -154,6 +204,15 @@
         generateKey = true;
       };
       secrets = {
+        "nix-serve/cache-priv-key.pem" = {
+          group = "nix-serve";
+          mode = "0440";
+          #restartUnits = ["hydra-server.service"];
+        };
+        "hydra/gitea_authorizations.conf" = {
+          group = "hydra";
+          mode = "0440";
+        };
         "sccache/server_token" = {
           owner = "root";
           mode = "0400";
