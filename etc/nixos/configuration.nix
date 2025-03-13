@@ -216,7 +216,7 @@ in {
     # Enable networking
     networkmanager.enable = true;
     hosts = {
-      "10.252.1.0" = ["dev.graph-learning.ru" "*.dev.graph-learning.ru"];
+      "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
     };
   };
 
