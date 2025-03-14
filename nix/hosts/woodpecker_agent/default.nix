@@ -42,6 +42,7 @@
   config = {
     environment.systemPackages = [
       inputs.colmena.defaultPackage.${system}
+      inputs.buildbot-nix.packages.${system}.buildbot-effects
     ];
     networking.firewall = {
       allowedUDPPorts = [
@@ -62,6 +63,7 @@
           10501
           3005
           55655
+          5678
         ];
         allowedTCPPorts = [
           8080
@@ -70,8 +72,37 @@
           10501
           3005
           55655
+          5678
         ];
       };
+    };
+    swapDevices = [
+      {
+        device = "/swapfile";
+        size = 16 * 1024; # 16GB
+      }
+    ];
+    networking = {
+      hosts = {
+        "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
+      };
+    };
+    services.buildbot-nix.worker = {
+      enable = true;
+      name = "woodpecker_agent";
+      workerPasswordFile = config.sops.secrets."buildbot/worker_pass".path;
+      masterUrl = "tcp:host=10.252.1.5:port=9989";
+    };
+    services.n8n = {
+      enable = true;
+      settings = {
+        port = 5678;
+        editorBaseUrl = "http://10.252.1.7:5678";
+      };
+      webhookUrl = "http://10.252.1.7:5678";
+    };
+    systemd.services.n8n.environment = {
+      N8N_SECURE_COOKIE = "false";
     };
     services.hydra = {
       enable = true;
@@ -204,6 +235,11 @@
         generateKey = true;
       };
       secrets = {
+        "buildbot/worker_pass" = {
+          mode = "0440";
+          group = "buildbot-worker";
+          restartUnits = ["buildbot-worker.service"];
+        };
         "nix-serve/cache-priv-key.pem" = {
           group = "nix-serve";
           mode = "0440";

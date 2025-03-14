@@ -37,6 +37,11 @@ in {
   ];
 
   config = {
+    networking = {
+      hosts = {
+        "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
+      };
+    };
     systemd.services.sftpgo.serviceConfig = {
       UMask = lib.mkForce "022";
       Type = "simple";

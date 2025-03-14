@@ -15,6 +15,11 @@
       secrets."action_runner/token" = {
       };
     };
+    networking = {
+      hosts = {
+        "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
+      };
+    };
   };
 
   config.services.gitea-actions-runner = {
@@ -23,11 +28,11 @@
       enable = true;
       name = "action_runner_1";
       tokenFile = config.sops.secrets."action_runner/token".path;
-      url = "http://10.252.1.0:3000";
+      url = "https://gitea.dev.graph-learning.ru";
       labels = [
-        "ubuntu-latest" 
-        "ubuntu-22.04" 
-        "ubuntu-20.04" 
+        "ubuntu-latest"
+        "ubuntu-22.04"
+        "ubuntu-20.04"
         "ubuntu-18.04"
       ];
     };

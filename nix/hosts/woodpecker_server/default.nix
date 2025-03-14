@@ -34,7 +34,6 @@
       };
     }
     inputs.buildbot-nix.nixosModules.buildbot-master
-    inputs.buildbot-nix.nixosModules.buildbot-worker
   ];
   config = {
     virtualisation = {
@@ -60,19 +59,32 @@
             8000
             9000
             44331
+            9989
           ];
           allowedTCPPorts = [
             8000
             9000
             22
             44331
+            9989
           ];
         };
         enable = true;
-        allowedTCPPorts = [22 8000 9000 44331];
+        allowedTCPPorts = [
+          22
+          8000
+          9000
+          44331
+          9989
+        ];
       };
 
       hostName = "woodpecker_server";
+    };
+    networking = {
+      hosts = {
+        "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
+      };
     };
     services.woodpecker-server = {
       enable = true;
@@ -88,8 +100,8 @@
       enable = true;
       jobReportLimit = null;
       # optional nix-eval-jobs settings
-      evalWorkerCount = 3; # limit number of concurrent evaluations
-      evalMaxMemorySize = 2048; # limit memory usage per evaluation
+      evalWorkerCount = 1; # limit number of concurrent evaluations
+      evalMaxMemorySize = 14336; # limit memory usage per evaluation
 
       domain = "10.252.1.5:44331";
       admins = ["dmitrii"];
@@ -101,7 +113,7 @@
 
       gitea = {
         enable = true;
-        instanceUrl = "http://10.252.1.0:3000";
+        instanceUrl = "https://gitea.dev.graph-learning.ru";
 
         oauthId = "346d9747-2139-4b89-9f61-2b1cfe2e2c09";
         oauthSecretFile = config.sops.secrets."buildbot/gitea_client_secret".path;
@@ -110,17 +122,17 @@
         tokenFile = config.sops.secrets."buildbot/gitea_token".path;
 
         #webhookSecretFile = pkgs.writeText "webhook-secret" "changeMe";
-                                #topic = "build-with-buildbot";
+        #topic = "build-with-buildbot";
       };
       #extraConfig = ''
       #  c["www"] = {"pb": {"port": "tcp:44331:interface=\\:\\:"}}
       #'';
     };
-    services.buildbot-nix.worker = {
-      enable = true;
-      name = "woodpecker_server";
-      workerPasswordFile = config.sops.secrets."buildbot/worker_pass".path;
-    };
+    #services.buildbot-nix.worker = {
+    #  enable = true;
+    #  name = "woodpecker_server";
+    #  workerPasswordFile = config.sops.secrets."buildbot/worker_pass".path;
+    #};
 
     sops = {
       defaultSopsFile = ./secrets.yaml;
@@ -131,11 +143,6 @@
         generateKey = true;
       };
       secrets = {
-        "buildbot/worker_pass" = {
-          mode = "0440";
-          group = "buildbot";
-          restartUnits = ["buildbot-master.service" "buildbot-worker.service"];
-        };
         "buildbot/gitea_webhook" = {
           mode = "0440";
           group = "buildbot";

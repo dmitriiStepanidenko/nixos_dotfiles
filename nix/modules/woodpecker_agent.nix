@@ -17,6 +17,7 @@
   config = {
     environment.systemPackages = with pkgs; [
       woodpecker-agent
+      eza
     ];
     sops = {
       secrets."woodpecker_agent_local" = {
@@ -94,6 +95,7 @@
       pkgs.sd
       pkgs.alejandra
       pkgs.attic-client
+      pkgs.eza
       inputs.sccache.packages.${system}.sccache
     ];
   };
