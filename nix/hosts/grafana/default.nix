@@ -243,6 +243,22 @@
               }
             ];
           }
+          {
+            job_name = "piwatch";
+            static_configs = [
+              {
+                targets = ["10.252.1.13:9002"];
+              }
+            ];
+          }
+          {
+            job_name = "staging";
+            static_configs = [
+              {
+                targets = ["10.252.1.10:9002"];
+              }
+            ];
+          }
         ];
       };
     };
