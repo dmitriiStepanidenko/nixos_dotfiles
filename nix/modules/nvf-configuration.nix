@@ -131,11 +131,18 @@
       ts.enable = true;
       lua.enable = true;
       python.enable = true;
+
+      clang = {
+        dap.debugger = "lldb-dap";
+      };
       rust = {
         enable = true;
         format.enable = true;
         treesitter.enable = true;
         crates.enable = true;
+        dap = {
+          enable = true;
+        };
         lsp = {
           enable = true;
           #package =

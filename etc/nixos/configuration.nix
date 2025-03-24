@@ -549,7 +549,7 @@ in {
     getent
     auto-cpufreq
 
-    lldb # debugging
+    #lldb # debugging
 
     mdbook
 
