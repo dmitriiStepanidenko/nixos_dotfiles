@@ -10,7 +10,7 @@ keys:
     - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
     - &wakapi age1jwal9267d3tm9azlkprd8lf4vkjytre32pcr2jcflpmruxxn0vfqwupku2
     - &grafana age1cpspdpwe53mqgen6dfkxlhd8892xsxklcpvy9d6typtkvftm2vkqtcysvg
-    - &piwatch age10qlllna4t5c9xyk2awnl6x03hg2hfedsl5lckqr6hjauaah9hd8ssxnedc
+    - &piwatch age1nlnchf9ye4pcdyau2u6gfwawxdufzsht2v4ur5geldejv9226v0sckyeyd
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:

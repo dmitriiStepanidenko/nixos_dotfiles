@@ -137,9 +137,6 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/wakapi/default.nix
-          {
-            woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
-          }
         ];
       };
       grafana = {...}: {
@@ -190,7 +187,13 @@
       #  ];
       #};
     };
-    devShells.default.${system} = pkgs_unstable.mkShell {
+    #devShells.default.${system} = pkgs_unstable.mkShell {
+    #  packages = [colmena.defaultPackage.${system}];
+    #  shellHook = ''
+    #    export PS1='\[\e[32m\][\u@\H:nix-develop:\w]\\$\[\e[0m\] '
+    #  '';
+    #};
+    devShells.${system}.default = pkgs_unstable.mkShell {
       packages = [colmena.defaultPackage.${system}];
       shellHook = ''
         export PS1='\[\e[32m\][\u@\H:nix-develop:\w]\\$\[\e[0m\] '

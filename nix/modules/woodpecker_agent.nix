@@ -80,7 +80,9 @@
     enable = true;
     environmentFile = [config.sops.secrets."woodpecker_agent_local".path];
     #extraGroups = [config.users.users.docker.group];
-    package = pkgs.callPackage ../packages/woodpecker-agent.nix {};
+    #package = pkgs.callPackage ../packages/woodpecker-agent.nix {};
+    package =
+      inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.woodpecker-agent;
     extraGroups = ["docker"];
     path = [
       pkgs.bash
