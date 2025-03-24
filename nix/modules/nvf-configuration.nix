@@ -4,7 +4,6 @@
   inputs,
   ...
 }: {
-
   config.vim = {
     theme.enable = true;
     theme.name = "tokyonight";
@@ -13,7 +12,7 @@
     lineNumberMode = "number";
 
     options = {
-        tabstop = 2;
+      tabstop = 2;
     };
 
     filetree = {
@@ -92,6 +91,11 @@
         #providers = [
         #  "rustaceanvim"
         #];
+        enable = true;
+      };
+    };
+    debugger = {
+      nvim-dap = {
         enable = true;
       };
     };

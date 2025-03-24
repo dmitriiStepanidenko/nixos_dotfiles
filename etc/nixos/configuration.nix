@@ -549,12 +549,7 @@ in {
     getent
     auto-cpufreq
 
-    #rustup
-    #unstable.cargo
-    #unstable.rustc
-    #unstable.rust-analyzer
-    #unstable.rustfmt
-    #unstable.clippy
+    lldb # debugging
 
     mdbook
 
