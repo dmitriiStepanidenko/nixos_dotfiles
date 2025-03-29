@@ -11,11 +11,11 @@ in {
     kernelModules = ["coretemp" "ideapad-laptop" "ryzen_smu"];
   };
   hardware.cpu.amd.ryzen-smu.enable = true;
-  services.udev.extraRules = ''
-    SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
-    SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
-    SUBSYSTEM=="usb", ACTION="add", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
-  '';
+  #services.udev.extraRules = ''
+  #  SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
+  #  SUBSYSTEM=="power_supply", ATTR{status}=="Charging", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
+  #  SUBSYSTEM=="usb", ACTION="add", RUN+="${pkgs.ryzenadj}/bin/ryzenadj -a 35000 -b 35000 -c 35000 -f 85 --apu-skin-temp=85"
+  #'';
 
   nixpkgs.overlays = [
     (_final: _prev: {
@@ -39,9 +39,7 @@ in {
       };
       charger = {
         governor = "performance";
-        turbo = "never";
-        scaling_min_freq = 400000;
-        scaling_max_freq = 3500000;
+        turbo = "auto";
       };
     };
   };

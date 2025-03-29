@@ -547,7 +547,6 @@ in {
     hplipWithPlugin # hp printer
 
     getent
-    auto-cpufreq
 
     #lldb # debugging
 
