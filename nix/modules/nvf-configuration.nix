@@ -55,55 +55,55 @@
         key = "<Esc>";
         mode = "t";
         silent = true;
-        action = "<C-\><C-n>";
+        action = "<C-\\><C-n>";
       }
       {
         key = "<A-h>";
         mode = "t";
         silent = true;
-        action = "<C-\><C-N><C-w>h";
+        action = "<C-\\><C-N><C-w>h";
       }
       {
         key = "<A-j>";
         mode = "t";
         silent = true;
-        action = "<C-\><C-N><C-w>j";
+        action = "<C-\\><C-N><C-w>j";
       }
       {
         key = "<A-k>";
         mode = "t";
         silent = true;
-        action = "<C-\><C-N><C-w>k";
+        action = "<C-\\><C-N><C-w>k";
       }
       {
         key = "<A-l>";
         mode = "t";
         silent = true;
-        action = "<C-\><C-N><C-w>l";
+        action = "<C-\\><C-N><C-w>l";
       }
       {
         key = "<A-h>";
         mode = "i";
         silent = true;
-        action = "<C-\><C-N><C-w>h";
+        action = "<C-\\><C-N><C-w>h";
       }
       {
         key = "<A-j>";
         mode = "i";
         silent = true;
-        action = "<C-\><C-N><C-w>j";
+        action = "<C-\\><C-N><C-w>j";
       }
       {
         key = "<A-k>";
         mode = "i";
         silent = true;
-        action = "<C-\><C-N><C-w>k";
+        action = "<C-\\><C-N><C-w>k";
       }
       {
         key = "<A-l>";
         mode = "i";
         silent = true;
-        action = "<C-\><C-N><C-w>l";
+        action = "<C-\\><C-N><C-w>l";
       }
       {
         key = "<A-h>";
