@@ -50,6 +50,86 @@
         silent = true;
         action = "gt";
       }
+      # Terminal keybinds
+      {
+        key = "<Esc>";
+        mode = "t";
+        silent = true;
+        action = "<C-\><C-n>";
+      }
+      {
+        key = "<A-h>";
+        mode = "t";
+        silent = true;
+        action = "<C-\><C-N><C-w>h";
+      }
+      {
+        key = "<A-j>";
+        mode = "t";
+        silent = true;
+        action = "<C-\><C-N><C-w>j";
+      }
+      {
+        key = "<A-k>";
+        mode = "t";
+        silent = true;
+        action = "<C-\><C-N><C-w>k";
+      }
+      {
+        key = "<A-l>";
+        mode = "t";
+        silent = true;
+        action = "<C-\><C-N><C-w>l";
+      }
+      {
+        key = "<A-h>";
+        mode = "i";
+        silent = true;
+        action = "<C-\><C-N><C-w>h";
+      }
+      {
+        key = "<A-j>";
+        mode = "i";
+        silent = true;
+        action = "<C-\><C-N><C-w>j";
+      }
+      {
+        key = "<A-k>";
+        mode = "i";
+        silent = true;
+        action = "<C-\><C-N><C-w>k";
+      }
+      {
+        key = "<A-l>";
+        mode = "i";
+        silent = true;
+        action = "<C-\><C-N><C-w>l";
+      }
+      {
+        key = "<A-h>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>h";
+      }
+      {
+        key = "<A-j>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>j";
+      }
+      {
+        key = "<A-k>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>k";
+      }
+      {
+        key = "<A-l>";
+        mode = "n";
+        silent = true;
+        action = "<C-w>l";
+      }
+
       #{
       #  key = "\\v";
       #  mode = "n";
