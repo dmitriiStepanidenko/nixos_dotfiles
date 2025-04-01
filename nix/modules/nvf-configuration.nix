@@ -105,6 +105,9 @@
     terminal.toggleterm.lazygit = {
       enable = true;
       direction = "tab";
+      mappings = {
+        open = "\\gg";
+      };
     };
 
     statusline.lualine.enable = true;
