@@ -102,6 +102,9 @@
         };
       };
     };
+    terminal.toggleterm.lazygit = {
+      enable = true;
+    };
 
     statusline.lualine.enable = true;
     telescope = {
