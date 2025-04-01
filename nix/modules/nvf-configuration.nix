@@ -102,11 +102,14 @@
         };
       };
     };
-    terminal.toggleterm.lazygit = {
+    terminal.toggleterm = {
       enable = true;
-      direction = "tab";
-      mappings = {
-        open = "\\gg";
+      lazygit = {
+        enable = true;
+        #direction = "tab";
+        mappings = {
+          #open = "\\gg";
+        };
       };
     };
 
