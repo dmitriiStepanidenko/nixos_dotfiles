@@ -46,28 +46,20 @@
     };
 
     "/home/dmitrii/shared/tmp/gamechanger/target" = {
-      device = "/dev/disk/by-label/gamechanger_t";
+      device = "/dev/disk/by-partlabel/gamechanger_target";
       depends = ["/home/dmitrii/shared"];
       fsType = "ext4";
       options = [
-        "uid=1000"
-        "gid=1000"
-        "dmask=0022"
-        "fmask=0022"
         "users"
         "nofail"
       ];
     };
 
-    "/home/dmitrii/shared/tmp/graph-learning/target" = {
-      device = "/dev/disk/by-label/graph_learning_t";
+    "/home/dmitrii/shared/tmp/graph-learning/backend/target" = {
+      device = "/dev/disk/by-partlabel/graph_learning_target";
       depends = ["/home/dmitrii/shared"];
       fsType = "ext4";
       options = [
-        "uid=1000"
-        "gid=1000"
-        "dmask=0022"
-        "fmask=0022"
         "users"
         "nofail"
       ];
