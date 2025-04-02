@@ -183,7 +183,7 @@
       };
     };
     terminal.toggleterm = {
-      enable = true;
+      enable = false;
       lazygit = {
         enable = false; # Laggy as heck
         #direction = "tab";
