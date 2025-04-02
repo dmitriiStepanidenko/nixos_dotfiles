@@ -50,8 +50,16 @@
       depends = ["/home/dmitrii/shared"];
       fsType = "ext4";
       options = [
+        "defaults"
         "users"
         "nofail"
+
+        "noauto_da_alloc"
+        "data=writeback"
+        "lazytime"
+        "journal_async_commit"
+        "commit=999"
+        "nobarrier"
       ];
     };
 
@@ -60,8 +68,16 @@
       depends = ["/home/dmitrii/shared"];
       fsType = "ext4";
       options = [
+        "defaults"
         "users"
         "nofail"
+
+        "noauto_da_alloc"
+        "data=writeback"
+        "lazytime"
+        "journal_async_commit"
+        "commit=999"
+        "nobarrier"
       ];
     };
   };
