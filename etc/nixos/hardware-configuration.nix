@@ -53,6 +53,7 @@
         "defaults"
         "users"
         "nofail"
+        "exec" # Permit execution !
 
         "noauto_da_alloc"
         "data=writeback"
@@ -71,6 +72,7 @@
         "defaults"
         "users"
         "nofail"
+        "exec" # Permit execution !
 
         "noauto_da_alloc"
         "data=writeback"
