@@ -44,6 +44,34 @@
         "inherit"
       ];
     };
+
+    "/home/dmitrii/shared/tmp/gamechanger/target" = {
+      device = "/dev/disk/by-label/gamechanger_t";
+      depends = ["/home/dmitrii/shared"];
+      fsType = "ext4";
+      options = [
+        "uid=1000"
+        "gid=1000"
+        "dmask=0022"
+        "fmask=0022"
+        "users"
+        "nofail"
+      ];
+    };
+
+    "/home/dmitrii/shared/tmp/graph-learning/target" = {
+      device = "/dev/disk/by-label/graph_learning_t";
+      depends = ["/home/dmitrii/shared"];
+      fsType = "ext4";
+      options = [
+        "uid=1000"
+        "gid=1000"
+        "dmask=0022"
+        "fmask=0022"
+        "users"
+        "nofail"
+      ];
+    };
   };
   services.smartd = {
     enable = true;
