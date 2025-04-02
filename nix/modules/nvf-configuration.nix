@@ -185,7 +185,7 @@
     terminal.toggleterm = {
       enable = true;
       lazygit = {
-        enable = true;
+        enable = false; # Laggy as heck
         #direction = "tab";
         mappings = {
           #open = "\\gg";
