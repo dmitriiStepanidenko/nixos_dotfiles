@@ -40,6 +40,9 @@ in {
       charger = {
         governor = "performance";
         turbo = "auto";
+        start_threshold = 20;
+        stop_threshold = 80;
+        ideapad_laptop_conservation_mode = "true";
       };
     };
   };
