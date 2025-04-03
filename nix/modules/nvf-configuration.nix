@@ -183,9 +183,9 @@
       };
     };
     terminal.toggleterm = {
-      enable = false;
+      enable = true;
       lazygit = {
-        enable = false; # Laggy as heck
+        enable = true;
         #direction = "tab";
         mappings = {
           #open = "\\gg";
