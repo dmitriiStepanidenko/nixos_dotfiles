@@ -50,6 +50,32 @@
         silent = true;
         action = "gt";
       }
+      # Resize
+      {
+        key = "<A-Right>";
+        mode = "n";
+        silent = true;
+        action = ":vertical resize +1<CR>";
+      }
+      {
+        key = "<A-Left>";
+        mode = "n";
+        silent = true;
+        action = ":vertical resize -1<CR>";
+      }
+      {
+        key = "<A-Down>";
+        mode = "n";
+        silent = true;
+        action = ":resize +1<CR>";
+      }
+      {
+        key = "<A-Up>";
+        mode = "n";
+        silent = true;
+        action = ":resize -1<CR>";
+      }
+
       # Terminal keybinds
       {
         key = "<Esc>";
