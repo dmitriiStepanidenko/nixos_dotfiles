@@ -43,6 +43,7 @@
     environment.systemPackages = [
       inputs.colmena.defaultPackage.${system}
       inputs.buildbot-nix.packages.${system}.buildbot-effects
+      inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.nix-eval-jobs
     ];
     networking.firewall = {
       allowedUDPPorts = [

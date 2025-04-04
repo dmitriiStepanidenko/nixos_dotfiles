@@ -28,6 +28,8 @@
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
 
+    nixos-unstable.follows = "nixpkgs-unstable";
+
     todo-backend = {
       url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -46,7 +48,8 @@
     };
 
     buildbot-nix = {
-      url = "github:nix-community/buildbot-nix";
+      url = "github:nix-community/buildbot-nix?ref=e09b4c0588ce95fd72993adb5af198d5ba32e752";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = inputs @ {
@@ -90,19 +93,6 @@
           vm-profile.nixosModules.default
         ];
       };
-
-      # Disabled for now
-      #gitea_woker_1 = {...}: {
-      #  deployment = {
-      #    targetHost = "192.168.0.210";
-      #    targetPort = 22;
-      #    targetUser = "root";
-      #  };
-      #  time.timeZone = "Europe/Moscow";
-      #  imports = [
-      #    ../../nix/hosts/gitea_worker/default.nix
-      #  ];
-      #};
       woodpecker_server = {...}: {
         deployment = {
           targetHost = "192.168.0.215";
@@ -125,18 +115,10 @@
           ../../nix/hosts/woodpecker_agent/default.nix
           {
             woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
+            environment.systemPackages = [
+              pkgs_unstable.nix-eval-jobs
+            ];
           }
-        ];
-      };
-      wakapi = {...}: {
-        deployment = {
-          targetHost = "192.168.0.216";
-          targetPort = 22;
-          targetUser = "root";
-        };
-        time.timeZone = "Europe/Moscow";
-        imports = [
-          ../../nix/hosts/wakapi/default.nix
         ];
       };
       grafana = {...}: {
@@ -148,9 +130,17 @@
         time.timeZone = "Europe/Moscow";
         imports = [
           ../../nix/hosts/grafana/default.nix
-          {
-            woodpecker_agent.package = pkgs_unstable.woodpecker-agent;
-          }
+        ];
+      };
+      openobserve = {...}: {
+        deployment = {
+          targetHost = "192.168.0.218";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/openobserve/default.nix
         ];
       };
       container_registry = {...}: {
@@ -175,17 +165,6 @@
           ../../nix/hosts/nginx_local/default.nix
         ];
       };
-      #backup = {...}: {
-      #  deployment = {
-      #    targetHost = "176.123.169.226";
-      #    targetPort = 22;
-      #    targetUser = "root";
-      #  };
-      #  time.timeZone = "Europe/Moscow";
-      #  imports = [
-      #    ../../nix/hosts/backup/default.nix
-      #  ];
-      #};
     };
     #devShells.default.${system} = pkgs_unstable.mkShell {
     #  packages = [colmena.defaultPackage.${system}];
@@ -228,3 +207,38 @@
     };
   };
 }
+#wakapi = {...}: {
+#  deployment = {
+#    targetHost = "192.168.0.216";
+#    targetPort = 22;
+#    targetUser = "root";
+#  };
+#  time.timeZone = "Europe/Moscow";
+#  imports = [
+#    ../../nix/hosts/wakapi/default.nix
+#  ];
+#};
+#backup = {...}: {
+#  deployment = {
+#    targetHost = "176.123.169.226";
+#    targetPort = 22;
+#    targetUser = "root";
+#  };
+#  time.timeZone = "Europe/Moscow";
+#  imports = [
+#    ../../nix/hosts/backup/default.nix
+#  ];
+#};
+# Disabled for now
+#gitea_woker_1 = {...}: {
+#  deployment = {
+#    targetHost = "192.168.0.210";
+#    targetPort = 22;
+#    targetUser = "root";
+#  };
+#  time.timeZone = "Europe/Moscow";
+#  imports = [
+#    ../../nix/hosts/gitea_worker/default.nix
+#  ];
+#};
+

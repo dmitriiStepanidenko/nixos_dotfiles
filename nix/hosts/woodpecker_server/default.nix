@@ -51,6 +51,7 @@
 
     environment.systemPackages = [
       inputs.colmena.defaultPackage.${system}
+      inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.nix-eval-jobs
     ];
     networking = {
       firewall = {
@@ -128,12 +129,6 @@
       #  c["www"] = {"pb": {"port": "tcp:44331:interface=\\:\\:"}}
       #'';
     };
-    #services.buildbot-nix.worker = {
-    #  enable = true;
-    #  name = "woodpecker_server";
-    #  workerPasswordFile = config.sops.secrets."buildbot/worker_pass".path;
-    #};
-
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";
@@ -146,14 +141,12 @@
         "buildbot/gitea_webhook" = {
           mode = "0440";
           group = "buildbot";
-          #restartUnits = ["woodpecker-server.service"];
           restartUnits = ["buildbot-master.service"];
         };
         "buildbot/worker_file" = {
           mode = "0440";
           group = "buildbot";
-          #restartUnits = ["woodpecker-server.service"];
-          restartUnits = ["buildbot-master.service" "buildbot-worker.service"];
+          restartUnits = ["buildbot-master.service"];
         };
         "buildbot/gitea_client_secret" = {
           mode = "0440";
