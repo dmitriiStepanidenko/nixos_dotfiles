@@ -78,7 +78,7 @@
 
       # Terminal keybinds
       {
-        key = "<Esc>";
+        key = "<A-Esc>";
         mode = "t";
         silent = true;
         action = "<C-\\><C-n>";
