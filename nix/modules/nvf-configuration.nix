@@ -230,7 +230,9 @@
         helpTags = ";;";
       };
     };
-    autocomplete.nvim-cmp.enable = true;
+    autocomplete.nvim-cmp = {
+      enable = true;
+    };
     languages = {
       enableLSP = true;
       enableTreesitter = true;
@@ -238,6 +240,7 @@
       graphql = {
         enable = true;
         treesitter.enable = true;
+        format.enable = true;
       };
 
       nix = {
@@ -260,7 +263,12 @@
       markdown.enable = true;
 
       lua.enable = true;
-      python.enable = true;
+      python = {
+        enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+        lsp.enable = true;
+      };
 
       clang = {
         dap.debugger = "lldb-dap";
