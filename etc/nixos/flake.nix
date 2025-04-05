@@ -32,7 +32,7 @@
 
     #nvf.url = "github:notashelf/nvf";
     #nvf.url = "github:dmitriiStepanidenko/nvf";
-    nvf.url = "git+file:/home/dmitrii/shared/tmp/nvf?shallow=1";
+    nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
