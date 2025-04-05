@@ -249,11 +249,16 @@
         treesitter.enable = true;
       };
       terraform.enable = true;
-      bash.enable = true;
+      bash = {
+        extraDiagnostics.enable = true;
+        enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+        lsp.enable = true;
+      };
 
       markdown.enable = true;
 
-      ts.enable = true;
       lua.enable = true;
       python.enable = true;
 
@@ -277,6 +282,13 @@
       svelte = {
         extraDiagnostics.enable = true;
         enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+        lsp.enable = true;
+      };
+      ts = {
+        enable = true;
+        extraDiagnostics.enable = true;
         format.enable = true;
         treesitter.enable = true;
         lsp.enable = true;
