@@ -302,6 +302,17 @@
         treesitter.enable = true;
         lsp.enable = true;
       };
+      css = {
+        enable = true;
+        format.enable = true;
+        treesitter.enable = true;
+        lsp.enable = true;
+      };
+      html = {
+        enable = true;
+        treesitter.enable = true;
+        treesitter.autotagHtml = true;
+      };
     };
     utility = {
       preview = {
