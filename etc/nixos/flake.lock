@@ -764,11 +764,11 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1743876933,
-        "narHash": "sha256-B3wtflxqJGitSMHONf4TUZPlhP2UmK7d+4hNGhL1r/0=",
+        "lastModified": 1743877442,
+        "narHash": "sha256-4UMixFIqOJm38t9D549uPZ8kIboxIGfxyU/aidFBvsk=",
         "owner": "dmitriiStepanidenko",
         "repo": "nvf",
-        "rev": "eea7f7af4a4d5f8a6c9934f08abd6e380c57d3fb",
+        "rev": "b0644afa6d7d2a381ca6582ebf07dfef37b14511",
         "type": "github"
       },
       "original": {
