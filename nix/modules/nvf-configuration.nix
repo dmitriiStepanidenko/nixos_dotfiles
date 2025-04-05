@@ -219,6 +219,7 @@
         };
       };
     };
+    formatter.conform-nvim.enable = true;
 
     statusline.lualine.enable = true;
     telescope = {
