@@ -22,6 +22,8 @@
           toggle = "\\v";
         };
         setupOpts = {
+          filesystem_watchers.debounce_delay = 350;
+          view.debounce_delay = 350;
           diagnostics = {
             debounce_delay = 500;
             show_on_dirs = true;
@@ -182,7 +184,6 @@
         renameSymbol = "\\\\rn";
       };
       lightbulb.enable = true;
-      lsplines.enable = true;
       # Currentrly does not work
       #lspsaga = {
       #  enable = true;
