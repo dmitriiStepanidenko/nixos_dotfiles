@@ -30,7 +30,8 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
-    nvf.url = "github:notashelf/nvf";
+    #nvf.url = "github:notashelf/nvf";
+    nvf.url = "github:dmitriiStepanidenko/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 

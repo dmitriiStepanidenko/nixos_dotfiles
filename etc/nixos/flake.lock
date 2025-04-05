@@ -764,15 +764,15 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1743823310,
-        "narHash": "sha256-4vdCldHTBj+HC0BpxfXqFtMRUvxq/wnVCKtuCxy/EXo=",
-        "owner": "notashelf",
+        "lastModified": 1743876933,
+        "narHash": "sha256-B3wtflxqJGitSMHONf4TUZPlhP2UmK7d+4hNGhL1r/0=",
+        "owner": "dmitriiStepanidenko",
         "repo": "nvf",
-        "rev": "e2b3daa6f839ce246978cd6607e88d01d8f3ecd3",
+        "rev": "eea7f7af4a4d5f8a6c9934f08abd6e380c57d3fb",
         "type": "github"
       },
       "original": {
-        "owner": "notashelf",
+        "owner": "dmitriiStepanidenko",
         "repo": "nvf",
         "type": "github"
       }
