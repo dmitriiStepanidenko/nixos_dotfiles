@@ -252,10 +252,26 @@
             ];
           }
           {
-            job_name = "staging";
+            job_name = "todo-staging";
             static_configs = [
               {
                 targets = ["10.252.1.10:9002"];
+              }
+            ];
+          }
+          {
+            job_name = "graph-learning-staging";
+            static_configs = [
+              {
+                targets = ["10.252.1.14:9002"];
+              }
+            ];
+          }
+          {
+            job_name = "openobserve";
+            static_configs = [
+              {
+                targets = ["10.252.1.15:9002"];
               }
             ];
           }
