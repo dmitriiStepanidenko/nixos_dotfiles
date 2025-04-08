@@ -764,14 +764,17 @@
         "systems": "systems_4"
       },
       "locked": {
-        "lastModified": 1743886053,
-        "narHash": "sha256-Vg9e/oeBdG2KHLnmGFD6uNEgY1FXAugk95ut9fXuWUM=",
-        "path": "/home/dmitrii/shared/tmp/nvf",
-        "type": "path"
+        "lastModified": 1743878437,
+        "narHash": "sha256-Q0DQjWLiMvM1fDzRH6gc8B8LuBLagXQN8/PYQWq/Rcs=",
+        "owner": "dmitriiStepanidenko",
+        "repo": "nvf",
+        "rev": "1d53ff15b128f2400cd3bd43e54471ad9ab7d0d3",
+        "type": "github"
       },
       "original": {
-        "path": "/home/dmitrii/shared/tmp/nvf",
-        "type": "path"
+        "owner": "dmitriiStepanidenko",
+        "repo": "nvf",
+        "type": "github"
       }
     },
     "root": {

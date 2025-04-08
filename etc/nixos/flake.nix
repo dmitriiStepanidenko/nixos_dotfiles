@@ -31,8 +31,8 @@
     };
 
     #nvf.url = "github:notashelf/nvf";
-    #nvf.url = "github:dmitriiStepanidenko/nvf";
-    nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
+    nvf.url = "github:dmitriiStepanidenko/nvf";
+    #nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 

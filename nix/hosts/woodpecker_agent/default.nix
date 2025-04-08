@@ -81,8 +81,14 @@
       {
         device = "/swapfile";
         size = 16 * 1024; # 16GB
+        priority = 0;
       }
     ];
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+      memoryPercent = 30;
+    };
     networking = {
       hosts = {
         "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];

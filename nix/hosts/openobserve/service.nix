@@ -44,16 +44,20 @@ in {
   };
 
   config = mkIf cfg.enable {
+    systemd.tmpfiles.rules = [
+      "d '${cfg.dataDir}' 0750 ${cfg.user} ${cfg.group} - -"
+    ];
     systemd.services.openobserve = {
       description = "openobserve service";
-      wantedBy = ["mutli-user.target"];
-      after = ["syslog.target" "network-online.target" "remote-fs.target" "nss-lookup.target"];
+      wantedBy = ["multi-user.target"];
+      after = ["network-online.target" "nss-lookup.target"];
+      wants = ["network-online.target" "nss-lookup.target"];
 
       serviceConfig = {
-        Restart = "on-failure";
+        Restart = "always";
+        RestartSec = "7";
         User = cfg.user;
         Group = cfg.group;
-        LimitNOFILE = 65535;
 
         WorkingDirectory = cfg.dataDir;
       };
@@ -67,8 +71,8 @@ in {
     users.users."${cfg.user}" = {
       isSystemUser = true;
       inherit (cfg) group;
-      home = cfg.dataDir;
-      createHome = true;
+      #home = cfg.dataDir;
+      #createHome = true;
       description = "openobserve service user";
     };
     users.groups."${cfg.group}" = {};
