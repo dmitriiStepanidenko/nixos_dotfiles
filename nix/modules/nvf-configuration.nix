@@ -299,7 +299,10 @@
         enable = true;
         extraDiagnostics.enable = true;
         format.enable = true;
-        treesitter.enable = true;
+        treesitter = {
+          enable = true;
+          tsPackage = pkgs.vimPlugins.nvim-treesitter.builtGrammars.typescript;
+        };
         lsp.enable = true;
       };
       css = {
