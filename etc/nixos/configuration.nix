@@ -173,7 +173,22 @@ in {
 
     playerctld.enable = true; # Media keys
 
-    # services.kanata.enable = true; # keys
+    kanata = {
+      enable = true; # keys
+      keyboards.default.config = ''
+        ;; Kanata configuration for caps to asc+ctrl
+        (defsrc
+          caps
+        )
+
+        (defalias
+          escctrl lctrl)
+
+        (deflayer base
+          @escctrl
+        )
+      '';
+    };
     interception-tools = {
       enable = true;
     };
