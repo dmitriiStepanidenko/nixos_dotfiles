@@ -15,21 +15,21 @@
       tabstop = 2;
     };
     extraPlugins = {
-      nvim-lsp-file-operations = {
+      lsp-file-operations = {
         package = pkgs.fetchFromGitHub {
           owner = "antosha417";
           repo = "nvim-lsp-file-operations";
           rev = "9744b738183a5adca0f916527922078a965515ed";
           hash = "sha256-c56N0E6NA3g58IRgnTtvGmpJ+uZemdmoIsQmPcvbrHY=";
         };
-        setup = "require('nvim-lsp-file-operations').setup {}";
+        setup = "require('lsp-file-operations').setup {}";
         after = ["nvimTree"];
       };
     };
 
     #lazy.plugins = {
-    #  nvim-lsp-file-operations = {
-    #    pacakge = pkgs.vimPlugins.nvim-lsp-file-operations;
+    #  lsp-file-operations = {
+    #    pacakge = pkgs.vimPlugins.lsp-file-operations;
     #    setupOpts = {
     #      debug = false;
     #      operations = {
