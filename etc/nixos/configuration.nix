@@ -182,7 +182,8 @@ in {
         )
 
         (defalias
-          escctrl lctrl)
+          escctrl lctrl
+        )
 
         (deflayer base
           @escctrl

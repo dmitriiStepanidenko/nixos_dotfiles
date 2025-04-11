@@ -90,7 +90,7 @@
     services.woodpecker-server = {
       enable = true;
       environmentFile = [config.sops.secrets."woodpecker_server".path];
-      package = inputs.nixpkgs-unstable.legacyPackages.${system}.woodpecker-server;
+      package = inputs.nixpkgs-master.legacyPackages.${system}.woodpecker-server;
       #package = pkgs.callPackage ../../packages/woodpecker-server.nix {};
     };
     services.buildbot-master = {

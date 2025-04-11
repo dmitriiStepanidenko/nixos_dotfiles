@@ -27,6 +27,7 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
 
     nixos-unstable.follows = "nixpkgs-unstable";
 
