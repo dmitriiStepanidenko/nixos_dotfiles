@@ -48,6 +48,11 @@ in {
     #inputs.nixpkgs.legacyPackages.${pkgs.system}.logseq
 
     ledger-live-desktop
+
+    gpu-screen-recorder # CLI
+    gpu-screen-recorder-gtk # GUI
+
+    obs-studio
   ];
 
   # Because of logseq
