@@ -333,7 +333,9 @@
           enable = true;
           tsPackage = pkgs.vimPlugins.nvim-treesitter.builtGrammars.typescript;
         };
+        extensions.ts-error-translator.enable = true;
         lsp.enable = true;
+        lsp.server = "denols";
       };
       css = {
         enable = true;
