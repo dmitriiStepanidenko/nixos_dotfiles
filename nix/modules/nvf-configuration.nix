@@ -25,15 +25,15 @@
         setup = "require('lsp-file-operations').setup {}";
         after = ["nvimTree"];
       };
-      replacer-nvim = {
-        package = pkgs.fetchFromGitHub {
-          owner = "gabrielpoca";
-          repo = "replacer.nvim";
-          rev = "32e1713230844fa52f7f0598c59295de3c90dc95";
-          hash = "sha256-pY0BiclthomTdgJeBFmeVStRFexgsA5V1MU+YGL0OmI=";
-        };
-        #setup = "require('replacer').setup {}";
-      };
+      #replacer-nvim = {
+      #  package = pkgs.fetchFromGitHub {
+      #    owner = "gabrielpoca";
+      #    repo = "replacer.nvim";
+      #    rev = "32e1713230844fa52f7f0598c59295de3c90dc95";
+      #    hash = "sha256-pY0BiclthomTdgJeBFmeVStRFexgsA5V1MU+YGL0OmI=";
+      #  };
+      #  #setup = "require('replacer').setup {}";
+      #};
       "plenary-nvim" = {
         #     Needed for lsp-file-operations
         package = pkgs.vimPlugins."plenary-nvim";
