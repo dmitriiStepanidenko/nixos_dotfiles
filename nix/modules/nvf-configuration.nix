@@ -335,7 +335,7 @@
         };
         extensions.ts-error-translator.enable = true;
         lsp.enable = true;
-        lsp.server = "denols";
+        #lsp.server = "denols";
       };
       css = {
         enable = true;
