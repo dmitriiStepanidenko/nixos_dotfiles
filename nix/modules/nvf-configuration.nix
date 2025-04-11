@@ -25,7 +25,28 @@
         setup = "require('lsp-file-operations').setup {}";
         after = ["nvimTree"];
       };
+      "plenary-nvim" = {
+        package = pkgs.vimPlugins."plenary-nvim";
+      };
     };
+    #lazy.plugins = {
+    #  "plenary.nvim" = {
+    #    package = pkgs.vimPlugins.aerial-nvim;
+    #  };
+    #};
+    #extraPlugins = {
+    #  plenary.nvim = {
+    #    # Needed for lsp-file-operations
+    #    package = pkgs.fetchFromGitHub {
+    #      owner = "nvim-lua";
+    #      repo = "plenary.nvim";
+    #      rev = "857c5ac632080dba10aae49dba902ce3abf91b35";
+    #      hash = "";
+    #    };
+    #    #setup = "require('lsp-file-operations').setup {}";
+    #    #after = ["nvimTree"];
+    #  };
+    #};
 
     #lazy.plugins = {
     #  lsp-file-operations = {
