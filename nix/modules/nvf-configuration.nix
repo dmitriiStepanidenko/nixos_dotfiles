@@ -25,6 +25,16 @@
         setup = "require('lsp-file-operations').setup {}";
         after = ["nvimTree"];
       };
+      replacer-nvim = {
+        package = pkgs.fetchFromGitHub {
+          owner = "gabrielpoca";
+          repo = "replacer.nvim";
+          rev = "32e1713230844fa52f7f0598c59295de3c90dc95";
+          hash = "sha256-pY0BiclthomTdgJeBFmeVStRFexgsA5V1MU+YGL0OmI=";
+        };
+        setup = "require('lsp-file-operations').setup {}";
+        after = ["nvimTree"];
+      };
       "plenary-nvim" = {
         package = pkgs.vimPlugins."plenary-nvim";
       };
