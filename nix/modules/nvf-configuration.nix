@@ -15,7 +15,7 @@
       tabstop = 2;
     };
     extraPlugins = {
-      lsp-file-operations = {
+      "lsp-file-operations" = {
         package = pkgs.fetchFromGitHub {
           owner = "antosha417";
           repo = "nvim-lsp-file-operations";
