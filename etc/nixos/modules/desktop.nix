@@ -53,6 +53,8 @@ in {
     gpu-screen-recorder-gtk # GUI
 
     obs-studio
+
+    rustdesk
   ];
 
   # Because of logseq
