@@ -12,6 +12,7 @@
   environment.systemPackages = with pkgs; [
     xray
     tsocks
+    hiddify-app
   ];
   services.xray = {
     enable = true;
