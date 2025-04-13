@@ -32,6 +32,7 @@ in {
 
     extraConfig = ''
       AddKeysToAgent yes
+      ServerAliveInterval 60
     '';
   };
   # TODO: automate copy of pub files to .ssh
