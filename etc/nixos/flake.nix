@@ -76,8 +76,8 @@
     packages.${system}.my-neovim =
       (
         nvf.lib.neovimConfiguration {
-          pkgs = inputs.nixos-24-11.legacyPackages.${system};
-          #inherit pkgs;
+          #pkgs = inputs.nixos-24-11.legacyPackages.${system};
+          inherit pkgs;
           modules = [
             ../../nix/modules/nvf-configuration.nix
             ({
