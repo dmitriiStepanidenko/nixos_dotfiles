@@ -110,6 +110,9 @@
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment = {
+              variables = {
+                MANPAGER = "nvim +Man!";
+              };
               systemPackages = [
                 self.packages.${system}.my-neovim
                 pkgs.pkg-config

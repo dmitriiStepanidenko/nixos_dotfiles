@@ -4,10 +4,6 @@
   inputs,
   ...
 }: {
-  config.
-  environment.variables = {
-    MANPAGER = "nvim +Man!";
-  };
   config.vim = {
     theme.enable = true;
     theme.name = "tokyonight";
