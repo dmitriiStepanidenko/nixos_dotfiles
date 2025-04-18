@@ -275,6 +275,22 @@
               }
             ];
           }
+          {
+            job_name = "proxmox";
+            static_configs = [
+              {
+                targets = ["192.168.0.148:9002"];
+              }
+            ];
+          }
+          {
+            job_name = "dev";
+            static_configs = [
+              {
+                targets = ["10.252.1.0:9002"];
+              }
+            ];
+          }
         ];
       };
     };

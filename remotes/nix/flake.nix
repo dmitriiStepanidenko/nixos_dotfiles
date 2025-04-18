@@ -50,7 +50,7 @@
 
     buildbot-nix = {
       url = "github:nix-community/buildbot-nix?ref=e09b4c0588ce95fd72993adb5af198d5ba32e752";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      #inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
   outputs = inputs @ {
