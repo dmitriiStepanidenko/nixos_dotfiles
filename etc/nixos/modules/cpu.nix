@@ -28,14 +28,14 @@ in {
     settings = {
       battery = {
         governor = "powersave";
-        turbo = "never";
-        #turbo = "auto";
+        #turbo = "never";
+        turbo = "auto";
         enable_thresholds = "true";
         start_threshold = 20;
         stop_threshold = 80;
         ideapad_laptop_conservation_mode = "true";
         scaling_min_freq = 400000;
-        scaling_max_freq = 3000000;
+        scaling_max_freq = 4000000;
       };
       charger = {
         governor = "performance";

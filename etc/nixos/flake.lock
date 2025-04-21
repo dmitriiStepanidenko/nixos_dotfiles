@@ -1047,11 +1047,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1741374836,
-        "narHash": "sha256-2h4/xwQtjFhjvRawgnqa57IYWp2vxYojUzj/XV7CP8Y=",
+        "lastModified": 1744213099,
+        "narHash": "sha256-QC+t7knLc6srBYQ1hGobuO41ewkvBeZRfnF6W3zG9Z8=",
         "owner": "dmitriiStepanidenko",
         "repo": "wireguard-nixos-private",
-        "rev": "80dadc4032719e951c19b197a9c1df7a54a0d452",
+        "rev": "5a5dde1af47a8b302d88bae89d3db57381a3be5b",
         "type": "github"
       },
       "original": {
