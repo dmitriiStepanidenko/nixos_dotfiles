@@ -28,8 +28,8 @@ in {
     settings = {
       battery = {
         governor = "powersave";
-        #turbo = "never";
-        turbo = "auto";
+        turbo = "never";
+        #turbo = "auto";
         enable_thresholds = "true";
         start_threshold = 20;
         stop_threshold = 80;
