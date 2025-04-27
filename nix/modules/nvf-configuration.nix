@@ -277,6 +277,7 @@
     autocomplete.nvim-cmp = {
       enable = true;
     };
+    treesitter.fold = true;
     languages = {
       enableLSP = true;
       enableTreesitter = true;
