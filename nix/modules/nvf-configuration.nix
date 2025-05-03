@@ -364,6 +364,7 @@
       };
     };
     utility = {
+      sleuth.enable = true;
       preview = {
         markdownPreview = {
           enable = true;

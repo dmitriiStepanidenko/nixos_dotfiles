@@ -67,6 +67,7 @@ in {
     enable = true;
     remotePlay.openFirewall = false;
     dedicatedServer.openFirewall = false;
+    package = unstable.steam;
   };
 
   # Install firefox.
