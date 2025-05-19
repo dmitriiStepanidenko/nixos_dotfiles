@@ -23,7 +23,7 @@ in {
   environment.systemPackages = with pkgs; [
     pavucontrol # gui for sound
 
-    telegram-desktop
+    unstable.telegram-desktop
     enpass
     libreoffice-qt
 

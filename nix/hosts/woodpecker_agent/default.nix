@@ -65,6 +65,7 @@
           3005
           55655
           5678
+          8889
         ];
         allowedTCPPorts = [
           8080
@@ -74,6 +75,7 @@
           3005
           55655
           5678
+          8889
         ];
       };
     };
@@ -107,6 +109,11 @@
         editorBaseUrl = "http://10.252.1.7:5678";
       };
       webhookUrl = "http://10.252.1.7:5678";
+    };
+    services.windmill = {
+      enable = true;
+      serverPort = 8889;
+      baseUrl = "http://10.252.1.7:8889";
     };
     systemd.services.n8n.environment = {
       N8N_SECURE_COOKIE = "false";
