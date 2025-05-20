@@ -64,6 +64,7 @@ in {
   #programs.nvf = {
   #  enable = true;
   #};
+  programs.sniffnet.enable = true;
 
   #nixpkgs.overlays = [ (final: prev: ) ];
 
