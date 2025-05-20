@@ -21,6 +21,11 @@ in {
   environment.systemPackages = with pkgs; [
     papirus-icon-theme
   ];
+  environment.variables = {
+    TMUX_POWERLINE_SEG_WEATHER_LAT_DEFAULT = "55.6";
+    TMUX_POWERLINE_SEG_WEATHER_LON_DEFAULT = "37.5";
+    TMUX_POWERLINE_STATUS_JUSTIFICATION = "left";
+  };
 
   programs.tmux = {
     terminal = "screen-256color";
@@ -64,12 +69,11 @@ in {
 
       # powerline
 
-      set -g TMUX_POWERLINE_SEG_WEATHER_LAT_DEFAULT "55.6"
-      set -g TMUX_POWERLINE_SEG_WEATHER_LON_DEFAULT "37.5"
-      set -g TMUX_POWERLINE_STATUS_JUSTIFICATION "left"
 
     '';
     extraConfig = ''
+      set -g status-left-length 80
+
       bind h select-pane -L
       bind j select-pane -D
       bind k select-pane -U
