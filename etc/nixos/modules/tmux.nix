@@ -21,7 +21,7 @@ in {
   environment.systemPackages = with pkgs; [
     papirus-icon-theme
   ];
-  environment.variables = {
+  environment.sessionVariables = {
     TMUX_POWERLINE_SEG_WEATHER_LAT = "55.6";
     TMUX_POWERLINE_SEG_WEATHER_LON = "37.5";
     TMUX_POWERLINE_STATUS_JUSTIFICATION = "left";
