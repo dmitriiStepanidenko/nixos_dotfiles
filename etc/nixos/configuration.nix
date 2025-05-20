@@ -445,6 +445,44 @@ in {
 
   # bad idea
   #environment.memoryAllocator.provider = "jemalloc";
+  programs.tmux = {
+    terminal = "screen-256color";
+    enable = true;
+    keyMode = "vi";
+    extraConfig = ''
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+
+      bind -r C-h select-window -t :-
+      bind -r C-l select-window -t :+
+
+      bind -r H resize-pane -L 5
+      bind -r J resize-pane -D 5
+      bind -r K resize-pane -U 5
+      bind -r L resize-pane -R 5
+
+      # Pressing Ctrl-a locally will press Ctrl-b on remote host tmux
+      bind -n C-a send-prefix
+
+      setw -g mouse on
+
+      # For yazi
+      set -g allow-passthrough on
+      set -ga update-environment TERM
+      set -ga update-environment TERM_PROGRAM
+
+      set-option -g focus-events on
+      set-option -a terminal-features 'alacritty:RGB'
+
+      set -g visual-activity off
+    '';
+    plugins = with pkgs; [
+      tmuxPlugins.tokyo-night-tmux
+      tmuxPlugins.tmux-powerline
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -463,7 +501,6 @@ in {
     wget
     displaylink
     neofetch
-    tmux
     alacritty
     lshw
     unstable.htop
