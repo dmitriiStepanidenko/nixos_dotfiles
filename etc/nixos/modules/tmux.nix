@@ -27,6 +27,7 @@ in {
     enable = true;
     keyMode = "vi";
     clock24 = true;
+    escapeTime = 0;
     extraConfigBeforePlugins = ''
       set -g status-left-length 80
 
@@ -34,32 +35,38 @@ in {
       set -g @tokyo-night-tmux_theme storm    # storm | day | default to 'night'
       set -g @tokyo-night-tmux_transparent 1  # 1 or 0
 
-      set -g @tokyo-night-tmux_window_id_style digital
-      set -g @tokyo-night-tmux_pane_id_style hsquare
-      set -g @tokyo-night-tmux_zoom_id_style dsquare
+      #set -g @tokyo-night-tmux_window_id_style digital
+      #set -g @tokyo-night-tmux_pane_id_style hsquare
+      #set -g @tokyo-night-tmux_zoom_id_style dsquare
 
-      # Icon styles
-      set -g @tokyo-night-tmux_terminal_icon 
-      set -g @tokyo-night-tmux_active_terminal_icon 
+      ## Icon styles
+      #set -g @tokyo-night-tmux_terminal_icon 
+      #set -g @tokyo-night-tmux_active_terminal_icon 
 
-      # No extra spaces between icons
-      set -g @tokyo-night-tmux_window_tidy_icons 0
+      ## No extra spaces between icons
+      #set -g @tokyo-night-tmux_window_tidy_icons 0
 
-      set -g @tokyo-night-tmux_show_datetime 0
-      set -g @tokyo-night-tmux_date_format DMY
-      set -g @tokyo-night-tmux_time_format 24H
+      #set -g @tokyo-night-tmux_show_datetime 0
+      #set -g @tokyo-night-tmux_date_format DMY
+      #set -g @tokyo-night-tmux_time_format 24H
 
-      set -g @tokyo-night-tmux_show_path 1
-      set -g @tokyo-night-tmux_path_format relative # 'relative' or 'full'
+      #set -g @tokyo-night-tmux_show_path 1
+      #set -g @tokyo-night-tmux_path_format relative # 'relative' or 'full'
 
-      set -g @tokyo-night-tmux_show_netspeed 1
-      set -g @tokyo-night-tmux_netspeed_iface "wlp1s0" # Detected via default route
-      set -g @tokyo-night-tmux_netspeed_showip 1      # Display IPv4 address (default 0)
-      set -g @tokyo-night-tmux_netspeed_refresh 1     # Update interval in seconds (default 1)
+      #set -g @tokyo-night-tmux_show_netspeed 1
+      #set -g @tokyo-night-tmux_netspeed_iface "wlp1s0" # Detected via default route
+      #set -g @tokyo-night-tmux_netspeed_showip 1      # Display IPv4 address (default 0)
+      #set -g @tokyo-night-tmux_netspeed_refresh 1     # Update interval in seconds (default 1)
 
-      set -g @tokyo-night-tmux_show_battery_widget 1
-      set -g @tokyo-night-tmux_battery_name "BAT1"  # some linux distro have 'BAT0'
-      set -g @tokyo-night-tmux_battery_low_threshold 21 # default
+      #set -g @tokyo-night-tmux_show_battery_widget 1
+      #set -g @tokyo-night-tmux_battery_name "BAT1"  # some linux distro have 'BAT0'
+      #set -g @tokyo-night-tmux_battery_low_threshold 21 # default
+
+      # powerline
+
+      export TMUX_POWERLINE_SEG_WEATHER_LAT_DEFAULT="55.642667"
+      export TMUX_POWERLINE_SEG_WEATHER_LON_DEFAULT="55.642667"
+      export TMUX_POWERLINE_STATUS_JUSTIFICATION="left"
 
     '';
     extraConfig = ''
@@ -93,7 +100,7 @@ in {
     '';
     plugins = with pkgs; [
       tmuxPlugins.tokyo-night-tmux
-      #tmuxPlugins.tmux-powerline
+      tmuxPlugins.tmux-powerline
     ];
   };
 }
