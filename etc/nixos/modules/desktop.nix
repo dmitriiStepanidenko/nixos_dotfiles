@@ -70,6 +70,10 @@ in {
     package = unstable.steam;
   };
 
+  programs.localsend = {
+    enable = true;
+  };
+
   # Install firefox.
   programs.firefox.enable = true;
 
