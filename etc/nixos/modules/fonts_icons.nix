@@ -4,7 +4,7 @@
     fira-code
     fira-code-symbols
     meslo-lg
-    (nerdfonts.override {fonts = ["FiraCode" "DroidSansMono"];})
+    nerd-fonts.droid-sans-mono
     #nerd-fonts.symbols-only
     #nerd-fonts.meslo-lg
     #nerd-fonts.hurmit

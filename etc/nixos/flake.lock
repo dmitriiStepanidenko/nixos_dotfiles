@@ -575,6 +575,22 @@
         "type": "github"
       }
     },
+    "nixos-25-05": {
+      "locked": {
+        "lastModified": 1748006898,
+        "narHash": "sha256-3O5s0QB3PgcvPsMpoJKE1oUU0UlVlzJDTG6Ui++oL8s=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "76b4b619b82ee218206ce7ef83f3d9e9f4c4a6c5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "release-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixos-unstable": {
       "locked": {
         "lastModified": 1747542820,
@@ -783,9 +799,10 @@
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nixos-24-11": "nixos-24-11",
         "nixos-24-11-stable-xsecurelock": "nixos-24-11-stable-xsecurelock",
+        "nixos-25-05": "nixos-25-05",
         "nixos-unstable": "nixos-unstable",
         "nixpkgs": [
-          "nixos-24-11"
+          "nixos-25-05"
         ],
         "nixpkgs_unstable": [
           "nixos-unstable"

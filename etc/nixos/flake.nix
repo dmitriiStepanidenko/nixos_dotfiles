@@ -9,10 +9,11 @@
     wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
     #wireguard.url = "git+file:/home/dmitrii/tmp/wireguard-nixos-private";
 
+    nixos-25-05.url = "github:nixos/nixpkgs?ref=release-25.05";
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
-    nixpkgs.follows = "nixos-24-11";
+    nixpkgs.follows = "nixos-25-05";
     nixpkgs_unstable.follows = "nixos-unstable";
 
     nixos-24-11-stable-xsecurelock.url = "github:nixos/nixpkgs?ref=d3c42f187194c26d9f0309a8ecc469d6c878ce33";
