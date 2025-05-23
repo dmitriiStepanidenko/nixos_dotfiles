@@ -28,7 +28,7 @@
 
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
   ];
-  #programs.i3lock.enable = true;
+  programs.i3lock.enable = true;
 
   services.xserver = {
     # Enable the X11 windowing system.
