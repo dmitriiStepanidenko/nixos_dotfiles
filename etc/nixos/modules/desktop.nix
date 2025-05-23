@@ -54,7 +54,7 @@ in {
 
     obs-studio
 
-    rustdesk
+    rustdesk-flutter
   ];
 
   # Because of logseq
