@@ -545,11 +545,11 @@
     },
     "nixos-24-11": {
       "locked": {
-        "lastModified": 1747485343,
-        "narHash": "sha256-YbsZyuRE1tobO9sv0PUwg81QryYo3L1F3R3rF9bcG38=",
+        "lastModified": 1747862697,
+        "narHash": "sha256-U4HaNZ1W26cbOVm0Eb5OdGSnfQVWQKbLSPrSSa78KC0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9b5ac7ad45298d58640540d0323ca217f32a6762",
+        "rev": "2baa12ff69913392faf0ace833bc54bba297ea95",
         "type": "github"
       },
       "original": {
@@ -577,11 +577,11 @@
     },
     "nixos-25-05": {
       "locked": {
-        "lastModified": 1748006898,
-        "narHash": "sha256-3O5s0QB3PgcvPsMpoJKE1oUU0UlVlzJDTG6Ui++oL8s=",
+        "lastModified": 1748030056,
+        "narHash": "sha256-TivkZi8QqC4VqAHLkOzQ9gS/SH70XjO+gs+UO2cYQ4E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "76b4b619b82ee218206ce7ef83f3d9e9f4c4a6c5",
+        "rev": "52e9f466fa44a586aab4b505ff69184a6d5b5705",
         "type": "github"
       },
       "original": {
@@ -593,11 +593,11 @@
     },
     "nixos-unstable": {
       "locked": {
-        "lastModified": 1747542820,
-        "narHash": "sha256-GaOZntlJ6gPPbbkTLjbd8BMWaDYafhuuYRNrxCGnPJw=",
+        "lastModified": 1747744144,
+        "narHash": "sha256-W7lqHp0qZiENCDwUZ5EX/lNhxjMdNapFnbErcbnP11Q=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "292fa7d4f6519c074f0a50394dbbe69859bb6043",
+        "rev": "2795c506fe8fb7b03c36ccb51f75b6df0ab2553f",
         "type": "github"
       },
       "original": {
@@ -845,11 +845,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1747622321,
-        "narHash": "sha256-W0dYIWgsUu6rvOJRtKLhKskkv0VhQhJYGNIq+gGUc8g=",
+        "lastModified": 1747967795,
+        "narHash": "sha256-76s4jDRbQzxRO+5y8ilMp5V30qVgY9R6n8U7aOap8ig=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "bd030fd9983f7fddf87be1c64aa3064c8afa24c4",
+        "rev": "f1d5bfa8c692cacd798a3e1fb93d54c1b9ac701a",
         "type": "github"
       },
       "original": {
@@ -919,11 +919,11 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1747246699,
-        "narHash": "sha256-h8zqrZR0NeVWJbhTR53gTg2NcNv0fqKO9+Mvo5YcRFs=",
+        "lastModified": 1747940948,
+        "narHash": "sha256-2iFKi4BkSogxbmQC7SjngjKOKDlqjpCoCgPLUWZuIyo=",
         "owner": "dmitriiStepanidenko",
         "repo": "surrealdb-nixos",
-        "rev": "afebf5e86e973cb0ec81d88f5b339f10410e2c8b",
+        "rev": "274da8ac5af39b327773cfabef3f862043e8c650",
         "type": "github"
       },
       "original": {

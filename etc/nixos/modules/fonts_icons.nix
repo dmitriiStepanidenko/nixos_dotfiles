@@ -1,8 +1,9 @@
 {pkgs, ...}: {
   fonts.enableDefaultPackages = true;
   fonts.packages = with pkgs; [
-    fira-code
+    nerd-fonts.fira-code
     fira-code-symbols
+    nerd-fonts.symbols-only
     meslo-lg
     nerd-fonts.droid-sans-mono
     #nerd-fonts.symbols-only
