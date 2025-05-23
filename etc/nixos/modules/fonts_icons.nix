@@ -10,6 +10,7 @@
     #nerd-fonts.hurmit
     #nerd-fonts.iosevka-term
     #nerd-fonts.monoid
+    weather-icons
     font-awesome
     freefont_ttf
     corefonts # Times New Roman
