@@ -4,12 +4,12 @@
   config,
   ...
 }: {
-  #boot.initrd.kernelModules = ["amdgpu"];
+  boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelParams = [
     "video=eDP-1:2560x1600@90"
   ];
   services.xserver.videoDrivers = [
-    #"amdgpu"
+    "amdgpu"
     "modesetting"
     "fbdev"
     "nvidia"
