@@ -83,17 +83,17 @@
     ];
   };
 
-  #systemd.services.autorandr = {
-  #  enable = true;
-  #  description = "autorandr execution hook";
-  #  after = ["sleep.target"];
-  #  startLimitBurst = 1;
-  #  startLimitIntervalSec = 5;
-  #  wantedBy = ["sleep.target"];
-  #  serviceConfig = {
-  #    ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
-  #    Type = "oneshot";
-  #    RemainAfterExit = "false";
-  #  };
-  #};
+  systemd.services.autorandr = {
+    enable = true;
+    description = "autorandr execution hook";
+    after = ["sleep.target"];
+    startLimitBurst = 1;
+    startLimitIntervalSec = 5;
+    wantedBy = ["sleep.target"];
+    serviceConfig = {
+      ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
+      Type = "oneshot";
+      RemainAfterExit = "false";
+    };
+  };
 }
