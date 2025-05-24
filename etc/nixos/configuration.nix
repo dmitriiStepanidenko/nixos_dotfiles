@@ -319,6 +319,7 @@ in {
     uid = 1000;
   };
   users.groups.dmitrii.gid = 1000;
+
   programs.light.enable = true;
 
   # Allow unfree packages
