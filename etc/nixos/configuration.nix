@@ -614,4 +614,6 @@ in {
   programs.direnv.enable = true;
 
   system.stateVersion = "24.11";
+
+  boot.kernelPackages = pkgs.linuxPackages_6_14;
 }
