@@ -38,7 +38,7 @@
           };
         };
       };
-      theme = "tokyo_night_enhanced";
+      theme = "tokyo_night";
     };
   };
 }
