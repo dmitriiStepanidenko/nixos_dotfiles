@@ -79,7 +79,7 @@
 
     videoDrivers = [
       "amdgpu"
-      "nvidia"
+      #"nvidia"
     ];
   };
 
