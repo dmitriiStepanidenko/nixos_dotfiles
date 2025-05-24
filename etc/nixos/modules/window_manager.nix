@@ -20,6 +20,11 @@
     xorg.xev # get key number/name
     xorg.xrandr # screen
     autorandr # screen
+    arandr
+
+    xorg.xdpyinfo # dpi info for scaling
+    xorg.xinit
+    xorg.xbacklight
 
     xss-lock # auto lock?
 

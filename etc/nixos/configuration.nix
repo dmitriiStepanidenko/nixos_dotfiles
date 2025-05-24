@@ -35,8 +35,9 @@ in {
     ./modules/xray.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
-    ./modules/tmux.nix
+    #./modules/tmux.nix
     ./modules/amdgpu_patch.nix
+    ./modules/quality_of_programming_life.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -62,9 +63,6 @@ in {
     inputs.surrealdb.nixosModules.default
   ];
 
-  #programs.nvf = {
-  #  enable = true;
-  #};
   programs.sniffnet.enable = true;
 
   #nixpkgs.overlays = [ (final: prev: ) ];
@@ -124,24 +122,11 @@ in {
 
     # for ssd
     fstrim.enable = true;
-    #"modesetting" - FOSS drivers for nvidia
-    #services.xserver.displayManager.sessionCommands = ''
-    #    ${lib.getBin pkgs.xorg.xrandr}/bin/xrandr --setprovideroutputsource 2 0
-    #'';
 
     # Enable CUPS to print documents.
     printing.enable = true;
     printing.drivers = [pkgs.hplipWithPlugin];
     avahi.enable = true;
-
-    # run Android apps
-    # currently disabled. crushed whole system several times
-    #virtualisation.waydroid.enable = true;
-
-    #users.extraUsers.waydroid-desktop.isNormalUser = true;
-    #services.cage.user = "waydroid-desktop";
-    #services.cage.program = "${pkgs.waydroid}/bin/waydroid show-full-ui";
-    #services.cage.enable = true;
 
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.enable = true;
@@ -153,22 +138,6 @@ in {
       IdleAction=suspend
       IdleActionSec=1m
     '';
-
-    #programs.neovim = {
-    #  enable = true;
-    #  defaultEditor = true;
-    #  withNodeJs = true;
-    #  withPython3 = true;
-    #  package = unstable.neovim;
-    #};
-
-    #services.syncthing = {
-    #  enable = true;
-    #  openDefaultPorts = true;
-    #  user = "dmitrii";
-    #  group = "dmitrii";
-    #  dataDir = "/home/dmitrii/education";
-    #};
 
     v2raya.enable = true;
     # TODO:
@@ -259,7 +228,7 @@ in {
     # bluetooth
     bluetooth = {
       enable = true;
-      powerOnBoot = true;
+      powerOnBoot = false;
       input = {
         General = {
           UserspaceHID = true;
@@ -297,8 +266,6 @@ in {
   };
   console.keyMap = "us";
   virtualisation = {
-    # - lily58 firmware
-
     podman = {
       enable = true;
     };
@@ -314,9 +281,6 @@ in {
       package = pkgs.docker;
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
-      #extraOptions = ''
-      #  --insecure-registry 10.252.1.8:5000
-      #'';
       daemon.settings = {
         insecure-registries = ["10.252.1.8:5000"];
       };
@@ -331,14 +295,6 @@ in {
     containers.enable = true;
     containers.registries.insecure = ["10.252.1.8:5000"];
   };
-  #        [plugins."io.containerd.grpc.v1.cri".registry]
-  #   config_path = "/etc/containerd/certs.d"
-
-  #        server = "https://docker.io"
-  #
-  #[host."https://registry-1.docker.io"]
-  #  capabilities = ["pull", "resolve"]
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   nix.settings.trusted-users = ["dmitrii"];
   users.users.dmitrii = {
@@ -361,14 +317,8 @@ in {
       "xray"
     ];
     uid = 1000;
-    #packages = with pkgs; [
-    #  # kdePackages.kate
-    #  #  thunderbird
-    #];
   };
   users.groups.dmitrii.gid = 1000;
-  #programs.slock.enable = true;
-  #security.setuidPrograms = [ "slock" ];
   programs.light.enable = true;
 
   # Allow unfree packages
@@ -393,26 +343,14 @@ in {
       tokyo-night = tokyoNightTheme;
     };
   };
-  #environment.variables.EDITOR = "nvim";
   programs.neovim.defaultEditor = true;
 
-  # bad idea
-  #environment.memoryAllocator.provider = "jemalloc";
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    #inputs.nixpkgs.legacyPackages.${pkgs.system}.vim
-    #colmena.defaultPackage.x86_64-linux
     cri-tools
     dive # look into docker image layers
     podman-tui # status of containers in the terminal
     docker-compose # start group of containers for dev
-    #podman-compose # start group of containers for dev
 
-    #vim
-    #nixpkgs-stable-unstable.vim
-    #vim
     wget
     displaylink
     neofetch
@@ -486,7 +424,6 @@ in {
     qalculate-gtk
 
     light # set backlight
-    #xorg.xbacklight
 
     ueberzugpp # Display images in alacritty
 
@@ -503,14 +440,9 @@ in {
 
     lazygit
 
-    xorg.xdpyinfo # dpi info for scaling
     # TODO
 
     unstable.clang-tools
-
-    arandr
-
-    xorg.xinit
 
     hplipWithPlugin # hp printer
 
@@ -526,8 +458,6 @@ in {
     cargo-semver-checks
 
     kanata # for remapping of keys
-
-    xorg.xbacklight
 
     lm_sensors # reding hardware temperature sensors
 
@@ -613,7 +543,7 @@ in {
 
   programs.direnv.enable = true;
 
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 
   boot.kernelPackages = pkgs.linuxPackages_6_13;
 }
