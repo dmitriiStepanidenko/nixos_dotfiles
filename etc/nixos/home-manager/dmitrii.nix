@@ -15,6 +15,9 @@
       delta.enable = true;
     };
     home-manager.enable = true;
+    fish = {
+      enable = true;
+    };
 
     alacritty = {
       enable = true;
