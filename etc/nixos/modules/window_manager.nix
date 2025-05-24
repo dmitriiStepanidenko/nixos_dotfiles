@@ -76,11 +76,6 @@
 
     # Firmwares updates
     # services.fwupd.enable = true;
-
-    videoDrivers = [
-      "amdgpu"
-      #"nvidia"
-    ];
   };
 
   systemd.services.autorandr = {
