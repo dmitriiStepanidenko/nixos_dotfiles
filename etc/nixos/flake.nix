@@ -16,9 +16,10 @@
     nixpkgs.follows = "nixos-25-05";
     nixpkgs_unstable.follows = "nixos-unstable";
 
-    #nixos-24-11-stable-xsecurelock.url = "github:nixos/nixpkgs?ref=d3c42f187194c26d9f0309a8ecc469d6c878ce33";
-
-    #neovim-nightly-overlay.url = "https://github.com/nix-community/neovim-nightly-overlay/archive/1f54e89757bd951470a9dcc8d83474e363f130c5.tar.gz";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
@@ -45,7 +46,7 @@
     nvf,
     rust-overlay,
     sccache,
-    #sops-nix,
+    home-manager,
     ...
   }: let
     system = "x86_64-linux";
@@ -54,15 +55,8 @@
     extensions = [
       "rust-src"
       "rust-analyzer"
-      #"rustc-codegen-cranelift-preview"
       "clippy"
     ];
-
-    #getRust = toolchain:
-    #  toolchain.default.override {
-    #    inherit extensions;
-    #  };
-    #rust = pkgs.rust-bin.selectLatestNightlyWith getRust;
 
     rust = pkgs.rust-bin.stable.latest.default.override {
       inherit extensions;
@@ -71,7 +65,6 @@
     packages.${system}.my-neovim =
       (
         nvf.lib.neovimConfiguration {
-          #pkgs = inputs.nixos-24-11.legacyPackages.${system};
           inherit pkgs;
           modules = [
             ../../nix/modules/nvf-configuration.nix
@@ -80,7 +73,6 @@
               pkgs,
               ...
             }: {
-              #config.vim.languages.rust.lsp.package = rust;
               config.vim.languages.rust.lsp.package = ["rust-analyzer"];
             })
           ];
@@ -100,8 +92,14 @@
               colmena.defaultPackage.${system}
             ];
           })
-          #nvf.nixosModules.default
           ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+
+            home-manager.users.dmitrii = import ./home-manager/dmitrii.nix;
+          }
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
             environment = {
@@ -119,15 +117,7 @@
               variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
               variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
             };
-            #programs.neovim.defaultEditor = true;
           })
-          #sops-nix.nixosModules.sops
-          #{
-          #  _module.args = {
-          #    modulesPath = "./modules";
-          #  };
-          #}
-          # ./neovim.nix
         ];
       };
     };
@@ -135,7 +125,6 @@
       inputs.nixpkgs-unstable.mkShell
       {
         nativeBuildInputs = with inputs.nixpkgs-unstable; [
-          #nodejs
           clang-tools
           inputs.nixpkgs-stable.legacyPackages.${system}.systemc
         ];
