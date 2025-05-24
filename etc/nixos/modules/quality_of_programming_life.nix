@@ -8,5 +8,14 @@
     just
     wiki-tui
     delta
+    bat
+    xh
+    zellij
+    du-dust
   ];
+
+  programs.fish = {
+    enable = true;
+  };
+  programs.direnv.enable = true;
 }

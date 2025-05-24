@@ -541,8 +541,6 @@ in {
     hub
   ];
 
-  programs.direnv.enable = true;
-
   system.stateVersion = "25.05";
 
   boot.kernelPackages = pkgs.linuxPackages_6_13;
