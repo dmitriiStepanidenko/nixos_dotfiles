@@ -18,6 +18,10 @@
     fish = {
       enable = true;
     };
+    starship = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     alacritty = {
       enable = true;

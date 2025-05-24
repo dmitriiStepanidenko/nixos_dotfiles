@@ -12,6 +12,8 @@
     xh
     zellij
     du-dust
+    dua
+    rusty-man
   ];
 
   programs.fish = {
