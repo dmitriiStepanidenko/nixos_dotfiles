@@ -36,7 +36,7 @@ in {
     ./modules/ssh.nix
     ./modules/yubikey.nix
     ./modules/tmux.nix
-    #./modules/amdgpu_patch.nix
+    ./modules/amdgpu_patch.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -615,5 +615,5 @@ in {
 
   system.stateVersion = "24.11";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_14;
+  boot.kernelPackages = pkgs.linuxPackages_6_13;
 }

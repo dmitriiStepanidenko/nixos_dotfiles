@@ -63,4 +63,9 @@
     nvidiaBusId = "PCI:1:0:0";
     amdgpuBusId = "PCI:5:0:0";
   };
+
+  # amd overclock
+  environment.systemPackages = with pkgs; [lact];
+  systemd.packages = with pkgs; [lact];
+  systemd.services.lactd.wantedBy = ["multi-user.target"];
 }
