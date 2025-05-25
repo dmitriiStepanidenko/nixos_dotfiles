@@ -5,7 +5,7 @@
 }: {
   home = {
     username = "dmitrii";
-    homeDirectory = "/home/dmitrii";
+    #homeDirectory = "/home/dmitrii";
 
     stateVersion = "25.05";
   };
@@ -14,7 +14,7 @@
       enable = true;
       delta.enable = true;
     };
-    home-manager.enable = true;
+    #home-manager.enable = true;
     fish = {
       enable = true;
     };
