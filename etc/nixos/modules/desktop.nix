@@ -81,8 +81,11 @@ in {
     wantedBy = ["xdg-desktop-portal.service"];
     before = ["xdg-desktop-portal.service"];
   };
-  #services.gnome.gnome-remote-desktop.enable = true;
-  # services.xrdp.audio.enable = true;
+  systemd.user.services.xdg-desktop-portal-cosmic = {
+    wantedBy = ["xdg-desktop-portal.service"];
+    before = ["xdg-desktop-portal.service"];
+  };
+  services.gnome.gnome-remote-desktop.enable = true;
 
   programs.steam = {
     enable = true;

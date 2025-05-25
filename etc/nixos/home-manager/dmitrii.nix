@@ -14,6 +14,7 @@
       enable = true;
     };
     mimeApps = {
+      enable = true;
       defaultApplications = {
         "text/html" = "firefox.desktop";
         "application/pdf" = "firefox.desktop";
