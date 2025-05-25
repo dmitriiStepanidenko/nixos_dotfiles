@@ -12,6 +12,12 @@
     "amdgpu"
     "nvidia"
   ];
+  ###### GPU tweaks
+  # Enable OpenGL
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
   hardware.nvidia = {
     # Modesetting is required.
     modesetting.enable = true;

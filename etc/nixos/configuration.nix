@@ -27,7 +27,7 @@ in {
   imports = [
     # Include the results of the hardware scan.
     inputs.sops-nix.nixosModules.sops
-    ./hardware-configuration.nix
+    ./hardware/hardware-configuration.nix
     ./modules/desktop.nix
     ./modules/cpu.nix
     ./modules/window_manager.nix
@@ -36,7 +36,6 @@ in {
     ./modules/ssh.nix
     ./modules/yubikey.nix
     #./modules/tmux.nix
-    ./modules/graphics.nix
     ./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     inputs.wireguard.nixosModules.default
@@ -236,13 +235,6 @@ in {
           Experimental = true;
         };
       };
-    };
-
-    ###### GPU tweaks
-    # Enable OpenGL
-    graphics = {
-      enable = true;
-      enable32Bit = true;
     };
   };
 
