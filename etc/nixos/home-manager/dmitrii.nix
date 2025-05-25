@@ -9,12 +9,24 @@
 
     stateVersion = "25.05";
   };
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/pdf" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+      "inode/directory" = "yazi.desktop";
+    };
+  };
   programs = {
     git = {
       enable = true;
       delta.enable = true;
     };
-    #home-manager.enable = true;
+    home-manager.enable = true;
     fish = {
       enable = true;
     };

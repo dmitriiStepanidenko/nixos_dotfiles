@@ -70,7 +70,9 @@ in {
     };
     portal = {
       enable = true;
-      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
       xdgOpenUsePortal = true;
     };
   };
@@ -94,7 +96,7 @@ in {
   programs.firefox.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
