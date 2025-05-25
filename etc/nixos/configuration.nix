@@ -296,7 +296,7 @@ in {
     containers.registries.insecure = ["10.252.1.8:5000"];
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.defaultUserShell = pkgs.fish;
+  #users.defaultUserShell = pkgs.fish;
   nix.settings.trusted-users = ["dmitrii"];
   users.users.dmitrii = {
     isNormalUser = true;
