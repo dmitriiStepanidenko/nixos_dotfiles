@@ -9,9 +9,6 @@
     system = "x86_64-linux";
     config = {
       allowUnfree = true;
-      permittedInsecurePackages = [
-        "electron-27.3.11"
-      ];
     };
   };
 in {
@@ -54,7 +51,7 @@ in {
 
     obs-studio
 
-    rustdesk-flutter
+    unstable.rustdesk-flutter
 
     waydroid
     waydroid-helper
@@ -63,9 +60,6 @@ in {
 
   # Because of logseq
   nixpkgs.config.
-  permittedInsecurePackages = [
-    "electron-27.3.11"
-  ];
 
   programs.steam = {
     enable = true;
