@@ -9,16 +9,28 @@
 
     stateVersion = "25.05";
   };
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "application/pdf" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-      "inode/directory" = "yazi.desktop";
+  xdg = {
+    mime = {
+      enable = true;
+    };
+    mimeApps = {
+      defaultApplications = {
+        "text/html" = "firefox.desktop";
+        "application/pdf" = "firefox.desktop";
+        "x-scheme-handler/http" = "firefox.desktop";
+        "x-scheme-handler/https" = "firefox.desktop";
+        "x-scheme-handler/about" = "firefox.desktop";
+        "x-scheme-handler/unknown" = "firefox.desktop";
+        "inode/directory" = "yazi.desktop";
+      };
+    };
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gnome
+      ];
+      config.common.default = ["gnome"];
+      xdgOpenUsePortal = true;
     };
   };
   programs = {
