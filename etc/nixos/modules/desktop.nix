@@ -71,17 +71,18 @@ in {
     portal = {
       enable = true;
       extraPortals = [
+        pkgs.xdg-desktop-portal-cosmic
         pkgs.xdg-desktop-portal-gnome
       ];
-      config.common.default = ["gnome"];
-      xdgOpenUsePortal = true;
+      config.common.default = ["cosmic"];
     };
   };
   systemd.user.services.xdg-desktop-portal-gtk = {
     wantedBy = ["xdg-desktop-portal.service"];
     before = ["xdg-desktop-portal.service"];
   };
-  services.gnome.gnome-remote-desktop.enable = true;
+  #services.gnome.gnome-remote-desktop.enable = true;
+  # services.xrdp.audio.enable = true;
 
   programs.steam = {
     enable = true;
@@ -97,9 +98,10 @@ in {
   # Install firefox.
   programs.firefox.enable = true;
 
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
+  # Enable sound with pipewire.
+
+  services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
