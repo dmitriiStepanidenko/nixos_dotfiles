@@ -62,7 +62,10 @@
       #  ${xorg.xset}/bin/xset s 300 5
       #  ${xorg.xset}/bin/xset -dpms
       #'';
-      lightdm.enable = true;
+      #lightdm.enable = true;
+      gdm.enable = true;
+      gdm.wayland = false;
+      startx.enable = true;
     };
     #${xss-lock}/bin/xss-lock -l  -- ${i3lock}/bin/xsecurelock i3lock &
 
