@@ -42,6 +42,8 @@
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     enable = true;
+    desktopManager.xfce.enable = true;
+    windowManager.leftwm.enable = true;
     #xautolock = {
     #  enable = true;
     #  time = 10;
