@@ -77,7 +77,7 @@ in {
       config.common.default = ["cosmic"];
     };
   };
-  systemd.user.services.xdg-desktop-portal-gtk = {
+  systemd.user.services.xdg-desktop-portal-gnome = {
     wantedBy = ["xdg-desktop-portal.service"];
     before = ["xdg-desktop-portal.service"];
   };

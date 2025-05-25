@@ -27,9 +27,10 @@
     portal = {
       enable = true;
       extraPortals = [
+        pkgs.xdg-desktop-portal-cosmic
         pkgs.xdg-desktop-portal-gnome
       ];
-      config.common.default = ["gnome"];
+      config.common.default = ["cosmic"];
       xdgOpenUsePortal = true;
     };
   };
