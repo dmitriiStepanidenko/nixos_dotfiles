@@ -70,6 +70,13 @@ in {
       "x-scheme-handler/unknown" = "firefox.desktop";
       "inode/directory" = "yazi.desktop";
     };
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gtk
+      ];
+    };
     #portal = {
     #  enable = false;
     #  extraPortals = [
@@ -93,7 +100,10 @@ in {
   };
 
   # Install firefox.
-  programs.firefox.enable = true;
+  programs.firefox = {
+    enable = true;
+    package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
+  };
 
   # Enable sound with pipewire.
   security.rtkit.enable = true;
