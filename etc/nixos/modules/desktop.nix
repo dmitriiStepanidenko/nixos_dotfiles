@@ -57,9 +57,27 @@ in {
     waydroid-helper
   ];
   virtualisation.waydroid.enable = true;
-
-  # Because of logseq
-  nixpkgs.config.
+  xdg = {
+    # Default browser
+    mime.defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "application/pdf" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/about" = "firefox.desktop";
+      "x-scheme-handler/unknown" = "firefox.desktop";
+      "inode/directory" = "yazi.desktop";
+    };
+    portal = {
+      enable = true;
+      extraPortals = [pkgs.xdg-desktop-portal-gtk];
+      xdgOpenUsePortal = true;
+    };
+  };
+  systemd.user.services.xdg-desktop-portal-gtk = {
+    wantedBy = ["xdg-desktop-portal.service"];
+    before = ["xdg-desktop-portal.service"];
+  };
 
   programs.steam = {
     enable = true;
