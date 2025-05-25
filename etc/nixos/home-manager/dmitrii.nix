@@ -22,6 +22,10 @@
       enable = true;
       enableFishIntegration = true;
     };
+    yazi = {
+      enable = true;
+      enableFishIntegration = true;
+    };
 
     alacritty = {
       enable = true;
