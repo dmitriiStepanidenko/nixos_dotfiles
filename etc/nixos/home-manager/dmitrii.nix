@@ -5,9 +5,14 @@
 }: {
   home = {
     username = "dmitrii";
-    #homeDirectory = "/home/dmitrii";
+    homeDirectory = "/home/dmitrii";
 
     stateVersion = "25.05";
+
+    file."${config.home.homeDirectory}/.config/leftwm/" = {
+      source = ../../../config/leftwm;
+      recursive = true;
+    };
   };
   xdg = {
     mime = {
