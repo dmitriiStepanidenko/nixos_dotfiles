@@ -32,7 +32,6 @@
         pkgs.xdg-desktop-portal-gnome
       ];
       config.common.default = ["cosmic"];
-      xdgOpenUsePortal = true;
     };
   };
   programs = {
