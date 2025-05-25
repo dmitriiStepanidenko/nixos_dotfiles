@@ -68,15 +68,15 @@ in {
       "x-scheme-handler/unknown" = "firefox.desktop";
       "inode/directory" = "yazi.desktop";
     };
-    portal = {
-      enable = true;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-cosmic
-        pkgs.xdg-desktop-portal-gnome
-      ];
-      config.common.default = ["cosmic"];
-      xdgOpenUsePortal = true;
-    };
+    #portal = {
+    #  enable = false;
+    #  extraPortals = [
+    #    pkgs.xdg-desktop-portal-cosmic
+    #    pkgs.xdg-desktop-portal-gnome
+    #  ];
+    #  config.common.default = ["cosmic"];
+    #  xdgOpenUsePortal = true;
+    #};
   };
   systemd.user.services.xdg-desktop-portal-gnome = {
     wantedBy = ["xdg-desktop-portal.service"];

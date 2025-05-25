@@ -26,7 +26,7 @@
       };
     };
     portal = {
-      enable = true;
+      enable = false;
       extraPortals = [
         pkgs.xdg-desktop-portal-cosmic
         pkgs.xdg-desktop-portal-gnome
