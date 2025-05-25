@@ -81,6 +81,7 @@ in {
     wantedBy = ["xdg-desktop-portal.service"];
     before = ["xdg-desktop-portal.service"];
   };
+  services.gnome.gnome-remote-desktop.enable = true;
 
   programs.steam = {
     enable = true;
