@@ -33,40 +33,43 @@
 
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
   ];
-  programs.i3lock.enable = true;
+  #programs.i3lock.enable = true;
+
+  services.displayManager.cosmic-greeter.enable = true;
+  services.desktopManager.cosmic.enable = true;
 
   services.xserver = {
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     enable = true;
-    xautolock = {
-      enable = true;
-      time = 10;
-      locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
-    };
+    #xautolock = {
+    #  enable = true;
+    #  time = 10;
+    #  locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+    #};
 
-    windowManager = {
-      leftwm.enable = true;
-      session = pkgs.lib.singleton {
-        name = "leftwm";
-        start = ''
-          ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
-          waitPID=$!
-        '';
-      };
-    };
+    #windowManager = {
+    #  leftwm.enable = true;
+    #  session = pkgs.lib.singleton {
+    #    name = "leftwm";
+    #    start = ''
+    #      ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
+    #      waitPID=$!
+    #    '';
+    #  };
+    #};
 
-    displayManager = with pkgs; {
-      #sessionCommands = ''
-      #  # Trigger xlock on suspend.
-      #  ${xorg.xset}/bin/xset s 300 5
-      #  ${xorg.xset}/bin/xset -dpms
-      #'';
-      #lightdm.enable = true;
-      gdm.enable = true;
-      gdm.wayland = false;
-      startx.enable = true;
-    };
+    #displayManager = with pkgs; {
+    #  #sessionCommands = ''
+    #  #  # Trigger xlock on suspend.
+    #  #  ${xorg.xset}/bin/xset s 300 5
+    #  #  ${xorg.xset}/bin/xset -dpms
+    #  #'';
+    #  #lightdm.enable = true;
+    #  gdm.enable = true;
+    #  gdm.wayland = false;
+    #  startx.enable = true;
+    #};
     #${xss-lock}/bin/xss-lock -l  -- ${i3lock}/bin/xsecurelock i3lock &
 
     # Enable the KDE Plasma Desktop Environment.
