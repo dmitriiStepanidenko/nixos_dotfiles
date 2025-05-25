@@ -271,13 +271,13 @@ in {
     };
     docker = {
       enable = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
-        daemon.settings = {
-          insecure-registries = ["10.252.1.8:5000"];
-        };
-      };
+      #rootless = {
+      #  enable = true;
+      #  setSocketVariable = true;
+      #  daemon.settings = {
+      #    insecure-registries = ["10.252.1.8:5000"];
+      #  };
+      #};
       package = pkgs.docker;
       autoPrune.enable = true;
       autoPrune.dates = "weekly";
