@@ -56,6 +56,7 @@ in {
 
     rustdesk-flutter
   ];
+  virtualisation.waydroid.enable = true;
 
   # Because of logseq
   nixpkgs.config.

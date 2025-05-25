@@ -10,8 +10,6 @@
   ];
   services.xserver.videoDrivers = [
     "amdgpu"
-    "modesetting"
-    "fbdev"
     "nvidia"
   ];
   hardware.nvidia = {
@@ -43,29 +41,24 @@
     # accessible via `nviia-settings`.
     nvidiaSettings = true;
 
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-
-    # downgrade to 535 because: https://forums.developer.nvidia.com/t/series-550-freezes-laptop/284772/214
-    #package = config.boot.kernelPackages.nvidiaPackages.legacy_535;
-    #package = config.boot.kernelPackages.nvidiaPackages.beta;
     package = config.boot.kernelPackages.nvidiaPackages.latest;
 
-    #package = (inputs.nixpkgsunstable.linuxPackagesFor config.boot.kernelPackages.kernel).nvidiaPackages.legacy_535;
-    #package = (linuxPackagesFor inputs.nixpkgsunstalbe.linuxPackages.kernel.nvidiaPackages.legacy_535);
-    #linuxPackages_5_10 = recurseIntoAttrs (linuxPackagesFor pkgs.linux_5_10);
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      nvidiaBusId = "PCI:1:0:0";
+      amdgpuBusId = "PCI:5:0:0";
+    };
   };
 
-  nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-    nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:5:0:0";
-  };
+  environment.systemPackages = with pkgs; [
+    lact
+    nvtopPackages.full
+  ];
 
   # amd overclock
-  environment.systemPackages = with pkgs; [lact];
   systemd.packages = with pkgs; [lact];
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 }

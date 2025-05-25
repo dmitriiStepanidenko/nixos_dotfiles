@@ -36,6 +36,7 @@ in {
     ./modules/ssh.nix
     ./modules/yubikey.nix
     #./modules/tmux.nix
+    ./modules/graphics.nix
     ./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     inputs.wireguard.nixosModules.default
@@ -476,11 +477,6 @@ in {
 
     vhdl-ls
 
-    #nvtopPackages.nvidia
-    #nvtopPackages.amd
-    nvtopPackages.full
-
-    #waydroid
     graphviz
 
     via # for lily58. Change layouts
