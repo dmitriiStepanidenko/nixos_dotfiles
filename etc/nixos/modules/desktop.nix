@@ -75,6 +75,7 @@ in {
         pkgs.xdg-desktop-portal-gnome
       ];
       config.common.default = ["cosmic"];
+      xdgOpenUsePortal = true;
     };
   };
   systemd.user.services.xdg-desktop-portal-gnome = {
