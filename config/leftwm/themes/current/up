@@ -3,7 +3,8 @@ export $(dbus-launch)
 
 # SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P)"
 # SCRIPTPATH = "/home/dmitrii/.config/leftwm/themes/current"
-SCRIPTPATH="/home/dmitrii/dotfiles/config/leftwm/themes/Ascent"
+# SCRIPTPATH="/home/dmitrii/dotfiles/config/leftwm/themes/Ascent"
+SCRIPTPATH="$HOME/.config/leftwm/themes/current"
 
 autorandr --change
 
@@ -25,11 +26,11 @@ picom --backend glx &>/dev/null &
 #fi
 
 #set the theme.toml config
-leftwm-command "LoadTheme $SCRIPTPATH/theme.toml"
+leftwm-command "LoadTheme $SCRIPTPATH/theme.ron"
 
 #set background
 #feh --bg-scale "/home/dmitrii/dotfiles/config/leftwm/themes/Ascent/wallpaper.jpg"
-feh --bg-fill "/home/dmitrii/dotfiles/config/leftwm/themes/Ascent/wanderer.jpg"
+feh --bg-fill "$HOME/.config/leftwm/themes/current/wanderer.jpg"
 
 #boot polybar based on the number of monitors found
 if [ -x "$(command -v polybar)" ]; then
