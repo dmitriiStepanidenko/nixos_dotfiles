@@ -55,6 +55,9 @@ in {
     obs-studio
 
     rustdesk-flutter
+
+    waydroid
+    waydroid-helper
   ];
   virtualisation.waydroid.enable = true;
 
