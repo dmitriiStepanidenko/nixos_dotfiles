@@ -49,13 +49,15 @@ in {
     gpu-screen-recorder # CLI
     gpu-screen-recorder-gtk # GUI
 
-    obs-studio
-
     unstable.rustdesk-flutter
 
     waydroid
     waydroid-helper
   ];
+  programs.obs-studio = {
+    enable = true;
+    enableVirtualCamera = true;
+  };
   virtualisation.waydroid.enable = true;
   xdg = {
     # Default browser

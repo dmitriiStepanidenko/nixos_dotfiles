@@ -25,15 +25,15 @@
         "inode/directory" = "yazi.desktop";
       };
     };
-    portal = {
-      enable = false;
-      extraPortals = [
-        pkgs.xdg-desktop-portal-cosmic
-        pkgs.xdg-desktop-portal-gnome
-      ];
-      config.common.default = ["cosmic"];
-      xdgOpenUsePortal = true;
-    };
+    #portal = {
+    #  enable = false;
+    #  extraPortals = [
+    #    pkgs.xdg-desktop-portal-cosmic
+    #    pkgs.xdg-desktop-portal-gnome
+    #  ];
+    #  config.common.default = ["cosmic"];
+    #  xdgOpenUsePortal = true;
+    #};
   };
   programs = {
     git = {
