@@ -43,23 +43,22 @@
     # You can disable this if you're only using the Wayland session.
     enable = true;
     desktopManager.xfce.enable = true;
-    windowManager.leftwm.enable = true;
     #xautolock = {
     #  enable = true;
     #  time = 10;
     #  locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
     #};
 
-    #windowManager = {
-    #  leftwm.enable = true;
-    #  session = pkgs.lib.singleton {
-    #    name = "leftwm";
-    #    start = ''
-    #      ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
-    #      waitPID=$!
-    #    '';
-    #  };
-    #};
+    windowManager = {
+      leftwm.enable = true;
+      #session = pkgs.lib.singleton {
+      #  name = "leftwm";
+      #  start = ''
+      #    ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
+      #    waitPID=$!
+      #  '';
+      #};
+    };
 
     #displayManager = with pkgs; {
     #  #sessionCommands = ''

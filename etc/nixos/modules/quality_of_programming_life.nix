@@ -14,6 +14,8 @@
     du-dust
     dua
     rusty-man
+
+    tokei
   ];
 
   programs.fish = {
