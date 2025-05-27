@@ -54,11 +54,14 @@ in {
     waydroid
     waydroid-helper
   ];
+  programs.adb.enable = true;
+  users.groups.adbusers.members = ["dmitrii"];
+  virtualisation.waydroid.enable = true;
+
   programs.obs-studio = {
     enable = true;
     enableVirtualCamera = true;
   };
-  virtualisation.waydroid.enable = true;
   xdg = {
     # Default browser
     mime.defaultApplications = {
