@@ -32,6 +32,8 @@
     i3lock-fancy
 
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
+
+    libxkbcommon # for cosmic de applets
   ];
   #programs.i3lock.enable = true;
 
