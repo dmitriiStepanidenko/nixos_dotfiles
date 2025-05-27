@@ -342,6 +342,8 @@ in {
   };
   programs.neovim.defaultEditor = true;
 
+  services.flatpak.enable = true;
+
   environment.systemPackages = with pkgs; [
     cri-tools
     dive # look into docker image layers
