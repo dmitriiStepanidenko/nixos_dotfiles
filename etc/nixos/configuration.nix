@@ -322,6 +322,13 @@ in {
 
   programs.light.enable = true;
 
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+    enableBashIntegration = false;
+    enableZshIntegration = false;
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
