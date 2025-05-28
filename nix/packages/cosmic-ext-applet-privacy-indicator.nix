@@ -1,5 +1,6 @@
 {
   stdenvNoCC,
+  stdenv,
   fetchzip,
   gcc-unwrapped,
   glibc,
@@ -18,7 +19,7 @@
     wayland
   ];
 in
-  stdenvNoCC.mkDerivation rec {
+  stdenv.mkDerivation rec {
     pname = "cosmic-ext-applet-privacy-indicator";
     version = "0.1.2";
 
@@ -36,7 +37,7 @@ in
       libxkbcommon
       pipewire
       wayland
-      #pkg-config
+      pkg-config
       #rustPlatform.bindgenHook
       #wayland
     ];
@@ -44,8 +45,10 @@ in
       gcc-unwrapped
       wayland
       pipewire
+      pkg-config
     ];
     propagatedBuildInputs = [
+      pkg-config
       libGL
       libxkbcommon
       wayland
