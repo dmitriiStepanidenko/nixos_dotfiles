@@ -44,9 +44,6 @@ in
       gcc-unwrapped
       wayland
       pipewire
-      libGL
-      libxkbcommon
-      pkg-config
     ];
 
     installPhase = ''
