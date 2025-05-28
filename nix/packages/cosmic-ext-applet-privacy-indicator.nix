@@ -28,6 +28,7 @@ stdenvNoCC.mkDerivation rec {
     autoPatchelfHook
     libxkbcommon
     pipewire
+    wayland
     #pkg-config
     #rustPlatform.bindgenHook
     #wayland
@@ -35,6 +36,7 @@ stdenvNoCC.mkDerivation rec {
   buildInputs = [
     gcc-unwrapped
     wayland
+    pipewire
   ];
 
   installPhase = ''
