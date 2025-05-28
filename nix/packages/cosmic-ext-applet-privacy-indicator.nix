@@ -64,5 +64,6 @@ in
       description = " Privacy indicator for the COSMIC DE";
       homepage = "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator";
       license = lib.licenses.gpl3;
+      LD_LIBRARY_PATH = libPath;
     };
   }
