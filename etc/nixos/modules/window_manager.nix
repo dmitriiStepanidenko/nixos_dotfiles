@@ -4,7 +4,14 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  cosmic-applets = {
+    cosmic-ext-applet-privacy-indicator =
+      pkgs.callPackage
+      ../../../nix/packages/cosmic-ext-applet-privacy-indicator.nix
+      {};
+  };
+in {
   environment.systemPackages = with pkgs; [
     dmenu-rs
     eww
@@ -32,6 +39,8 @@
     i3lock-fancy
 
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
+
+    cosmic-applets.cosmic-ext-applet-privacy-indicator
 
     libxkbcommon # for cosmic de applets
   ];

@@ -9,13 +9,14 @@
     wiki-tui
     delta
     bat
-    xh
-    zellij
-    du-dust
-    dua
+    xh # sending requests over web
+    zellij # tmux analog
+    du-dust # disk usage in useful output
+    dua # disk usage like in du
     rusty-man
+    scooter # find and replace in files via tui
 
-    tokei
+    tokei # count all tokens
   ];
 
   programs.fish = {
