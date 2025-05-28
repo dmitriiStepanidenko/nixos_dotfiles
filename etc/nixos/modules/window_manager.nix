@@ -10,6 +10,10 @@
       pkgs.callPackage
       ../../../nix/packages/cosmic-ext-applet-privacy-indicator.nix
       {};
+    cosmic-ext-applet-system-monitor =
+      pkgs.callPackage
+      ../../../nix/packages/cosmic-ext-applet-system-monitor.nix
+      {};
   };
 in {
   environment.systemPackages = with pkgs; [
