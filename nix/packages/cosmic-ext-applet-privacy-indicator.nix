@@ -18,6 +18,7 @@
     libGL
     libxkbcommon
     wayland
+    pipewire
   ];
 in
   stdenv.mkDerivation rec {
@@ -53,6 +54,7 @@ in
     propagatedBuildInputs = [
       pkg-config
       libGL
+      pipewire
       libxkbcommon
       wayland
     ];
