@@ -69,8 +69,8 @@ in
       mkdir -p $out/share/metainfo
 
       install -m755 cosmic-ext-applet-privacy-indicator/cosmic-ext-applet-privacy-indicator $out/bin
-      cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.desktop $out/share/applications/CosmicPrivacyIndicator.desktop
-      cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.metainfo.xml $out/share/applications/CosmicPrivacyIndicator.metainfo.xml
+      cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.desktop $out/share/applications
+      cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.metainfo.xml $out/share/applications
 
       wrapProgram $out/bin/cosmic-ext-applet-privacy-indicator \
         --prefix LD_LIBRARY_PATH : ${libPath}
