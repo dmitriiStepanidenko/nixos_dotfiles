@@ -9,6 +9,7 @@
     "video=eDP-1:2560x1600@120"
   ];
   services.xserver.videoDrivers = [
+    "modesetting"
     "amdgpu"
     "nvidia"
   ];
@@ -62,6 +63,8 @@
   environment.systemPackages = with pkgs; [
     lact
     nvtopPackages.full
+
+    geekbench
   ];
 
   # amd overclock
