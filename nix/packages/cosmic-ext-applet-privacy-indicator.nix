@@ -50,7 +50,7 @@ in
       libxkbcommon
       wayland
     ];
-    dontPatchELF = true;
+    #dontPatchELF = true;
 
     installPhase = ''
       runHook preInstall
@@ -68,11 +68,11 @@ in
     shellHook = ''
       export LD_LIBRARY_PATH=${libPath}
     '';
-    #LD_LIBRARY_PATH = libPath;
+    LD_LIBRARY_PATH = libPath;
     meta = {
       description = " Privacy indicator for the COSMIC DE";
       homepage = "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator";
       license = lib.licenses.gpl3;
-      #LD_LIBRARY_PATH = libPath;
+      LD_LIBRARY_PATH = libPath;
     };
   }
