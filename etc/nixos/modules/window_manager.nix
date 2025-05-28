@@ -45,6 +45,7 @@ in {
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
 
     cosmic-applets.cosmic-ext-applet-privacy-indicator
+    cosmic-applets.cosmic-ext-applet-system-monitor
 
     libxkbcommon # for cosmic de applets
     wayland

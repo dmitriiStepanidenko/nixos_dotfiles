@@ -27,7 +27,7 @@ in
 
     src = fetchzip {
       url = "https://github.com/D-Brox/cosmic-ext-applet-system-monitor/releases/download/v${version}/cosmic-ext-applet-system-monitor-x86_64.tar.gz";
-      hash = "";
+      hash = "sha256-hfkkijNukqNGECfbmfVFmzasDZBjGxg3N4Qi89RKJvs=";
       inherit pname version;
     };
     #dontBuild = true;
@@ -68,9 +68,9 @@ in
       mkdir -p $out/share/applications
       mkdir -p $out/share/metainfo
 
-      install -m755 ${pname}/${pname} $out/bin
-      cp ${pname}/dev.DBrox.CosmicSystemMonitor.desktop $out/share/applications
-      cp ${pname}/dev.DBrox.CosmicSystemMonitor.metainfo.xml $out/share/applications
+      install -m755 ${pname} $out/bin
+      cp dev.DBrox.CosmicSystemMonitor.desktop $out/share/applications
+      cp dev.DBrox.CosmicSystemMonitor.metainfo.xml $out/share/applications
 
       wrapProgram $out/bin/${pname} \
         --prefix LD_LIBRARY_PATH : ${libPath}
@@ -82,8 +82,8 @@ in
       export LD_LIBRARY_PATH=${libPath}
     '';
     meta = {
-      description = " Privacy indicator for the COSMIC DE";
-      homepage = "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator";
+      description = "A highly configurable resource monitor applet for the COSMIC DE";
+      homepage = "https://github.com/D-Brox/cosmic-ext-applet-system-monitor";
       license = lib.licenses.gpl3;
     };
   }
