@@ -45,6 +45,11 @@ in
       wayland
       pipewire
     ];
+    propagatedBuildInputs = [
+      libGL
+      libxkbcommon
+      wayland
+    ];
 
     installPhase = ''
       runHook preInstall
@@ -59,11 +64,11 @@ in
       cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.metainfo.xml $out/share/applications/CosmicPrivacyIndicator.metainfo.xml
       runHook postInstall
     '';
-    LD_LIBRARY_PATH = libPath;
+    #LD_LIBRARY_PATH = libPath;
     meta = {
       description = " Privacy indicator for the COSMIC DE";
       homepage = "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator";
       license = lib.licenses.gpl3;
-      LD_LIBRARY_PATH = libPath;
+      #LD_LIBRARY_PATH = libPath;
     };
   }
