@@ -50,6 +50,7 @@ in
       libxkbcommon
       wayland
     ];
+    dontPatchELF = true;
 
     installPhase = ''
       runHook preInstall
