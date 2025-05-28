@@ -7,6 +7,7 @@
   lib,
   libxkbcommon,
   pipewire,
+  wayland,
   pkg-config,
   ...
 }:
@@ -33,6 +34,7 @@ stdenvNoCC.mkDerivation rec {
   ];
   buildInputs = [
     gcc-unwrapped
+    wayland
   ];
 
   installPhase = ''
