@@ -43,6 +43,7 @@ in {
     cosmic-applets.cosmic-ext-applet-privacy-indicator
 
     libxkbcommon # for cosmic de applets
+    wayland
   ];
   #programs.i3lock.enable = true;
 
