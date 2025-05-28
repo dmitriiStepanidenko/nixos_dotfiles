@@ -11,6 +11,7 @@
   wayland,
   libGL,
   pkg-config,
+  makeWrapper,
   ...
 }: let
   libPath = lib.makeLibraryPath [
@@ -38,6 +39,7 @@ in
       pipewire
       wayland
       pkg-config
+      makeWrapper
       #rustPlatform.bindgenHook
       #wayland
     ];
@@ -46,6 +48,7 @@ in
       wayland
       pipewire
       pkg-config
+      makeWrapper
     ];
     propagatedBuildInputs = [
       pkg-config
@@ -66,16 +69,19 @@ in
       install -m755 cosmic-ext-applet-privacy-indicator/cosmic-ext-applet-privacy-indicator $out/bin
       cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.desktop $out/share/applications/CosmicPrivacyIndicator.desktop
       cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.metainfo.xml $out/share/applications/CosmicPrivacyIndicator.metainfo.xml
+
+      wrapProgram $out/bin/cosmic-ext-applet-privacy-indicator \
+        --prefix LD_LIBRARY_PATH : ${libPath}
+
+
       runHook postInstall
     '';
     shellHook = ''
       export LD_LIBRARY_PATH=${libPath}
     '';
-    LD_LIBRARY_PATH = libPath;
     meta = {
       description = " Privacy indicator for the COSMIC DE";
       homepage = "https://github.com/D-Brox/cosmic-ext-applet-privacy-indicator";
       license = lib.licenses.gpl3;
-      LD_LIBRARY_PATH = libPath;
     };
   }
