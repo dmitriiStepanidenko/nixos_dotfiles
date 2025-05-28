@@ -65,6 +65,9 @@ in
       cp cosmic-ext-applet-privacy-indicator/dev.DBrox.CosmicPrivacyIndicator.metainfo.xml $out/share/applications/CosmicPrivacyIndicator.metainfo.xml
       runHook postInstall
     '';
+    shellHook = ''
+      export LD_LIBRARY_PATH=${libPath}
+    '';
     #LD_LIBRARY_PATH = libPath;
     meta = {
       description = " Privacy indicator for the COSMIC DE";
