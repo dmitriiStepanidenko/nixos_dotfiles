@@ -41,6 +41,14 @@
     #};
   };
   programs = {
+    television = {
+      settings = {
+        ui = {
+          use_nerd_font_icons = true;
+          theme = "tokyonight";
+        };
+      };
+    };
     git = {
       enable = true;
       delta.enable = true;
