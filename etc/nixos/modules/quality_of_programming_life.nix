@@ -18,6 +18,10 @@
 
     tokei # count all tokens
   ];
+  programs.television = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   programs.fish = {
     enable = true;
