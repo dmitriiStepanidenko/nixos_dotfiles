@@ -49,6 +49,8 @@ in {
 
     libxkbcommon # for cosmic de applets
     wayland
+
+    kdePackages.kdenlive
   ];
   #programs.i3lock.enable = true;
 
