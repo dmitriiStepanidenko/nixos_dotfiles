@@ -114,10 +114,21 @@ in {
     startLimitBurst = 1;
     startLimitIntervalSec = 5;
     wantedBy = ["sleep.target"];
+
+    # Add a condition to check for X Server
+    unitConfig = {
+      ConditionEnvironment = "DISPLAY"; # Only run if DISPLAY is set
+      ConditionPathExists = "/tmp/.X11-unix"; # Check for X11 socket directory
+    };
+
     serviceConfig = {
       ExecStart = ''${pkgs.autorandr}/bin/autorandr --batch --change --default default'';
       Type = "oneshot";
       RemainAfterExit = "false";
+
+      # Make it run in the user's session environment
+      User = "dmitrii"; # Replace with your username
+      Environment = "DISPLAY=:0";
     };
   };
 }
