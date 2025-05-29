@@ -17,6 +17,8 @@
     scooter # find and replace in files via tui
 
     tokei # count all tokens
+
+    television
   ];
   programs.television = {
     enable = true;
