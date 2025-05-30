@@ -56,12 +56,14 @@ in {
 
   services.displayManager.cosmic-greeter.enable = true;
   services.desktopManager.cosmic.enable = true;
+  #  #services.desktopManager.xfce.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   services.xserver = {
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     enable = true;
-    desktopManager.xfce.enable = true;
+    #desktopManager.xfce.enable = true;
     #xautolock = {
     #  enable = true;
     #  time = 10;
