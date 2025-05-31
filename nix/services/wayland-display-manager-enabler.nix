@@ -96,8 +96,8 @@ in {
     };
 
     # Create udev rules to trigger the service when displays are connected/disconnected
-    #services.udev.extraRules = ''
-    #  ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash -c 'export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u ${cfg.user})/bus; ${pkgs.systemd}/bin/systemctl --user -M ${cfg.user}@ start display-manager-enabler.service'"
-    #'';
+    services.udev.extraRules = ''
+      ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl --user start display-manager-enabler.service"
+    '';
   };
 }
