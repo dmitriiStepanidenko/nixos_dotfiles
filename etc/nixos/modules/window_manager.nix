@@ -72,6 +72,7 @@ in {
     #  time = 10;
     #  locker = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
     #};
+    autorun = false;
 
     windowManager = {
       leftwm.enable = true;

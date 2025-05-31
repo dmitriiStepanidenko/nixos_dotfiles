@@ -13,7 +13,6 @@
     ./graphics.nix
   ];
   boot = {
-    initrd.availableKernelModules = ["nvme" "xhci_pci" "usb_storage" "usbhid" "sd_mod" "sdhci_pci"];
     initrd.kernelModules = [];
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
@@ -23,12 +22,13 @@
     "/" = {
       device = "/dev/disk/by-uuid/aa2e6941-0c79-4ffa-aab7-425cc306b0cd";
       fsType = "ext4";
+      options = ["noatime" "nodiratime" "discard"];
     };
 
     "/boot" = {
       device = "/dev/disk/by-uuid/BADC-E961";
       fsType = "vfat";
-      options = ["fmask=0022" "dmask=0022"];
+      options = ["fmask=0022" "dmask=0022" "noatime" "nodiratime" "discard"];
     };
 
     "/home/dmitrii/shared" = {
@@ -63,6 +63,9 @@
         "journal_async_commit"
         "commit=999"
         "nobarrier"
+        "noatime"
+        "nodiratime"
+        "discard"
       ];
     };
 
@@ -82,6 +85,9 @@
         "journal_async_commit"
         "commit=999"
         "nobarrier"
+        "noatime"
+        "nodiratime"
+        "discard"
       ];
     };
   };
