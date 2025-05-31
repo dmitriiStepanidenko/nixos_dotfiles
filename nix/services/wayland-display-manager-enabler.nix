@@ -40,15 +40,14 @@ in {
     user = mkOption {
       type = types.str;
       description = "User for which to run the display manager enabler";
-      default = "1000";
       example = "alice";
     };
   };
 
   config = mkIf cfg.enable {
-    # Create a systemd service
+    # Create a systemd service for the user session
     systemd.user.services.display-manager-enabler = {
-      description = "Wayland Display Manager enabler";
+      description = "Wayland Display Manager Enabler";
 
       # Run after resume from sleep and when udev detects display changes
       wantedBy = ["graphical-session.target"];
@@ -57,27 +56,47 @@ in {
       serviceConfig = {
         Type = "oneshot";
         ExecStart = "${displayScript}";
-        User = cfg.user;
-        Restart = "no";
+        # No User directive in user services
       };
     };
 
-    # Create udev rules to trigger the service when displays are connected/disconnected
-    services.udev.extraRules = ''
-      ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl --user start display-manager-enabler.service"
-    '';
+    # Create a systemd path unit to watch for changes in display configuration
+    systemd.user.paths.display-manager-enabler = {
+      description = "Watch for display changes";
+      wantedBy = ["graphical-session.target"];
+      pathConfig = {
+        PathChanged = ["/sys/class/drm/"];
+      };
+      unitConfig = {
+        OnActiveSec = "2";
+      };
+    };
 
-    # Create systemd sleep hook to trigger the service after waking from sleep
+    # Create a systemd service for system-level sleep hooks
     systemd.services.display-manager-enabler-sleep = {
       description = "Trigger display manager enabler after sleep";
       wantedBy = ["sleep.target"];
       after = ["sleep.target"];
 
+      script = ''
+        # Get the user ID for the specified user
+        USER_ID=$(id -u ${cfg.user})
+
+        # Check if the user is logged in
+        if [ -n "$(${pkgs.systemd}/bin/loginctl list-users | grep $USER_ID)" ]; then
+          # Use machinectl to run the command as the user
+          ${pkgs.systemd}/bin/machinectl shell ${cfg.user}@ /run/current-system/sw/bin/systemctl --user start display-manager-enabler.service
+        fi
+      '';
+
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.systemd}/bin/systemctl --user start display-manager-enabler.service";
-        User = cfg.user;
       };
     };
+
+    # Create udev rules to trigger the service when displays are connected/disconnected
+    #services.udev.extraRules = ''
+    #  ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.bash}/bin/bash -c 'export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u ${cfg.user})/bus; ${pkgs.systemd}/bin/systemctl --user -M ${cfg.user}@ start display-manager-enabler.service'"
+    #'';
   };
 }
