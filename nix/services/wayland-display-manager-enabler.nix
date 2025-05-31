@@ -17,7 +17,7 @@ with lib; let
     DISPLAY_COUNT=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "Enabled:\s*yes" | wc -l)
 
     # Get the internal display name (usually eDP-1 or similar)
-    INTERNAL_DISPLAY=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "^(eDP|LVDS)" | head -n 1 | awk '{print $1}')
+    INTERNAL_DISPLAY=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "^(eDP|LVDS)" | head -n 1 | ${pkgs.gawk}/bin/awk '{print $1}')
 
     # If no internal display found, exit
     if [ -z "$INTERNAL_DISPLAY" ]; then
