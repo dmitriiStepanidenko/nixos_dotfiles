@@ -14,6 +14,7 @@ with lib; let
     # Wait a bit for display system to settle
     sleep 2
 
+    # ENABLED display count
     DISPLAY_COUNT=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "Enabled:\s*yes" | wc -l)
 
     # Get the internal display name (usually eDP-1 or similar)
@@ -26,11 +27,11 @@ with lib; let
     fi
 
     # If no external displays are connected, enable the internal display
-    if [ "$DISPLAY_COUNT" -le 1 ]; then
+    if (( "$DISPLAY_COUNT" > 0 )) then
+      echo "External displays connected, no action needed"
+    else
       echo "No external displays detected, enabling internal display $INTERNAL_DISPLAY"
       ${pkgs.wlr-randr}/bin/wlr-randr --output "$INTERNAL_DISPLAY" --on
-    else
-      echo "External displays connected, no action needed"
     fi
   '';
 in {
