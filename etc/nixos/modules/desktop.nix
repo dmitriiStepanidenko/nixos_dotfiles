@@ -20,6 +20,8 @@ in {
   environment.systemPackages = with pkgs; [
     pavucontrol # gui for sound
 
+    libnotify
+
     unstable.telegram-desktop
     enpass
     libreoffice-qt

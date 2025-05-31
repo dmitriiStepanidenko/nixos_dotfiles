@@ -16,6 +16,9 @@
       {};
   };
 in {
+  imports = [
+    ../../../nix/services/wayland-display-manager-enabler.nix
+  ];
   environment.systemPackages = with pkgs; [
     dmenu-rs
     eww
@@ -26,12 +29,12 @@ in {
 
     #inputs.nixos-unstable.legacyPackages.${pkgs.system}.xsecurelock # lock
 
-    libnotify
-
     xorg.xev # get key number/name
     xorg.xrandr # screen
     autorandr # screen
     arandr
+
+    wlr-randr
 
     xorg.xdpyinfo # dpi info for scaling
     xorg.xinit
@@ -72,26 +75,26 @@ in {
 
     windowManager = {
       leftwm.enable = true;
-      #session = pkgs.lib.singleton {
-      #  name = "leftwm";
-      #  start = ''
-      #    ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
-      #    waitPID=$!
-      #  '';
-      #};
+      session = pkgs.lib.singleton {
+        name = "leftwm";
+        start = ''
+          ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
+          waitPID=$!
+        '';
+      };
     };
 
-    #displayManager = with pkgs; {
-    #  #sessionCommands = ''
-    #  #  # Trigger xlock on suspend.
-    #  #  ${xorg.xset}/bin/xset s 300 5
-    #  #  ${xorg.xset}/bin/xset -dpms
-    #  #'';
-    #  #lightdm.enable = true;
-    #  gdm.enable = true;
-    #  gdm.wayland = false;
-    #  startx.enable = true;
-    #};
+    displayManager = with pkgs; {
+      #sessionCommands = ''
+      #  # Trigger xlock on suspend.
+      #  ${xorg.xset}/bin/xset s 300 5
+      #  ${xorg.xset}/bin/xset -dpms
+      #'';
+      #lightdm.enable = true;
+      #gdm.enable = true;
+      #gdm.wayland = false;
+      startx.enable = true;
+    };
     #${xss-lock}/bin/xss-lock -l  -- ${i3lock}/bin/xsecurelock i3lock &
 
     # Enable the KDE Plasma Desktop Environment.
@@ -109,6 +112,12 @@ in {
 
     # Firmwares updates
     # services.fwupd.enable = true;
+  };
+
+  # Enable the service
+  services.display-manager-enabler = {
+    enable = true;
+    user = "dmitrii"; # Replace with your actual username
   };
 
   systemd.services.autorandr = {
