@@ -14,8 +14,7 @@ with lib; let
     # Wait a bit for display system to settle
     sleep 2
 
-    # Get the list of connected outputs
-    CONNECTED_OUTPUTS=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -B 1 "^  Connected: yes" | grep "^[A-Z]" | awk '{print $1}')
+    DISPLAY_COUNT=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "Enabled:\s*yes" | wc -l)
 
     # Get the internal display name (usually eDP-1 or similar)
     INTERNAL_DISPLAY=$(${pkgs.wlr-randr}/bin/wlr-randr | grep -E "^(eDP|LVDS)" | head -n 1 | awk '{print $1}')
@@ -25,9 +24,6 @@ with lib; let
       echo "No internal display found"
       exit 0
     fi
-
-    # Count number of connected displays
-    DISPLAY_COUNT=$(echo "$CONNECTED_OUTPUTS" | wc -l)
 
     # If no external displays are connected, enable the internal display
     if [ "$DISPLAY_COUNT" -le 1 ]; then
