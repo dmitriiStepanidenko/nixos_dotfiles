@@ -84,6 +84,10 @@ in {
   programs.coolercontrol = {
     enable = true;
   };
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
+  };
 
   # amd overclock
   systemd.packages = [unstable.lact];
