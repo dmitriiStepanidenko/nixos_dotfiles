@@ -490,8 +490,6 @@ in {
 
     wakatime
 
-    nekoray
-
     lenovo-legion
 
     zotero

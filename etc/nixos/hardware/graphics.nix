@@ -2,8 +2,16 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
-}: {
+}: let
+  unstable = import inputs.nixos-unstable {
+    system = "x86_64-linux";
+    config = {
+      allowUnfree = true;
+    };
+  };
+in {
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelParams = [
     "video=eDP-1:2560x1600@120"
@@ -68,6 +76,16 @@
   ];
 
   # amd overclock
-  systemd.packages = with pkgs; [lact];
+  systemd.packages = with pkgs; [unstable.lact];
+  systemd.services.lact.enable = true;
+  #systemd.services.lact = {
+  #  description = "AMDGPU Control Daemon";
+  #  after = ["multi-user.target"];
+  #  wantedBy = ["multi-user.target"];
+  #  serviceConfig = {
+  #    ExecStart = "${pkgs.lact}/bin/lact daemon";
+  #  };
+  #  enable = true;
+  #};
   systemd.services.lactd.wantedBy = ["multi-user.target"];
 }
