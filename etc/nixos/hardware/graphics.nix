@@ -12,6 +12,12 @@
     };
   };
 in {
+  imports = [
+    "${inputs.nixos-unstable}/nixos/modules/services/hardware/lact.nix"
+    "${inputs.nixos-unstable}/nixos/modules/services/hardware/amdgpu.nix"
+  ];
+  disabledModules = ["services/hardware/amdgpu.nix"];
+
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelParams = [
     "video=eDP-1:2560x1600@120"
@@ -75,9 +81,25 @@ in {
     geekbench
   ];
 
+  programs.coolercontrol = {
+    enable = true;
+  };
+
   # amd overclock
-  systemd.packages = with pkgs; [unstable.lact];
-  systemd.services.lact.enable = true;
+  systemd.packages = [unstable.lact];
+
+  services.lact = {
+    enable = true;
+    package = unstable.lact;
+  };
+  hardware.amdgpu = {
+    initrd.enable = true;
+    opencl.enable = true;
+    overdrive.enable = true;
+    amdvlk.enable = true;
+  };
+
+  #systemd.services.lact.enable = true;
   #systemd.services.lact = {
   #  description = "AMDGPU Control Daemon";
   #  after = ["multi-user.target"];
