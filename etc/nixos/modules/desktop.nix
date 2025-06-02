@@ -55,6 +55,8 @@ in {
 
     waydroid
     waydroid-helper
+
+    revolt-desktop
   ];
   programs.adb.enable = true;
   users.groups.adbusers.members = ["dmitrii"];
