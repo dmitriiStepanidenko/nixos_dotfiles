@@ -109,7 +109,7 @@ in {
       bind =
         [
           "$mod, F, exec, firefox"
-          ", Print, exec, grimblast copy area"
+          #", Print, exec, grimblast copy area"
           "$mod, P, exec, wofi"
         ]
         ++ (
