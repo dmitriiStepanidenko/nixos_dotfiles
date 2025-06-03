@@ -258,7 +258,7 @@ in {
           };
         };
         cpu = {
-          format = "  {usage}%";
+          format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
         };
         memory = {
@@ -275,7 +275,7 @@ in {
             warning = 30;
             critical = 15;
           };
-          format = "{icon}  {capacity}%";
+          format = "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%{time}";
           format-full = "{icon}  {capacity}%";
           format-charging = "  {capacity}%";
           format-plugged = "  {capacity}%";
