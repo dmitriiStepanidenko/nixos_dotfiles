@@ -102,6 +102,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
 
             home-manager.users.dmitrii = import ./home-manager/dmitrii.nix;
           }

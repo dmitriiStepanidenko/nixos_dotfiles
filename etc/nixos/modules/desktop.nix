@@ -66,34 +66,35 @@ in {
     enable = true;
     enableVirtualCamera = true;
   };
-  xdg = {
-    # Default browser
-    mime.defaultApplications = {
-      "text/html" = "firefox.desktop";
-      "application/pdf" = "firefox.desktop";
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
-      "x-scheme-handler/about" = "firefox.desktop";
-      "x-scheme-handler/unknown" = "firefox.desktop";
-      "inode/directory" = "yazi.desktop";
-    };
-    portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-      ];
-    };
-    #portal = {
-    #  enable = false;
-    #  extraPortals = [
-    #    pkgs.xdg-desktop-portal-cosmic
-    #    pkgs.xdg-desktop-portal-gnome
-    #  ];
-    #  config.common.default = ["cosmic"];
-    #  xdgOpenUsePortal = true;
-    #};
-  };
+  # Setting up in home-manager
+  #xdg = {
+  #  # Default browser
+  #  mime.defaultApplications = {
+  #    "text/html" = "firefox.desktop";
+  #    "application/pdf" = "firefox.desktop";
+  #    "x-scheme-handler/http" = "firefox.desktop";
+  #    "x-scheme-handler/https" = "firefox.desktop";
+  #    "x-scheme-handler/about" = "firefox.desktop";
+  #    "x-scheme-handler/unknown" = "firefox.desktop";
+  #    "inode/directory" = "yazi.desktop";
+  #  };
+  #    ##portal = {
+  #    ##  enable = true;
+  #    ##  extraPortals = with pkgs; [
+  #    ##    xdg-desktop-portal-wlr
+  #    ##    xdg-desktop-portal-gtk
+  #    ##  ];
+  #    ##};
+  #  #portal = {
+  #  #  enable = false;
+  #  #  extraPortals = [
+  #  #    pkgs.xdg-desktop-portal-cosmic
+  #  #    pkgs.xdg-desktop-portal-gnome
+  #  #  ];
+  #  #  config.common.default = ["cosmic"];
+  #  #  xdgOpenUsePortal = true;
+  #  #};
+  #};
 
   programs.steam = {
     enable = true;
