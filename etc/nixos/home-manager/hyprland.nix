@@ -126,8 +126,8 @@ in {
         #      "HDMI-A-1"
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
-        modules-center = ["clock" "sway/language" "battery" "temperature"];
-        modules-right = ["mpd" "wireplumber" "backlight" "load" "memory"];
+        modules-center = ["clock" "hyprland/language" "battery" "temperature"];
+        modules-right = ["mpd" "wireplumber" "backlight" "cpu" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -143,6 +143,32 @@ in {
         cpu = {
           format = "  {usage}%";
           tooltip = true;
+        };
+        memory = {
+          format = "  {}%";
+          tooltip = true;
+        };
+        "hyprland/language" = {
+          format = "  {}";
+          format-en = "EN";
+          format-ru = "RU";
+        };
+        battery = {
+          states = {
+            warning = 30;
+            critical = 15;
+          };
+          format = "{icon}  {capacity}%";
+          format-full = "{icon}  {capacity}%";
+          format-charging = "  {capacity}%";
+          format-plugged = "  {capacity}%";
+          format-alt = "{time}  {icon}";
+          format-icons = ["" "" "" "" ""];
+        };
+        clock = {
+          format = "{:%H:%M | %e %B} ";
+          tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+          format-alt = "{:%Y-%m-%d}";
         };
       };
     };
