@@ -123,22 +123,22 @@
     size = 16;
   };
 
-  #gtk = {
-  #  enable = true;
+  gtk = {
+    enable = true;
 
-  #  theme = {
-  #    package = pkgs.tokyonight-gtk-theme;
-  #    name = "Tokyo-Night-GTK-Theme";
-  #  };
+    theme = {
+      package = pkgs.tokyonight-gtk-theme;
+      name = "Tokyo-Night-GTK-Theme";
+    };
 
-  #  iconTheme = {
-  #    package = pkgs.adwaita-icon-theme;
-  #    name = "Adwaita";
-  #  };
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
 
-  #  font = {
-  #    name = "Fira Code";
-  #    size = 12;
-  #  };
-  #};
+    font = {
+      name = "Fira Code";
+      size = 12;
+    };
+  };
 }
