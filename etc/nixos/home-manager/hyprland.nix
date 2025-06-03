@@ -276,8 +276,9 @@ in {
             critical = 15;
           };
           format = "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%{time}";
-          format-full = "{icon}  {capacity}%";
-          format-charging = "  {capacity}%";
+          format-time = " ({H}h{M}m)";
+          format-full = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged";
+          format-charging = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}";
           format-plugged = "  {capacity}%";
           format-alt = "{time}  {icon}";
           format-icons = ["" "" "" "" ""];
