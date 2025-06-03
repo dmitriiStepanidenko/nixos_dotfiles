@@ -109,6 +109,7 @@ in {
       bind = [
         "$mod, F, exec, firefox"
         "$mod, P, exec, ${pkgs.wofi}/bin/wofi"
+        "$mod, RETURN, exec, alacritty"
         #", Print, exec, grimblast copy area"
       ];
       #++ (
