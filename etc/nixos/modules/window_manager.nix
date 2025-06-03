@@ -66,6 +66,10 @@ in {
   #programs.i3lock.enable = true;
 
   #services.displayManager.cosmic-greeter.enable = true;
+  services.displayManager.sddm = {
+    enable = true;
+    wayland.enable = true;
+  };
 
   services.desktopManager.cosmic.enable = false;
   #  #services.desktopManager.xfce.enable = true;
@@ -99,13 +103,13 @@ in {
 
     windowManager = {
       leftwm.enable = true;
-      session = pkgs.lib.singleton {
-        name = "leftwm";
-        start = ''
-          ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
-          waitPID=$!
-        '';
-      };
+      #session = pkgs.lib.singleton {
+      #  name = "leftwm";
+      #  start = ''
+      #    ${inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm}/bin/leftwm &
+      #    waitPID=$!
+      #  '';
+      #};
     };
 
     displayManager = with pkgs; {
@@ -114,7 +118,7 @@ in {
       #  ${xorg.xset}/bin/xset s 300 5
       #  ${xorg.xset}/bin/xset -dpms
       #'';
-      lightdm.greeter.enable = true;
+      #lightdm.greeter.enable = true;
       #gdm.enable = true;
       #gdm.wayland = false;
       startx.enable = true;
