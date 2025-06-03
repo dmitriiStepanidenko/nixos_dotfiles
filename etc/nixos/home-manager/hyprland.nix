@@ -240,7 +240,7 @@ in {
           disable-scroll = true;
           all-outputs = true;
           warp-on-scroll = false;
-          format = "{icon}";
+          format = "{name}:{icon}";
           format-icons = {
             "1" = "1 <span font='Font Awesome 5 Free 14'></span>";
             "2" = "2 <span font='Font Awesome 5 Free 14'></span>";
@@ -252,7 +252,6 @@ in {
             "8" = "8 <span font='Font Awesome 5 Free 14'></span>";
             "9" = "9 <span font='Font Awesome 5 Free 14'></span>";
             "10" = "0 <span font='Font Awesome 5 Free 14'></span>";
-
             urgent = "";
             active = "";
             default = "";
