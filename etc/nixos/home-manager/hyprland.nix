@@ -21,8 +21,8 @@ in {
       #exec-once = ''${startupScript}/bin/start'';
       exec-once = [
         "${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
-        "${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
-        "${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}"
+        #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
+        "${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg} 2>&1 > ~/swww.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -73,6 +73,7 @@ in {
     };
   };
   programs.hyprlock.enable = true;
+  services.swww.enable = true;
   services.kanshi = {
     enable = true;
     profiles = {
