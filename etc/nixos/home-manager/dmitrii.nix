@@ -140,12 +140,12 @@ in {
 
     theme = {
       package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyonight-Dark-xhdpi";
+      name = "Tokyonight-Dark";
     };
 
     iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
 
     font = {
