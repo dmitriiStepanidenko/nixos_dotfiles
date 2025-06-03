@@ -18,15 +18,23 @@ in {
     package = null;
     portalPackage = null;
     settings = {
-      exec-once = ''${startupScript}/bin/start'';
+      #exec-once = ''${startupScript}/bin/start'';
+      exec-once = [
+        "${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log &"
+      ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
+      bindm = [
+        "$mod, mouse:272, movewindow"
+        "$mod, mouse:273, resizewindow"
+      ];
       bind =
         [
           "$mod, F, exec, firefox"
           "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --term=footclient --prompt=Run"
           "$mod, RETURN, exec, alacritty"
           "$mod, Q, killactive"
+
           "$mod, H, movefocus, l"
           "$mod, L, movefocus, r"
           "$mod, K, movefocus, u"
@@ -35,11 +43,17 @@ in {
           "$mod SHIFT, L, movewindow, r"
           "$mod SHIFT, K, movewindow, u"
           "$mod SHIFT, J, movewindow, d"
+
+          "$mod CONTROL, H, resizeactive, -40 0"
+          "$mod CONTROL, L, resizeactive, 40 0"
+          "$mod CONTROL, K, resizeactive, 0 -40"
+          "$mod CONTROL, J, resizeactive, 0 40"
+
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
-          ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
-          ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
-          ",XF86AudioRaiseVolume,exec,pamixer -i 5"
-          ",XF86AudioLowerVolume,exec,pamixer -d 5"
+          ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
+          ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
+          ",XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5"
+          ",XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5"
         ]
         ++ (
           # workspaces
