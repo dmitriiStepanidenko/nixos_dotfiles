@@ -26,8 +26,13 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
-    #nvf.url = "github:notashelf/nvf";
-    nvf.url = "github:dmitriiStepanidenko/nvf";
+    mnw.url = "github:Gerg-L/mnw?ref=0cb0df3a6f26cbb42f3e096ec65bc7263aab9757";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.mnw.follows = "mnw";
+    };
+    #nvf.url = "github:dmitriiStepanidenko/nvf";
     #nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";

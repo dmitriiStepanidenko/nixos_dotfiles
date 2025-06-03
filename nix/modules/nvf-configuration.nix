@@ -282,11 +282,11 @@
       enableLSP = true;
       enableTreesitter = true;
 
-      graphql = {
-        enable = true;
-        treesitter.enable = true;
-        format.enable = true;
-      };
+      #graphql = {
+      #  enable = true;
+      #  treesitter.enable = true;
+      #  format.enable = true;
+      #};
 
       nix = {
         enable = true;
