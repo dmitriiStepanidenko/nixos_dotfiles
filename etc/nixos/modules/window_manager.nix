@@ -83,7 +83,10 @@ in {
     xwayland.enable = true;
   };
   xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  xdg.portal.extraPortals = [
+    #pkgs.xdg-desktop-portal-hyprland
+    pkgs.xdg-desktop-portal-gtk
+  ];
 
   environment.sessionVariables = {
     #If your cursor becomes invisible
