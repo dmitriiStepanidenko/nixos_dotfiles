@@ -182,6 +182,7 @@ in {
       #memory,
       #network,
       #pulseaudio,
+      #wireplumber,
       #idle_inhibitor,
       #hyprland-language,
       #backlight,
@@ -258,6 +259,7 @@ in {
           };
         };
         cpu = {
+          "format" = "︁ {}%";
           tooltip = true;
         };
         memory = {
