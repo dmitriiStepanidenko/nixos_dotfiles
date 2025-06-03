@@ -53,6 +53,8 @@ in {
     libxkbcommon # for cosmic de applets
     wayland
 
+    wofi # wayland launcher for hyperland
+
     kdePackages.kdenlive
 
     (
@@ -68,12 +70,12 @@ in {
   #  #services.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  #programs.hyprland = {
+  #  enable = true;
+  #  xwayland.enable = true;
+  #};
+  #xdg.portal.enable = true;
+  #xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   environment.sessionVariables = {
     #If your cursor becomes invisible

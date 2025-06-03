@@ -91,6 +91,7 @@
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
     settings = {
+      "$terminal" = "alacritty";
       "$mod" = "SUPER";
       bind =
         [
@@ -124,8 +125,8 @@
     enable = true;
 
     theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Grey-Darkest";
+      package = pkgs.tokyonight-gtk-theme;
+      name = "Tokyo-Night-GTK-Theme";
     };
 
     iconTheme = {
@@ -134,8 +135,8 @@
     };
 
     font = {
-      name = "Sans";
-      size = 11;
+      name = "Fira Code";
+      size = 12;
     };
   };
 }
