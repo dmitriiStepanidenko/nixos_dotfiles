@@ -114,7 +114,7 @@ in {
       #  ${xorg.xset}/bin/xset s 300 5
       #  ${xorg.xset}/bin/xset -dpms
       #'';
-      #lightdm.enable = true;
+      lightdm.greeter.enable = true;
       #gdm.enable = true;
       #gdm.wayland = false;
       startx.enable = true;
