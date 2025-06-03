@@ -150,8 +150,8 @@ in {
 
   # Enable the service
   services.display-manager-enabler = {
-    enable = true;
-    user = "dmitrii"; # Replace with your actual username
+    enable = false;
+    user = "dmitrii";
   };
 
   systemd.services.autorandr = {
