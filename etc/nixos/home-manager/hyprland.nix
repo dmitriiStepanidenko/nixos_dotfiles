@@ -5,8 +5,8 @@
   ...
 }: let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log
-    ${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log
+    ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log &
+    ${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &
 
     sleep 1
 
@@ -31,7 +31,15 @@ in {
           "$mod, L, movefocus, r"
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
+          "$mod SHIFT, H, movewindow, l"
+          "$mod SHIFT, L, movewindow, r"
+          "$mod SHIFT, K, movewindow, u"
+          "$mod SHIFT, J, movewindow, d"
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
+          ",XF86MonBrightnessUp,exec,brightnessctl set +5%"
+          ",XF86MonBrightnessDown,exec,brightnessctl set 5%-"
+          ",XF86AudioRaiseVolume,exec,pamixer -i 5"
+          ",XF86AudioLowerVolume,exec,pamixer -d 5"
         ]
         ++ (
           # workspaces
