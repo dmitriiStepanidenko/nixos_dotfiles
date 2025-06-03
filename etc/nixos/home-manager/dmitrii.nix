@@ -110,7 +110,7 @@ in {
         [
           "$mod, F, exec, firefox"
           #", Print, exec, grimblast copy area"
-          "$mod, P, exec, wofi"
+          "$mod, P, exec, ${pkgs.wofi}/bin/wofi"
         ]
         ++ (
           # workspaces
