@@ -236,7 +236,7 @@ in {
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
-        modules-right = ["mpd" "wireplumber" "backlight" "cpu" "memory"];
+        modules-right = ["mpd" "pulseaudio" "backlight" "cpu" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -290,7 +290,7 @@ in {
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%Y-%m-%d}";
         };
-        wireplumber = {
+        pulseaudio = {
           "format" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
           "format-alt" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
           "format-alt-click" = "click-right";
