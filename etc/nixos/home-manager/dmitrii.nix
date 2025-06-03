@@ -108,7 +108,7 @@ in {
       "$mod" = "SUPER";
       bind = [
         "$mod, F, exec, firefox"
-        "$mod, P, exec, ${pkgs.wofi}/bin/wofi"
+        "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --term=footclient --prompt=Run"
         "$mod, RETURN, exec, alacritty"
         #", Print, exec, grimblast copy area"
       ];
