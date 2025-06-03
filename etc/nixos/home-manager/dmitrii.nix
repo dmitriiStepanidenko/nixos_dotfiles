@@ -140,7 +140,7 @@ in {
 
     theme = {
       package = pkgs.tokyonight-gtk-theme;
-      name = "Tokyo-Night-GTK-Theme";
+      name = "Tokyonight-Dark-xhdpi";
     };
 
     iconTheme = {
