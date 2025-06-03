@@ -37,6 +37,8 @@
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
+    hyprland.url = "github:hyprwm/Hyprland";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";

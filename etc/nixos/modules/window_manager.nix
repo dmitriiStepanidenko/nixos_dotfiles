@@ -71,12 +71,13 @@ in {
     wayland.enable = true;
   };
 
-  services.desktopManager.cosmic.enable = false;
+  services.desktopManager.cosmic.enable = true;
   #  #services.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
 
   programs.hyprland = {
     enable = true;
+    package = inputs.hyprland.packages."${pkgs.system}".hyprland;
     xwayland.enable = true;
   };
   xdg.portal.enable = true;

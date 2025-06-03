@@ -1,8 +1,18 @@
 {
+  inputs,
   config,
   pkgs,
   ...
-}: {
+}: let
+  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    ${pkgs.waybar}/bin/waybar &
+    ${pkgs.swww}/bin/swww init &
+
+    sleep 1
+
+    ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg} &
+  '';
+in {
   home = {
     username = "dmitrii";
     homeDirectory = "/home/dmitrii";
@@ -93,6 +103,7 @@
     package = null;
     portalPackage = null;
     settings = {
+      exec-once = ''${startupScript}/bin/start'';
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
       bind =
