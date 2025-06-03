@@ -25,8 +25,13 @@ in {
       #before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
       #after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       #};
+      input = {
+        kb_layout = "us,ru";
+        kb_variant = "";
+        options = "grp:win_space_toggle";
+      };
       exec-once = [
-        "sleep 1; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
+        "sleep 2; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         "${pkgs.swww}/bin/swww img ${backgroundImage} 2>&1 > ~/swww.log"
       ];
