@@ -20,6 +20,11 @@ in {
     portalPackage = null;
     settings = {
       #exec-once = ''${startupScript}/bin/start'';
+      general = {
+        lock_cmd = "pidof hyprlock || hyprlock"; # avoid starting multiple hyprlock instances.
+        before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
+        after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
+      };
       exec-once = [
         "${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
@@ -111,6 +116,33 @@ in {
   };
   programs.waybar = {
     enable = true;
+    settings = {
+      mainBar = {
+        layer = "top";
+        position = "top";
+        height = 30;
+        #output = [
+        #      "eDP-1"
+        #      "HDMI-A-1"
+        #    ];
+        modules-left = ["hyprland/workspaces" "hyprland/mode" "hyprland/taskbar"];
+        modules-center = ["hyprland/window" "custom/hello-from-waybar"];
+        modules-right = ["mpd" "custom/mymodule#with-css-id" "temperature"];
+
+        "sway/workspaces" = {
+          disable-scroll = true;
+          all-outputs = true;
+        };
+        "custom/hello-from-waybar" = {
+          format = "hello {}";
+          max-length = 40;
+          interval = "once";
+          exec = pkgs.writeShellScript "hello-from-waybar" ''
+            echo "from within waybar"
+          '';
+        };
+      };
+    };
   };
   services.swww.enable = true;
   services.kanshi = {
