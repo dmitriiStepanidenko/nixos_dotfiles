@@ -32,7 +32,7 @@ in {
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
-          ", Print, exec, grimblast copy area"
+
         ]
         ++ (
           # workspaces
