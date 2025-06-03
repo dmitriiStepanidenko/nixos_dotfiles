@@ -5,12 +5,12 @@
   ...
 }: let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar &
-    ${pkgs.swww}/bin/swww init &
+    ${pkgs.waybar}/bin/waybar
+    ${pkgs.swww}/bin/swww init
 
     sleep 1
 
-    ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg} &
+    ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}
   '';
 in {
   wayland.windowManager.hyprland = {
@@ -31,6 +31,7 @@ in {
           "$mod, L, movefocus, r"
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
+          "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
           ", Print, exec, grimblast copy area"
         ]
         ++ (
