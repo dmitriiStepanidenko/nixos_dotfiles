@@ -65,15 +65,16 @@ in {
   ];
   #programs.i3lock.enable = true;
 
-  services.displayManager.cosmic-greeter.enable = true;
-  services.desktopManager.cosmic.enable = true;
+  #services.displayManager.cosmic-greeter.enable = true;
+
+  services.desktopManager.cosmic.enable = false;
   #  #services.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
 
-  #programs.hyprland = {
-  #  enable = true;
-  #  xwayland.enable = true;
-  #};
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
   #xdg.portal.enable = true;
   #xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
