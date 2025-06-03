@@ -21,6 +21,7 @@ in {
   boot.initrd.kernelModules = ["amdgpu"];
   boot.kernelParams = [
     "video=eDP-1:2560x1600@120"
+    "amdgpu.dcdebugmask=0x10"
   ];
   services.xserver.videoDrivers = [
     "modesetting"
