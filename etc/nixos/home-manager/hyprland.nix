@@ -126,12 +126,23 @@ in {
         #      "HDMI-A-1"
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
-        modules-center = ["clock" "battery" "temperature"];
+        modules-center = ["clock" "sway/language" "battery" "temperature"];
         modules-right = ["mpd" "wireplumber" "backlight" "load" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
           all-outputs = true;
+          warp-on-scroll = false;
+          format = "{name}";
+          format-icons = {
+            urgent = "";
+            active = "";
+            default = "";
+          };
+        };
+        cpu = {
+          format = "  {usage}%";
+          tooltip = true;
         };
       };
     };
