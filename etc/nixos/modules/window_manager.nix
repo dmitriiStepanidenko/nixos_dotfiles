@@ -54,6 +54,12 @@ in {
     wayland
 
     kdePackages.kdenlive
+
+    (
+      pkgs.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
+      })
+    )
   ];
   #programs.i3lock.enable = true;
 
@@ -61,6 +67,20 @@ in {
   services.desktopManager.cosmic.enable = true;
   #  #services.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
+  environment.sessionVariables = {
+    #If your cursor becomes invisible
+    #WLR_NO_HARDWARE_CURSORS = "1";
+    #Hint electron apps to use wayland
+    NIXOS_OZONE_WL = "1";
+  };
 
   services.xserver = {
     # Enable the X11 windowing system.
