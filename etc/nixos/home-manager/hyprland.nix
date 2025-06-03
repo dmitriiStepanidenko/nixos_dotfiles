@@ -5,8 +5,8 @@
   ...
 }: let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar
-    ${pkgs.swww}/bin/swww init
+    ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log
+    ${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log
 
     sleep 1
 
@@ -14,7 +14,7 @@
   '';
 in {
   wayland.windowManager.hyprland = {
-    enable = true; # enable Hyprland
+    enable = true;
     package = null;
     portalPackage = null;
     settings = {
@@ -32,7 +32,6 @@ in {
           "$mod, K, movefocus, u"
           "$mod, J, movefocus, d"
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
-
         ]
         ++ (
           # workspaces
@@ -49,6 +48,7 @@ in {
         );
     };
   };
+  programs.hyprlock.enable = true;
   services.kanshi = {
     enable = true;
     profiles = {
