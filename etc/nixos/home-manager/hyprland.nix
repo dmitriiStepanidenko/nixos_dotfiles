@@ -240,7 +240,7 @@ in {
           disable-scroll = true;
           all-outputs = true;
           warp-on-scroll = false;
-          format = "{name}:{icon}";
+          format = "{icon}";
           format-icons = {
             "1" = "1 <span font='Font Awesome 5 Free 14'></span>";
             "2" = "2 <span font='Font Awesome 5 Free 14'></span>";
@@ -258,11 +258,10 @@ in {
           };
         };
         cpu = {
-          format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
         };
         memory = {
-          format = "  {}%";
+          format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
         };
         "hyprland/language" = {
@@ -287,6 +286,19 @@ in {
           format = "{:%H:%M | %e %B} ";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%Y-%m-%d}";
+        };
+        wireplumber = {
+          "format" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
+          "format-alt" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
+          "format-alt-click" = "click-right";
+          "format-muted" = "<span font='Font Awesome 5 Free 11'></span>";
+          "format-icons" = {
+            "phone" = [" " " " " " " "];
+            "default" = ["" "" "" ""];
+          };
+          "scroll-step" = 2;
+          "on-click" = "pavucontrol";
+          "tooltip" = false;
         };
       };
     };
