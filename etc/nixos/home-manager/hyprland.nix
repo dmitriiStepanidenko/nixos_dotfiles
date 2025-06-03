@@ -185,6 +185,7 @@ in {
       #wireplumber,
       #idle_inhibitor,
       #hyprland-language,
+      #language,
       #backlight,
       #custom-storage,
       #custom-cpu_speed,
@@ -295,8 +296,13 @@ in {
           "format-alt-click" = "click-right";
           "format-muted" = "<span font='Font Awesome 5 Free 11'></span>";
           "format-icons" = {
-            "phone" = [" " " " " " " "];
-            "default" = ["" "" "" ""];
+            "headphone" = "";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = ["" "" ""];
           };
           "scroll-step" = 2;
           "on-click" = "pavucontrol";
