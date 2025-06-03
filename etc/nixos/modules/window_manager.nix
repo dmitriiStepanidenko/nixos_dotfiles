@@ -62,6 +62,8 @@ in {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
       })
     )
+
+    mako
   ];
   #programs.i3lock.enable = true;
 
