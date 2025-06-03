@@ -112,6 +112,10 @@ in {
           "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --term=footclient --prompt=Run"
           "$mod, RETURN, exec, alacritty"
           "$mod, Q, killactive"
+          "$mod, H, movefocus, l"
+          "$mod, L, movefocus, r"
+          "$mod, K, movefocus, u"
+          "$mod, J, movefocus, d"
           ", Print, exec, grimblast copy area"
         ]
         ++ (
