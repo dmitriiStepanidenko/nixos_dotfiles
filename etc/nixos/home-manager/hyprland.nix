@@ -28,7 +28,7 @@ in {
       input = {
         kb_layout = "us,ru";
         kb_variant = "";
-        options = "grp:win_space_toggle";
+        kb_options = "grp:win_space_toggle";
       };
       exec-once = [
         "sleep 2; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
