@@ -273,6 +273,10 @@ in {
           format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
         };
+        backlight = {
+          format = "{percent}% {icon}";
+          format-icons = ["" ""];
+        };
         "hyprland/language" = {
           format = "  {}";
           format-en = "EN";
@@ -302,17 +306,17 @@ in {
           "format-alt-click" = "click-right";
           "format-muted" = "<span font='Font Awesome 5 Free 11'></span>";
           "format-icons" = {
-            "headphone" = "";
+            "headphone" = "󰋋";
             "hands-free" = "";
             "headset" = "";
             "phone" = "";
             "portable" = "";
             "car" = "";
-            "default" = ["" "" ""];
+            "default" = ["󱡫"];
           };
           "scroll-step" = 2;
           "on-click" = "pavucontrol";
-          "tooltip" = false;
+          "tooltip" = true;
         };
       };
     };
