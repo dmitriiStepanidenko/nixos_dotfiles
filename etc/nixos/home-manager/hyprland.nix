@@ -247,6 +247,9 @@ in {
           all-outputs = false;
           warp-on-scroll = false;
           format = "{name}: {icon}";
+          persistent-workspaces = {
+            "*" = 10;
+          };
           format-icons = {
             "1" = "<span font='Font Awesome 5 Free 14'></span>";
             "2" = "<span font='Font Awesome 5 Free 14'></span>";
