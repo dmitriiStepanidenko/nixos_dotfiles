@@ -265,9 +265,9 @@ in {
           };
           format-icons = {
             "1" = "<span font='Font Awesome 5 Free 14'></span>";
-            "2" = "<span font='Font Awesome 5 Free 14'></span>";
-            "3" = "<span font='Font Awesome 5 Free 14'></span>";
-            "4" = "<span font='Font Awesome 5 Free 14'></span>";
+            "2" = "<span font='Font Awesome 5 Free 14'></span>";
+            "3" = "<span font='Font Awesome 5 Free 14'></span>";
+            "4" = "<span font='Font Awesome 5 Free 14'></span>";
             "5" = "<span font='Font Awesome 5 Free 14'></span>";
             "6" = "<span font='Font Awesome 5 Free 14'></span>";
             "7" = "<span font='Font Awesome 5 Free 14'></span>";
