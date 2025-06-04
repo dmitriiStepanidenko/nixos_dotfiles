@@ -62,7 +62,7 @@ in {
           "$mod CONTROL, K, resizeactive, 0 -40"
           "$mod CONTROL, J, resizeactive, 0 40"
 
-          "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region"
+          "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
           "CONTROL SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
 
