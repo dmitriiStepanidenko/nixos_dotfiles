@@ -65,7 +65,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, swaylock"
+          "CONTROL SHIFT, L, exec, ${pkgs.swaylock}/bin/swaylock -fF"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -353,18 +353,21 @@ in {
   };
   services.swaync.enable = true;
   services.swww.enable = true;
+  services.swayidle = {
+    enable = false;
+  };
   services.hypridle = {
     enable = true;
     settings = {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "swaylock";
+        lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
       };
       listener = [
         {
-          timeout = 5 * 60;
-          on-timeout = "swaylock";
+          timeout = 15 * 60;
+          on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
         }
         {
           timeout = 20 * 60;
