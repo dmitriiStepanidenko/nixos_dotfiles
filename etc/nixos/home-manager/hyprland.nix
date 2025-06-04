@@ -244,7 +244,7 @@ in {
 
         "hyprland/workspaces" = {
           disable-scroll = true;
-          all-outputs = true;
+          all-outputs = false;
           warp-on-scroll = false;
           format = "{name}: {icon}";
           format-icons = {
