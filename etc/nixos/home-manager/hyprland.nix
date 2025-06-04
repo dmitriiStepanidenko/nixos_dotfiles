@@ -72,8 +72,8 @@ in {
           ",XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5"
           ",XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5"
 
-          "$mod, code:9, workspace, 10"
-          "$mod SHIFT, code:9, movetoworkspace, 10"
+          "$mod, code:19, workspace, 0"
+          "$mod SHIFT, code:19, movetoworkspace, 0"
         ]
         ++ (
           # workspaces
@@ -261,7 +261,7 @@ in {
             "7" = [];
             "8" = [];
             "9" = [];
-            "10" = [];
+            "0" = [];
           };
           format-icons = {
             "1" = "<span font='Font Awesome 5 Free 14'></span>";
@@ -273,7 +273,7 @@ in {
             "7" = "<span font='Font Awesome 5 Free 14'></span>";
             "8" = "<span font='Font Awesome 5 Free 14'></span>";
             "9" = "<span font='Font Awesome 5 Free 14'></span>";
-            "10" = "<span font='Font Awesome 5 Free 14'></span>";
+            "0" = "<span font='Font Awesome 5 Free 14'></span>";
             urgent = " ";
             active = " ";
             default = " ";
