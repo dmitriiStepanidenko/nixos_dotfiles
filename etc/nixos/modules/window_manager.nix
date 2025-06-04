@@ -65,7 +65,7 @@ in {
       })
     )
 
-    mako
+    #mako
   ];
   #programs.i3lock.enable = true;
 

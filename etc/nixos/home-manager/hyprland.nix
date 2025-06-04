@@ -321,6 +321,7 @@ in {
       };
     };
   };
+  services.swaync.enable = true;
   services.swww.enable = true;
   services.hypridle = {
     enable = true;
@@ -328,12 +329,12 @@ in {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "hyprlock";
+        lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
       };
       listener = [
         {
           timeout = 900;
-          on-timeout = "hyprlock";
+          on-timeout = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         }
         {
           timeout = 1200;
