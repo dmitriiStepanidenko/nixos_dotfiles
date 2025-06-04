@@ -68,6 +68,7 @@ in {
     #mako
   ];
   #programs.i3lock.enable = true;
+  security.pam.services.hyprlock = {};
 
   #services.displayManager.cosmic-greeter.enable = true;
   services.displayManager.sddm = {
