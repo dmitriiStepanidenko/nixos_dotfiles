@@ -71,6 +71,9 @@ in {
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
           ",XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5"
           ",XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5"
+
+          "$mod, code:10, workspace, 0"
+          "$mod SHIFT, code:10, movetoworkspace, 0"
         ]
         ++ (
           # workspaces
@@ -270,7 +273,7 @@ in {
             "7" = "<span font='Font Awesome 5 Free 14'></span>";
             "8" = "<span font='Font Awesome 5 Free 14'></span>";
             "9" = "<span font='Font Awesome 5 Free 14'></span>";
-            "0" = "<span font='Font Awesome 5 Free 14'></span>";
+            "0" = "<span font='Font Awesome 5 Free 14'></span>";
             urgent = " ";
             active = " ";
             default = " ";
