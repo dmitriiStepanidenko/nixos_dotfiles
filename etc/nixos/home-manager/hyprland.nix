@@ -34,6 +34,7 @@ in {
         "sleep 2; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         "${pkgs.swww}/bin/swww img ${backgroundImage} 2>&1 > ~/swww.log"
+        "${pkgs.hypridle}/bin/hypridle"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -64,7 +65,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${pkgs.hyprlock}/bin/hyprlock"
+          "CONTROL SHIFT, L, exec, pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -317,6 +318,31 @@ in {
     };
   };
   services.swww.enable = true;
+  services.hypridle = {
+    enable = true;
+    settings = {
+      general = {
+        after_sleep_cmd = "hyprctl dispatch dpms on";
+        ignore_dbus_inhibit = false;
+        lock_cmd = "hyprlock";
+      };
+      listener = [
+        {
+          timeout = 900;
+          on-timeout = "hyprlock";
+        }
+        {
+          timeout = 1200;
+          on-timeout = "hyprctl dispatch dpms off";
+          on-resume = "hyprctl dispatch dpms on";
+        }
+        {
+          timeout = 1800; # 30min
+          on-timeout = "systemctl hibernate"; # suspend pc
+        }
+      ];
+    };
+  };
   services.kanshi = {
     enable = true;
     profiles = {
