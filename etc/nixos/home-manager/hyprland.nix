@@ -279,6 +279,11 @@ in {
             default = " ";
           };
         };
+        temperature = {
+          critical-threshold = 85;
+          format-critical = "{temperatureC}°C ";
+          format = "{temperatureC}°C ";
+        };
         cpu = {
           "format" = "︁ {}%";
           tooltip = true;
