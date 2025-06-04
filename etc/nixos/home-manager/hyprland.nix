@@ -250,6 +250,7 @@ in {
           persistent-workspaces = {
             "*" = 10;
           };
+          show-special = true;
           format-icons = {
             "1" = "<span font='Font Awesome 5 Free 14'></span>";
             "2" = "<span font='Font Awesome 5 Free 14'></span>";
