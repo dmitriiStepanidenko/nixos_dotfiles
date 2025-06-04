@@ -363,16 +363,16 @@ in {
       };
       listener = [
         {
-          timeout = 900;
+          timeout = 5 * 60;
           on-timeout = "swaylock";
         }
         {
-          timeout = 1200;
+          timeout = 20 * 60;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 1800; # 30min
+          timeout = 30 * 60;
           on-timeout = "systemctl hibernate"; # suspend pc
         }
       ];
