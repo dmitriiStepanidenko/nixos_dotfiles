@@ -260,9 +260,9 @@ in {
             "8" = "8 <span font='Font Awesome 5 Free 14'></span>";
             "9" = "9 <span font='Font Awesome 5 Free 14'></span>";
             "10" = "0 <span font='Font Awesome 5 Free 14'></span>";
-            urgent = "";
-            active = "";
-            default = "";
+            urgent = " {icon}";
+            active = " {icon}";
+            default = " {icon}";
           };
         };
         cpu = {
