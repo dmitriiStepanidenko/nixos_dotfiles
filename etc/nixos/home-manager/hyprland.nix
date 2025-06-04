@@ -248,21 +248,21 @@ in {
           disable-scroll = true;
           all-outputs = true;
           warp-on-scroll = false;
-          format = "{icon}";
+          format = "{name}: {icon}";
           format-icons = {
-            "1" = "1 <span font='Font Awesome 5 Free 14'></span>";
-            "2" = "2 <span font='Font Awesome 5 Free 14'></span>";
-            "3" = "3 <span font='Font Awesome 5 Free 14'></span>";
-            "4" = "4 <span font='Font Awesome 5 Free 14'></span>";
-            "5" = "5 <span font='Font Awesome 5 Free 14'></span>";
-            "6" = "6 <span font='Font Awesome 5 Free 14'></span>";
-            "7" = "7 <span font='Font Awesome 5 Free 14'></span>";
-            "8" = "8 <span font='Font Awesome 5 Free 14'></span>";
-            "9" = "9 <span font='Font Awesome 5 Free 14'></span>";
-            "10" = "0 <span font='Font Awesome 5 Free 14'></span>";
-            urgent = " {icon}";
-            active = " {icon}";
-            default = " {icon}";
+            "1" = "<span font='Font Awesome 5 Free 14'></span>";
+            "2" = "<span font='Font Awesome 5 Free 14'></span>";
+            "3" = "<span font='Font Awesome 5 Free 14'></span>";
+            "4" = "<span font='Font Awesome 5 Free 14'></span>";
+            "5" = "<span font='Font Awesome 5 Free 14'></span>";
+            "6" = "<span font='Font Awesome 5 Free 14'></span>";
+            "7" = "<span font='Font Awesome 5 Free 14'></span>";
+            "8" = "<span font='Font Awesome 5 Free 14'></span>";
+            "9" = "<span font='Font Awesome 5 Free 14'></span>";
+            "10" = "<span font='Font Awesome 5 Free 14'></span>";
+            urgent = " ";
+            active = " ";
+            default = " ";
           };
         };
         cpu = {
