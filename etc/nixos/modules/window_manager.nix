@@ -69,6 +69,7 @@ in {
   ];
   #programs.i3lock.enable = true;
   security.pam.services.hyprlock = {};
+  security.pam.services.swaylock = {};
 
   #services.displayManager.cosmic-greeter.enable = true;
   services.displayManager.sddm = {
