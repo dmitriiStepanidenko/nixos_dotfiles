@@ -248,6 +248,18 @@ in {
           warp-on-scroll = false;
           format = "{name}: {icon}";
           show-special = true;
+          persistent-workspaces = {
+            "1" = [];
+            "2" = [];
+            "3" = [];
+            "4" = [];
+            "5" = [];
+            "6" = [];
+            "7" = [];
+            "8" = [];
+            "9" = [];
+            "0" = [];
+          };
           format-icons = {
             "1" = "<span font='Font Awesome 5 Free 14'></span>";
             "2" = "<span font='Font Awesome 5 Free 14'></span>";
