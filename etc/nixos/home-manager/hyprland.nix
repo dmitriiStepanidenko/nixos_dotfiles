@@ -72,8 +72,8 @@ in {
           ",XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5"
           ",XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5"
 
-          "$mod, code:10, workspace, 0"
-          "$mod SHIFT, code:10, movetoworkspace, 0"
+          "$mod, code:9, workspace, 0"
+          "$mod SHIFT, code:9, movetoworkspace, 0"
         ]
         ++ (
           # workspaces
