@@ -362,12 +362,14 @@ in {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
+        #lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
+        lock_cmd = "hyprctl dispatch hyprlock";
       };
       listener = [
         {
-          timeout = 15 * 60;
-          on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
+          timeout = 1 * 60;
+          #on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
+          on-timeout = "hyprctl dispatch hyprlock";
         }
         {
           timeout = 20 * 60;
