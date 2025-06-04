@@ -65,7 +65,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock"
+          "CONTROL SHIFT, L, exec, swaylock"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -359,12 +359,12 @@ in {
       general = {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+        lock_cmd = "swaylock";
       };
       listener = [
         {
           timeout = 900;
-          on-timeout = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+          on-timeout = "swaylock";
         }
         {
           timeout = 1200;
