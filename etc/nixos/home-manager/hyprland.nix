@@ -13,6 +13,7 @@
     ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}
   '';
   backgroundImage = ../../../images/wanderer.jpg;
+  animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.mp4;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -31,9 +32,9 @@ in {
         kb_options = "grp:win_space_toggle";
       };
       exec-once = [
-        "sleep 2; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
+        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
-        "${pkgs.swww}/bin/swww img ${backgroundImage} 2>&1 > ~/swww.log"
+        "${pkgs.swww}/bin/swww img ${animatedImage} 2>&1 > ~/swww.log"
         "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/hypridle.log"
       ];
       "$terminal" = "alacritty";
