@@ -299,8 +299,8 @@ in {
         mpris = {
           format = "{player_icon} {dynamic}";
           format-paused = "{status_icon} <i>{dynamic}</i>";
-          dynamic-len = 40;
-          dynamic-importance-order = ["title" "position" "length" "artist" "album"];
+          dynamic-len = 55;
+          dynamic-importance-order = ["title" "position" "artist" "album" "length"];
           player-icons = {
             default = "▶";
             mpv = "🎵";
