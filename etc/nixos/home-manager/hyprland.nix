@@ -200,6 +200,10 @@ in {
       #battery,
       #temperature,
       #cpu,
+      #mpd,
+      #mpris,
+      #privacy,
+      #bluetooth,
       #memory,
       #network,
       #pulseaudio,
@@ -257,7 +261,7 @@ in {
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
-        modules-right = ["mpd" "pulseaudio" "backlight" "cpu" "memory"];
+        modules-right = ["privacy" "mpris" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -292,6 +296,38 @@ in {
             active = " ";
             default = " ";
           };
+        };
+        privacy = {
+          icon-spacing = 4;
+          icon-size = 18;
+          transition-duration = 250;
+          modules = [
+            {
+              type = "screenshare";
+              tooltip = true;
+              tooltip-icon-size = 24;
+            }
+            {
+              type = "audio-out";
+              tooltip = true;
+              tooltip-icon-size = 24;
+            }
+            {
+              type = "audio-in";
+              tooltip = true;
+              tooltip-icon-size = 24;
+            }
+          ];
+        };
+        bluetooth = {
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          #// format-device-preference = [ "device1"; "device2" ], // preference list deciding the displayed device
+          tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
+          tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
+          tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
+          tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
         };
         temperature = {
           critical-threshold = 85;
@@ -332,6 +368,25 @@ in {
           format = "{:%H:%M | %e %B} ";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%Y-%m-%d}";
+          tooltrip = true;
+          calendar = {
+            mode = "year";
+            mode-mon-col = 3;
+            weeks-pos = "right";
+            on-scroll = 1;
+            format = {
+              months = "<span color='#ffead3'><b>{}</b></span>";
+              days = "<span color='#ecc6d9'><b>{}</b></span>";
+              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
+              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
+              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
+            };
+          };
+          actions = {
+            on-click-right = "mode";
+            on-scroll-up = "shift_up";
+            on-scroll-down = "shift_down";
+          };
         };
         pulseaudio = {
           "format" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
