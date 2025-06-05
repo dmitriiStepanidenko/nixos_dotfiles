@@ -297,8 +297,10 @@ in {
           };
         };
         mpris = {
-          format = "DEFAULT: {player_icon} {dynamic}";
-          format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+          format = "{player_icon} {dynamic}";
+          format-paused = "{status_icon} <i>{dynamic}</i>";
+          dynamic-len = 40;
+          dynamic-importance-order = ["title" "position" "length" "artist" "album"];
           player-icons = {
             default = "▶";
             mpv = "🎵";
