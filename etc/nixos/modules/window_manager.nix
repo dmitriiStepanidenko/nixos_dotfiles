@@ -59,6 +59,8 @@ in {
 
     kdePackages.kdenlive
 
+    komorebi
+
     (
       pkgs.waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
