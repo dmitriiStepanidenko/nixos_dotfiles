@@ -254,14 +254,13 @@ in {
         layer = "top";
         position = "top";
         height = 30;
-        spacing = 4;
         #output = [
         #      "eDP-1"
         #      "HDMI-A-1"
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
-        modules-right = ["privacy" "mpris" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
+        modules-right = ["privacy" "network" "mpris" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
@@ -296,6 +295,18 @@ in {
             active = " ";
             default = " ";
           };
+        };
+        mpris = {
+          format = "DEFAULT: {player_icon} {dynamic}";
+          format-paused = "DEFAULT: {status_icon} <i>{dynamic}</i>";
+          player-icons = {
+            default = "▶";
+            mpv = "🎵";
+          };
+          status-icons = {
+            paused = "⏸";
+          };
+          # "ignored-players": ["firefox"]
         };
         privacy = {
           icon-spacing = 4;
