@@ -260,7 +260,7 @@ in {
         #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
-        modules-right = ["privacy" "network" "mpris" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
+        modules-right = ["mpris" "network" "privacy" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
 
         "hyprland/workspaces" = {
           disable-scroll = true;
