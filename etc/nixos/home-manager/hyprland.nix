@@ -367,6 +367,7 @@ in {
         ignore_dbus_inhibit = false;
         #lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
         lock_cmd = "hyprctl dispatch exec swaylock";
+        before_sleep_cmd = "hyprctl dispatch exec swaylock";
       };
       listener = [
         {
