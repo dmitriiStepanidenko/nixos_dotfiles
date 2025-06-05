@@ -34,7 +34,7 @@ in {
         "sleep 2; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         "${pkgs.swww}/bin/swww img ${backgroundImage} 2>&1 > ~/swww.log"
-        "${pkgs.hypridle}/bin/hypridle"
+        "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/hypridle.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -296,7 +296,7 @@ in {
           format = "{temperatureC}°C ";
         };
         cpu = {
-          "format" = "︁ {}%";
+          "format" = "︁  {}%";
           tooltip = true;
         };
         memory = {
