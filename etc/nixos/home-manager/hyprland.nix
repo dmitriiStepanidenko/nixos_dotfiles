@@ -13,7 +13,7 @@
     ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}
   '';
   backgroundImage = ../../../images/wanderer.jpg;
-  animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.mp4;
+  animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
 in {
   wayland.windowManager.hyprland = {
     enable = true;
