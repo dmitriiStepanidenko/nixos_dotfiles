@@ -34,7 +34,7 @@ in {
       exec-once = [
         "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
-        "${pkgs.swww}/bin/swww img ${animatedImage} 2>&1 > ~/swww.log"
+        "${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 676570 2>&1 > ~/swww.log"
         "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/hypridle.log"
       ];
       "$terminal" = "alacritty";
