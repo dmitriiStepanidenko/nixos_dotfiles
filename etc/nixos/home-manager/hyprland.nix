@@ -15,7 +15,7 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log";
+  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
 in {
   wayland.windowManager.hyprland = {
@@ -73,7 +73,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${sessionLockDispatchCommand}"
+          "CONTROL SHIFT, L, exec, ${sessionLockCommand}"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
