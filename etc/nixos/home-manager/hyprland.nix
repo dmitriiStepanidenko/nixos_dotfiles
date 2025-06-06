@@ -15,7 +15,8 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "hyprctl dispatch exec \"${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log \"";
+  sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log";
+  sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -69,7 +70,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${sessionLockCommand}"
+          "CONTROL SHIFT, L, exec, ${sessionLockDispatchCommand}"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -449,8 +450,8 @@ in {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
         #lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
-        lock_cmd = sessionLockCommand;
-        before_sleep_cmd = sessionLockCommand;
+        lock_cmd = sessionLockDispatchCommand;
+        before_sleep_cmd = sessionLockDispatchCommand;
       };
       listener = [
         {
