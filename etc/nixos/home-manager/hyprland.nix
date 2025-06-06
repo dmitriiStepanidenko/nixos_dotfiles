@@ -15,6 +15,7 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
+  sessionLockCommand = "hyprctl dispatch exec \"${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log \"";
 in {
   wayland.windowManager.hyprland = {
     enable = true;
@@ -33,11 +34,11 @@ in {
         kb_options = "grp:win_space_toggle";
       };
       exec-once = [
-        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log"
+        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > ~/logs/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
-        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > ~/swww.log"
-        "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/hypridle.log"
+        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > ~/logs/swww.log"
+        "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/logs/hypridle.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -68,7 +69,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${pkgs.swaylock}/bin/swaylock -fF"
+          "CONTROL SHIFT, L, exec, ${sessionLockCommand}"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -448,8 +449,8 @@ in {
         after_sleep_cmd = "hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
         #lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
-        lock_cmd = "hyprctl dispatch exec swaylock";
-        before_sleep_cmd = "hyprctl dispatch exec swaylock";
+        lock_cmd = sessionLockCommand;
+        before_sleep_cmd = sessionLockCommand;
       };
       listener = [
         {
