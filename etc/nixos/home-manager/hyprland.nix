@@ -20,8 +20,11 @@
 in {
   wayland.windowManager.hyprland = {
     enable = true;
+    #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    #portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     package = null;
     portalPackage = null;
+    xwayland.enable = true;
     settings = {
       #exec-once = ''${startupScript}/bin/start'';
       #general = {
@@ -98,6 +101,7 @@ in {
   programs.hyprlock = {
     enable = true;
     package = null;
+    #package = inputs.hyprlock.packages."${pkgs.system}".hyprlock;
     settings = {
       general = {
         grace = 300;

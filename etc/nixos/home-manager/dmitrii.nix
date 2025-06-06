@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hyprland.nix
+    #{inherit inputs;}
   ];
   home = {
     username = "dmitrii";

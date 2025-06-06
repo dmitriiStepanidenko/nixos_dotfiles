@@ -109,11 +109,16 @@
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "backup";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              extraSpecialArgs = {
+                inherit inputs;
+              };
 
-            home-manager.users.dmitrii = import ./home-manager/dmitrii.nix;
+              users.dmitrii = import ./home-manager/dmitrii.nix;
+            };
           }
           ({pkgs, ...}: {
             nixpkgs.overlays = [rust-overlay.overlays.default];
