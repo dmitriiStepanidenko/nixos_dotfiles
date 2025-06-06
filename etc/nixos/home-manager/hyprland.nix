@@ -97,6 +97,7 @@ in {
   };
   programs.hyprlock = {
     enable = true;
+    package = null;
     settings = {
       general = {
         grace = 300;

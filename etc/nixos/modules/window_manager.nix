@@ -81,9 +81,14 @@ in {
   #  #services.desktopManager.xfce.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  programs.hyprlock = {
+    enable = true;
+    package = inputs.hyprlock.packages."${pkgs.system}".hyprlock;
+  };
   programs.hyprland = {
     enable = true;
     package = inputs.hyprland.packages."${pkgs.system}".hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     xwayland.enable = true;
   };
   xdg.portal.enable = true;
