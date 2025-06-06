@@ -147,10 +147,9 @@ in {
       variant = "";
       options = "grp:win_space_toggle";
     };
-
-    # Firmwares updates
-    # services.fwupd.enable = true;
   };
+  # Firmwares updates
+  services.fwupd.enable = true;
 
   # Enable the service
   services.display-manager-enabler = {
