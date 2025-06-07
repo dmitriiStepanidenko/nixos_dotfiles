@@ -15,7 +15,7 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log";
+  sessionLockCommand = "'pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log'";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
 in {
   wayland.windowManager.hyprland = {
