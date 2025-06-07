@@ -15,7 +15,7 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "'pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 $LOG_DIR/swaylock.log'";
+  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF &> $XDG_LOG_DIR/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
 in {
   xdg.enable = true;
@@ -23,7 +23,7 @@ in {
     enable = true;
     createDirectories = true;
     extraConfig = {
-      LOG_DIR = "${config.home.homeDirectory}/logs";
+      XDG_LOG_DIR = "${config.home.homeDirectory}/logs";
     };
   };
   wayland.windowManager.hyprland = {
@@ -46,11 +46,11 @@ in {
         kb_options = "grp:win_space_toggle";
       };
       exec-once = [
-        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $LOG_DIR/waybar.log"
+        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $XDG_LOG_DIR/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
-        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $LOG_DIR/swww.log"
-        "${pkgs.hypridle}/bin/hypridle 2>&1 > $LOG_DIR/hypridle.log"
+        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $XDG_LOG_DIR/swww.log"
+        "${pkgs.hypridle}/bin/hypridle 2>&1 > $XDG_LOG_DIR/hypridle.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -61,7 +61,7 @@ in {
       bind =
         [
           "$mod, F, exec, firefox"
-          "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=230px --height=984 --term=footclient --prompt=Run"
+          "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=220px --height=620 --term=footclient --prompt=Run"
           "$mod, RETURN, exec, alacritty"
           "$mod, Q, killactive"
 
