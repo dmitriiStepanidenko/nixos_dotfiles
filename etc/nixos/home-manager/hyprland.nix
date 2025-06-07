@@ -15,8 +15,9 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
+  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f &> $XDG_LOG_DIR/swaylock.log";
+  #sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
+  sessionLockDispatchCommand = sessionLockCommand;
 in {
   xdg.enable = true;
   xdg.userDirs = {
@@ -470,7 +471,7 @@ in {
         {
           timeout = 15 * 60;
           #on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
-          on-timeout = "hyprctl dispatch exec swaylock";
+          on-timeout = sessionLockDispatchCommand;
         }
         {
           timeout = 20 * 60;
