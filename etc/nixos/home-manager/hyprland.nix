@@ -15,9 +15,17 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "'pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 ~/logs/swaylock.log'";
+  sessionLockCommand = "'pidof swaylock || ${pkgs.swaylock}/bin/swaylock -fF 2>&1 $LOG_DIR/swaylock.log'";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
 in {
+  xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    extraConfig = {
+      LOG_DIR = "${config.home.homeDirectory}/logs";
+    };
+  };
   wayland.windowManager.hyprland = {
     enable = true;
     #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
@@ -38,11 +46,11 @@ in {
         kb_options = "grp:win_space_toggle";
       };
       exec-once = [
-        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > ~/logs/waybar.log"
+        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $LOG_DIR/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
-        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > ~/logs/swww.log"
-        "${pkgs.hypridle}/bin/hypridle 2>&1 > ~/logs/hypridle.log"
+        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $LOG_DIR/swww.log"
+        "${pkgs.hypridle}/bin/hypridle 2>&1 > $LOG_DIR/hypridle.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
