@@ -75,6 +75,11 @@ in {
 
       # powerline
 
+      set-option -g update-environment "SSH_AUTH_SOCK \
+                                  SSH_CONNECTION \
+                                  HYPRLAND_INSTANCE_SIGNATURE \
+                                  DISPLAY"
+
 
     '';
     extraConfig = ''
