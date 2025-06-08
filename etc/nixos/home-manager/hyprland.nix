@@ -15,7 +15,8 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
-  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f &> $XDG_LOG_DIR/swaylock.log";
+  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f";
+  sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
 in {
@@ -82,7 +83,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${sessionLockCommand}"
+          "CONTROL SHIFT, L, exec, ${sessionLockCommandWithLog}"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
