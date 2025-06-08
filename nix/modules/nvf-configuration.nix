@@ -5,9 +5,12 @@
   ...
 }: {
   config.vim = {
-    theme.enable = true;
-    theme.name = "tokyonight";
-    theme.style = "night";
+    theme = {
+      enable = true;
+      name = "tokyonight";
+      style = "night";
+      transparent = true;
+    };
 
     lineNumberMode = "number";
 
