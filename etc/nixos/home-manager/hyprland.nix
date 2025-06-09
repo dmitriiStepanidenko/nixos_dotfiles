@@ -109,7 +109,7 @@ in {
     };
   };
   programs.hyprlock = {
-    enable = true;
+    enable = false;
     package = null;
     #package = inputs.hyprlock.packages."${pkgs.system}".hyprlock;
     settings = {
