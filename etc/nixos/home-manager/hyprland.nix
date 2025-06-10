@@ -20,6 +20,15 @@
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
 in {
+  home.packages = with pkgs; [
+    (
+      writeShellScriptBin "swaylock_restart" ''
+        hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+        hyprctl --instance 0 '${sessionLockCommand}'
+      ''
+    )
+  ];
+
   xdg.enable = true;
   xdg.userDirs = {
     enable = true;
