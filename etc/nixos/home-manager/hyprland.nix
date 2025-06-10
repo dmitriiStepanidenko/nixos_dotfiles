@@ -479,17 +479,17 @@ in {
       };
       listener = [
         {
-          timeout = 15 * 60;
+          timeout = 5 * 60;
           #on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
           on-timeout = sessionLockDispatchCommand;
         }
+        #{
+        #  timeout = 20 * 60;
+        #  on-timeout = "hyprctl dispatch dpms off";
+        #  on-resume = "hyprctl dispatch dpms on";
+        #}
         {
           timeout = 20 * 60;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "hyprctl dispatch dpms on";
-        }
-        {
-          timeout = 30 * 60;
           on-timeout = "systemctl hibernate"; # suspend pc
         }
       ];
