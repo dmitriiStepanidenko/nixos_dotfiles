@@ -479,7 +479,7 @@ in {
       };
       listener = [
         {
-          timeout = 5 * 60;
+          timeout = 6 * 60;
           #on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
           on-timeout = sessionLockDispatchCommand;
         }
