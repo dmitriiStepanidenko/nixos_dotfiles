@@ -55,6 +55,8 @@ in {
 
     wofi # wayland launcher for hyperland
 
+    wev
+
     wl-clipboard-rs
 
     kdePackages.kdenlive
