@@ -98,6 +98,7 @@ in {
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
           ",XF86AudioRaiseVolume,exec, ${pkgs.pamixer}/bin/pamixer -i 5"
           ",XF86AudioLowerVolume,exec, ${pkgs.pamixer}/bin/pamixer -d 5"
+          ",XF86AudioMute,exec, ${pkgs.pamixer}/bin/pamixer -t"
 
           "$mod, code:19, workspace, 10"
           "$mod SHIFT, code:19, movetoworkspace, 10"
