@@ -62,6 +62,10 @@
     fish = {
       enable = true;
     };
+    direnv = {
+      enable = true;
+      #enableFishIntegration = true;
+    };
     starship = {
       enable = true;
       enableFishIntegration = true;
