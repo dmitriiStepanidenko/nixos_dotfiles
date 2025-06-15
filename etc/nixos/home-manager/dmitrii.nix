@@ -100,6 +100,82 @@
   services.easyeffects = {
     enable = true;
     extraPresets = {
+      microDefault = {
+        input = {
+          "blocklist" = [];
+          "deepfilternet#0" = {
+            "attenuation-limit" = 100.0;
+            "max-df-processing-threshold" = 20.0;
+            "max-erb-processing-threshold" = 30.0;
+            "min-processing-buffer" = 2;
+            "min-processing-threshold" = -10.0;
+            "post-filter-beta" = 0.02;
+          };
+          "exciter#0" = {
+            "amount" = 0.0;
+            "blend" = 0.0;
+            "bypass" = false;
+            "ceil" = 16000.0;
+            "ceil-active" = false;
+            "harmonics" = 8.5;
+            "input-gain" = 0.0;
+            "output-gain" = 0.0;
+            "scope" = 7500.0;
+          };
+          "plugins_order" = [
+            "rnnoise#0"
+            "deepfilternet#0"
+            "speex#0"
+            "exciter#0"
+            "stereo_tools#0"
+          ];
+          "rnnoise#0" = {
+            "bypass" = false;
+            "enable-vad" = false;
+            "input-gain" = 0.0;
+            "model-name" = "";
+            "output-gain" = 0.0;
+            "release" = 20.0;
+            "vad-thres" = 50.0;
+            "wet" = 0.0;
+          };
+          "speex#0" = {
+            "bypass" = false;
+            "enable-agc" = false;
+            "enable-denoise" = false;
+            "enable-dereverb" = false;
+            "input-gain" = 0.0;
+            "noise-suppression" = -70;
+            "output-gain" = 0.0;
+            "vad" = {
+              "enable" = false;
+              "probability-continue" = 80;
+              "probability-start" = 85;
+            };
+          };
+          "stereo_tools#0" = {
+            "balance-in" = 0.0;
+            "balance-out" = 0.0;
+            "bypass" = false;
+            "delay" = 0.0;
+            "input-gain" = 0.0;
+            "middle-level" = 0.0;
+            "middle-panorama" = 0.0;
+            "mode" = "LR > LR (Stereo Default)";
+            "mutel" = false;
+            "muter" = false;
+            "output-gain" = 0.0;
+            "phasel" = false;
+            "phaser" = false;
+            "sc-level" = 1.0;
+            "side-balance" = 0.0;
+            "side-level" = 0.0;
+            "softclip" = false;
+            "stereo-base" = 0.0;
+            "stereo-phase" = 0.0;
+          };
+        };
+      };
       badSpeakers = {
         output = {
           "bass_enhancer#0" = {
