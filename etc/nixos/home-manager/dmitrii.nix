@@ -97,6 +97,67 @@
       theme = "tokyo_night";
     };
   };
+  services.easyeffects = {
+    enable = true;
+    extraPresets = {
+      badSpeakers = {
+        output = {
+          "bass_enhancer#0" = {
+            "amount" = 0.0;
+            "blend" = 0.0;
+            "bypass" = false;
+            "floor" = 20.0;
+            "floor-active" = false;
+            "harmonics" = 8.5;
+            "input-gain" = 0.0;
+            "output-gain" = 0.0;
+            "scope" = 150.0;
+          };
+          "blocklist" = [];
+          "filter#0" = {
+            "balance" = 0.0;
+            "bypass" = false;
+            "equal-mode" = "IIR";
+            "frequency" = 150.0;
+            "gain" = -30.0;
+            "input-gain" = 0.0;
+            "mode" = "RLC (BT)";
+            "output-gain" = 0.0;
+            "quality" = 0.0;
+            "slope" = "x1";
+            "type" = "High-pass";
+            "width" = 4.0;
+          };
+          "plugins_order" = [
+            "filter#0"
+            "bass_enhancer#0"
+            "stereo_tools#0"
+          ];
+          "stereo_tools#0" = {
+            "balance-in" = 0.25;
+            "balance-out" = 0.0;
+            "bypass" = false;
+            "delay" = 0.0;
+            "input-gain" = 0.0;
+            "middle-level" = 0.0;
+            "middle-panorama" = 0.0;
+            "mode" = "LR > LR (Stereo Default)";
+            "mutel" = false;
+            "muter" = false;
+            "output-gain" = 0.0;
+            "phasel" = false;
+            "phaser" = false;
+            "sc-level" = 1.0;
+            "side-balance" = 0.0;
+            "side-level" = 0.0;
+            "softclip" = false;
+            "stereo-base" = 0.0;
+            "stereo-phase" = 0.0;
+          };
+        };
+      };
+    };
+  };
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;
