@@ -57,7 +57,10 @@ in {
     waydroid-helper
 
     revolt-desktop
+
+    easyeffects
   ];
+  programs.noisetorch.enable = true;
   programs.adb.enable = true;
   users.groups.adbusers.members = ["dmitrii"];
   virtualisation.waydroid.enable = true;
