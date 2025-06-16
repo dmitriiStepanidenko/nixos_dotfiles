@@ -15,6 +15,7 @@
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
+  wallpaperCmd = "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $XDG_LOG_DIR/swww.log";
   sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f";
   sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
@@ -60,7 +61,7 @@ in {
         "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $XDG_LOG_DIR/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
-        "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $XDG_LOG_DIR/swww.log"
+        wallpaperCmd
         "${pkgs.hypridle}/bin/hypridle 2>&1 > $XDG_LOG_DIR/hypridle.log"
       ];
       "$terminal" = "alacritty";
@@ -492,6 +493,7 @@ in {
         {
           timeout = 20 * 60;
           on-timeout = "systemctl hibernate"; # suspend pc
+          on-resume = "${wallpaperCmd}";
         }
       ];
     };
