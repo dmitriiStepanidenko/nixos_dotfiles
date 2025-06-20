@@ -38,6 +38,7 @@ in {
     #./modules/tmux.nix
     ./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
+    ./modules/rustify.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -123,6 +124,7 @@ in {
     #  mode = "0400";
     #};
   };
+
   services = {
     # For woodpecker-cli
     passSecretService.enable = true;
