@@ -38,7 +38,7 @@
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1";
+      url = "github:hyprwm/Hyprland?submodules=1&ref=d7a87ce6e2535f1029fc93b062d2828e8549c525";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprlock = {

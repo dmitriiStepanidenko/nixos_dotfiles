@@ -151,7 +151,9 @@ in {
     avahi.enable = true;
 
     # Enable touchpad support (enabled default in most desktopManager).
-    libinput.enable = true;
+    libinput = {
+      enable = true;
+    };
     # multi-touch gesture recognizer
     touchegg.enable = true;
 

@@ -30,7 +30,7 @@ in {
 
     anki-bin
     google-chrome
-    chromium
+    #chromium
 
     gparted
 
