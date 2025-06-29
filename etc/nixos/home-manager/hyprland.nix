@@ -52,6 +52,9 @@ in {
       #before_sleep_cmd = "loginctl lock-session"; # lock before suspend.
       #after_sleep_cmd = "hyprctl dispatch dpms on"; # to avoid having to press a key twice to turn on the display.
       #};
+      misc = {
+        render_unfocused_fps = 20;
+      };
       input = {
         kb_layout = "us,ru";
         kb_variant = "";
@@ -71,7 +74,7 @@ in {
         "$mod, mouse:273, resizewindow"
       ];
       windowrule = [
-        "renderunfocused, class:(kenshi_x64.exe)"
+        "renderunfocused, class:(.*(k|K)enshi.*)"
         #"noinitialfocus,class:(kenshi_x64.exe)"
         #"nofocus,class:(kenshi_x64.exe)"
       ];
