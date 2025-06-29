@@ -74,7 +74,7 @@ in {
         "$mod, mouse:273, resizewindow"
       ];
       windowrule = [
-        "renderunfocused, class:(.*(k|K)enshi.*)"
+        "renderunfocused, title:(.*(k|K)enshi.*)"
         #"noinitialfocus,class:(kenshi_x64.exe)"
         #"nofocus,class:(kenshi_x64.exe)"
       ];
