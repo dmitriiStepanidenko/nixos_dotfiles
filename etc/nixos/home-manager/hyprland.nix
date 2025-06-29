@@ -71,8 +71,9 @@ in {
         "$mod, mouse:273, resizewindow"
       ];
       windowrulev2 = [
-        "noinitialfocus,class:^(kenshi)$"
-        "nofocus,class:^(kenshi)$"
+        "stayfocused,class:^(kenshi_x64.exe)$"
+        "noinitialfocus,class:^(kenshi_x64.exe)$"
+        "nofocus,class:^(kenshi_x64.exe)$"
       ];
       bind =
         [
