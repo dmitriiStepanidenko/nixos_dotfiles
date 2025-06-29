@@ -70,6 +70,10 @@ in {
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+      windowrulev2 = [
+        "noinitialfocus,class:^(kenshi)$"
+        "nofocus,class:^(kenshi)$"
+      ];
       bind =
         [
           "$mod, F, exec, firefox"

@@ -390,6 +390,7 @@
     };
     visuals = {
       nvim-web-devicons.enable = true;
+      nvim-scrollbar.enable = true;
     };
     notify.nvim-notify.enable = true;
   };
