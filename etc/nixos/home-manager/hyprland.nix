@@ -20,6 +20,33 @@
   sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
+  conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
+    # Check multiple conditions for NVIDIA presence
+    nvidia_present=false
+
+    # Check if NVIDIA GPU is present in lspci
+    if lspci | grep -i nvidia > /dev/null 2>&1; then
+      nvidia_present=true
+    fi
+
+    # Check if NVIDIA kernel modules are loaded
+    if lsmod | grep -i nvidia > /dev/null 2>&1; then
+      nvidia_present=true
+    fi
+
+    # Check if nvidia device files exist
+    if [ -e /dev/nvidia0 ] || [ -e /dev/nvidiactl ]; then
+      nvidia_present=true
+    fi
+
+    if [ "$nvidia_present" = true ]; then
+      echo "NVIDIA GPU detected/enabled, using suspend instead of hibernation"
+      systemctl suspend
+    else
+      echo "No NVIDIA GPU detected/enabled, safe to hibernate"
+      systemctl hibernate
+    fi
+  '';
 in {
   home.packages = with pkgs; [
     (
@@ -500,7 +527,7 @@ in {
         #}
         {
           timeout = 20 * 60;
-          on-timeout = "systemctl hibernate"; # suspend pc
+          on-timeout = "${conditionalSuspendScript}";
           on-resume = "${wallpaperCmd}";
         }
       ];
