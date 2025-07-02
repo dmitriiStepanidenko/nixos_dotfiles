@@ -39,9 +39,9 @@ echo "NixOS Rebuilding..."
 ls
 pwd
 # Rebuild, output simplified errors, log trackebacks
-( \
+{ \
   sudo nixos-rebuild switch --option eval-cache false -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix --flake .  &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1) \
-) || ( echo "NixOS Rebuilt ended with error!" | notify )
+} || { echo "NixOS Rebuilt ended with error!" | notify; }
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)

@@ -40,7 +40,7 @@
     colmena = {
       url = "github:zhaofengli/colmena?ref=main";
       inputs.nixpkgs.follows = "nixpkgs-unstable"
-      inputs.flake-utils.follows = "flake-utils";
+      inputs.flake-utils.follows = "flake-utils"
     };
 
     sops-nix = {
