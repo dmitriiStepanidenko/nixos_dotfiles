@@ -18,6 +18,8 @@
 
     tokei # count all tokens
 
+    serpl # search and replace
+
     television
   ];
   programs.television = {
