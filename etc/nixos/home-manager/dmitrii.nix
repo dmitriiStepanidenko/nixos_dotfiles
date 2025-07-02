@@ -18,6 +18,15 @@
       source = ../../../config/leftwm;
       recursive = true;
     };
+
+    packages = [
+      pkgs.serpl
+      pkgs.ast-grep
+    ];
+
+    sessionPath = [
+      "$HOME/.cargo/bin"
+    ];
   };
   xdg = {
     mime = {
