@@ -42,12 +42,12 @@ pwd
 #sudo nixos-rebuild switch --option eval-cache false -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix --flake .  &>nixos-switch.log || (cat nixos-switch.log | grep --color error &&  exit 1 ) 
 sudo nixos-rebuild switch --option eval-cache false \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-  --flake . &>nixos-switch.log || (
-    echo "NixOS rebuild failed!"
-    cat nixos-switch.log | grep -i error --color=always
-    echo "NixOS Rebuild ended with error!" | notify
-    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available
-    return 1  # or exit 1 depending on context
+  --flake . &>nixos-switch.log || ( \
+    echo "NixOS rebuild failed!" \
+    cat nixos-switch.log | grep -i error --color=always \
+    echo "NixOS Rebuild ended with error!" | notify \
+    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available \
+    exit 1 \
 )
 
 # Get current generation metadata
