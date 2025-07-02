@@ -242,6 +242,11 @@ in {
       dates = "weekly";
       options = "--delete-older-than 7d";
     };
+    extraOptions = ''
+      min-free = ${toString (50 * 1024 * 1024 * 1024)}
+      max-free = ${toString (20 * 1024 * 1024 * 1024)}
+    ''; # Free up 10GiB whenever there is less than 10 GiB left
+
     settings.auto-optimise-store = true;
   };
   hardware = {
