@@ -19,6 +19,7 @@
     tokei # count all tokens
 
     serpl # search and replace
+    ast-grep
 
     television
   ];
