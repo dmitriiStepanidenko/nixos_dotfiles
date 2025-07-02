@@ -116,6 +116,9 @@
               extraSpecialArgs = {
                 inherit inputs;
               };
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
 
               users.dmitrii = import ./home-manager/dmitrii.nix;
             };

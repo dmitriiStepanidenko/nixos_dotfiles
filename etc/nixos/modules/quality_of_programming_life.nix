@@ -22,6 +22,8 @@
     ast-grep
 
     television
+
+    notify
   ];
   programs.television = {
     enable = true;
