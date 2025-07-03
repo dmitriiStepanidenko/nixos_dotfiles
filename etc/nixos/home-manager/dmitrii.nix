@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./hyprland.nix
+    ./yubikey.nix
     #{inherit inputs;}
   ];
   home = {

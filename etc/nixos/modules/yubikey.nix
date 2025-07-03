@@ -13,9 +13,9 @@
 
       age-plugin-yubikey # sops age
     ];
-    sops = {
-      #age.keyFile = ../keys/users/age/age-yubikey-identity-default-c.txt;
-    };
+    #sops = {
+    #  #age.keyFile = ../keys/users/age/age-yubikey-identity-default-c.txt;
+    #};
 
     security.pam = lib.optionalAttrs pkgs.stdenv.isLinux {
       sshAgentAuth.enable = true;
