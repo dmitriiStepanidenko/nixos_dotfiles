@@ -1,6 +1,6 @@
 {pkgs, ...}: {
-  security.sudo.enable = false;
-  security.sudo-rs.enable = true;
+  security.sudo.enable = true;
+  security.sudo-rs.enable = false;
 
   programs.bat = {
     enable = true;

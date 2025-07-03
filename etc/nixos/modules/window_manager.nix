@@ -5,16 +5,16 @@
   inputs,
   ...
 }: let
-  cosmic-applets = {
-    cosmic-ext-applet-privacy-indicator =
-      pkgs.callPackage
-      ../../../nix/packages/cosmic-ext-applet-privacy-indicator.nix
-      {};
-    cosmic-ext-applet-system-monitor =
-      pkgs.callPackage
-      ../../../nix/packages/cosmic-ext-applet-system-monitor.nix
-      {};
-  };
+  #cosmic-applets = {
+  #  cosmic-ext-applet-privacy-indicator =
+  #    pkgs.callPackage
+  #    ../../../nix/packages/cosmic-ext-applet-privacy-indicator.nix
+  #    {};
+  #  cosmic-ext-applet-system-monitor =
+  #    pkgs.callPackage
+  #    ../../../nix/packages/cosmic-ext-applet-system-monitor.nix
+  #    {};
+  #};
 in {
   imports = [
     ../../../nix/services/wayland-display-manager-enabler.nix
@@ -47,8 +47,8 @@ in {
 
     inputs.nixos-unstable.legacyPackages.${pkgs.system}.leftwm
 
-    cosmic-applets.cosmic-ext-applet-privacy-indicator
-    cosmic-applets.cosmic-ext-applet-system-monitor
+    #cosmic-applets.cosmic-ext-applet-privacy-indicator
+    #cosmic-applets.cosmic-ext-applet-system-monitor
 
     libxkbcommon # for cosmic de applets
     wayland
@@ -79,9 +79,10 @@ in {
     wayland.enable = true;
   };
 
-  services.desktopManager.cosmic.enable = true;
+  # Temporary disable due to exccesive RAM consumption during build. It eats 13 gb + AT LEAST 30 gb swap ...
+  services.desktopManager.cosmic.enable = false;
   #  #services.desktopManager.xfce.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = false;
 
   programs.hyprlock = {
     enable = true;

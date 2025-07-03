@@ -17,7 +17,7 @@ in {
   programs.gnupg.agent = {
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
-    enableSSHSupport = true;
+    #enableSSHSupport = true;
   };
   environment.systemPackages = [
     pkgs.ssh-askpass-fullscreen
@@ -25,7 +25,7 @@ in {
     pkgs.pinentry-curses
   ];
   programs.ssh = {
-    #startAgent = true;
+    startAgent = true;
 
     #enableAskPassword = true;
     askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
