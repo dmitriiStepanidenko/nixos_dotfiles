@@ -43,11 +43,11 @@
     #sops.secrets.foo = {};
     #system.activationScripts.setupSecrets.deps = ["setupYubikeyForSopsNix"];
 
-    system.activationScripts.AsetupYubikeyForSopsNix.text = ''
-      PATH=$PATH:${lib.makeBinPath [pkgs.age-plugin-yubikey]}
-      ${pkgs.runtimeShell} -c "mkdir -p /var/lib/pcsc && ln -sfn ${pkgs.ccid}/pcsc/drivers /var/lib/pcsc/drivers"
-      ${pkgs.toybox}/bin/pgrep pcscd > /dev/null && ${pkgs.toybox}/bin/pkill pcscd
-      ${pkgs.pcsclite}/bin/pcscd
-    '';
+    #system.activationScripts.AsetupYubikeyForSopsNix.text = ''
+    #  PATH=$PATH:${lib.makeBinPath [pkgs.age-plugin-yubikey]}
+    #  ${pkgs.runtimeShell} -c "mkdir -p /var/lib/pcsc && ln -sfn ${pkgs.ccid}/pcsc/drivers /var/lib/pcsc/drivers"
+    #  ${pkgs.toybox}/bin/pgrep pcscd > /dev/null && ${pkgs.toybox}/bin/pkill pcscd
+    #  ${pkgs.pcsclite}/bin/pcscd
+    #'';
   };
 }
