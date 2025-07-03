@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./hyprland.nix
-    ./yubikey.nix
+    #./yubikey.nix
     #{inherit inputs;}
   ];
   home = {
@@ -28,6 +28,14 @@
     sessionPath = [
       "$HOME/.cargo/bin"
     ];
+
+    file.".config/sops/age/age-yubikey-identity-default-c.txt" = {
+      source = ../keys/users/age/age-yubikey-identity-default-c.txt;
+    };
+
+    sessionVariables = {
+      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/age-yubikey-identity-default-c.txt";
+    };
   };
   xdg = {
     mime = {
