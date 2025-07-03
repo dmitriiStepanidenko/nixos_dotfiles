@@ -25,7 +25,6 @@
   };
 in {
   imports = [
-    # Include the results of the hardware scan.
     inputs.sops-nix.nixosModules.sops
     ./hardware/hardware-configuration.nix
     ./modules/desktop.nix
@@ -35,7 +34,6 @@ in {
     ./modules/xray.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
-    #./modules/tmux.nix
     ./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix

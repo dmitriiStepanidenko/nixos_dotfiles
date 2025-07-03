@@ -44,7 +44,7 @@ sudo nixos-rebuild switch --option eval-cache false \
   --flake . &>nixos-switch.log || { 
     echo "NixOS rebuild failed!" 
     cat nixos-switch.log | grep -i error --color=always 
-    echo "NixOS Rebuild ended with error!" | notify 
+    echo "NixOS Rebuild ended with error!" | notify -silent
     notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available 
     exit 1 
 }
