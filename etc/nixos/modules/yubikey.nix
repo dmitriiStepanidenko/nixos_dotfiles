@@ -8,6 +8,8 @@
     yubioath-flutter # gui
     yubikey-manager # cli
     pam_u2f # for yubikey with sudo
+
+    age-plugin-yubikey # sops age
   ];
   services = {
     pcscd.enable = true;

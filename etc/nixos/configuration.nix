@@ -233,8 +233,14 @@ in {
   };
 
   nix = {
-    # Enable flakes
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings = {
+      experimental-features = ["nix-command" "flakes"];
+      auto-optimise-store = true;
+      #users.defaultUserShell = pkgs.fish;
+      trusted-users = ["root" "dmitrii"];
+      max-jobs = 4;
+      cores = 4;
+    };
 
     optimise.automatic = true;
     gc = {
@@ -246,8 +252,6 @@ in {
       min-free = ${toString (50 * 1024 * 1024 * 1024)}
       max-free = ${toString (20 * 1024 * 1024 * 1024)}
     ''; # Free up 10GiB whenever there is less than 10 GiB left
-
-    settings.auto-optimise-store = true;
   };
   hardware = {
     # acpi thermal readings??
@@ -303,9 +307,6 @@ in {
     containers.enable = true;
     containers.registries.insecure = ["10.252.1.8:5000"];
   };
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  #users.defaultUserShell = pkgs.fish;
-  nix.settings.trusted-users = ["dmitrii"];
   users.users.dmitrii = {
     isNormalUser = true;
     shell = pkgs.fish;

@@ -1,4 +1,6 @@
 keys:
+  - keys:
+    - &default_c age1yubikey1qvsqtwd2wagjf2fkdmmjxg8wrm6u8mpnh02vmjvqz982djk4elw4czk8nqd
   - users:
     - &mine age19vefp7y0y8jdc4gcy4l4yq6r4q3a9u2xevj3uy8dnf6v9ak7hfls3hjejc
   - hosts:
@@ -13,6 +15,10 @@ keys:
     - &piwatch age1nlnchf9ye4pcdyau2u6gfwawxdufzsht2v4ur5geldejv9226v0sckyeyd
     - &openobserve age1uxelnfg5wn33jtm8kmmatc7ku6rudmdcg52e86l05ket8jjg3ceq7t0gky
 creation_rules:
+  - path_regex: test.yaml 
+    key_groups:
+    - age:
+      - *default_c
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
     - age:
