@@ -40,9 +40,10 @@
 
       yubikey-agent.enable = true;
     };
-    system.activationScripts.setupSecrets.deps = ["setupYubikeyForSopsNix"];
+    #sops.secrets.foo = {};
+    #system.activationScripts.setupSecrets.deps = ["setupYubikeyForSopsNix"];
 
-    system.activationScripts.setupYubikeyForSopsNix.text = ''
+    system.activationScripts.AsetupYubikeyForSopsNix.text = ''
       PATH=$PATH:${lib.makeBinPath [pkgs.age-plugin-yubikey]}
       ${pkgs.runtimeShell} -c "mkdir -p /var/lib/pcsc && ln -sfn ${pkgs.ccid}/pcsc/drivers /var/lib/pcsc/drivers"
       ${pkgs.toybox}/bin/pgrep pcscd > /dev/null && ${pkgs.toybox}/bin/pkill pcscd

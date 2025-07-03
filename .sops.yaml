@@ -15,13 +15,10 @@ keys:
     - &piwatch age1nlnchf9ye4pcdyau2u6gfwawxdufzsht2v4ur5geldejv9226v0sckyeyd
     - &openobserve age1uxelnfg5wn33jtm8kmmatc7ku6rudmdcg52e86l05ket8jjg3ceq7t0gky
 creation_rules:
-  - path_regex: test.yaml 
-    key_groups:
-    - age:
-      - *default_c
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
     - age:
+      - *default_c
       - *mine_laptop
       - *mine
   - path_regex: nix/hosts/gitea_worker/.*\.(yaml)$
