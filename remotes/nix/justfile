@@ -1,0 +1,4 @@
+apply ON:
+        colmena apply --on {{ON}}; echo "ended" | notify -silent
+apply-all:
+        colmena apply ; echo "ended" | notify -silent

@@ -144,7 +144,7 @@
           ../../nix/hosts/openobserve/default.nix
         ];
       };
-      container_registry = {...}: {
+      registry = {...}: {
         deployment = {
           targetHost = "192.168.0.212";
           targetPort = 22;
@@ -152,7 +152,7 @@
         };
         time.timeZone = "Europe/Moscow";
         imports = [
-          ../../nix/hosts/container_registry/default.nix
+          ../../nix/hosts/registry/default.nix
         ];
       };
       nginx_local = {...}: {

@@ -5,7 +5,9 @@
   inputs,
   ...
 }: let
-  dataDir = "/data/webserver/root";
+  #dataDir = "/data/webserver/root";
+  homdeDir = "/home/woodpecker";
+  dataDir = "${homdeDir}/data";
 in {
   options.sftpgo.package = lib.mkOption {
     type = lib.types.package;
@@ -42,13 +44,48 @@ in {
         "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
       };
     };
-    systemd.services.sftpgo.serviceConfig = {
-      UMask = lib.mkForce "022";
-      Type = "simple";
-      Restart = "on-failure";
-      RestartSec = 25;
+    #systemd.services.sftpgo.serviceConfig = {
+    #  UMask = lib.mkForce "022";
+    #  Type = "simple";
+    #  Restart = "on-failure";
+    #  RestartSec = 25;
+    #};
+    systemd.tmpfiles.rules = [
+      "d ${dataDir} 755 woodpecker nginx -"
+      "d ${homdeDir} 755 woodpecker nginx -"
+    ];
+
+    # Create the woodpecker user
+    users.users.woodpecker = {
+      isNormalUser = true;
+      description = "Woodpecker CI deployment user";
+      home = homdeDir;
+      createHome = true;
+      shell = pkgs.bash;
+      # because 403 on nginx
+      homeMode = "750";
+
+      # Optional: Add to specific groups if needed
+      extraGroups = ["nginx"]; # if you need web server access
+
+      # Set up SSH key authentication
+      openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICs4xsuhbcgFe4oaCZQoDj1n54gQqft0dooQ0dwaxiPp woodpecker@nixos"
+      ];
     };
-    systemd.tmpfiles.rules = ["Z ${dataDir} 755 sftpgo nginx - -"];
+
+    # Optional: Configure sudo access for specific commands
+    security.sudo.extraRules = [
+      {
+        users = ["woodpecker"];
+        commands = [
+          {
+            command = "/run/current-system/sw/bin/systemctl reload nginx";
+            options = ["NOPASSWD"];
+          }
+        ];
+      }
+    ];
     networking = {
       hostName = "nginx_local";
       firewall = {
@@ -61,34 +98,35 @@ in {
         enable = true;
       };
     };
-    services.sftpgo = {
-      enable = true;
-      dataDir = "/var/lib/sftpgo";
-      user = "sftpgo";
-      group = "nginx";
-      extraReadWriteDirs = [dataDir];
-      inherit (config.sftpgo) package;
-      settings = {
-        umask = "022";
-        sftpd.bindings = [
-          {
-            address = "10.252.1.9";
-            port = 2222;
-          }
-          {
-            address = "192.168.0.213";
-            port = 2222;
-          }
-        ];
-        httpd.bindings = [
-          {
-            address = "10.252.1.9";
-            port = 8080;
-            enable_web_admin = true;
-          }
-        ];
-      };
-    };
+    #services.sftpgo = {
+    #  enable = true;
+    #  dataDir = "/var/lib/sftpgo";
+    #  user = "sftpgo";
+    #  group = "nginx";
+    #  extraReadWriteDirs = [dataDir];
+    #  inherit (config.sftpgo) package;
+    #  settings = {
+    #    umask = "022";
+    #    sftpd.bindings = [
+    #      {
+    #        address = "10.252.1.9";
+    #        port = 2222;
+    #      }
+    #      {
+    #        address = "192.168.0.213";
+    #        port = 2222;
+    #      }
+    #    ];
+    #    httpd.bindings = [
+    #      {
+    #        address = "10.252.1.9";
+    #        port = 8080;
+    #        enable_web_admin = true;
+    #      }
+    #    ];
+    #  };
+    #};
+    systemd.services.nginx.serviceConfig.ProtectHome = "read-only";
     services.nginx = {
       enable = true;
       user = "nginx";

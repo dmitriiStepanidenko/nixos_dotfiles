@@ -98,6 +98,7 @@
       pkgs.alejandra
       pkgs.attic-client
       pkgs.eza
+      pkgs.rsync
       inputs.sccache.packages.${system}.sccache
     ];
   };

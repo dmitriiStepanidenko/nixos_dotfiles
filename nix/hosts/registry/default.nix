@@ -2,7 +2,9 @@
   config,
   inputs,
   ...
-}: {
+}: let
+  kellnerDir = "/data/kellner";
+in {
   imports = [
     inputs.wireguard.nixosModules.default
     {
@@ -28,6 +30,9 @@
     }
   ];
   config = {
+    systemd.tmpfiles.rules = [
+      "d ${kellnerDir} 0755 root root -"
+    ];
     networking.hostName = "container_registry";
     networking.firewall = {
       allowedUDPPorts = [
@@ -42,11 +47,29 @@
         allowedUDPPorts = [
           22
           5000
+          8000
         ];
         allowedTCPPorts = [
           22
           5000
+          8000
         ];
+      };
+    };
+    virtualisation.oci-containers = {
+      backend = "podman";
+      containers = {
+        kellner = {
+          image = "ghcr.io/kellnr/kellnr:5";
+          ports = ["8000:8000"];
+          volumes = [
+            "${kellnerDir}:/opt/kdata"
+          ];
+          environment = {
+            KELLNR_DOCS__ENABLED = "true";
+            KELLNR_ORIGIN__HOSTNAME = "10.252.1.8";
+          };
+        };
       };
     };
     systemd.services.docker-registry.serviceConfig = {
