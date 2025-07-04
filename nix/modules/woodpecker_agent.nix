@@ -87,6 +87,7 @@
     path = [
       pkgs.bash
       pkgs.git
+      pkgs.git-lfs
       pkgs.docker
       pkgs.openssh # sftp + ssh clone
       pkgs.nix

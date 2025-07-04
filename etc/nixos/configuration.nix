@@ -236,20 +236,20 @@ in {
       auto-optimise-store = true;
       #users.defaultUserShell = pkgs.fish;
       trusted-users = ["root" "dmitrii"];
-      max-jobs = 4;
-      cores = 4;
+      max-jobs = 3;
+      cores = 6;
     };
 
     optimise.automatic = true;
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 4d";
     };
     extraOptions = ''
-      min-free = ${toString (50 * 1024 * 1024 * 1024)}
+      min-free = ${toString (20 * 1024 * 1024 * 1024)}
       max-free = ${toString (20 * 1024 * 1024 * 1024)}
-    ''; # Free up 10GiB whenever there is less than 10 GiB left
+    ''; # Free up 20GiB whenever there is less than 20 GiB left
   };
   hardware = {
     # acpi thermal readings??
