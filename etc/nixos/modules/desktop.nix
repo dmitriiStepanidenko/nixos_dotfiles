@@ -63,6 +63,7 @@ in {
     brave
 
     nautilus
+    xarchiver
   ];
   programs.noisetorch.enable = true;
   programs.adb.enable = true;
