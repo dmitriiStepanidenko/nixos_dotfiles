@@ -83,7 +83,7 @@
     #package = pkgs.callPackage ../packages/woodpecker-agent.nix {};
     package =
       inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.woodpecker-agent;
-    extraGroups = ["docker"];
+    extraGroups = ["docker" "trusted"];
     path = [
       pkgs.bash
       pkgs.git
@@ -94,12 +94,14 @@
       pkgs.curl
       pkgs.gnutar
       pkgs.gzip
+      pkgs.zip
       pkgs.cargo-binstall
       pkgs.sd
       pkgs.alejandra
       pkgs.attic-client
       pkgs.eza
       pkgs.rsync
+      pkgs.gnugrep
       inputs.sccache.packages.${system}.sccache
     ];
   };

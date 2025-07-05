@@ -1,4 +1,6 @@
 apply ON:
         colmena apply --on {{ON}}; echo "ended" | notify -silent
+apply-on-target ON:
+        colmena apply --on {{ON}} --build-on-target; echo "ended" | notify -silent
 apply-all:
         colmena apply ; echo "ended" | notify -silent

@@ -7,7 +7,7 @@ keys:
     - &mine_laptop age1ggpnjskft839vcjzunmpdwhs9easwxr7cvd350mlqmvptw3aqdnsqpms42
     - &gitea_worker_1 age1glh3xkjqh5a4zxj835g0rxhg8ypdk9ywj3p83557c3e9lleq243s6jvc4r
     - &woodpecker_agent_1 age1zeh3kcd7qqx0g7qgra975ls0u9dwhe64anr0m5lthr0aq73nuu7q6xg9ve
-    - &container_registry age1kqasman7j5fguy8xfwkkvz2aad38ugk437enstcz4kg9r8tjeg3q6f5v5c
+    - &registry age178f4qgfgku78khyclpx4lhlcjwez5v8vc854q0hg4ka92xn7xg4qlprntj
     - &nginx_local age1mp994dhmdgh9m9x03wdrjsluksqydy9gn7q6pw0w3ruuglwqaccqw06dtx
     - &woodpecker_server age1xxx7z9mn44pagwk46kay5s8ufj37zxf3qat97tgexgkasmljpulszrfann
     - &wakapi age1jwal9267d3tm9azlkprd8lf4vkjytre32pcr2jcflpmruxxn0vfqwupku2
@@ -31,11 +31,11 @@ creation_rules:
     - age:
       - *mine
       - *woodpecker_agent_1
-  - path_regex: nix/hosts/container_registry/.*\.(yaml)$
+  - path_regex: nix/hosts/registry/.*\.(yaml)$
     key_groups:
     - age:
       - *mine
-      - *container_registry
+      - *registry
   - path_regex: nix/hosts/nginx_local/.*\.(yaml)$
     key_groups:
     - age:

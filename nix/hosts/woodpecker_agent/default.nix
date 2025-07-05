@@ -137,6 +137,7 @@
     #nix.extraOptions = ''
     #  allowed-uris = https://github.com/ http://10.252.1.0:3000/
     #'';
+
     nix.settings = {
       allowed-uris = [
         "github:"
@@ -148,9 +149,11 @@
       # Disable extra on this server
       extra-substituters = [
       ];
+      trusted-users = ["root" "dmitrii" "@trusted"];
       extra-trusted-public-keys = [
       ];
     };
+    users.groups.trusted  = {};
     users.users.nix-serve = {
       isSystemUser = true;
       group = "nix-serve";
@@ -160,6 +163,18 @@
       #secretKeyFile = "/var/cache-priv-key.pem";
       secretKeyFile = config.sops.secrets."nix-serve/cache-priv-key.pem".path;
       port = 55655;
+    };
+    nix = {
+      optimise.automatic = true;
+      gc = {
+        automatic = true;
+        dates = "5:40";
+        options = "--delete-older-than 2d";
+      };
+      extraOptions = ''
+        min-free = ${toString (10 * 1024 * 1024 * 1024)}
+        max-free = ${toString (10 * 1024 * 1024 * 1024)}
+      ''; # Free up 10GiB whenever there is less than 10 GiB left
     };
 
     users.groups.nix-serve = {};

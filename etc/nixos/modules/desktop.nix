@@ -59,6 +59,10 @@ in {
     revolt-desktop
 
     easyeffects
+
+    brave
+
+    nautilus
   ];
   programs.noisetorch.enable = true;
   programs.adb.enable = true;
