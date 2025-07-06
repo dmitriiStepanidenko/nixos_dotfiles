@@ -186,13 +186,27 @@
         modules = [
           ../../nix/hosts/isoimage/configuration.nix
           {
-            services.cloud-init.network.enable = true;
-            #systemd.network.enable = false;
             networking = {
-              useNetworkd = true;
-              #networkmanager.enable = true;
-              useDHCP = true;
-              dhcpcd.enable = true;
+              # Disable DHCP globally
+              dhcpcd.enable = false;
+              useDHCP = false;
+
+              # Configure the specific interface
+              interfaces.ens3 = {
+                useDHCP = false;
+                ipv4.addresses = [
+                  {
+                    address = "176.123.169.226";
+                    prefixLength = 32;
+                  }
+                ];
+                ipv6.addresses = [
+                  {
+                    address = "fe80::5054:ff:fe11:f723";
+                    prefixLength = 64;
+                  }
+                ];
+              };
             };
           }
         ];

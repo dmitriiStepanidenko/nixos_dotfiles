@@ -539,6 +539,8 @@ in {
 
     inputs.surrealdb.packages.${system}.latest
 
+    nixos-anywhere
+
     hub
   ];
 

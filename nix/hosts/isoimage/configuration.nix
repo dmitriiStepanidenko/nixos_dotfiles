@@ -12,4 +12,6 @@
     vm-profile.nixosModules.default
   ];
   nixpkgs.hostPlatform = system;
+  services.cloud-init.network.enable = true;
+  system.stateVersion = "25.05";
 }
