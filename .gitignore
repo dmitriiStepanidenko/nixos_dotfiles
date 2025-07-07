@@ -52,3 +52,4 @@ result
 .envrc
 .direnv
 
+.htpasswd

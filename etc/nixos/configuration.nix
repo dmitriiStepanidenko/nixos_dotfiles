@@ -546,6 +546,41 @@ in {
     apacheHttpd # because of htpasswd
   ];
 
+  services.searx = {
+    enable = true;
+    redisCreateLocally = true;
+
+    # Rate limiting
+    limiterSettings = {
+      real_ip = {
+        x_for = 1;
+        ipv4_prefix = 32;
+        ipv6_prefix = 56;
+      };
+
+      botdetection = {
+        ip_limit = {
+          filter_link_local = true;
+          link_token = true;
+        };
+      };
+    };
+    settings.server = {
+      bind_address = "::1";
+      # port = yourPort;
+      # WARNING: setting secret_key here might expose it to the nix cache
+      # see below for the sops or environment file instructions to prevent this
+      secret_key = config.sops.secrets."searx/secret_key".path;
+    };
+  };
+  sops.secrets = {
+    "searx/secret_key" = {
+      owner = "searx";
+      mode = "0400";
+      restartUnits = ["searx.service"];
+    };
+  };
+
   system.stateVersion = "25.05";
 
   boot.kernelPackages = pkgs.linuxPackages_6_13;
