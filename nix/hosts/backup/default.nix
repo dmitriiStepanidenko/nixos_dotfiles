@@ -28,6 +28,7 @@
         };
       };
     }
+    ./restic.nix
   ];
   config = {
     services.cloud-init.enable = false;

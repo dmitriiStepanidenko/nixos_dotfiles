@@ -543,7 +543,7 @@ in {
 
     hub
 
-    thttpd # because of htpasswd
+    apacheHttpd # because of htpasswd
   ];
 
   system.stateVersion = "25.05";
