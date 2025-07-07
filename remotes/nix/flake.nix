@@ -5,6 +5,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +65,7 @@
     sops-nix,
     vm-profile,
     nixos-generators,
-    flake-utils,
+    disko,
     ...
   }: let
     system = "x86_64-linux";
@@ -166,6 +170,18 @@
           ../../nix/hosts/nginx_local/default.nix
         ];
       };
+      backup = {...}: {
+        deployment = {
+          targetHost = "176.123.169.226";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          disko.nixosModules.disko
+          ../../nix/hosts/backup/default.nix
+        ];
+      };
     };
     #devShells.default.${system} = pkgs_unstable.mkShell {
     #  packages = [colmena.defaultPackage.${system}];
@@ -231,17 +247,6 @@
 #  time.timeZone = "Europe/Moscow";
 #  imports = [
 #    ../../nix/hosts/wakapi/default.nix
-#  ];
-#};
-#backup = {...}: {
-#  deployment = {
-#    targetHost = "176.123.169.226";
-#    targetPort = 22;
-#    targetUser = "root";
-#  };
-#  time.timeZone = "Europe/Moscow";
-#  imports = [
-#    ../../nix/hosts/backup/default.nix
 #  ];
 #};
 # Disabled for now

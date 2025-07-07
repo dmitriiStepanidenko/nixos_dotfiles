@@ -1,8 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-facter-modules.url = "github:numtide/nixos-facter-modules";
 
     vm-profile = {
@@ -12,9 +14,9 @@
   };
 
   outputs = {
+    vm-profile,
     nixpkgs,
     disko,
-    vm-profile,
     nixos-facter-modules,
     ...
   }: {
@@ -26,6 +28,7 @@
         disko.nixosModules.disko
         ./configuration.nix
         ./hardware-configuration.nix
+        ./network.nix
         vm-profile.nixosModules.default
       ];
     };

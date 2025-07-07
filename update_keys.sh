@@ -5,3 +5,4 @@ sops updatekeys nix/hosts/backup/secrets.yaml --yes
 sops updatekeys nix/hosts/gitea_worker/secrets.yaml --yes
 sops updatekeys nix/hosts/gitea_worker/secrets.yaml --yes
 sops updatekeys nix/hosts/registry/secrets.yaml --yes
+sops updatekeys nix/hosts/backup/secrets.yaml --yes

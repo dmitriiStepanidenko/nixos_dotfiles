@@ -542,6 +542,8 @@ in {
     nixos-anywhere
 
     hub
+
+    thttpd # because of htpasswd
   ];
 
   system.stateVersion = "25.05";

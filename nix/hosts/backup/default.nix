@@ -1,9 +1,11 @@
-{
-  config,
+{ config,
   inputs,
   ...
 }: {
   imports = [
+    ./hardware-configuration.nix
+    ./network.nix
+    ./disk-config.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -28,6 +30,7 @@
     }
   ];
   config = {
+    services.cloud-init.enable = false;
     networking.hostName = "backup";
     sops = {
       defaultSopsFile = ./secrets.yaml;

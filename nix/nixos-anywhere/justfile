@@ -1,0 +1,2 @@
+run ON:
+        nix run nixpkgs#nixos-anywhere -- --flake .#generic --generate-hardware-config nixos-generate-config ./hardware-configuration.nix --target-host {{ON}} ; echo "nixos-anywhere ended" | notify -silent
