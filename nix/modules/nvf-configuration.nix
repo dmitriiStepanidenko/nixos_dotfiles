@@ -229,10 +229,10 @@
         codeAction = "\\\\ca";
         renameSymbol = "\\\\rn";
       };
-      servers.svelte.filetypes = [
-        "*.svelte.ts" 
-        "*.svelte.js"
-      ];
+      #servers.svelte.filetypes = [
+      #  "*.svelte.ts" 
+      #  "*.svelte.js"
+      #];
       lightbulb.enable = true;
       # Currentrly does not work
       #lspsaga = {
