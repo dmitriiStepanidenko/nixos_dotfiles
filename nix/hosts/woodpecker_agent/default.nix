@@ -153,7 +153,7 @@
       extra-trusted-public-keys = [
       ];
     };
-    users.groups.trusted  = {};
+    users.groups.trusted = {};
     users.users.nix-serve = {
       isSystemUser = true;
       group = "nix-serve";
@@ -175,6 +175,20 @@
         min-free = ${toString (10 * 1024 * 1024 * 1024)}
         max-free = ${toString (10 * 1024 * 1024 * 1024)}
       ''; # Free up 10GiB whenever there is less than 10 GiB left
+    };
+
+    users = {
+      users = {
+        "danila" = {
+          isNormalUser = true;
+          group = "danila";
+          extraGroups = ["wheel" "docker" "networkmanager"];
+          openssh.authorizedKeys.keys = [
+            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDJslEEcZRowrww4X14nnTwUODSpQLH9ZenX8Co0hfbJ danila@danila-vostro"
+          ];
+        };
+      };
+      groups.danila = {};
     };
 
     users.groups.nix-serve = {};
