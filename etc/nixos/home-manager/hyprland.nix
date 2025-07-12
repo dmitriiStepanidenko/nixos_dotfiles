@@ -16,7 +16,7 @@
   girlImage = ../../../images/wallpaper.jpg;
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
   wallpaperCmd = "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color 676570 2>&1 > $XDG_LOG_DIR/swww.log";
-  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f -i ${girlImage}";
+  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f -i ${girlImage} -s fit";
   sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
   sessionLockDispatchCommand = "hyprctl dispatch exec \"${sessionLockCommand}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
