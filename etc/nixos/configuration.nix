@@ -34,7 +34,7 @@ in {
     ./modules/xray.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
-    ./modules/amdgpu_patch.nix
+    #./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix
     inputs.wireguard.nixosModules.default
@@ -583,5 +583,6 @@ in {
 
   system.stateVersion = "25.05";
 
-  boot.kernelPackages = pkgs.linuxPackages_6_13;
+  #boot.kernelPackages = unstable.linuxPackages_6_13;
+  boot.kernelPackages = unstable.linuxPackages_latest;
 }
