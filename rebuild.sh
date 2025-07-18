@@ -40,6 +40,8 @@ ls
 pwd
 # Rebuild, output simplified errors, log trackebacks
 sudo nixos-rebuild switch --option eval-cache false \
+  --max-jobs 4 --cores 15\
+  --show-trace -v \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
   --flake . &>nixos-switch.log || { 
     echo "NixOS rebuild failed!" 

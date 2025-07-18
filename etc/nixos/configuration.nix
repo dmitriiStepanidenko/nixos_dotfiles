@@ -238,6 +238,7 @@ in {
       trusted-users = ["root" "dmitrii"];
       max-jobs = 3;
       cores = 6;
+      show-trace = true;
     };
 
     optimise.automatic = true;
