@@ -545,6 +545,9 @@ in {
     hub
 
     apacheHttpd # because of htpasswd
+
+    nix-output-monitor
+    nix-fast-build
   ];
 
   services.searx = {

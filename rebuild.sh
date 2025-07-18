@@ -38,12 +38,14 @@ echo "NixOS Rebuilding..."
 
 ls
 pwd
+
 # Rebuild, output simplified errors, log trackebacks
+# Alternative: Show nom output to terminal, save raw output to log
 sudo nixos-rebuild switch --option eval-cache false \
   --max-jobs 4 --cores 15\
   --show-trace -v \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-  --flake . &>nixos-switch.log || { 
+  --flake . 2> >(tee nixos-switch.log >&2) | nom || { 
     echo "NixOS rebuild failed!" 
     cat nixos-switch.log | grep -i error --color=always 
     echo "NixOS Rebuild ended with error!" | notify -silent
