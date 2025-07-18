@@ -42,7 +42,7 @@
 
     if [ "$nvidia_present" = true ]; then
       echo "NVIDIA GPU detected/enabled, using NOTHING instead of hibernation"
-      systemctl suspend
+      #systemctl suspend
       #systemctl hibernate
     else
       echo "No NVIDIA GPU detected/enabled, safe to hibernate"
