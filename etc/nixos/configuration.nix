@@ -539,6 +539,7 @@ in {
     papirus-icon-theme
 
     inputs.surrealdb.packages.${system}.latest
+    surrealist
 
     nixos-anywhere
 
