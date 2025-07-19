@@ -18,6 +18,11 @@
     #sops = {
     #  #age.keyFile = ../keys/users/age/age-yubikey-identity-default-c.txt;
     #};
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    hardware.gpgSmartcards.enable = true;
 
     security.pam = lib.optionalAttrs pkgs.stdenv.isLinux {
       sshAgentAuth.enable = true;
