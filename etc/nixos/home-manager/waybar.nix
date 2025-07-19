@@ -212,15 +212,17 @@ in {
             default = " ";
           };
         };
-        "hyprland/window" = {};
+        "hyprland/window" = {
+        };
         network = {
+          #interface = "wlp2s0";
           format = "{ifname}";
-          format-wifi = "{essid} ({signalStrength}%) ";
+          format-wifi = "{essid} ({signalStrength}%) ";
           format-ethernet = "{ipaddr}/{cidr} 󰊗";
-          format-disconnected = "";
+          format-disconnected = ""; #An empty format will hide the module.
           tooltip-format = "{ifname} via {gwaddr} 󰊗";
-          tooltip-format-wifi = "{essid} ({signalStrength}%) ";
-          tooltip-format-ethernet = "{ifname} ";
+          tooltip-format-wifi = "{essid} ({signalStrength}%) ";
+          tooltip-format-ethernet = "{ifname} ";
           tooltip-format-disconnected = "Disconnected";
           max-length = 50;
         };
@@ -236,6 +238,7 @@ in {
           status-icons = {
             paused = "⏸";
           };
+          # "ignored-players": ["firefox"]
         };
         privacy = {
           icon-spacing = 2;
@@ -260,9 +263,10 @@ in {
           ];
         };
         bluetooth = {
-          format = " {status}";
-          format-connected = " {device_alias}";
-          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          format = " {status}";
+          format-connected = " {device_alias}";
+          format-connected-battery = " {device_alias} {device_battery_percentage}%";
+          #// format-device-preference = [ "device1"; "device2" ], // preference list deciding the displayed device
           tooltip-format = "{controller_alias}\t{controller_address}\n\n{num_connections} connected";
           tooltip-format-connected = "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}";
           tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -270,23 +274,23 @@ in {
         };
         temperature = {
           critical-threshold = 85;
-          format-critical = "{temperatureC}°C ";
-          format = "{temperatureC}°C ";
+          format-critical = "{temperatureC}°C ";
+          format = "{temperatureC}°C ";
         };
         cpu = {
-          format = "︁  {}%";
+          "format" = "︁  {}%";
           tooltip = true;
         };
         memory = {
-          format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
+          format = "<span font='Font Awesome 5 Free 9'>︁</span> {used:0.1f}G/{total:0.1f}G";
           tooltip = true;
         };
         backlight = {
           format = "{percent}% {icon}";
-          format-icons = ["" ""];
+          format-icons = ["" ""];
         };
         "hyprland/language" = {
-          format = "  {}";
+          format = "  {}";
           format-en = "EN";
           format-ru = "RU";
         };
@@ -297,11 +301,11 @@ in {
           };
           format = "<span font='Font Awesome 5 Free 11'>{icon}</span> {capacity}%{time}";
           format-time = " ({H}h{M}m)";
-          format-full = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged";
-          format-charging = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}";
-          format-plugged = "  {capacity}%";
+          format-full = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  Charged";
+          format-charging = "<span font='Font Awesome 5 Free'></span>  <span font='Font Awesome 5 Free 11'>{icon}</span>  {capacity}% - {time}";
+          format-plugged = "  {capacity}%";
           format-alt = "{time}  {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-icons = ["" "" "" "" ""];
         };
         clock = {
           format = "{:%H:%M | %e %B} ";
@@ -328,22 +332,22 @@ in {
           };
         };
         pulseaudio = {
-          format = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
-          format-alt = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
-          format-alt-click = "click-right";
-          format-muted = "<span font='Font Awesome 5 Free 11'></span>";
-          format-icons = {
-            headphone = "󰋋";
-            hands-free = "";
-            headset = "";
-            phone = "";
-            portable = "";
-            car = "";
-            default = ["󱡫"];
+          "format" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
+          "format-alt" = "<span font='Font Awesome 5 Free 11'>{icon:2}</span>{volume}%";
+          "format-alt-click" = "click-right";
+          "format-muted" = "<span font='Font Awesome 5 Free 11'></span>";
+          "format-icons" = {
+            "headphone" = "󰋋";
+            "hands-free" = "";
+            "headset" = "";
+            "phone" = "";
+            "portable" = "";
+            "car" = "";
+            "default" = ["󱡫"];
           };
-          scroll-step = 2;
-          on-click = "pavucontrol";
-          tooltip = true;
+          "scroll-step" = 2;
+          "on-click" = "pavucontrol";
+          "tooltip" = true;
         };
       };
 
