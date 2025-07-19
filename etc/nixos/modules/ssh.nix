@@ -25,7 +25,7 @@ in {
     pkgs.pinentry-curses
   ];
   programs.ssh = {
-    startAgent = true;
+    startAgent = false;
 
     #enableAskPassword = true;
     askPassword = "${pkgs.ssh-askpass-fullscreen}/bin/ssh-askpass-fullscreen";
