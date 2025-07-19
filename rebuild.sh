@@ -45,7 +45,7 @@ pwd
 sudo nixos-rebuild switch --option eval-cache false \
   --max-jobs 4 --cores 15\
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-  --flake . 2>&1 | nom --json | tee nixos-switch.log || { 
+  --flake . 2>&1 | tee nixos-switch.log || { 
     echo "NixOS rebuild failed!" 
     cat nixos-switch.log | grep -i error --color=always 
     echo "NixOS Rebuild ended with error!" | notify -silent

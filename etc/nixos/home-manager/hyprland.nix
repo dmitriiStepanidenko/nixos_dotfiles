@@ -220,7 +220,7 @@ in {
           background: #1a1b26;
       }
       #workspaces {
-          margin: 0 5px;
+          margin: 0 2px;
       }
       #workspaces button {
           padding: 0 8px;
@@ -378,7 +378,7 @@ in {
         mpris = {
           format = "{player_icon} {dynamic}";
           format-paused = "{status_icon} <i>{dynamic}</i>";
-          dynamic-len = 55;
+          dynamic-len = 40;
           dynamic-importance-order = ["title" "position" "artist" "album" "length"];
           player-icons = {
             default = "▶";
@@ -390,7 +390,7 @@ in {
           # "ignored-players": ["firefox"]
         };
         privacy = {
-          icon-spacing = 4;
+          icon-spacing = 2;
           icon-size = 18;
           transition-duration = 250;
           modules = [
