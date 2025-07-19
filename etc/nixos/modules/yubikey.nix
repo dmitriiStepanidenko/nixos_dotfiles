@@ -22,6 +22,7 @@
       enable = true;
       enableSSHSupport = true;
     };
+    programs.ssh.startAgent = false;
     hardware.gpgSmartcards.enable = true;
 
     security.pam = lib.optionalAttrs pkgs.stdenv.isLinux {
