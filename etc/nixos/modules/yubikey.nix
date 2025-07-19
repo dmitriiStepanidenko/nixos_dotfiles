@@ -9,6 +9,7 @@
     environment.systemPackages = with pkgs; [
       yubioath-flutter # gui
       yubikey-manager # cli
+      yubikey-personalization
       pam_u2f # for yubikey with sudo
 
       age-plugin-yubikey # sops age
