@@ -319,10 +319,10 @@ in {
         layer = "top";
         position = "top";
         height = 30;
-        #output = [
-        #      "eDP-1"
-        #      "HDMI-A-1"
-        #    ];
+        output = [
+          "eDP-1"
+          "HDMI-A-1"
+        ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
         modules-right = ["mpris" "network" "privacy" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
