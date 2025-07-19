@@ -110,7 +110,7 @@ in {
       bind =
         [
           "$mod, F, exec, firefox"
-          "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=1670 --yoffset=12 --width=220px --height=620 --term=footclient --prompt=Run"
+          "$mod, P, exec, ${pkgs.wofi}/bin/wofi --show run --xoffset=20 --yoffset=12 --width=220px --height=620 --term=footclient --prompt=Run"
           "$mod, RETURN, exec, alacritty"
           "$mod, Q, killactive"
 
