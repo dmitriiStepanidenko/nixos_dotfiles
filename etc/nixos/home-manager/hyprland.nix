@@ -90,7 +90,7 @@ in {
         kb_options = "grp:win_space_toggle";
       };
       exec-once = [
-        "sleep 2; pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $XDG_LOG_DIR/waybar.log"
+        "sleep 2;  pkill waybar; ${pkgs.waybar}/bin/waybar 2>&1 > $XDG_LOG_DIR/waybar.log"
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
         wallpaperCmd
@@ -319,10 +319,10 @@ in {
         layer = "top";
         position = "top";
         height = 30;
-        output = [
-          "eDP-1"
-          "HDMI-A-1"
-        ];
+        #output = [
+        #      "eDP-1"
+        #      "HDMI-A-1"
+        #    ];
         modules-left = ["hyprland/workspaces" "wlr/taskbar" "hyprland/window"];
         modules-center = ["clock" "hyprland/language" "battery" "temperature"];
         modules-right = ["mpris" "network" "privacy" "pulseaudio" "bluetooth" "backlight" "cpu" "memory"];
