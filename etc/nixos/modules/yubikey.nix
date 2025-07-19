@@ -11,6 +11,7 @@
       yubikey-manager # cli
       yubikey-personalization
       pam_u2f # for yubikey with sudo
+      pcsc-tools
 
       age-plugin-yubikey # sops age
     ];
