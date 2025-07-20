@@ -42,10 +42,21 @@ pwd
 # Rebuild, output simplified errors, log trackebacks
 # Rebuild, output simplified errors, log trackebacks
   #--show-trace -v \
+#sudo nixos-rebuild switch --option eval-cache false \
+#  --max-jobs 4 --cores 15\
+#  -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
+#  --flake . 2>&1 | tee nixos-switch.log || { 
+#    echo "NixOS rebuild failed!" 
+#    cat nixos-switch.log | grep -i error --color=always 
+#    echo "NixOS Rebuild ended with error!" | notify -silent
+#    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available 
+#    exit 1 
+#}
+# Rebuild, output simplified errors, log trackebacks
+
 sudo nixos-rebuild switch --option eval-cache false \
-  --max-jobs 4 --cores 15\
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-  --flake . 2>&1 | tee nixos-switch.log || { 
+  --flake . &>nixos-switch.log || { 
     echo "NixOS rebuild failed!" 
     cat nixos-switch.log | grep -i error --color=always 
     echo "NixOS Rebuild ended with error!" | notify -silent

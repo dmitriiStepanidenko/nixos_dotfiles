@@ -3,6 +3,7 @@
   pkgs,
   configVars,
   config,
+  inputs,
   ...
 }: {
   config = {
@@ -11,16 +12,21 @@
       yubikey-manager # cli
       yubikey-personalization
       pam_u2f # for yubikey with sudo
-      pcsc-tools
+      pcsc-tools # pcsc_scan
 
       age-plugin-yubikey # sops age
     ];
     #sops = {
     #  #age.keyFile = ../keys/users/age/age-yubikey-identity-default-c.txt;
     #};
-    programs.gnupg.agent = {
-      enable = true;
-      enableSSHSupport = true;
+    programs.gnupg = {
+      package = inputs.nixos-unstable.legacyPackages.${pkgs.system}.gnupg1;
+      agent = {
+        enable = true;
+        enableSSHSupport = true;
+        settings = {
+        };
+      };
     };
     programs.ssh.startAgent = false;
     hardware.gpgSmartcards.enable = true;
