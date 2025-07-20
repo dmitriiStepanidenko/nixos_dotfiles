@@ -79,13 +79,14 @@
         ];
       };
     };
-    swapDevices = [
-      {
-        device = "/swapfile";
-        size = 32 * 1024; # 16GB
-        priority = 0;
-      }
-    ];
+    # I have partition for that
+    #swapDevices = [
+    #  {
+    #    device = "/swapfile";
+    #    size = 32 * 1024; # 16GB
+    #    priority = 0;
+    #  }
+    #];
     zramSwap = {
       enable = true;
       algorithm = "zstd";
