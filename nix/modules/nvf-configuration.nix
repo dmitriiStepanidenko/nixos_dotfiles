@@ -230,7 +230,7 @@
         renameSymbol = "\\\\rn";
       };
       #servers.svelte.filetypes = [
-      #  "*.svelte.ts" 
+      #  "*.svelte.ts"
       #  "*.svelte.js"
       #];
       lightbulb.enable = true;
@@ -327,7 +327,10 @@
       };
       rust = {
         enable = true;
-        format.enable = true;
+        format = {
+          package = lib.mkDefault pkgs.rustfmt;
+          enable = true;
+        };
         treesitter.enable = true;
         crates.enable = true;
         dap = {
@@ -335,8 +338,17 @@
         };
         lsp = {
           enable = true;
-          #package =
-          #  inputs.nixos_unstable.legacyPackages.${pkgs.system}.rust-analyzer;
+          package =
+            lib.mkDefault pkgs.rust-analyzer;
+          opts = ''
+            ['rust-analyzer'] = {
+              cargo = {allFeature = true},
+              checkOnSave = true,
+              procMacro = {
+                enable = true,
+              },
+            },
+          '';
         };
       };
       svelte = {

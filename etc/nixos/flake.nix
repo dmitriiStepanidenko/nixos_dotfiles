@@ -80,6 +80,10 @@
       (
         nvf.lib.neovimConfiguration {
           inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs;
+          };
+
           modules = [
             ../../nix/modules/nvf-configuration.nix
             ({
@@ -88,6 +92,7 @@
               ...
             }: {
               config.vim.languages.rust.lsp.package = ["rust-analyzer"];
+              #config.vim.languages.rust.format.package = ["rustfmt"];
             })
           ];
         }
