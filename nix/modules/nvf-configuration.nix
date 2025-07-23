@@ -335,7 +335,7 @@
         enable = true;
         format = {
           #package = lib.mkDefault pkgs.rustfmt;
-          enable = false;
+          enable = true;
         };
         treesitter.enable = true;
         crates.enable = true;
