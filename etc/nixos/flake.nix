@@ -26,7 +26,7 @@
       inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
 
-    mnw.url = "github:Gerg-L/mnw?ref=0cb0df3a6f26cbb42f3e096ec65bc7263aab9757";
+    mnw.url = "github:Gerg-L/mnw";
     nvf = {
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
