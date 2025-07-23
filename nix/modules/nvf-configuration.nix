@@ -337,9 +337,10 @@
           enable = true;
         };
         lsp = {
-          enable = true;
-          package =
-            lib.mkDefault pkgs.rust-analyzer;
+          enable =
+            true;
+          #package =
+          #  lib.mkDefault pkgs.rust-analyzer;
           #opts = ''
           #  ['rust-analyzer'] = {
           #    cargo = {allFeature = true},
