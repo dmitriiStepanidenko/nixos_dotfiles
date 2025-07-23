@@ -215,6 +215,8 @@
     searchCase = "ignore";
 
     lsp = {
+      enable = true;
+      formatOnSave = true;
       mappings = {
         addWorkspaceFolder = "\\\\wa";
         format = "<space>f";
@@ -229,6 +231,10 @@
         codeAction = "\\\\ca";
         renameSymbol = "\\\\rn";
       };
+      lspconfig.enable = true;
+      lspkind.enable = true;
+      lspsaga.enable = true;
+      trouble.enable = true;
       #servers.svelte.filetypes = [
       #  "*.svelte.ts"
       #  "*.svelte.js"
@@ -286,7 +292,6 @@
     };
     treesitter.fold = true;
     languages = {
-      enableLSP = true;
       enableTreesitter = true;
 
       #graphql = {
@@ -329,7 +334,7 @@
         enable = true;
         format = {
           #package = lib.mkDefault pkgs.rustfmt;
-          enable = true;
+          enable = false;
         };
         treesitter.enable = true;
         crates.enable = true;
