@@ -293,6 +293,7 @@
     treesitter.fold = true;
     languages = {
       enableTreesitter = true;
+      enableFormat = true;
 
       #graphql = {
       #  enable = true;
@@ -346,19 +347,19 @@
             true;
           #package =
           #  lib.mkDefault pkgs.rust-analyzer;
-          #opts = ''
-          #  ['rust-analyzer'] = {
-          #    cargo = {allFeature = true},
-          #    checkOnSave = true,
-          #    check = {
-          #      command = "clippy",
-          #      extraArgs = { "--no-deps" }
-          #    },
-          #    procMacro = {
-          #      enable = true,
-          #    },
-          #  },
-          #'';
+          # opts = ''
+          #   ['rust-analyzer'] = {
+          #     cargo = {allFeature = true},
+          #     checkOnSave = true,
+          #     check = {
+          #       command = "clippy",
+          #       extraArgs = { "--no-deps" }
+          #     },
+          #     procMacro = {
+          #       enable = true,
+          #     },
+          #   },
+          # '';
         };
       };
       svelte = {
