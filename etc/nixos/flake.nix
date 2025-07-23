@@ -91,7 +91,7 @@
               pkgs,
               ...
             }: {
-              config.vim.languages.rust.lsp.package = ["rust-analyzer"];
+              #config.vim.languages.rust.lsp.package = ["rust-analyzer"];
               #config.vim.languages.rust.format.package = ["rustfmt"];
             })
           ];
