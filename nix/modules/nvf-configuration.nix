@@ -231,9 +231,9 @@
         codeAction = "\\\\ca";
         renameSymbol = "\\\\rn";
       };
-      lspconfig.enable = true;
-      lspkind.enable = true;
-      lspsaga.enable = true;
+      #lspconfig.enable = true;
+      lspkind.enable = true; # vscode-like pictograms for neovim lsp completion items
+      lspsaga.enable = true; #
       trouble.enable = true;
       #servers.svelte.filetypes = [
       #  "*.svelte.ts"

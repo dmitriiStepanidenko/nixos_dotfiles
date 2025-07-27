@@ -24,6 +24,10 @@
     television
 
     notify
+
+    rnr # mass rename file names for some pattern
+    # rnr regex  -r -f '.*skill_development_plan*' 'skill_development_path' ./*
+    # renable all occurenses of skill_development_plan into skill_development_path
   ];
   programs.television = {
     enable = true;
