@@ -7,6 +7,7 @@
   sops.secrets."xray_config.json" = {
     owner = config.users.users.xray.name;
     mode = "0400";
+    restartUnits = ["xray.service"];
   };
 
   environment.systemPackages = with pkgs; [
