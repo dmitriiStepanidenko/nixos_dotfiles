@@ -275,7 +275,7 @@
         };
       };
     };
-    formatter.conform-nvim.enable = true;
+    #formatter.conform-nvim.enable = true;
 
     statusline.lualine.enable = true;
     telescope = {
@@ -317,8 +317,10 @@
         treesitter.enable = true;
         lsp.enable = true;
       };
-
-      markdown.enable = true;
+      markdown = {
+        enable = true;
+        format.enable = true;
+      };
 
       lua.enable = true;
       python = {
