@@ -216,7 +216,7 @@
 
     lsp = {
       enable = true;
-      formatOnSave = true;
+      formatOnSave = false;
       mappings = {
         addWorkspaceFolder = "\\\\wa";
         format = "<space>f";
