@@ -355,10 +355,10 @@ in {
       internalBar = {
         layer = "top";
         position = "top";
-        height = 26; # Smaller height for internal display
+        height = 20; # Smaller height for internal display
         output = ["eDP-1"];
         modules-left = ["hyprland/workspaces" "hyprland/window"];
-        modules-center = ["clock" "hyprland/language"];
+        modules-center = ["clock" "hyprland/language" "temperature"];
         modules-right = ["battery" "network" "pulseaudio" "backlight"]; # Fewer modules for space
 
         "hyprland/workspaces" = {
@@ -380,19 +380,19 @@ in {
             "10" = [];
           };
           format-icons = {
-            "1" = "<span font='Font Awesome 5 Free 12'></span>"; # Smaller icons
-            "2" = "<span font='Font Awesome 5 Free 12'></span>";
-            "3" = "<span font='Font Awesome 5 Free 12'></span>";
-            "4" = "<span font='Font Awesome 5 Free 12'></span>";
-            "5" = "<span font='Font Awesome 5 Free 12'></span>";
-            "6" = "<span font='Font Awesome 5 Free 12'></span>";
-            "7" = "<span font='Font Awesome 5 Free 12'></span>";
-            "8" = "<span font='Font Awesome 5 Free 12'></span>";
-            "9" = "<span font='Font Awesome 5 Free 12'></span>";
-            "10" = "<span font='Font Awesome 5 Free 12'></span>";
-            urgent = " ";
-            active = " ";
-            default = " ";
+            "1" = "<span font='Font Awesome 5 Free 14'></span>";
+            "2" = "<span font='Font Awesome 5 Free 14'></span>";
+            "3" = "<span font='Font Awesome 5 Free 14'></span>";
+            "4" = "<span font='Font Awesome 5 Free 14'></span>";
+            "5" = "<span font='Font Awesome 5 Free 14'></span>";
+            "6" = "<span font='Font Awesome 5 Free 14'></span>";
+            "7" = "<span font='Font Awesome 5 Free 14'></span>";
+            "8" = "<span font='Font Awesome 5 Free 14'></span>";
+            "9" = "<span font='Font Awesome 5 Free 14'></span>";
+            "10" = "<span font='Font Awesome 5 Free 14'></span>";
+            urgent = " ";
+            active = " ";
+            default = " ";
           };
         };
         "hyprland/window" = {
@@ -426,6 +426,11 @@ in {
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
           format-alt = "{:%m-%d}";
           tooltrip = true;
+        };
+        temperature = {
+          critical-threshold = 85;
+          format-critical = "{temperatureC}°C ";
+          format = "{temperatureC}°C ";
         };
         pulseaudio = {
           format = "{icon}{volume}%";

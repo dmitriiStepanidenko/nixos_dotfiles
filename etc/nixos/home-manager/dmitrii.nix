@@ -113,6 +113,7 @@
         };
       };
       theme = "tokyo_night";
+      #theme = "github_light";
     };
   };
   services.easyeffects = {
