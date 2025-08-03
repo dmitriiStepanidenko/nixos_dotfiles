@@ -62,28 +62,40 @@
     #};
 
     filetree = {
-      nvimTree = {
+      neo-tree = {
         enable = true;
-        mappings = {
-          toggle = "\\v";
-        };
         setupOpts = {
-          filesystem_watchers.debounce_delay = 350;
-          view.debounce_delay = 350;
-          diagnostics = {
-            debounce_delay = 500;
-            show_on_dirs = true;
-            enable = true;
-          };
-          hijack_cursor = true;
-          renderer = {
-            indent_markers.enable = true;
-          };
-          tab.sync.close = true;
-          update_focused_file.enable = true;
-          view.centralize_selection = true;
+          enable_cursor_hijack = true;
+          enable_diagnostics = true;
+          enable_git_status = true;
+          git_status_async = true;
+          enable_modified_markers = true;
+          enable_opened_markers = true;
         };
+
       };
+      # nvimTree = {
+      #   enable = true;
+      #   mappings = {
+      #     toggle = "\\v";
+      #   };
+      #   setupOpts = {
+      #     filesystem_watchers.debounce_delay = 350;
+      #     view.debounce_delay = 350;
+      #     diagnostics = {
+      #       debounce_delay = 500;
+      #       show_on_dirs = true;
+      #       enable = true;
+      #     };
+      #     hijack_cursor = true;
+      #     renderer = {
+      #       indent_markers.enable = true;
+      #     };
+      #     tab.sync.close = true;
+      #     update_focused_file.enable = true;
+      #     view.centralize_selection = true;
+      #   };
+      # };
     };
     keymaps = [
       {
@@ -122,6 +134,13 @@
         mode = "n";
         silent = true;
         action = ":resize -1<CR>";
+      }
+
+      {
+        key = "\\v";
+        mode = "n";
+        silent = true;
+        action = ":Neotree toggle";
       }
 
       # Terminal keybinds
