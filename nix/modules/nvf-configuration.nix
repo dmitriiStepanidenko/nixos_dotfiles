@@ -140,7 +140,7 @@
         key = "\\v";
         mode = "n";
         silent = true;
-        action = ":Neotree toggle";
+        action = "<Cmd>Neotree toggle<CR>";
       }
 
       # Terminal keybinds
