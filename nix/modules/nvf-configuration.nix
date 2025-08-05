@@ -140,6 +140,12 @@
         key = "\\v";
         mode = "n";
         silent = true;
+        action = "<Cmd>Neotree reveal<CR>";
+      }
+      {
+        key = "\\x";
+        mode = "n";
+        silent = true;
         action = "<Cmd>Neotree toggle<CR>";
       }
 
