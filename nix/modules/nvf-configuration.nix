@@ -140,13 +140,13 @@
         key = "\\v";
         mode = "n";
         silent = true;
-        action = "<Cmd>Neotree reveal<CR>";
+        action = "<Cmd>Neotree toggle<CR>";
       }
       {
         key = "\\x";
         mode = "n";
         silent = true;
-        action = "<Cmd>Neotree toggle<CR>";
+        action = "<Cmd>Neotree reveal<CR>";
       }
 
       # Terminal keybinds
