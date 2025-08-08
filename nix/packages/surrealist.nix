@@ -20,32 +20,33 @@ in
         openssl
         pango
         webkitgtk_4_1
-        ## OpenGL libraries
-        #libGL
-        #libGLU
-        #libglvnd
-        #mesa
-        #mesa.drivers
 
-        ## EGL/Wayland support
-        #wayland
-        #libxkbcommon
+        # OpenGL libraries
+        libGL
+        libGLU
+        libglvnd
+        mesa
+        mesa.drivers
 
-        ## X11 libraries
-        #xorg.libX11
-        #xorg.libXext
-        #xorg.libXrender
-        #xorg.libXrandr
-        #xorg.libXinerama
-        #xorg.libXcursor
-        #xorg.libXi
-        #xorg.libXxf86vm
-        #xorg.libXfixes
-        #xorg.libXcomposite
-        #xorg.libXdamage
+        # EGL/Wayland support
+        wayland
+        libxkbcommon
 
-        ## Additional graphics support
-        #vulkan-loader
-        #dbus
+        # X11 libraries
+        xorg.libX11
+        xorg.libXext
+        xorg.libXrender
+        xorg.libXrandr
+        xorg.libXinerama
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXxf86vm
+        xorg.libXfixes
+        xorg.libXcomposite
+        xorg.libXdamage
+
+        # Additional graphics support
+        vulkan-loader
+        dbus
       ];
   }
