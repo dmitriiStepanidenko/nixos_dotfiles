@@ -4,11 +4,13 @@
   glib-networking,
 }: let
   pname = "surrealist";
-  version = "3.5.2";
+  #version = "3.5.2";
+  version = "3.2.4";
 
   src = fetchurl {
     url = "https://github.com/surrealdb/surrealist/releases/download/surrealist-v${version}/Surrealist_${version}_amd64.AppImage";
-    hash = "sha256-q+ZIXksFNqU5N9bqzwQ58VgqAXnbnpL5/3z0Z6kyjE8=";
+    #hash = "sha256-q+ZIXksFNqU5N9bqzwQ58VgqAXnbnpL5/3z0Z6kyjE8=";
+    hash = "sha256-Yp74swJ7rOBubcChGh4ctabRtJdsYNCzS3Fmk5w9nUs=";
   };
 in
   appimageTools.wrapType2 {
