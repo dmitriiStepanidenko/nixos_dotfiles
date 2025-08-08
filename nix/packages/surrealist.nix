@@ -14,32 +14,32 @@ in
     inherit pname version src;
     extraPkgs = pkgs:
       with pkgs; [
+        # OpenGL libraries
         libGL
         libGLU
+        libglvnd
+        mesa
+        mesa.drivers
+
+        # EGL/Wayland support
+        wayland
+        libxkbcommon
+
+        # X11 libraries
+        xorg.libX11
+        xorg.libXext
+        xorg.libXrender
+        xorg.libXrandr
+        xorg.libXinerama
+        xorg.libXcursor
+        xorg.libXi
+        xorg.libXxf86vm
+        xorg.libXfixes
+        xorg.libXcomposite
+        xorg.libXdamage
+
+        # Additional graphics support
+        vulkan-loader
+        dbus
       ];
   }
-#{
-#  stdenv,
-#  fetchzip,
-#  fetchurl,
-#  clang,
-#  gcc-unwrapped,
-#  glibc,
-#  mold,
-#  autoPatchelfHook,
-#  unzip,
-#  gnutar,
-#  glibcLocalesUtf8,
-#  ...
-#}:
-#stdenv.mkDerivation rec {
-#  pname = "surrealist";
-#  version = "3.5.2";
-#
-#  src = fetchurl {
-#    url = "https://github.com/surrealdb/surrealist/releases/download/surrealist-v${version}/Surrealist_${version}_amd64.AppImage";
-#    #      https://github.com/surrealdb/surrealist/releases/download/surrealist-v3.5.2/Surrealist_3.5.2_amd64.AppImage
-#    hash = "";
-#  };
-#}
-
