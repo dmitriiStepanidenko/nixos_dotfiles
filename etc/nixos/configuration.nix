@@ -63,8 +63,6 @@ in {
     inputs.surrealdb.nixosModules.default
   ];
 
-  programs.sniffnet.enable = true;
-
   i18n = {
     #nixpkgs.overlays = [ (final: prev: ) ];
     extraLocales = [
@@ -122,6 +120,31 @@ in {
     #  owner = config.users.users.systemd-network.name;
     #  mode = "0400";
     #};
+  };
+  programs = {
+    sniffnet.enable = true;
+
+    appimage.enable = true;
+    appimage.binfmt = true;
+
+    light.enable = true;
+
+    nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+      enableBashIntegration = false;
+      enableZshIntegration = false;
+    };
+
+    noisetorch.enable = true;
+
+    yazi = {
+      enable = true;
+      flavors = {
+        tokyo-night = tokyoNightTheme;
+      };
+    };
+    neovim.defaultEditor = true;
   };
 
   services = {
@@ -331,27 +354,8 @@ in {
   };
   users.groups.dmitrii.gid = 1000;
 
-  programs.light.enable = true;
-
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-    enableBashIntegration = false;
-    enableZshIntegration = false;
-  };
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
-  programs.noisetorch.enable = true;
-
-  programs.yazi = {
-    enable = true;
-    flavors = {
-      tokyo-night = tokyoNightTheme;
-    };
-  };
-  programs.neovim.defaultEditor = true;
 
   services.flatpak.enable = true;
 
