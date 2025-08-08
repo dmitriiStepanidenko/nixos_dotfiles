@@ -35,6 +35,8 @@
     #nvf.url = "github:dmitriiStepanidenko/nvf";
     #nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
 
+    nixgl.url = "github:nix-community/nixGL";
+
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
     hyprland = {
@@ -61,6 +63,7 @@
     rust-overlay,
     sccache,
     home-manager,
+    nixgl,
     ...
   }: let
     system = "x86_64-linux";
@@ -129,7 +132,10 @@
             };
           }
           ({pkgs, ...}: {
-            nixpkgs.overlays = [rust-overlay.overlays.default];
+            nixpkgs.overlays = [
+              rust-overlay.overlays.default
+              nixgl.overlay
+            ];
             environment = {
               variables = {
                 MANPAGER = "nvim +Man!";
