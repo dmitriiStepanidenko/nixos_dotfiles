@@ -1,6 +1,7 @@
 {
   appimageTools,
   fetchurl,
+  glib-networking,
 }: let
   pname = "surrealist";
   version = "3.5.2";
@@ -49,4 +50,12 @@ in
         vulkan-loader
         dbus
       ];
+
+    postFixup = ''
+      wrapProgram $out/bin/${pname} \
+        --set GIO_EXTRA_MODULES ${glib-networking}/lib/gio/modules \
+        --set WEBKIT_DISABLE_COMPOSITING_MODE 1 \
+        --set MESA_GL_VERSION_OVERRIDE 3.3 \
+        --set MESA_GLSL_VERSION_OVERRIDE 330
+    '';
   }
