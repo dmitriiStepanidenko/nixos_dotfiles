@@ -14,32 +14,38 @@ in
     inherit pname version src;
     extraPkgs = pkgs:
       with pkgs; [
-        # OpenGL libraries
-        libGL
-        libGLU
-        libglvnd
-        mesa
-        mesa.drivers
+        cairo
+        gdk-pixbuf
+        libsoup_3
+        openssl
+        pango
+        webkitgtk_4_1
+        ## OpenGL libraries
+        #libGL
+        #libGLU
+        #libglvnd
+        #mesa
+        #mesa.drivers
 
-        # EGL/Wayland support
-        wayland
-        libxkbcommon
+        ## EGL/Wayland support
+        #wayland
+        #libxkbcommon
 
-        # X11 libraries
-        xorg.libX11
-        xorg.libXext
-        xorg.libXrender
-        xorg.libXrandr
-        xorg.libXinerama
-        xorg.libXcursor
-        xorg.libXi
-        xorg.libXxf86vm
-        xorg.libXfixes
-        xorg.libXcomposite
-        xorg.libXdamage
+        ## X11 libraries
+        #xorg.libX11
+        #xorg.libXext
+        #xorg.libXrender
+        #xorg.libXrandr
+        #xorg.libXinerama
+        #xorg.libXcursor
+        #xorg.libXi
+        #xorg.libXxf86vm
+        #xorg.libXfixes
+        #xorg.libXcomposite
+        #xorg.libXdamage
 
-        # Additional graphics support
-        vulkan-loader
-        dbus
+        ## Additional graphics support
+        #vulkan-loader
+        #dbus
       ];
   }
