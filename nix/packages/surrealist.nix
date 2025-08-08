@@ -1,5 +1,7 @@
-{ appimageTools, fetchurl }:
-let
+{
+  appimageTools,
+  fetchurl,
+}: let
   pname = "surrealist";
   version = "3.5.2";
 
@@ -8,7 +10,14 @@ let
     hash = "sha256-q+ZIXksFNqU5N9bqzwQ58VgqAXnbnpL5/3z0Z6kyjE8=";
   };
 in
-appimageTools.wrapType2 { inherit pname version src; }
+  appimageTools.wrapType2 {
+    inherit pname version src;
+    extraPkgs = pkgs:
+      with pkgs; [
+        libGL
+        libGLU
+      ];
+  }
 #{
 #  stdenv,
 #  fetchzip,
@@ -33,3 +42,4 @@ appimageTools.wrapType2 { inherit pname version src; }
 #    hash = "";
 #  };
 #}
+
