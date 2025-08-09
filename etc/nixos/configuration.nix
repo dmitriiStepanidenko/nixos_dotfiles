@@ -23,7 +23,7 @@
       #];
     };
   };
-  surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  #surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -544,9 +544,9 @@ in {
     papirus-icon-theme
 
     inputs.surrealdb.packages.${system}.latest
-    surrealist-bin
-    pkgs.nixgl.nixGLIntel
-    pkgs.nixgl.nixVulkanIntel
+    surrealist
+    #pkgs.nixgl.nixGLIntel
+    #pkgs.nixgl.nixVulkanIntel
 
     nixos-anywhere
 

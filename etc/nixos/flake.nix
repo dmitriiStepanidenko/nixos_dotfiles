@@ -32,10 +32,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.mnw.follows = "mnw";
     };
-    #nvf.url = "github:dmitriiStepanidenko/nvf";
-    #nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
-
-    nixgl.url = "github:nix-community/nixGL";
+    nixgl = {
+      #nvf.url = "github:dmitriiStepanidenko/nvf";
+      #nvf.url = "path:/home/dmitrii/shared/tmp/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/nixGL";
+    };
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
