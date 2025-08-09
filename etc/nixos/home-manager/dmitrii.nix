@@ -96,7 +96,7 @@
       enable = true;
       package = null;
       settings = {
-        theme = "tokyo-night-storm";
+        #theme = "tokyo-night-storm";
         "buffer.channel.topic" = {
           enabled = true;
         };
