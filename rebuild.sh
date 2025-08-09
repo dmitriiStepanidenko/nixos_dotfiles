@@ -54,7 +54,7 @@ pwd
 #}
 # Rebuild, output simplified errors, log trackebacks
 
-sudo nixos-rebuild switch --option eval-cache false \
+HTTPS_PROXY="socks5://127.0.0.1:10808" sudo nixos-rebuild switch --option eval-cache false \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
   --flake . &>nixos-switch.log || { 
     echo "NixOS rebuild failed!" 

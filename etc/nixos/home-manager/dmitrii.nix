@@ -92,6 +92,24 @@
       enable = true;
       enableFishIntegration = true;
     };
+    halloy = {
+      enable = true;
+      package = null;
+      settings = {
+        theme = "tokyo-night-storm";
+        "buffer.channel.topic" = {
+          enabled = true;
+        };
+        "servers.liberachat" = {
+          channels = [
+            "#halloy"
+            "#nixos"
+          ];
+          nickname = "dmitrii_s";
+          server = "irc.libera.chat";
+        };
+      };
+    };
 
     alacritty = {
       enable = true;

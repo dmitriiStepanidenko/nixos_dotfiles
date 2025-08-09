@@ -14,23 +14,18 @@ in {
     noto-fonts-emoji
     mplus-outline-fonts.githubRelease
 
-    symbola
+    #symbola
+    # Trying to use noto-fonts instead of symbola
+    noto-fonts
+    noto-fonts-extra
+    noto-fonts-emoji
+
     icon-library
   ];
   environment = {
     systemPackages = with pkgs; [
       papirus-icon-theme
     ];
-    variables = {
-      TMUX_POWERLINE_SEG_WEATHER_LAT = "55.6";
-      TMUX_POWERLINE_SEG_WEATHER_LON = "37.5";
-      TMUX_POWERLINE_STATUS_JUSTIFICATION = "left";
-    };
-    sessionVariables = {
-      TMUX_POWERLINE_SEG_WEATHER_LAT = "55.6";
-      TMUX_POWERLINE_SEG_WEATHER_LON = "37.5";
-      TMUX_POWERLINE_STATUS_JUSTIFICATION = "left";
-    };
   };
 
   programs.tmux = {

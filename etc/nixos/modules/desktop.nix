@@ -64,6 +64,10 @@ in {
 
     nautilus
     xarchiver
+
+    unstable.element-desktop
+    unstable.element-call
+    unstable.halloy
   ];
   programs.noisetorch.enable = true;
   programs.adb.enable = true;
