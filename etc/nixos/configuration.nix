@@ -7,7 +7,7 @@
   #nixpkgs-stable-unstable,
   ...
 }: let
-  system = "x86_64-linux";
+  system = pkgs.system;
   tokyoNightTheme = pkgs.fetchFromGitHub {
     owner = "BennyOe";
     repo = "tokyo-night.yazi";
@@ -23,7 +23,7 @@
       #];
     };
   };
-  surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  #surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -544,7 +544,9 @@ in {
     papirus-icon-theme
 
     inputs.surrealdb.packages.${system}.latest
-    surrealist-bin
+
+    inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
+    #surrealist-bin
     #pkgs.nixgl.nixGLIntel
     #pkgs.nixgl.nixVulkanIntel
 

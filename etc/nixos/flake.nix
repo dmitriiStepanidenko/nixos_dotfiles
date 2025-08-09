@@ -39,6 +39,8 @@
       url = "github:nix-community/nixGL";
     };
 
+    surrealist.url = "github:dmitriiStepanidenko/nixpkgs?ref=surrealist";
+
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
     hyprland = {
