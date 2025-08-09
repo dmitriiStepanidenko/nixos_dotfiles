@@ -545,6 +545,8 @@ in {
 
     inputs.surrealdb.packages.${system}.latest
     surrealist-bin
+    pkgs.nixgl.nixGLIntel
+    pkgs.nixgl.nixVulkanIntel
 
     nixos-anywhere
 
