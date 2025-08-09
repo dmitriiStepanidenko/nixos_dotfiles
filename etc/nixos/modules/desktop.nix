@@ -68,6 +68,9 @@ in {
     unstable.element-desktop
     unstable.element-call
     unstable.halloy
+
+    kwalletcli
+    kdePackages.kwallet
   ];
   programs.noisetorch.enable = true;
   programs.adb.enable = true;
