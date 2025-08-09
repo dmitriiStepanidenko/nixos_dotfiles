@@ -134,6 +134,9 @@
       #theme = "github_light";
     };
   };
+  services.gnome-keyring = {
+    enable = true;
+  };
   services.easyeffects = {
     enable = true;
     extraPresets = {
