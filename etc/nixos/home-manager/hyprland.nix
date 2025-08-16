@@ -36,7 +36,7 @@
     fi
 
     # Check if nvidia device files exist
-    if [ -e /dev/nvidia0 ] || [ -e /dev/nvidiactl ]; then
+    if [ -e /dev/nvidia0 ]; then
       nvidia_present=true
     fi
 
@@ -49,15 +49,22 @@
       systemctl hibernate
     fi
   '';
+
+  swaylockRestartText = ''
+    hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+    hyprctl --instance 0 '${sessionLockCommand}'
+  '';
+  swaylockRestartBin =
+    pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
 in {
   imports = [
     ./waybar.nix
   ];
   home.packages = with pkgs; [
+    swaylockRestartBin
     (
-      writeShellScriptBin "swaylock_restart" ''
-        hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-        hyprctl --instance 0 '${sessionLockCommand}'
+      writeShellScriptBin "wallpaper" ''
+        ${wallpaperCmd}
       ''
     )
   ];
@@ -242,6 +249,10 @@ in {
     profiles = {
       docked = {
         name = "docked";
+        exec = [
+          swaylockRestartText
+          wallpaperCmd
+        ];
         outputs = [
           {
             criteria = "eDP-1";
@@ -255,6 +266,10 @@ in {
       };
       undocked = {
         name = "undocked";
+        exec = [
+          swaylockRestartText
+          wallpaperCmd
+        ];
         outputs = [
           {
             criteria = "eDP-1";
