@@ -269,8 +269,8 @@ in {
         profile = {
           name = "docked";
           exec = [
-            "${swaylockRestartBin}/bin/swaylock_restart"
-            wallpaperCmd
+            "sleep 3; ${swaylockRestartBin}/bin/swaylock_restart"
+            "sleep 3; ${wallpaperCmd}"
           ];
           outputs = [
             {
@@ -288,8 +288,8 @@ in {
         profile = {
           name = "undocked";
           exec = [
-            "${swaylockRestartBin}/bin/swaylock_restart"
-            wallpaperCmd
+            "sleep 3; ${swaylockRestartBin}/bin/swaylock_restart"
+            "sleep 3; ${wallpaperCmd}"
           ];
           outputs = [
             {
