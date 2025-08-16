@@ -57,17 +57,16 @@
   '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
+  wallpaperRestartBin = pkgs.writeShellScriptBin "wallpaper" ''
+    ${wallpaperCmd}
+  '';
 in {
   imports = [
     ./waybar.nix
   ];
   home.packages = with pkgs; [
     swaylockRestartBin
-    (
-      writeShellScriptBin "wallpaper" ''
-        ${wallpaperCmd}
-      ''
-    )
+    wallpaperRestartBin
   ];
 
   xdg.enable = true;
@@ -289,7 +288,7 @@ in {
           name = "undocked";
           exec = [
             "sleep 3; ${swaylockRestartBin}/bin/swaylock_restart"
-            "sleep 3; \"${wallpaperCmd}\""
+            "sleep 3; ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [
             {
