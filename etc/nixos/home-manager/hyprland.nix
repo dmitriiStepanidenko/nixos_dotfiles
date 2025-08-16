@@ -269,7 +269,7 @@ in {
           name = "docked";
           exec = [
             "sleep 3 && '${swaylockRestartBin}/bin/swaylock_restart'"
-            "sleep 3 && \"'${wallpaperCmd}'\""
+            "sleep 3; ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [
             {
@@ -292,7 +292,7 @@ in {
           ];
           outputs = [
             {
-              criteria = internal;
+              criteria = "\$${internal}";
               status = "enable";
             }
           ];
