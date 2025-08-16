@@ -245,39 +245,92 @@ in {
       ];
     };
   };
-  services.kanshi = {
+  services.kanshi = let
+    internal = "$INTERNAL";
+    docked_home = "$DOCKED_HOME";
+  in {
     enable = true;
-    profiles = {
-      docked = {
-        name = "docked";
-        exec = [
-          "${swaylockRestartBin}/bin/swaylock_restart"
-          wallpaperCmd
-        ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            status = "disable";
-          }
-          {
-            criteria = "HDMI-A-1";
-            status = "enable";
-          }
-        ];
-      };
-      undocked = {
-        name = "undocked";
-        exec = [
-          "${swaylockRestartBin}/bin/swaylock_restart"
-          wallpaperCmd
-        ];
-        outputs = [
-          {
-            criteria = "eDP-1";
-            status = "enable";
-          }
-        ];
-      };
-    };
+    settings = [
+      {
+        output = {
+          alias = internal;
+          criteria = "eDP-1";
+        };
+      }
+      {
+        output = {
+          alias = docked_home;
+          mode = "3440x1440@99Hz";
+          criteria = "Huawei Technologies Co., Inc. ZQE-CAA 0xC080F622";
+          scale = 1.0;
+        };
+      }
+      {
+        profile = {
+          name = "docked";
+          exec = [
+            "${swaylockRestartBin}/bin/swaylock_restart"
+            wallpaperCmd
+          ];
+          outputs = [
+            {
+              criteria = internal;
+              status = "disable";
+            }
+            {
+              criteria = docked_home;
+              status = "enable";
+            }
+          ];
+        };
+      }
+      {
+        profile = {
+          name = "undocked";
+          exec = [
+            "${swaylockRestartBin}/bin/swaylock_restart"
+            wallpaperCmd
+          ];
+          outputs = [
+            {
+              criteria = internal;
+              status = "enable";
+            }
+          ];
+        };
+      }
+    ];
+    #profiles = {
+    #  docked = {
+    #    name = "docked";
+    #    exec = [
+    #      "${swaylockRestartBin}/bin/swaylock_restart"
+    #      wallpaperCmd
+    #    ];
+    #    outputs = [
+    #      {
+    #        criteria = internal;
+    #        status = "disable";
+    #      }
+    #      {
+    #        criteria = docked;
+    #        status = "enable";
+    #      }
+    #    ];
+    #  };
+    #  undocked = {
+    #    name = "undocked";
+    #    exec = [
+    #      "${swaylockRestartBin}/bin/swaylock_restart"
+    #      wallpaperCmd
+    #    ];
+    #    outputs = [
+    #      {
+    #        criteria = internal;
+    #        status = "enable";
+    #      }
+    #    ];
+    #  };
+    #};
   };
 }
