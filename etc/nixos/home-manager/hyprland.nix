@@ -52,8 +52,8 @@
   '';
 
   swaylockRestartText = ''
-    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-    ${hyprlandPkg}/bin/hyprctl --instance 0 '${sessionLockCommand}'
+    ./'${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 1'
+    ./'${hyprlandPkg}/bin/hyprctl' --instance 0 '${sessionLockCommand}'
   '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
@@ -300,37 +300,5 @@ in {
         };
       }
     ];
-    #profiles = {
-    #  docked = {
-    #    name = "docked";
-    #    exec = [
-    #      "${swaylockRestartBin}/bin/swaylock_restart"
-    #      wallpaperCmd
-    #    ];
-    #    outputs = [
-    #      {
-    #        criteria = internal;
-    #        status = "disable";
-    #      }
-    #      {
-    #        criteria = docked;
-    #        status = "enable";
-    #      }
-    #    ];
-    #  };
-    #  undocked = {
-    #    name = "undocked";
-    #    exec = [
-    #      "${swaylockRestartBin}/bin/swaylock_restart"
-    #      wallpaperCmd
-    #    ];
-    #    outputs = [
-    #      {
-    #        criteria = internal;
-    #        status = "enable";
-    #      }
-    #    ];
-    #  };
-    #};
   };
 }
