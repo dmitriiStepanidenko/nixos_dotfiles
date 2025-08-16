@@ -52,11 +52,11 @@
   '';
 
   swaylockRestartText = ''
-    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-    ${hyprlandPkg}/bin/hyprctl --instance 0 '${sessionLockCommand}'
+    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1';
+    ${hyprlandPkg}/bin/hyprctl --instance 0 '${sessionLockCommand}';
   '';
   swaylockRestartKansi = ''
-    sleep 4
+    sleep 4;
     ${swaylockRestartText}
   '';
   swaylockRestartBin =
