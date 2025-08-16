@@ -20,7 +20,7 @@
   wallpaperCmd = "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color ${girlImageBackgroundColor} 2>&1 > $XDG_LOG_DIR/swww.log";
   sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
   sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl --instance dispatch exec \"${sessionLockCommand}\"";
+  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommand}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
   conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
     # Check multiple conditions for NVIDIA presence
@@ -53,7 +53,7 @@
 
   swaylockRestartText = ''
     '${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 1'
-    '${hyprlandPkg}/bin/hyprctl' --instance 0 '"${sessionLockCommand}"'
+    '${hyprlandPkg}/bin/hyprctl' --instance 0 dispatch exec '${sessionLockCommand}'
   '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
