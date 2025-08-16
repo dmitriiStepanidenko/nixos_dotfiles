@@ -269,8 +269,8 @@ in {
         profile = {
           name = "docked";
           exec = [
-            "sleep 3 && ${swaylockRestartBin}/bin/swaylock_restart;"
-            "sleep 3 && ${wallpaperCmd};"
+            "sleep 3 && '${swaylockRestartBin}/bin/swaylock_restart'"
+            "sleep 3 && '${wallpaperCmd}'"
           ];
           outputs = [
             {
