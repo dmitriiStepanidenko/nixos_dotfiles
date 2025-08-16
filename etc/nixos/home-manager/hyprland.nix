@@ -259,7 +259,7 @@ in {
       {
         output = {
           alias = docked_home;
-          mode = "3440x1440@99Hz";
+          mode = "3440x1440@99.98200Hz";
           criteria = "Huawei Technologies Co., Inc. ZQE-CAA 0xC080F622";
           scale = 1.0;
         };
