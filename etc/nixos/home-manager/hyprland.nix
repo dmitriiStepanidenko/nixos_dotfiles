@@ -54,6 +54,10 @@
     hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
     hyprctl --instance 0 '${sessionLockCommand}'
   '';
+  swaylockRestartKansi = ''
+    sleep 4
+    ${swaylockRestartText}
+  '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
 in {
@@ -250,7 +254,7 @@ in {
       docked = {
         name = "docked";
         exec = [
-          swaylockRestartText
+          swaylockRestartKansi
           wallpaperCmd
         ];
         outputs = [
@@ -267,7 +271,7 @@ in {
       undocked = {
         name = "undocked";
         exec = [
-          swaylockRestartText
+          swaylockRestartKansi
           wallpaperCmd
         ];
         outputs = [
