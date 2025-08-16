@@ -52,12 +52,8 @@
   '';
 
   swaylockRestartText = ''
-    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1';
-    ${hyprlandPkg}/bin/hyprctl --instance 0 '${sessionLockCommand}';
-  '';
-  swaylockRestartKansi = ''
-    sleep 4;
-    ${swaylockRestartText}
+    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+    ${hyprlandPkg}/bin/hyprctl --instance 0 '${sessionLockCommand}'
   '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
@@ -255,7 +251,7 @@ in {
       docked = {
         name = "docked";
         exec = [
-          swaylockRestartKansi
+          "${swaylockRestartBin}/bin/swaylock_restart"
           wallpaperCmd
         ];
         outputs = [
@@ -272,7 +268,7 @@ in {
       undocked = {
         name = "undocked";
         exec = [
-          swaylockRestartKansi
+          "${swaylockRestartBin}/bin/swaylock_restart"
           wallpaperCmd
         ];
         outputs = [
