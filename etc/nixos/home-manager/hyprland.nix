@@ -246,8 +246,8 @@ in {
     };
   };
   services.kanshi = let
-    internal = "$INTERNAL";
-    docked_home = "$DOCKED_HOME";
+    internal = "INTERNAL";
+    docked_home = "DOCKED_HOME";
   in {
     enable = true;
     settings = [
@@ -274,11 +274,11 @@ in {
           ];
           outputs = [
             {
-              criteria = internal;
+              criteria = "\$${internal}";
               status = "disable";
             }
             {
-              criteria = docked_home;
+              criteria = "\$${docked_home}";
               status = "enable";
             }
           ];
