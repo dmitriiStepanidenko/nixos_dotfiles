@@ -237,7 +237,7 @@ in {
         #  on-resume = "hyprctl dispatch dpms on";
         #}
         {
-          timeout = 20 * 60;
+          timeout = 36 * 60;
           on-timeout = "${conditionalSuspendScript}";
           on-resume = "${wallpaperCmd}";
         }
@@ -269,7 +269,7 @@ in {
           name = "docked";
           exec = [
             "sleep 3 && '${swaylockRestartBin}/bin/swaylock_restart'"
-            "sleep 3; ${wallpaperRestartBin}/bin/wallpaper"
+            "sleep 3 && ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [
             {
@@ -287,8 +287,8 @@ in {
         profile = {
           name = "undocked";
           exec = [
-            "sleep 3; ${swaylockRestartBin}/bin/swaylock_restart"
-            "sleep 3; ${wallpaperRestartBin}/bin/wallpaper"
+            "sleep 3 && ${swaylockRestartBin}/bin/swaylock_restart"
+            "sleep 3 && ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [
             {
