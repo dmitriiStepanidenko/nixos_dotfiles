@@ -22,6 +22,12 @@ creation_rules:
       - *default_c
       - *mine_laptop
       - *mine
+  - path_regex: nix/modules/usbguard/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *default_c
+      - *mine_laptop
+      - *mine
   - path_regex: nix/hosts/gitea_worker/.*\.(yaml)$
     key_groups:
     - age:

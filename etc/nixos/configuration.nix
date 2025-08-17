@@ -38,6 +38,7 @@ in {
     #./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix
+    ../../nix/modules/usbguard
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
