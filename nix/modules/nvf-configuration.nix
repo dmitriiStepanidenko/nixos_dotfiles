@@ -259,10 +259,13 @@
       lspkind.enable = true; # vscode-like pictograms for neovim lsp completion items
       lspsaga.enable = true; #
       trouble.enable = true;
-      #servers.svelte.filetypes = [
-      #  "*.svelte.ts"
-      #  "*.svelte.js"
-      #];
+      servers.svelte.filetypes = [
+        "svelte"
+        "javascript"
+        "typescript"
+        "css"
+        "html"
+      ];
       lightbulb.enable = true;
       # Currentrly does not work
       #lspsaga = {
