@@ -72,7 +72,6 @@
           enable_modified_markers = true;
           enable_opened_markers = true;
         };
-
       };
       # nvimTree = {
       #   enable = true;
@@ -389,12 +388,20 @@
           # '';
         };
       };
+
+      # ============================= FRONTEND =============================
       svelte = {
         extraDiagnostics.enable = true;
         enable = true;
         format.enable = true;
         treesitter.enable = true;
         lsp.enable = true;
+      };
+      tailwind = {
+        enable = true;
+        lsp = {
+          enable = true;
+        };
       };
       ts = {
         enable = true;
@@ -418,6 +425,27 @@
         enable = true;
         treesitter.enable = true;
         treesitter.autotagHtml = true;
+      };
+    };
+    ui = {
+      colorizer = {
+        enable = true;
+        setupOpts = {
+          user_default_options = {
+            tailwind = true;
+          };
+          filetypes = {
+            svelte = {
+              tailwind = true;
+            };
+            javascript = {
+            };
+            typescript = {
+            };
+            css = {
+            };
+          };
+        };
       };
     };
     utility = {
