@@ -13,7 +13,6 @@
   };
 in {
   imports = [
-    "${inputs.nixos-unstable}/nixos/modules/services/hardware/lact.nix"
     "${inputs.nixos-unstable}/nixos/modules/services/hardware/amdgpu.nix"
   ];
   disabledModules = ["services/hardware/amdgpu.nix"];
@@ -92,7 +91,6 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
-    lact
     nvtopPackages.full
     nwg-displays # Choose monitor layout GUI
 
@@ -107,29 +105,10 @@ in {
     gpuOverclock.enable = true;
   };
 
-  # amd overclock
-  systemd.packages = [unstable.lact];
-
-  services.lact = {
-    enable = true;
-    package = unstable.lact;
-  };
   hardware.amdgpu = {
     initrd.enable = true;
     opencl.enable = true;
     overdrive.enable = true;
     amdvlk.enable = true;
   };
-
-  #systemd.services.lact.enable = true;
-  #systemd.services.lact = {
-  #  description = "AMDGPU Control Daemon";
-  #  after = ["multi-user.target"];
-  #  wantedBy = ["multi-user.target"];
-  #  serviceConfig = {
-  #    ExecStart = "${pkgs.lact}/bin/lact daemon";
-  #  };
-  #  enable = true;
-  #};
-  systemd.services.lactd.wantedBy = ["multi-user.target"];
 }

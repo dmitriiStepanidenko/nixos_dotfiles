@@ -46,8 +46,8 @@
       #systemctl suspend
       #systemctl hibernate
     else
-      echo "No NVIDIA GPU detected/enabled, safe to hibernate"
-      systemctl hibernate
+      echo "No NVIDIA GPU detected/enabled, safe to suspend/hibernate"
+      systemctl suspend
     fi
   '';
 

@@ -17,6 +17,8 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     supportedFilesystems = ["ntfs"];
+
+    resumeDevice = "/dev/nvme0n1p7";
   };
   fileSystems = {
     "/" = {

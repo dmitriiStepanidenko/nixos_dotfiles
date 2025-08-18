@@ -179,12 +179,16 @@ in {
     };
     # multi-touch gesture recognizer
     touchegg.enable = true;
-
-    logind.extraConfig = ''
-      HandlePowerKey=suspend
-      IdleAction=suspend
-      IdleActionSec=1m
-    '';
+    logind = {
+      lidSwitch = "suspend";
+      lidSwitchExternalPower = "lock";
+      lidSwitchDocked = "ignore";
+      extraConfig = ''
+        HandlePowerKey=suspend
+        IdleAction=suspend
+        IdleActionSec=1m
+      '';
+    };
 
     v2raya.enable = true;
     # TODO:
@@ -219,7 +223,7 @@ in {
       ];
       extraRules = ''
         ACTION=="change", SUBSYSTEM=="drm", RUN+="${pkgs.systemd}/bin/systemctl start --no-block autorandr.service"
-        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[0-2]", RUN+="${pkgs.systemd}/bin/systemctl hybrid-sleep"
+        SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[0-2]", RUN+="${pkgs.systemd}/bin/systemctl hibernate"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[5-10]", RUN+="${pkgs.libnotify}/bin/notify-send Battery EXTREMELY Low"
         SUBSYSTEM=="power_supply", ATTR{status}=="Discharging", ATTR{capacity}=="[10-15]", RUN+="${pkgs.libnotify}/bin/notify-send Battery Low"
         KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
@@ -229,14 +233,13 @@ in {
 
     blueman.enable = true;
   };
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=2h
+    AllowHybridSleep=no
+  '';
   boot = {
     kernelParams = ["mem_sleep_default=deep"];
     loader = {
-      #systemd.sleep.extraConfig = ''
-      #  HibernateDelaySec=30m
-      #  SuspendState=mem
-      #'';
-
       # Bootloader.
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
