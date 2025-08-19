@@ -97,13 +97,13 @@ in {
     geekbench
   ];
 
-  programs.coolercontrol = {
-    enable = true;
-  };
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-  };
+  #programs.coolercontrol = {
+  #  enable = true;
+  #};
+  #programs.corectrl = {
+  #  enable = true;
+  #  gpuOverclock.enable = true;
+  #};
 
   hardware.amdgpu = {
     initrd.enable = true;
