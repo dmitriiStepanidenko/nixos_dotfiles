@@ -238,11 +238,17 @@ in {
     AllowHybridSleep=no
   '';
   boot = {
-    kernelParams = ["mem_sleep_default=deep"];
+    kernelParams = ["mem_sleep_default=deep" "acpi_osi=Linux"];
     loader = {
       # Bootloader.
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+      # grub disabled anyway
+      grub = {
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        memtest86.enable = true;
+      };
 
       # Memtesting of Ram during boot
       systemd-boot.memtest86.enable = true;
