@@ -261,9 +261,8 @@
       trouble.enable = true;
       servers.svelte.filetypes = [
         "svelte"
-        "javascript"
-        "typescript"
-        "css"
+        #"javascript"
+        #"typescript"
         "html"
       ];
       lightbulb.enable = true;
