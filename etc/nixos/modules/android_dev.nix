@@ -37,6 +37,14 @@ in {
       };
     };
   };
+  networking.firewall = {
+    allowedUDPPorts = [
+      1420 # tauri
+    ];
+    allowedTCPPorts = [
+      1420 # tauri
+    ];
+  };
   #environment.etc."applications/android-studio.desktop".text = ''
   #  [Desktop Entry]
   #  Version=1.0
