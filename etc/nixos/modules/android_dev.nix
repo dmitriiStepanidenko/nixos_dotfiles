@@ -9,13 +9,15 @@
     system = "x86_64-linux";
     config = {
       allowUnfree = true;
+      android_sdk.accept_license = true;
     };
   };
+  inherit (unstable) android-studio;
 in {
   nixpkgs.config.android_sdk.accept_license = true;
   #android_sdk.accept_license = true;
   environment.systemPackages = [
-    pkgs.android-studio
+    android-studio
   ];
 
   home-manager.users.dmitrii = {
@@ -23,8 +25,8 @@ in {
       desktopEntries.android-studio = {
         name = "Android Studio";
         comment = "The official IDE for Android development";
-        exec = "${pkgs.android-studio}/bin/android-studio %f";
-        icon = "${pkgs.android-studio}/share/pixmaps/android-studio.png";
+        exec = "${android-studio}/bin/android-studio %f";
+        icon = "${android-studio}/share/pixmaps/android-studio.png";
         terminal = false;
         categories = ["Development" "IDE"];
         mimeType = ["application/x-android-studio-project" "Applications/Android Studio" "Applications/Android Studio.app"];
