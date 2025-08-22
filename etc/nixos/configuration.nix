@@ -35,6 +35,7 @@ in {
     ./modules/xray.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
+    ./modules/android_dev.nix
     #./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix
