@@ -60,7 +60,7 @@
       icon = "${pkgs.android-studio}/share/pixmaps/android-studio.png";
       terminal = false;
       categories = ["Development" "IDE"];
-      mimeType = ["application/x-android-studio-project"];
+      mimeType = ["application/x-android-studio-project" "Applications/Android Studio" "Applications/Android Studio.app"];
       startupNotify = true;
       settings = {
         StartupWMClass = "jetbrains-studio";
