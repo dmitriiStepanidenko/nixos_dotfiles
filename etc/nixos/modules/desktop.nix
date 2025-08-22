@@ -73,8 +73,6 @@ in {
     kdePackages.kwallet
   ];
   programs.noisetorch.enable = true;
-  programs.adb.enable = true;
-  users.groups.adbusers.members = ["dmitrii"];
   virtualisation.waydroid.enable = true;
 
   programs.obs-studio = {

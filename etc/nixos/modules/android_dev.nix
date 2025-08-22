@@ -17,6 +17,23 @@ in {
   environment.systemPackages = [
     pkgs.android-studio
   ];
+  environment.etc."applications/android-studio.desktop".text = ''
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Name=Android Studio
+    Comment=The official IDE for Android development
+    Exec=${pkgs.android-studio}/bin/android-studio %f
+    Icon=${pkgs.android-studio}/share/pixmaps/android-studio.png
+    Terminal=false
+    StartupWMClass=jetbrains-studio
+    Categories=Development;IDE;
+    MimeType=application/x-android-studio-project;
+    StartupNotify=true
+  '';
+
+  programs.adb.enable = true;
 
   users.extraGroups.kvm.members = ["dmitrii"];
+  users.extraGroups.adbusers.members = ["dmitrii"];
 }
