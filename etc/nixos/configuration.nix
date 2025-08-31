@@ -191,7 +191,6 @@ in {
       '';
     };
 
-    v2raya.enable = true;
     # TODO:
     #services.sing-box.enable = true;
 
@@ -405,7 +404,6 @@ in {
     hunspellDicts.ru_RU
     hunspellDicts.en_US
     gnumake
-    v2raya
     discord
     alejandra
     memtest86plus
