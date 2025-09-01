@@ -23,7 +23,7 @@
       #];
     };
   };
-  #surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -554,8 +554,8 @@ in {
 
     inputs.surrealdb.packages.${system}.latest
 
-    inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
-    #surrealist-bin
+    # inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
+    surrealist-bin
     #pkgs.nixgl.nixGLIntel
     #pkgs.nixgl.nixVulkanIntel
 
@@ -607,5 +607,6 @@ in {
   system.stateVersion = "25.05";
 
   #boot.kernelPackages = unstable.linuxPackages_6_13;
-  boot.kernelPackages = unstable.linuxPackages_latest;
+  #boot.kernelPackages = unstable.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }

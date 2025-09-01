@@ -1,5 +1,6 @@
 {
   buildGoModule,
+  bun,
   cairo,
   cargo-tauri,
   cargo,
@@ -17,11 +18,10 @@
   openssl,
   pango,
   pkg-config,
-  bun,
-  typescript,
   rustc,
   rustPlatform,
   stdenv,
+  typescript,
   webkitgtk_4_1,
 }: let
   esbuild_21-5 = let
@@ -44,20 +44,19 @@
         );
     };
 in
-  stdenv.mkDerivation (finalAttrs: rec {
+  stdenv.mkDerivation (finalAttrs: {
     pname = "surrealist";
-    version = "3.5.2";
+    version = "3.5.3";
 
     src = fetchFromGitHub {
       owner = "surrealdb";
       repo = "surrealist";
       rev = "surrealist-v${finalAttrs.version}";
-      hash = "sha256-KVPKXbdVcNZf0MWnV0tvNG2F1mxkyfXcY/9pMWZVEAw=";
+      hash = "sha256-J6cGJ8rjSqLvxcrNOypDgMQ5IJckUKx+idvDRxVLXto=";
     };
 
     cargoDeps = rustPlatform.fetchCargoVendor {
-      inherit (finalAttrs) src;
-      sourceRoot = "${finalAttrs.src.name}/${finalAttrs.cargoRoot}";
+      inherit (finalAttrs) src cargoRoot;
       hash = "sha256-NhgSfiBb4FGEnirpDFWI3MIMElen8frKDFKmCBJlSBY=";
     };
 
@@ -66,27 +65,32 @@ in
       pname = "surrealist-node_modules";
       impureEnvVars =
         lib.fetchers.proxyImpureEnvVars
-        ++ ["GIT_PROXY_COMMAND" "SOCKS_SERVER"];
+        ++ [
+          "GIT_PROXY_COMMAND"
+          "SOCKS_SERVER"
+        ];
       nativeBuildInputs = [bun];
       dontConfigure = true;
       buildPhase = ''
         runHook preBuild
-        ls
         bun install --no-progress --frozen-lockfile
-        ls
         runHook postBuild
       '';
       installPhase = ''
-        mkdir -p $out/node_modules
+        runHook preInstall
 
+        mkdir -p $out/node_modules
         cp -R ./node_modules $out
+
+        runHook postInstall
       '';
-      outputHash = "sha256-jBPhR5hdr/i7jiKF9y+sgmsgLsZUxi6v6zj01Amo2qE=";
+      outputHash = "sha256-m23IEWUSH45oUvf41eGpxhcqmsF5HqJU040kFXRP4iw=";
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
     };
 
     nativeBuildInputs = [
+      bun
       cargo
       cargo-tauri.hook
       gobject-introspection
@@ -95,11 +99,9 @@ in
       moreutils
       nodejs
       pkg-config
-      bun
-      typescript
       rustc
       rustPlatform.cargoSetupHook
-      node_modules
+      typescript
     ];
 
     buildInputs = [
@@ -137,7 +139,7 @@ in
     configurePhase = ''
       runHook preConfigure
 
-      cp -R ${node_modules}/node_modules .
+      cp -R ${finalAttrs.node_modules}/node_modules .
 
       # Bun takes executables from this folder
       chmod -R u+rw node_modules

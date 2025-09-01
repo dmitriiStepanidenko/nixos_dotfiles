@@ -71,6 +71,8 @@ in {
 
     kwalletcli
     kdePackages.kwallet
+
+    caffeine-ng
   ];
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;
