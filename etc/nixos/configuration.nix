@@ -33,6 +33,7 @@ in {
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
     ./modules/xray.nix
+    ./modules/proxies.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
     ./modules/android_dev.nix
