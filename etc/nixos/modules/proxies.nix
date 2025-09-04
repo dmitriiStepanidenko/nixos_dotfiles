@@ -5,7 +5,7 @@
   ...
 }: {
   programs.clash-verge = {
-    package = pkgs.clash-nyanpasu;
+    #package = pkgs.clash-nyanpasu;
     enable = true;
   };
 }
