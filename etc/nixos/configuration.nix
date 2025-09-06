@@ -556,7 +556,7 @@ in {
     inputs.surrealdb.packages.${system}.latest
 
     # inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
-    surrealist-bin
+    #surrealist-bin
     #pkgs.nixgl.nixGLIntel
     #pkgs.nixgl.nixVulkanIntel
 

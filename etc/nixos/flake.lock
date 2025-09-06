@@ -890,7 +890,6 @@
         "sccache": "sccache",
         "sops-nix": "sops-nix",
         "surrealdb": "surrealdb",
-        "surrealist": "surrealist",
         "wireguard": "wireguard"
       }
     },
@@ -985,22 +984,6 @@
       "original": {
         "owner": "dmitriiStepanidenko",
         "repo": "surrealdb-nixos",
-        "type": "github"
-      }
-    },
-    "surrealist": {
-      "locked": {
-        "lastModified": 1754736432,
-        "narHash": "sha256-MowvwATnczf9uqffJ16OBI5s/tpStUPXEtsHSdDRrmo=",
-        "owner": "dmitriiStepanidenko",
-        "repo": "nixpkgs",
-        "rev": "e80310bba63bc96546e06c0635bb30a5cf7a7230",
-        "type": "github"
-      },
-      "original": {
-        "owner": "dmitriiStepanidenko",
-        "ref": "surrealist",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },

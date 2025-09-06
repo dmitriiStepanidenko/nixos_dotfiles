@@ -73,7 +73,9 @@ in
       dontConfigure = true;
       buildPhase = ''
         runHook preBuild
-        bun install --no-progress --frozen-lockfile
+
+        bun install --no-progress --frozen-lockfile --no-cache
+
         runHook postBuild
       '';
       installPhase = ''
