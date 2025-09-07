@@ -23,6 +23,7 @@
   stdenv,
   typescript,
   webkitgtk_4_1,
+  writableTmpDirAsHomeHook,
 }: let
   esbuild_21-5 = let
     version = "0.21.5";
@@ -69,8 +70,9 @@ in
           "GIT_PROXY_COMMAND"
           "SOCKS_SERVER"
         ];
-      nativeBuildInputs = [bun];
+      nativeBuildInputs = [bun writableTmpDirAsHomeHook];
       dontConfigure = true;
+
       buildPhase = ''
         runHook preBuild
 
@@ -86,7 +88,8 @@ in
 
         runHook postInstall
       '';
-      outputHash = "sha256-m23IEWUSH45oUvf41eGpxhcqmsF5HqJU040kFXRP4iw=";
+      #outputHash = "sha256-xMfa1m4FfOlpclveAuFmZ7Jt6nkUpMVWgMHF97DHVQ8=";
+      outputHash = "sha256-xMfa1m4FfOlpclveAuFmZ7Jt6nkUpMVWgMHF97DHVQ8=";
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
     };

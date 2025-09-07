@@ -40,7 +40,7 @@
       url = "github:nix-community/nixGL";
     };
 
-    #surrealist.url = "github:dmitriiStepanidenko/nixpkgs?ref=surrealist";
+    surrealist.url = "github:dmitriiStepanidenko/nixpkgs?ref=origin/surrealist";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
