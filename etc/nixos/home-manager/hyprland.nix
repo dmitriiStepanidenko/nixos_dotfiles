@@ -54,6 +54,7 @@
   swaylockRestartText = ''
     '${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 1'
     '${hyprlandPkg}/bin/hyprctl' --instance 0 dispatch exec '${sessionLockCommand}'
+    '${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 0'
   '';
   swaylockRestartBin =
     pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
