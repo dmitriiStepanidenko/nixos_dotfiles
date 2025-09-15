@@ -485,11 +485,8 @@ in {
 
     lm_sensors # reding hardware temperature sensors
 
-    # Undervolting (for Intel :(  ) !
-    undervolt
+    # stress tui
     s-tui
-    stress
-    # Undervolting !
 
     acpi
 
@@ -534,8 +531,6 @@ in {
     jdk23
     ethtool
 
-    teamspeak3
-
     nextcloud-client
 
     ocrmypdf
@@ -557,8 +552,6 @@ in {
 
     inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
     #surrealist-bin
-    #pkgs.nixgl.nixGLIntel
-    #pkgs.nixgl.nixVulkanIntel
 
     nixos-anywhere
 
@@ -568,6 +561,8 @@ in {
 
     nix-output-monitor
     nix-fast-build
+
+    revanced-cli
   ];
 
   services.searx = {
