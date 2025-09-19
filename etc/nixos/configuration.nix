@@ -23,7 +23,7 @@
       #];
     };
   };
-  #surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -552,7 +552,7 @@ in {
     inputs.surrealdb.packages.${system}.latest
 
     #inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
-    #surrealist-bin
+    surrealist-bin
 
     nixos-anywhere
 
