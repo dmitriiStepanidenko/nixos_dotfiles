@@ -52,9 +52,9 @@
   '';
 
   swaylockRestartText = ''
-    pkill swaylock
-    '${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 1'
-    '${hyprlandPkg}/bin/hyprctl' --instance 0 dispatch exec '${sessionLockCommand}'
+    pidof swaylock || pkill swaylock
+    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
+    ${hyprlandPkg}/bin/hyprctl --instance 0 'dispatch exec ${sessionLockCommand}'
   '';
   #'${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 0'
   swaylockRestartBin =
