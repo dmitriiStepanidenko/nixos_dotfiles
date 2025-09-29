@@ -47,13 +47,13 @@
 in
   stdenv.mkDerivation (finalAttrs: {
     pname = "surrealist";
-    version = "3.5.4";
+    version = "3.5.6";
 
     src = fetchFromGitHub {
       owner = "surrealdb";
       repo = "surrealist";
       rev = "surrealist-v${finalAttrs.version}";
-      hash = "sha256-EK7LUGZi9jL9S/vxKMpvHXcgNL449FuTAA+DmKTSXhg=";
+      hash = "sha256-lAVbI31cJkUqOK6KK3mtwc+uIjfAnjweC9NJzoOHQ0s=";
     };
 
     cargoDeps = rustPlatform.fetchCargoVendor {
@@ -88,7 +88,7 @@ in
 
         runHook postInstall
       '';
-      outputHash = "sha256-wpLEhTZig9VEsCxW3Mer9tPU7Qrn+Akr9o795h0n3Bo=";
+      outputHash = "sha256-/jHcT1vpQ/2ZubUXmBxrWQHDE+xPM6lGLL+/Nq1s/fE=";
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
     };
