@@ -18,9 +18,10 @@
   girlImageBackgroundColor = "676570";
   animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
   wallpaperCmd = "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color ${girlImageBackgroundColor} 2>&1 > \${XDG_LOG_DIR:-/home/dmitrii/logs}/swww.log";
-  sessionLockCommand = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock -f -e -d -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
-  sessionLockCommandWithLog = "${sessionLockCommand} &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommand}\"";
+  sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -f -e -d -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
+  sessionLockCommandPidof = "pidof swaylock || ${sessionLockCommand}";
+  sessionLockCommandWithLog = "${sessionLockCommandPidof} &> $XDG_LOG_DIR/swaylock.log";
+  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommandPidof}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
   conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
     # Check multiple conditions for NVIDIA presence
@@ -54,7 +55,7 @@
   swaylockRestartText = ''
     pidof swaylock || pkill swaylock
     ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-    ${hyprlandPkg}/bin/hyprctl --instance 0 'dispatch exec ${sessionLockCommand}'
+    ${hyprlandPkg}/bin/hyprctl --instance 0 "dispatch exec ${sessionLockCommand}"
   '';
   #'${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 0'
   swaylockRestartBin =
@@ -270,7 +271,7 @@ in {
         profile = {
           name = "docked";
           exec = [
-            "sleep 3 && '${swaylockRestartBin}/bin/swaylock_restart'"
+            "sleep 3 && ${swaylockRestartBin}/bin/swaylock_restart"
             "sleep 3 && ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [

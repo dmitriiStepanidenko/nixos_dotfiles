@@ -9,8 +9,8 @@
     wireguard.url = "github:dmitriiStepanidenko/wireguard-nixos-private";
     #wireguard.url = "git+file:/home/dmitrii/tmp/wireguard-nixos-private";
 
-    #nixos-25-05.url = "github:nixos/nixpkgs?ref=release-25.05";
-    nixos-25-05.url = "github:nixos/nixpkgs?ref=5eb9271c6e5096d5bb9af338448efc30b11b84f0";
+    nixos-25-05.url = "github:nixos/nixpkgs?ref=release-25.05";
+    #nixos-25-05.url = "github:nixos/nixpkgs?ref=5eb9271c6e5096d5bb9af338448efc30b11b84f0";
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
@@ -45,8 +45,8 @@
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
     hyprland = {
-      url = "github:hyprwm/Hyprland?submodules=1&ref=d7a87ce6e2535f1029fc93b062d2828e8549c525";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs_unstable";
     };
     hyprlock = {
       url = "github:hyprwm/hyprlock";
