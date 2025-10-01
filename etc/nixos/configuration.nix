@@ -239,7 +239,7 @@ in {
     AllowHybridSleep=no
   '';
   boot = {
-    binfmt.emulatedSystems = ["aarch64-linux"]; # ability to build aarch64-linux natively
+    binfmt.emulatedSystems = ["aarch64-linux"]; #"aarch64-darwin" "x86_64-darwin"]; # ability to build natively
     kernelParams = ["mem_sleep_default=deep" "acpi_osi=Linux"];
     loader = {
       # Bootloader.
