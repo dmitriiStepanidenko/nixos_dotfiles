@@ -83,6 +83,7 @@
 
     rust = pkgs.rust-bin.stable.latest.default.override {
       inherit extensions;
+      targets = ["aarch64-unknown-linux-gnu" "x86_64-unknown-linux-gnu"];
     };
   in {
     packages.${system}.my-neovim =
