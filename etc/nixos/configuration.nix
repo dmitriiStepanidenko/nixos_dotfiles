@@ -182,14 +182,15 @@ in {
     # multi-touch gesture recognizer
     touchegg.enable = true;
     logind = {
-      lidSwitch = "suspend";
+      lidSwitch = "hibernate";
       lidSwitchExternalPower = "lock";
       lidSwitchDocked = "ignore";
-      extraConfig = ''
-        HandlePowerKey=suspend
-        IdleAction=suspend
-        IdleActionSec=1m
-      '';
+      powerKey = "hibernate";
+      #extraConfig = ''
+      #  HandlePowerKey=hibernate
+      #  IdleAction=hibernate
+      #  IdleActionSec=1m
+      #'';
     };
 
     # TODO:
