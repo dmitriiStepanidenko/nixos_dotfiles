@@ -82,6 +82,9 @@ HTTPS_PROXY="socks5://127.0.0.1:10808" sudo nixos-rebuild switch --option eval-c
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
 
+# Notify all OK!
+notify-send -e "NixOS Rebuilt DONE! GPG in need" --icon=software-update-available
+
 # Commit all changes witih the generation metadata
 git commit -am "$current"
 

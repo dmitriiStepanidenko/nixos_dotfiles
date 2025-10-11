@@ -71,6 +71,7 @@
           git_status_async = true;
           enable_modified_markers = true;
           enable_opened_markers = true;
+          filesystem.hijack_netrw_behavior = "open_current";
         };
       };
       # nvimTree = {
@@ -146,6 +147,12 @@
         mode = "n";
         silent = true;
         action = "<Cmd>Neotree reveal<CR>";
+      }
+      {
+        key = "\\z";
+        mode = "n";
+        silent = true;
+        action = "<Cmd>Neotree focus<CR>";
       }
 
       # Terminal keybinds
