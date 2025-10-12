@@ -21,7 +21,8 @@
   sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -f -e -d -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
   sessionLockCommandPidof = "pidof swaylock || ${sessionLockCommand}";
   sessionLockCommandWithLog = "${sessionLockCommandPidof} &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommandPidof}\"";
+  sessionLockCommandPkill = "pkill swaylock; ${sessionLockCommand}";
+  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommandPkill}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
   conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
     # Check multiple conditions for NVIDIA presence
