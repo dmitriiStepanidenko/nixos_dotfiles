@@ -21,7 +21,7 @@
   sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -f -e -d -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
   sessionLockCommandPidof = "pidof swaylock || ${sessionLockCommand}";
   sessionLockCommandWithLog = "${sessionLockCommandPidof} &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockCommandPkill = "pkill swaylock; ${sessionLockCommand}";
+  sessionLockCommandPkill = "pkill -x swaylock; ${sessionLockCommand}";
   sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommandPkill}\"";
   #sessionLockDispatchCommand = sessionLockCommand;
   conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
@@ -53,14 +53,21 @@
     fi
   '';
 
-  swaylockRestartText = ''
-    pidof swaylock || pkill swaylock
-    ${hyprlandPkg}/bin/hyprctl --instance 0 'keyword misc:allow_session_lock_restore 1'
-    ${hyprlandPkg}/bin/hyprctl --instance 0 "dispatch exec ${sessionLockCommand}"
+  swaylockRestartText = instance: ''
+    pidof swaylock || pkill -x swaylock
+    echo "Pidof swaylock\pkill ended"
+    echo "Using Hyprland instance: ${instance}"
+    ${hyprlandPkg}/bin/hyprctl --instance ${instance} 'keyword misc:allow_session_lock_restore 1'
+    echo "Allowed session restore"
+    ${hyprlandPkg}/bin/hyprctl --instance ${instance} dispatch exec "${sessionLockCommand}"
+    echo "Dispatched new lock"
   '';
-  #'${hyprlandPkg}/bin/hyprctl' --instance 0 'keyword misc:allow_session_lock_restore 0'
-  swaylockRestartBin =
-    pkgs.writeShellScriptBin "swaylock_restart" swaylockRestartText;
+  swaylockRestartBin = pkgs.writeShellScriptBin "swaylock_restart" ''
+    INSTANCE=''${1:-0}
+    echo "Using Hyprland instance: $INSTANCE"
+    ${swaylockRestartText "$INSTANCE"}
+  '';
+
   wallpaperRestartBin = pkgs.writeShellScriptBin "wallpaper" ''
     ${wallpaperCmd}
   '';
