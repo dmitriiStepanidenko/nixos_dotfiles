@@ -267,6 +267,11 @@ in {
     };
   };
 
+  #location = {
+  #  latitude = (builtins.extraBuiltins.sopsFromYAML config.sops.defaultSopsFile)."location/latitude";
+  #  longitude =(builtins.extraBuiltins.sopsFromYAML config.sops.defaultSopsFile)."location/latitude";
+  #};
+
   nix = {
     settings = {
       experimental-features = ["nix-command" "flakes"];
@@ -276,6 +281,9 @@ in {
       max-jobs = 3;
       cores = 6;
       show-trace = true;
+
+      #plugin-files = "${pkgs.nix-plugins}/lib/nix/plugins";
+      #extra-builtins-file = [../../nix/libs/extra-builtins.nix];
     };
 
     optimise.automatic = true;
@@ -283,12 +291,14 @@ in {
       automatic = true;
       dates = "weekly";
       #options = "--delete-older-than 4d";
-      options = "--delete-generations +14";
+      options = "--delete-older-than +14";
     };
     extraOptions = ''
       min-free = ${toString (20 * 1024 * 1024 * 1024)}
       max-free = ${toString (20 * 1024 * 1024 * 1024)}
     ''; # Free up 20GiB whenever there is less than 20 GiB left
+
+    #//plugin-files = ${unstable.nix-plugins}/lib/nix/plugins
   };
   hardware = {
     # acpi thermal readings??

@@ -70,11 +70,15 @@ in
           "GIT_PROXY_COMMAND"
           "SOCKS_SERVER"
         ];
-      nativeBuildInputs = [bun writableTmpDirAsHomeHook];
+      nativeBuildInputs = [
+        bun
+        writableTmpDirAsHomeHook
+      ];
       dontConfigure = true;
-
       buildPhase = ''
         runHook preBuild
+
+        export BUN_INSTALL_CACHE_DIR=$(mktemp -d)
 
         bun install --no-progress --frozen-lockfile --no-cache
 
@@ -88,7 +92,14 @@ in
 
         runHook postInstall
       '';
-      outputHash = "sha256-/jHcT1vpQ/2ZubUXmBxrWQHDE+xPM6lGLL+/Nq1s/fE=";
+      outputHash =
+        {
+          x86_64-linux = "sha256-/jHcT1vpQ/2ZubUXmBxrWQHDE+xPM6lGLL+/Nq1s/fE=";
+          aarch64-linux = "sha256-YseOwLUHeap3Yo3Gk+670NdWORsyM+i9fTWmhdWEDKc=";
+        }
+      .${
+          stdenv.hostPlatform.system
+        } or lib.fakeSha256;
       outputHashAlgo = "sha256";
       outputHashMode = "recursive";
     };
@@ -157,7 +168,7 @@ in
     '';
 
     meta = with lib; {
-      description = "Surrealist is the ultimate way to visually manage your SurrealDB database";
+      description = "Visual management of your SurrealDB database";
       homepage = "https://surrealdb.com/surrealist";
       license = licenses.mit;
       mainProgram = "surrealist";
