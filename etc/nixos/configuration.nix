@@ -268,10 +268,11 @@ in {
     };
   };
 
-  #location = {
-  #  latitude = (builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets )."location/latitude";
-  #  longitude =(builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets)."location/latitude";
-  #};
+  location = {
+    provider = "geoclue2";
+    #  latitude = (builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets )."location/latitude";
+    #  longitude =(builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets)."location/latitude";
+  };
 
   nix = {
     settings = {
@@ -298,8 +299,7 @@ in {
       min-free = ${toString (20 * 1024 * 1024 * 1024)}
       max-free = ${toString (20 * 1024 * 1024 * 1024)}
     ''; # Free up 20GiB whenever there is less than 20 GiB left
-
-    # plugin-files = ${unstable.nix-plugins}/lib/nix/plugins
+    #plugin-files = ${unstable.nix-plugins}/lib/nix/plugins
   };
   hardware = {
     # acpi thermal readings??
