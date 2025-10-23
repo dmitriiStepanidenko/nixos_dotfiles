@@ -24,6 +24,7 @@
     };
   };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  not-so-secret-secrets = ./secrets/not-so-secret-secrets.yaml;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -268,8 +269,8 @@ in {
   };
 
   #location = {
-  #  latitude = (builtins.extraBuiltins.sopsFromYAML config.sops.defaultSopsFile)."location/latitude";
-  #  longitude =(builtins.extraBuiltins.sopsFromYAML config.sops.defaultSopsFile)."location/latitude";
+  #  latitude = (builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets )."location/latitude";
+  #  longitude =(builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets)."location/latitude";
   #};
 
   nix = {
@@ -298,7 +299,7 @@ in {
       max-free = ${toString (20 * 1024 * 1024 * 1024)}
     ''; # Free up 20GiB whenever there is less than 20 GiB left
 
-    #//plugin-files = ${unstable.nix-plugins}/lib/nix/plugins
+    # plugin-files = ${unstable.nix-plugins}/lib/nix/plugins
   };
   hardware = {
     # acpi thermal readings??
