@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }: let
   unstable = import inputs.nixos-unstable {
@@ -147,17 +148,42 @@ in {
         ledger-udev-rules
       ];
     };
-    redshift = {
-      enable = true;
-      brightness = {
-        # Note the string values below.
-        day = "1";
-        night = "0.2";
-      };
-      temperature = {
-        day = 5500;
-        night = 3700;
-      };
-    };
   };
+
+  # Redshift part
+  sops.secrets."location/latitude" = {
+    sopsFile = ./../secrets/not-so-secret-secrets.yaml;
+  };
+
+  sops.secrets."location/longitude" = {
+    sopsFile = ./../secrets/not-so-secret-secrets.yaml;
+  };
+  sops.templates."redshift.conf" = {
+    content = ''
+      [redshift]
+      location-provider=manual
+
+      [manual]
+      lat=${config.sops.placeholder."location/latitude"}
+      lon=${config.sops.placeholder."location/longitude"}
+    '';
+    owner = config.users.users.dmitrii.name;
+  };
+
+  services.redshift = {
+    enable = false; # doesn't work on external monitors anyway
+    brightness = {
+      # Note the string values below.
+      day = "1";
+      night = "0.2";
+    };
+    temperature = {
+      day = 5500;
+      night = 3700;
+    };
+    # Don't use location.provider/latitude/longitude
+    # Instead override the service to use your template
+  };
+
+  systemd.user.services.redshift.serviceConfig.ExecStart = lib.mkForce "${pkgs.redshift}/bin/redshift -c ${config.sops.templates."redshift.conf".path}";
 }

@@ -119,7 +119,15 @@ in {
         mode = "0400";
         restartUnits = ["wireguard-setup.service"];
       };
+      #"location/latitude" = {
+      #  sopsFile = ./secrets/not-so-secret-secrets.yaml;
+      #};
+
+      #"location/longitude" = {
+      #  sopsFile = ./secrets/not-so-secret-secrets.yaml;
+      #};
     };
+
     #secrets."woodpecker/ip" = {
     #  owner = config.users.users.systemd-network.name;
     #  mode = "0400";
@@ -268,11 +276,28 @@ in {
     };
   };
 
+  # Then use the placeholders
   location = {
-    provider = "geoclue2";
-    #  latitude = (builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets )."location/latitude";
-    #  longitude =(builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets)."location/latitude";
+    provider = "manual";
+    #latitude = config.sops.placeholder."location/latitude";
+    #longitude = config.sops.placeholder."location/longitude";
+    latitude = 51.477928;
+    longitude = -0.001545;
   };
+
+  #sops.secrets."location/latitude" = {
+  #  sopsFile = ./secrets/not-so-secret-secrets.yaml;
+  #};
+  #sops.secrets."location/longitude" = {
+  #  sopsFile = ./secrets/not-so-secret-secrets.yaml;
+  #};
+  #location = {
+  #  provider = "manual";
+  #  latitude = config.sops.placeholder."location/latitude";
+  #  longitude = config.sops.placeholder."location/longitude";
+  #  #  latitude = (builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets )."location/latitude";
+  #  #  longitude =(builtins.extraBuiltins.sopsFromYAML not-so-secret-secrets)."location/latitude";
+  #};
 
   nix = {
     settings = {
