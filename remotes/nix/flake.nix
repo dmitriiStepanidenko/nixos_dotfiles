@@ -182,6 +182,18 @@
           ../../nix/hosts/backup/default.nix
         ];
       };
+      small-nfs = {...}: {
+        deployment = {
+          targetHost = "192.168.0.151";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/smallNfs/default.nix
+        ];
+      };
+
     };
     #devShells.default.${system} = pkgs_unstable.mkShell {
     #  packages = [colmena.defaultPackage.${system}];

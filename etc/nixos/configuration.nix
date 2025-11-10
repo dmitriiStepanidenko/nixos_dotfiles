@@ -444,6 +444,8 @@ in {
     hunspellDicts.ru_RU
     hunspellDicts.en_US
     gnumake
+    cmake
+
     discord
     alejandra
     memtest86plus
