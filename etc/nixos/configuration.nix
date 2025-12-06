@@ -191,10 +191,14 @@ in {
     # multi-touch gesture recognizer
     touchegg.enable = true;
     logind = {
-      lidSwitch = "hibernate";
-      lidSwitchExternalPower = "lock";
-      lidSwitchDocked = "ignore";
-      powerKey = "hibernate";
+      settings = {
+        Login = {
+          HandleLidSwitch = "hibernate";
+          HandleLidSwitchExternalPower = "lock";
+          HandleLidSwitchDocked = "ignore";
+          HandlePowerKey = "hibernate";
+        };
+      };
       #extraConfig = ''
       #  HandlePowerKey=hibernate
       #  IdleAction=hibernate
@@ -551,7 +555,7 @@ in {
 
     spacedrive
 
-    wakatime
+    wakatime-cli
 
     lenovo-legion
 
@@ -569,7 +573,7 @@ in {
 
     xclip
 
-    jdk23
+    jdk
     ethtool
 
     nextcloud-client
@@ -601,9 +605,13 @@ in {
     apacheHttpd # because of htpasswd
 
     nix-output-monitor
+
+    nixos-shell
     nix-fast-build
 
     revanced-cli
+
+    awscli # needs for s3. just in case
   ];
 
   services.searx = {
@@ -641,7 +649,7 @@ in {
     };
   };
 
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 
   #boot.kernelPackages = unstable.linuxPackages_6_13;
   #boot.kernelPackages = unstable.linuxPackages_latest;

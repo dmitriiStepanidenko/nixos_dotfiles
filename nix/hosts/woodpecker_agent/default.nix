@@ -90,7 +90,7 @@
     zramSwap = {
       enable = true;
       algorithm = "zstd";
-      memoryPercent = 15;
+      memoryPercent = 45;
     };
     networking = {
       hosts = {

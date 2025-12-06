@@ -11,14 +11,12 @@ in {
     fira-code-symbols
 
     #droid-sans-mono
-    noto-fonts-emoji
     mplus-outline-fonts.githubRelease
 
     #symbola
     # Trying to use noto-fonts instead of symbola
     noto-fonts
-    noto-fonts-extra
-    noto-fonts-emoji
+    noto-fonts-color-emoji
 
     icon-library
   ];

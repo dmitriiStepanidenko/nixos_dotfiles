@@ -65,6 +65,8 @@
   };
   programs = {
     television = {
+      enable = true;
+      enableFishIntegration = true;
       settings = {
         ui = {
           use_nerd_font_icons = true;
@@ -72,9 +74,12 @@
         };
       };
     };
+    delta = {
+      enable = true;
+      enableGitIntegration = true;
+    };
     git = {
       enable = true;
-      delta.enable = true;
     };
     home-manager.enable = true;
     fish = {

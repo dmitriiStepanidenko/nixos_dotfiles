@@ -35,10 +35,15 @@
 
     nixos-unstable.follows = "nixpkgs-unstable";
 
-    todo-backend = {
-      url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
+    #todo-backend = {
+    #  url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
+    #  inputs.nixpkgs.follows = "nixpkgs-unstable";
+    #  inputs.flake-utils.follows = "flake-utils";
+    #};
+
+    tikv = {
+      url = "github:dmitriiStepanidenko/tikv?ref=nix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
-      inputs.flake-utils.follows = "flake-utils";
     };
 
     colmena = {
@@ -193,7 +198,17 @@
           ../../nix/hosts/smallNfs/default.nix
         ];
       };
-
+      tikv = {...}: {
+        deployment = {
+          targetHost = "192.168.0.127";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          ../../nix/hosts/tikv/default.nix
+        ];
+      };
     };
     #devShells.default.${system} = pkgs_unstable.mkShell {
     #  packages = [colmena.defaultPackage.${system}];

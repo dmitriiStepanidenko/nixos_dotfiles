@@ -126,7 +126,8 @@ in {
   # Install firefox.
   programs.firefox = {
     enable = true;
-    package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
+    package = pkgs.firefox-bin;
+    #package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
   };
 
   # Enable sound with pipewire.

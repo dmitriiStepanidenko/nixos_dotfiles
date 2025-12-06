@@ -44,7 +44,7 @@ in {
         #extraNfsdConfig = '''';
       };
     };
-    environment.systemPackages = with pkgs; [ntfs3g smartmontools du-dust];
+    environment.systemPackages = with pkgs; [ntfs3g smartmontools];
     fileSystems = {
       "${mountDir}" = {
         fsType = "ntfs-3g";
