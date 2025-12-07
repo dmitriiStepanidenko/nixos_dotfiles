@@ -113,6 +113,11 @@
   swapDevices = [
     {device = "/dev/disk/by-uuid/a2840690-a68d-43e4-8dd0-6efa4b4958b6";}
   ];
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 45;
+  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

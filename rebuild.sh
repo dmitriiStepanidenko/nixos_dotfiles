@@ -82,7 +82,8 @@ sudo nixos-rebuild switch --option eval-cache false \
 # }
 
 # Get current generation metadata
-current=$(nixos-rebuild list-generations | grep current)
+#current=$(nixos-rebuild list-generations | grep current)
+current=$(nixos-rebuild list-generations | awk 'NR>1 && $NF=="True" {print $1, $2" "$3, $4, $5}')
 
 # Notify all OK!
 notify-send -e "NixOS Rebuilt DONE! GPG in need" --icon=software-update-available
