@@ -514,6 +514,7 @@ in {
     unstable.clang-tools
 
     hplipWithPlugin # hp printer
+    gscan2pdf
 
     getent
 
@@ -612,6 +613,8 @@ in {
     revanced-cli
 
     awscli # needs for s3. just in case
+
+    winbox
   ];
 
   services.searx = {
