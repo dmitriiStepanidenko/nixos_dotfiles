@@ -24,6 +24,7 @@
     };
   };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  #ivms-4200 = pkgs.callPackage ../../nix/packages/ivms-4200.nix {};
   not-so-secret-secrets = ./secrets/not-so-secret-secrets.yaml;
 in {
   imports = [
@@ -598,6 +599,7 @@ in {
 
     #inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
     surrealist-bin
+    #ivms-4200
 
     nixos-anywhere
 
@@ -615,6 +617,8 @@ in {
     awscli # needs for s3. just in case
 
     winbox
+
+    popsicle # usb flashing. instead of balena etcher
   ];
 
   services.searx = {
