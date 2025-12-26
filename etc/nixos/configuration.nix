@@ -404,6 +404,7 @@ in {
       "plugdev"
       "dialout"
       "xray"
+      "disk"
     ];
     uid = 1000;
   };
@@ -619,6 +620,8 @@ in {
     winbox
 
     popsicle # usb flashing. instead of balena etcher
+
+    rkflashtool # flash rockchip devices
   ];
 
   services.searx = {
