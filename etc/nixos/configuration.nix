@@ -24,7 +24,7 @@
     };
   };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
-  #ivms-4200 = pkgs.callPackage ../../nix/packages/ivms-4200.nix {};
+  ivms-4200 = pkgs.callPackage ../../nix/packages/ivms-4200.nix {};
   not-so-secret-secrets = ./secrets/not-so-secret-secrets.yaml;
 in {
   imports = [
@@ -276,9 +276,9 @@ in {
 
     # Enable networking
     networkmanager.enable = true;
-    hosts = {
-      "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
-    };
+    #hosts = {
+    #  "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
+    #};
   };
 
   # Then use the placeholders
@@ -600,7 +600,7 @@ in {
 
     #inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
     surrealist-bin
-    #ivms-4200
+    ivms-4200
 
     nixos-anywhere
 
@@ -621,7 +621,10 @@ in {
 
     popsicle # usb flashing. instead of balena etcher
 
-    rkflashtool # flash rockchip devices
+    wineWowPackages.waylandFull
+    winetricks
+
+    audacity
   ];
 
   services.searx = {
