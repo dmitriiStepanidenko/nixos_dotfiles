@@ -121,6 +121,48 @@
       # };
     };
     keymaps = [
+      # LSP MAPPING START
+      #{ NONE!
+      #  key = "\\wa";
+      #  mode = "n";
+      #  silent = true;
+      #  action = "<Cmd>Lspsaga <CR>";
+      #}
+      #{
+      #  key = "gD";
+      #  mode = "n";
+      #  silent = true;
+      #  action = "<Cmd>Lspsaga goto_definition<CR>";
+      #}
+      #{
+      #  key = "gd";
+      #  mode = "n";
+      #  silent = true;
+      #  action = "<Cmd>Lspsaga goto_type_definition<CR>";
+      #}
+      #{
+      #  key = "K";
+      #  mode = "n";
+      #  silent = true;
+      #  atction = "<Cmd>Lspsaga hover_doc<CR>";
+      #}
+      {
+        key = "\\ca";
+        mode = "n";
+        silent = true;
+        action = "<Cmd>Lspsaga code_action<CR>";
+      }
+      {
+        key = "\\rn";
+        mode = "n";
+        silent = true;
+        action = "<Cmd>Lspsaga rename<CR>";
+      }
+
+      # lsp unique to saga
+
+
+      # LSP END
       {
         key = "<space>f";
         mode = "n";
@@ -277,10 +319,11 @@
     lsp = {
       enable = true;
       formatOnSave = false;
-      null-ls.enable = true;
+      null-ls.enable = false;
       mappings = {
         addWorkspaceFolder = "\\\\wa";
-        #format = "<space>f";
+        # format disabled due to custom format command
+        ##format = "<space>f";
         goToDeclaration = "gD";
         goToDefinition = "gd";
         goToType = "gt";
@@ -289,10 +332,11 @@
         listReferences = "gr";
         nextDiagnostic = "]d";
         previousDiagnostic = "[d";
-        codeAction = "\\\\ca";
-        renameSymbol = "\\\\rn";
+        #codeAction = "\\\\ca";
+        #renameSymbol = "\\\\rn";
       };
       #lspconfig.enable = true;
+
       lspkind.enable = true; # vscode-like pictograms for neovim lsp completion items
       lspsaga.enable = true; #
       trouble.enable = true;
@@ -377,7 +421,7 @@
       nix = {
         enable = true;
         format.enable = true;
-        format.type = "alejandra";
+        format.type = ["alejandra"];
         extraDiagnostics.enable = true;
         lsp.enable = true;
         treesitter.enable = true;
@@ -413,7 +457,9 @@
           enable = true;
         };
         treesitter.enable = true;
-        crates.enable = true;
+        extensions = {
+          crates-nvim.enable = true;
+        };
         dap = {
           enable = true;
         };

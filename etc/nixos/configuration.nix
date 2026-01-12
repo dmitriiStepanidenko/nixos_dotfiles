@@ -625,6 +625,8 @@ in {
     winetricks
 
     audacity
+
+    z3
   ];
 
   services.searx = {
