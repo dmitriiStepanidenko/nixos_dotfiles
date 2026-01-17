@@ -466,6 +466,7 @@
         lsp = {
           enable =
             true;
+          package = ["rust-analyzer"];
           #package =
           #  lib.mkDefault pkgs.rust-analyzer;
           # opts = ''
