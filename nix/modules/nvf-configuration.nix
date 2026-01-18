@@ -340,6 +340,7 @@
       lspkind.enable = true; # vscode-like pictograms for neovim lsp completion items
       lspsaga.enable = true; #
       trouble.enable = true;
+      harper-ls.enable = true;
       servers.svelte.filetypes = [
         "svelte"
         #"javascript"
