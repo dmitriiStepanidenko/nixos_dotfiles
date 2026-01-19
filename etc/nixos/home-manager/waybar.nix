@@ -278,7 +278,7 @@ in {
           format = "{temperatureC}°C ";
         };
         cpu = {
-          "format" = "︁  {}%";
+          "format" = "︁  {usage}%";
           tooltip = true;
         };
         memory = {
