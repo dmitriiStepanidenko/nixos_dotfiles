@@ -12,6 +12,9 @@
       allowUnfree = true;
     };
   };
+  caffeine-with-indicator = pkgs.caffeine-ng.overrideAttrs (oldAttrs: {
+    buildInputs = oldAttrs.buildInputs ++ [pkgs.libappindicator-gtk3];
+  });
 in {
   # Needs for Telegram popup windows
   qt = {
@@ -73,7 +76,8 @@ in {
     kwalletcli
     kdePackages.kwallet
 
-    caffeine-ng
+    #caffeine-ng
+    caffeine-with-indicator
   ];
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;

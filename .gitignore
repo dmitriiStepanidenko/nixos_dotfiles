@@ -53,3 +53,5 @@ result
 .direnv
 
 .htpasswd
+
+e.json
