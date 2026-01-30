@@ -29,7 +29,7 @@
         ./configuration.nix
         ./hardware-configuration.nix
         ./network.nix
-        vm-profile.nixosModules.default
+        #vm-profile.nixosModules.default
       ];
     };
 

@@ -17,18 +17,18 @@
       useDHCP = false;
       ipv4.addresses = [
         {
-          address = "176.123.169.226";
+          address = "x";
           prefixLength = 32;
         }
       ];
       ipv6.addresses = [
         {
-          address = "fe80::5054:ff:fe11:f723";
+          address = "y";
           prefixLength = 64;
         }
       ];
       # Set MAC address
-      macAddress = "52:54:00:11:f7:23";
+      macAddress = "z";
     };
     
     # Set default gateway

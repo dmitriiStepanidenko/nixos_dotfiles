@@ -627,6 +627,8 @@ in {
     audacity
 
     z3
+
+    insomnia # api testing
   ];
 
   services.searx = {
