@@ -35,6 +35,7 @@ in {
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
     ./modules/xray.nix
+    ./modules/v2ray.nix
     ./modules/proxies.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
@@ -155,6 +156,42 @@ in {
       enable = true;
       flavors = {
         tokyo-night = tokyoNightTheme;
+      };
+      plugins = {
+        inherit (pkgs.yaziPlugins) compress;
+      };
+      settings = {
+        keymap = {
+          mgr = {
+            prepend_keymap = [
+              {
+                on = ["c" "a" "a"];
+                run = "plugin compress";
+                desc = "Archive selected files";
+              }
+              {
+                on = ["c" "a" "p"];
+                run = "plugin compress -p";
+                desc = "Archive selected files (password)";
+              }
+              {
+                on = ["c" "a" "h"];
+                run = "plugin compress -ph";
+                desc = "Archive selected files (password+header)";
+              }
+              {
+                on = ["c" "a" "l"];
+                run = "plugin compress -l";
+                desc = "Archive selected files (compression level)";
+              }
+              {
+                on = ["c" "a" "u"];
+                run = "plugin compress -phl";
+                desc = "Archive selected files (password+header+level)";
+              }
+            ];
+          };
+        };
       };
     };
     neovim.defaultEditor = true;

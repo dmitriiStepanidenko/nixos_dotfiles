@@ -13,7 +13,19 @@
     };
   };
   caffeine-with-indicator = pkgs.caffeine-ng.overrideAttrs (oldAttrs: {
-    buildInputs = oldAttrs.buildInputs ++ [pkgs.libappindicator-gtk3];
+    buildInputs =
+      oldAttrs.buildInputs
+      ++ [
+        pkgs.libappindicator-gtk3
+
+        pkgs.gnomeExtensions.appindicator
+      ];
+    nativeBuildInputs =
+      oldAttrs.nativeBuildInputs
+      ++ [
+        pkgs.libappindicator-gtk3
+        pkgs.gnomeExtensions.appindicator
+      ];
   });
 in {
   # Needs for Telegram popup windows
@@ -78,6 +90,8 @@ in {
 
     #caffeine-ng
     caffeine-with-indicator
+    gnomeExtensions.appindicator
+    libappindicator
   ];
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;

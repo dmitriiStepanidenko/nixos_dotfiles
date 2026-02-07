@@ -1088,17 +1088,18 @@
     },
     "surrealist": {
       "locked": {
-        "lastModified": 1759163284,
-        "narHash": "sha256-Zrw4evn8eYcoR7cwsNvKa1cAf0I1jTUDrZj4TgKiVn4=",
-        "ref": "refs/heads/origin/surrealist",
-        "rev": "1447ef82c0d7efac89174f1cc07698f10ab9e77b",
-        "revCount": 869036,
-        "type": "git",
-        "url": "file:/home/dmitrii/shared/tmp/nixpkgs"
+        "lastModified": 1769292114,
+        "narHash": "sha256-bYiIVnfsqsqlYJ0cLkdeAf9LeSeKswNbaJR3WG7V/7Q=",
+        "owner": "smissingham",
+        "repo": "nixpkgs",
+        "rev": "aaa916628fae37b88ac5c72936a1e9c063aa3b4f",
+        "type": "github"
       },
       "original": {
-        "type": "git",
-        "url": "file:/home/dmitrii/shared/tmp/nixpkgs"
+        "owner": "smissingham",
+        "ref": "surrealist",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "systems": {

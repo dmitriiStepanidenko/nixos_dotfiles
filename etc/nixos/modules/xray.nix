@@ -15,7 +15,7 @@
     tsocks
   ];
   services.xray = {
-    enable = true;
+    enable = false;
     settingsFile = config.sops.secrets."xray_config.json".path;
   };
   systemd.services.xray = {

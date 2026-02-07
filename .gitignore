@@ -55,3 +55,5 @@ result
 .htpasswd
 
 e.json
+xray_config.json
+v2ray_config.json

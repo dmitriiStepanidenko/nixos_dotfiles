@@ -42,7 +42,8 @@
     };
 
     #surrealist.url = "github:dmitriiStepanidenko/nixpkgs?ref=origin/surrealist";
-    surrealist.url = "git+file:/home/dmitrii/shared/tmp/nixpkgs";
+    #surrealist.url = "git+file:/home/dmitrii/shared/tmp/nixpkgs";
+    surrealist.url = "github:smissingham/nixpkgs?ref=surrealist";
 
     colmena.url = "github:zhaofengli/colmena?ref=main";
 
