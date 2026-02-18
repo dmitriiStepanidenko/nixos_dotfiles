@@ -62,21 +62,41 @@ in {
     # accessible via `nviia-settings`.
     nvidiaSettings = true;
 
+    # Apply CachyOS kernel 6.19 patch to NVIDIA latest driver
+    #package = let
+    #  base = config.boot.kernelPackages.nvidiaPackages.latest;
+    #  cachyos-nvidia-patch = pkgs.fetchpatch {
+    #    url = "https://raw.githubusercontent.com/CachyOS/CachyOS-PKGBUILDS/master/nvidia/nvidia-utils/kernel-6.19.patch";
+    #    sha256 = "sha256-YuJjSUXE6jYSuZySYGnWSNG5sfVei7vvxDcHx3K+IN4=";
+    #  };
+
+    #  # Patch the appropriate driver based on config.hardware.nvidia.open
+    #  driverAttr =
+    #    if config.hardware.nvidia.open
+    #    then "open"
+    #    else "bin";
+    #in
+    #  base
+    #  // {
+    #    ${driverAttr} = base.${driverAttr}.overrideAttrs (oldAttrs: {
+    #      patches = (oldAttrs.patches or []) ++ [cachyos-nvidia-patch];
+    #    });
+    #  };
     package =
-      config.boot.kernelPackages.nvidiaPackages.stable
-      // {
-        open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
-          patches =
-            (old.patches or [])
-            ++ [
-              (pkgs.fetchpatch {
-                name = "get_dev_pagemap.patch";
-                url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
-                hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
-              })
-            ];
-        });
-      };
+      config.boot.kernelPackages.nvidiaPackages.stable;
+    #// {
+    #  open = config.boot.kernelPackages.nvidiaPackages.stable.open.overrideAttrs (old: {
+    #    patches =
+    #      (old.patches or [])
+    #      ++ [
+    #        (pkgs.fetchpatch {
+    #          name = "get_dev_pagemap.patch";
+    #          url = "https://github.com/NVIDIA/open-gpu-kernel-modules/commit/3e230516034d29e84ca023fe95e284af5cd5a065.patch";
+    #          hash = "sha256-BhL4mtuY5W+eLofwhHVnZnVf0msDj7XBxskZi8e6/k8=";
+    #        })
+    #      ];
+    #  });
+    #};
 
     #package = config.boot.kernelPackages.nvidiaPackages.beta;
     #package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -102,7 +122,7 @@ in {
     nvtopPackages.full
     nwg-displays # Choose monitor layout GUI
 
-    geekbench
+    #geekbench
   ];
 
   #programs.coolercontrol = {

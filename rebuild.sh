@@ -57,6 +57,8 @@ pwd
 #HTTPS_PROXY="socks5://127.0.0.1:10800" 
 #--option eval-cache false \
 HTTP_PROXY="http://127.0.0.1:10800" \
+HTTPS_PROXY="http://127.0.0.1:10800" \
+ALL_PROXY=http://127.0.0.1:10800 \
 sudo nixos-rebuild switch --option eval-cache false \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
   --print-build-logs \

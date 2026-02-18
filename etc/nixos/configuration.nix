@@ -24,6 +24,7 @@
     };
   };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  friction-bin = pkgs.callPackage ../../nix/packages/friction.nix {};
   ivms-4200 = pkgs.callPackage ../../nix/packages/ivms-4200.nix {};
   not-so-secret-secrets = ./secrets/not-so-secret-secrets.yaml;
 in {
@@ -463,14 +464,14 @@ in {
     neofetch
     alacritty
     lshw
-    unstable.htop
+    htop
     btop
     gparted
     git
     stow
     gcc14
     rocmPackages.llvm.clang-unwrapped
-    unstable.nodejs_22
+    nodejs_22
 
     act
     unstable.woodpecker-cli
@@ -545,12 +546,15 @@ in {
     unrar-wrapper
     p7zip
     _7zz # rar archives
+    zip
+    rar
 
     lazygit
 
     # TODO
 
-    unstable.clang-tools
+    #unstable.clang-tools
+    clang-tools
 
     hplipWithPlugin # hp printer
     gscan2pdf
@@ -637,6 +641,7 @@ in {
 
     #inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
     surrealist-bin
+    friction-bin
     ivms-4200
 
     nixos-anywhere
@@ -666,6 +671,8 @@ in {
     z3
 
     insomnia # api testing
+
+    unstable.openscreen
   ];
 
   services.searx = {
@@ -787,5 +794,7 @@ in {
 
   #boot.kernelPackages = unstable.linuxPackages_6_13;
   #boot.kernelPackages = unstable.linuxPackages_latest;
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  #boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 }

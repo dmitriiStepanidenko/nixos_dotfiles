@@ -39,7 +39,7 @@ in {
     libnotify
 
     unstable.telegram-desktop
-    enpass
+    unstable.enpass
     libreoffice-qt
 
     wireshark

@@ -69,6 +69,9 @@ in
         ++ [
           "GIT_PROXY_COMMAND"
           "SOCKS_SERVER"
+          "ALL_PROXY"
+          "HTTP_PROXY"
+          "HTTPS_PROXY"
         ];
       nativeBuildInputs = [
         bun
@@ -94,8 +97,9 @@ in
       '';
       outputHash =
         {
-          x86_64-linux = "sha256-bpbLRo+NoRAivRkR6TSAn3DiN5LTamPSCt+3TaUyZ1g=";
-          aarch64-linux = "sha256-FB1om5KsMboWseJ1ECZgp1K5h7/n9DbA4UBPYHn/qps=";
+          x86_64-linux = "sha256-FlZXn2y5vIPqrU2VkPhVpgyVshhCb8kUT7coZ8sJcWE=";
+          #x86_64-linux = lib.fakeHash;
+          #aarch64-linux = "sha256-FB1om5KsMboWseJ1ECZgp1K5h7/n9DbA4UBPYHn/qps=";
         }
       .${
           stdenv.hostPlatform.system
@@ -179,4 +183,3 @@ in
       platforms = platforms.linux;
     };
   })
-
