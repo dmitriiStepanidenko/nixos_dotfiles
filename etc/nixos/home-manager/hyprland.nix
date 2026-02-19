@@ -123,6 +123,11 @@ in {
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+      monitor = [
+        "desc:Huawei Technologies Co. Inc. ZQE-CAA 0xC080F622, 3440x1440, 0x0, 1"
+        "eDP-1, 2560x1600, 0x0, 1"
+        " , preferred, auto, 1"
+      ];
       windowrule = [
         # stopped working after update. TODO: investigate in future
         #"renderunfocused, title:(.*(k|K)enshi.*)"
