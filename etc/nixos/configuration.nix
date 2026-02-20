@@ -165,7 +165,7 @@ in {
         yazi = {
           preview = {
             max_width = 1024;
-            image_delay = 350;
+            #image_delay = 350;
             image_filter = "triangle";
             ueberzug_scale = 1.0;
             ueberzug_offset = ["0.5" "0.5" "-0.5" "-0.5"];

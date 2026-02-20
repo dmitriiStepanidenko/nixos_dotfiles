@@ -129,6 +129,10 @@ in {
         " , preferred, auto, 1"
       ];
       windowrule = [
+        "no_anim on, match:class ^ueberzug.*"
+        "float on, match:class ^ueberzug.*"
+        "no_initial_focus on, match:class ^ueberzug.*"
+        #"no_anim, match:class ^ueberzug.*"
         # stopped working after update. TODO: investigate in future
         #"renderunfocused, title:(.*(k|K)enshi.*)"
       ];
