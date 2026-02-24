@@ -24,6 +24,7 @@
     };
   };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
+  surrealist-appimage = pkgs.callPackage ../../nix/packages/surrealist-appimage.nix {};
   friction-bin = pkgs.callPackage ../../nix/packages/friction.nix {};
   ivms-4200 = pkgs.callPackage ../../nix/packages/ivms-4200.nix {};
   not-so-secret-secrets = ./secrets/not-so-secret-secrets.yaml;
@@ -650,6 +651,7 @@ in {
 
     #inputs.surrealist.legacyPackages.${pkgs.system}.surrealist
     surrealist-bin
+    #surrealist-appimage
     friction-bin
     ivms-4200
 
@@ -682,6 +684,12 @@ in {
     insomnia # api testing
 
     unstable.openscreen
+
+    file
+
+    inkscape
+
+    openssl
   ];
 
   services.searx = {

@@ -33,7 +33,37 @@ in {
     enable = true;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let
+    element-proxied = let
+      proxyString = "127.0.0.1:10800";
+    in
+      pkgs.symlinkJoin {
+        name = "element-desktop-proxied";
+        paths = [unstable.element-desktop];
+        buildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/element-desktop \
+            --add-flags "--proxy-server=http://${proxyString}" \
+            --set HTTP_PROXY "http://${proxyString}" \
+            --set HTTPS_PROXY "http://${proxyString}"
+          mv $out/bin/element-desktop $out/bin/element-desktop-proxied
+        '';
+      };
+    fluffychat-proxied = let
+      proxyString = "127.0.0.1:10800";
+    in
+      pkgs.symlinkJoin {
+        name = "element-desktop-proxied";
+        paths = [unstable.fluffychat];
+        buildInputs = [pkgs.makeWrapper];
+        postBuild = ''
+          wrapProgram $out/bin/fluffychat \
+            --set HTTP_PROXY "http://${proxyString}" \
+            --set HTTPS_PROXY "http://${proxyString}"
+          mv $out/bin/fluffychat $out/bin/fluffychat-proxied
+        '';
+      };
+  in [
     pavucontrol # gui for sound
 
     libnotify
@@ -41,6 +71,8 @@ in {
     unstable.telegram-desktop
     unstable.enpass
     libreoffice-qt
+
+    pulseaudioFull
 
     wireshark
 
@@ -82,8 +114,11 @@ in {
     xarchiver
 
     unstable.element-desktop
+    element-proxied
     unstable.element-call
     unstable.halloy
+    unstable.fluffychat
+    fluffychat-proxied
 
     kwalletcli
     kdePackages.kwallet
