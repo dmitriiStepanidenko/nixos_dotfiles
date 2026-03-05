@@ -127,6 +127,10 @@ in {
     caffeine-with-indicator
     gnomeExtensions.appindicator
     libappindicator
+
+    handbrake
+
+    blender
   ];
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;
