@@ -59,8 +59,6 @@ in {
 
     wl-clipboard-rs
 
-    kdePackages.kdenlive
-
     (
       pkgs.waybar.overrideAttrs (oldAttrs: {
         mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];

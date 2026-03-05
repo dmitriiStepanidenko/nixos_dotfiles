@@ -12,6 +12,8 @@
       allowUnfree = true;
     };
   };
+
+  proxyString = "127.0.0.1:10800";
   caffeine-with-indicator = pkgs.caffeine-ng.overrideAttrs (oldAttrs: {
     buildInputs =
       oldAttrs.buildInputs
@@ -34,35 +36,55 @@ in {
   };
 
   environment.systemPackages = with pkgs; let
-    element-proxied = let
-      proxyString = "127.0.0.1:10800";
-    in
-      pkgs.symlinkJoin {
-        name = "element-desktop-proxied";
-        paths = [unstable.element-desktop];
-        buildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/element-desktop \
-            --add-flags "--proxy-server=http://${proxyString}" \
-            --set HTTP_PROXY "http://${proxyString}" \
-            --set HTTPS_PROXY "http://${proxyString}"
-          mv $out/bin/element-desktop $out/bin/element-desktop-proxied
-        '';
-      };
-    fluffychat-proxied = let
-      proxyString = "127.0.0.1:10800";
-    in
-      pkgs.symlinkJoin {
-        name = "element-desktop-proxied";
-        paths = [unstable.fluffychat];
-        buildInputs = [pkgs.makeWrapper];
-        postBuild = ''
-          wrapProgram $out/bin/fluffychat \
-            --set HTTP_PROXY "http://${proxyString}" \
-            --set HTTPS_PROXY "http://${proxyString}"
-          mv $out/bin/fluffychat $out/bin/fluffychat-proxied
-        '';
-      };
+    element-proxied = pkgs.symlinkJoin {
+      name = "element-desktop-proxied";
+      paths = [unstable.element-desktop];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/element-desktop \
+          --add-flags "--proxy-server=http://${proxyString}" \
+          --set HTTP_PROXY "http://${proxyString}" \
+          --set HTTPS_PROXY "http://${proxyString}"
+        mv $out/bin/element-desktop $out/bin/element-desktop-proxied
+      '';
+    };
+    fluffychat-proxied = pkgs.symlinkJoin {
+      name = "element-desktop-proxied";
+      paths = [unstable.fluffychat];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/fluffychat \
+          --set HTTP_PROXY "http://${proxyString}" \
+          --set HTTPS_PROXY "http://${proxyString}"
+        mv $out/bin/fluffychat $out/bin/fluffychat-proxied
+      '';
+    };
+    kdenlive-nvidia = pkgs.symlinkJoin {
+      name = "kdenlive-nvidia";
+      paths = [
+        kdePackages.kdenlive
+      ];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/kdenlive \
+          --set HTTP_PROXY "http://${proxyString}" \
+          --set HTTPS_PROXY "http://${proxyString}" \
+          --set __NV_PRIME_RENDER_OFFLOAD 1 \
+          --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
+          --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
+          --set __VK_LAYER_NV_optimus "NVIDIA_only"
+        mv $out/bin/kdenlive $out/bin/kdenlive_nvidia
+
+        wrapProgram $out/bin/kdenlive_render \
+          --set HTTP_PROXY "http://${proxyString}" \
+          --set HTTPS_PROXY "http://${proxyString}" \
+          --set __NV_PRIME_RENDER_OFFLOAD 1 \
+          --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
+          --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
+          --set __VK_LAYER_NV_optimus "NVIDIA_only"
+        mv $out/bin/kdenlive_render $out/bin/kdenlive_render_nvidia
+      '';
+    };
   in [
     pavucontrol # gui for sound
 
@@ -131,6 +153,16 @@ in {
     handbrake
 
     blender
+
+    kdePackages.kdenlive
+    kdenlive-nvidia
+
+    python312Packages.srt
+    python312Packages.torch
+    (python3.withPackages (python-pkgs:
+      with python-pkgs; [
+        pip
+      ]))
   ];
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;

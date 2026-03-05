@@ -136,6 +136,6 @@ in {
   hardware.amdgpu = {
     initrd.enable = true;
     opencl.enable = true;
-    overdrive.enable = true;
+    #overdrive.enable = true; # this is for debug
   };
 }
