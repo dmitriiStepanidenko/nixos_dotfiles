@@ -72,7 +72,8 @@ in {
           --set __NV_PRIME_RENDER_OFFLOAD 1 \
           --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
           --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
-          --set __VK_LAYER_NV_optimus "NVIDIA_only"
+          --set __VK_LAYER_NV_optimus "NVIDIA_only" \
+          --prefix LD_LIBRARY_PATH : ${stdenv.cc.cc.lib}/lib
         mv $out/bin/kdenlive $out/bin/kdenlive_nvidia
 
         wrapProgram $out/bin/kdenlive_render \
@@ -81,10 +82,17 @@ in {
           --set __NV_PRIME_RENDER_OFFLOAD 1 \
           --set __NV_PRIME_RENDER_OFFLOAD_PROVIDER "NVIDIA-G0" \
           --set __GLX_VENDOR_LIBRARY_NAME "nvidia" \
-          --set __VK_LAYER_NV_optimus "NVIDIA_only"
+          --set __VK_LAYER_NV_optimus "NVIDIA_only" \
+          --prefix LD_LIBRARY_PATH : ${stdenv.cc.cc.lib}/lib
         mv $out/bin/kdenlive_render $out/bin/kdenlive_render_nvidia
       '';
     };
+    #cudaPkgs = import inputs.nixpkgs {
+    #  config = {
+    #    allowUnfree = true;
+    #    cudaSupport = true;
+    #  };
+    #};
   in [
     pavucontrol # gui for sound
 
@@ -156,14 +164,19 @@ in {
 
     kdePackages.kdenlive
     kdenlive-nvidia
-
     python312Packages.srt
     python312Packages.torch
     (python3.withPackages (python-pkgs:
       with python-pkgs; [
         pip
+        srt
+        torch
+        openai-whisper
+        #torchWithCuda
       ]))
+    #cudaPackages.cudatoolkit
   ];
+  programs.ydotool.enable = true;
   programs.noisetorch.enable = true;
   virtualisation.waydroid.enable = true;
 

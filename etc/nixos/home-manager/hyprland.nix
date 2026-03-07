@@ -192,7 +192,7 @@ in {
     settings = {
       general = {
         grace = 300;
-        hide_cursor = true;
+        hide_cursor = false;
       };
       background = [
         {
