@@ -172,9 +172,12 @@ in {
         srt
         torch
         openai-whisper
+        websockets
         #torchWithCuda
       ]))
     #cudaPackages.cudatoolkit
+
+    slurp # cursor position
   ];
   programs.ydotool.enable = true;
   programs.noisetorch.enable = true;
