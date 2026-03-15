@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   imports = [
-    ./tmux.nix
+    ./../../../nix/modules/tmux.nix
   ];
 
   environment.systemPackages = with pkgs; [

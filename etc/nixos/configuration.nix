@@ -23,6 +23,18 @@
       #];
     };
   };
+  ventoy = import inputs.ventoy {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "ventoy-gtk3-1.1.10"
+      ];
+      #permittedInsecurePackages = [
+      #  "electron-27.3.11"
+      #];
+    };
+  };
   surrealist-bin = pkgs.callPackage ../../nix/packages/surrealist.nix {};
   surrealist-appimage = pkgs.callPackage ../../nix/packages/surrealist-appimage.nix {};
   friction-bin = pkgs.callPackage ../../nix/packages/friction.nix {};
@@ -42,6 +54,7 @@ in {
     ./modules/ssh.nix
     ./modules/yubikey.nix
     ./modules/android_dev.nix
+    ./modules/remote_builder.nix
     #./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix
@@ -683,13 +696,15 @@ in {
 
     insomnia # api testing
 
-    unstable.openscreen
+    #unstable.openscreen
 
     file
 
     inkscape
 
     openssl
+
+    ventoy.ventoy-full-gtk
   ];
 
   services.searx = {

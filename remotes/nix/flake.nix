@@ -28,12 +28,21 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.05";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:nixos/nixpkgs";
 
     nixos-unstable.follows = "nixpkgs-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     #todo-backend = {
     #  url = "git+ssh://git@10.252.1.0:9050/graph-learning/todo-nix.git";
@@ -71,6 +80,8 @@
     vm-profile,
     nixos-generators,
     disko,
+    nvf,
+    home-manager,
     ...
   }: let
     system = "x86_64-linux";
@@ -209,6 +220,45 @@
           ../../nix/hosts/tikv/default.nix
         ];
       };
+      builder = {...}: {
+        system.stateVersion = pkgs.lib.mkForce "25.11";
+        deployment = {
+          targetHost = "192.168.0.192";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        environment = {
+          variables = {
+            MANPAGER = "nvim +Man!";
+          };
+          systemPackages = [
+            self.packages.${system}.my-neovim
+          ];
+          variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+          variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+        };
+        imports = [
+          disko.nixosModules.disko
+          ../../nix/hosts/builder/default.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "backup";
+              extraSpecialArgs = {
+                inherit inputs;
+              };
+              sharedModules = [
+                inputs.sops-nix.homeManagerModules.sops
+              ];
+
+              users.dmitrii = import ../../nix/modules/home-manager/dmitrii.nix;
+            };
+          }
+        ];
+      };
     };
     #devShells.default.${system} = pkgs_unstable.mkShell {
     #  packages = [colmena.defaultPackage.${system}];
@@ -223,6 +273,51 @@
       '';
     };
     packages.${system} = {
+      my-neovim =
+        (
+          nvf.lib.neovimConfiguration {
+            inherit pkgs;
+            extraSpecialArgs = {
+              inherit inputs;
+            };
+
+            modules = [
+              ../../nix/modules/nvf-configuration.nix
+              ({
+                config,
+                pkgs,
+                ...
+              }: {
+                #config.vim.languages.rust.lsp.package = ["rust-analyzer"];
+                #config.vim.languages.rust.format.package = ["rustfmt"];
+              })
+            ];
+          }
+        )
+      .neovim;
+      nixosConfigurations = {
+        builder = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {inherit inputs system;};
+          modules = [
+            sops-nix.nixosModules.sops
+            vm-profile.nixosModules.default
+            disko.nixosModules.disko
+            ../../nix/modules/nvf-configuration.nix
+            ../../nix/hosts/builder/default.nix
+          ];
+          environment = {
+            variables = {
+              MANPAGER = "nvim +Man!";
+            };
+            systemPackages = [
+              self.packages.${system}.my-neovim
+            ];
+            variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+            variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
+          };
+        };
+      };
       iso = nixos-generators.nixosGenerate {
         specialArgs = {inherit inputs system sops-nix vm-profile;};
         inherit system;

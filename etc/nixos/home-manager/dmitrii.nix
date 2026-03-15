@@ -13,7 +13,7 @@
     username = "dmitrii";
     homeDirectory = "/home/dmitrii";
 
-    stateVersion = "25.05";
+    stateVersion = "25.11";
 
     file."${config.home.homeDirectory}/.config/leftwm/" = {
       source = ../../../config/leftwm;

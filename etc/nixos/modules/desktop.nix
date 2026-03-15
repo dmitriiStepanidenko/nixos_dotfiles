@@ -178,6 +178,12 @@ in {
     #cudaPackages.cudatoolkit
 
     slurp # cursor position
+
+    claude-code
+
+    aider-chat-full
+
+    opencode
   ];
   programs.ydotool.enable = true;
   programs.noisetorch.enable = true;

@@ -16,6 +16,7 @@ keys:
     - &openobserve age1uxelnfg5wn33jtm8kmmatc7ku6rudmdcg52e86l05ket8jjg3ceq7t0gky
     - &backup age1kepnfdct2up7l9w9e7naqwlmsyrxunhv82kx45m85veu3zfpf9ds2mjhty
     - &tikv age1vs2mgejkakapsfgzlm8j3gyfxm7vmhv96pgvcf0p8y77rhlyj43spl5lwg
+    - &builder age1qmvqu9y3vkm3cdzk6rna5ehqh8mkj5rmwqqs3836nd0rfgnmcscqm3kf5r
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
@@ -84,3 +85,8 @@ creation_rules:
     - age:
       - *mine
       - *tikv
+  - path_regex: nix/hosts/builder/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *builder

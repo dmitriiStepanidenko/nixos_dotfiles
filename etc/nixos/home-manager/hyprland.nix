@@ -12,7 +12,8 @@
 
     ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}
   '';
-  hyprlandPkg = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  #hyprlandPkg = inputs.hyprland.packages."${pkgs.system}".hyprland;
+  hyprlandPkg = pkgs.hyprland;
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   girlImageBackgroundColor = "676570";
