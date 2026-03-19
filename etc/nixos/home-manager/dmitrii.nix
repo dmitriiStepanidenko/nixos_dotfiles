@@ -80,6 +80,16 @@
     };
     git = {
       enable = true;
+      lfs = {
+        enable = true;
+      };
+      settings = {
+        user = {
+          name = "Dmitrii Stepanidenko";
+          email = "dimitrij.stepanidenko@gmail.com";
+        };
+        core.editor = "nvim";
+      };
     };
     home-manager.enable = true;
     fish = {
@@ -88,6 +98,10 @@
     direnv = {
       enable = true;
       #enableFishIntegration = true;
+    };
+    dircolors = {
+      enable = true;
+      enableFishIntegration = true;
     };
     starship = {
       enable = true;

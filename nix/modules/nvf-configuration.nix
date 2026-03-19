@@ -3,7 +3,29 @@
   lib,
   inputs,
   ...
-}: {
+}: let
+  unstable = import inputs.nixos-unstable {
+    system = "x86_64-linux";
+    config = {
+      allowUnfree = true;
+    };
+  };
+  # spadefmt (community formatter, not yet in nixpkgs)
+  spadefmt = pkgs.rustPlatform.buildRustPackage {
+    pname = "spadefmt";
+    version = "unstable-2026-03-19";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "ethanuppal";
+      repo = "spadefmt";
+      rev = "main"; # pin a specific commit if you prefer
+      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # ← fix me
+    };
+
+    cargoHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # ← fix me
+    meta.mainProgram = "spadefmt";
+  };
+in {
   config.vim = {
     luaConfigRC = {
       format-command = ''
@@ -160,7 +182,6 @@
       }
 
       # lsp unique to saga
-
 
       # LSP END
       {
@@ -408,7 +429,56 @@
     autocomplete.nvim-cmp = {
       enable = true;
     };
-    treesitter.fold = true;
+    treesitter = {
+      fold = true;
+      grammars = [unstable.tree-sitter-grammars.tree-sitter-spade];
+    };
+    # All Spade tools in PATH
+    extraPackages = [pkgs.spade pkgs.swim spadefmt];
+
+    # LSP (new declarative path)
+    lsp.servers.spade = {
+      enable = true;
+      cmd = [(lib.getExe' pkgs.spade "spade-language-server")];
+      filetypes = ["spade"];
+      root_markers = ["swim.toml"];
+    };
+
+    # conform.nvim (NVF's formatter module)
+    formatter.conform-nvim = {
+      setupOpts = {
+        format_on_save = {
+          timeout_ms = 500;
+          lsp_fallback = false;
+        };
+        formatters_by_ft = {
+          spade = ["spadefmt"];
+        };
+        formatters = {
+          spadefmt = {
+            command = lib.getExe spadefmt;
+          };
+        };
+      };
+    };
+
+    # Custom Lua (replaces the old extraConfigLua)
+    luaConfigRC.spade-setup = ''
+      -- Filetype detection
+      vim.filetype.add({
+        extension = { spade = "spade" },
+      })
+
+      -- Tell nvim-treesitter about our grammar
+      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      parser_config.spade = {
+        install_info = {
+          url = "https://gitlab.com/spade-lang/tree-sitter-spade.git",
+          files = { "src/parser.c", "src/scanner.c" },
+        },
+        filetype = "spade",
+      }
+    '';
     languages = {
       enableTreesitter = true;
       enableFormat = true;

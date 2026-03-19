@@ -17,6 +17,7 @@
 in {
   imports = [
     ../../modules/tmux.nix
+    ../../modules/fpga_hardware.nix
     ./nix_builder.nix
     inputs.wireguard.nixosModules.default
     {
@@ -48,10 +49,15 @@ in {
         "10.252.1.0" = ["dev.graph-learning.ru" "gitea.dev.graph-learning.ru"];
       };
     };
+    users.users.dmitrii = {
+      shell = pkgs.fish;
+    };
+    programs.fish.enable = true;
     systemd.tmpfiles.rules = [
       "d ${dataDir} 755 woodpecker nginx -"
       "d ${homdeDir} 755 woodpecker nginx -"
     ];
+    programs.direnv.enable = true;
     system.stateVersion = lib.mkForce "25.11";
     environment.systemPackages = with pkgs; [
       serpl
@@ -62,9 +68,27 @@ in {
 
       unstable.opencode
 
+      nixos-firewall-tool
+
+      libnotify
+      notify
+
+      lazygit
+
       btop
       htop
+
+      google-chrome
+
+      bun
+
+      usbutils
     ];
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+      memoryPercent = 45;
+    };
     sops = {
       defaultSopsFile = ./secrets.yaml;
       defaultSopsFormat = "yaml";

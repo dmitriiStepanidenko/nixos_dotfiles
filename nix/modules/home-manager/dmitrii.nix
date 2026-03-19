@@ -48,6 +48,16 @@
     };
     git = {
       enable = true;
+      lfs = {
+        enable = true;
+      };
+      settings = {
+        user = {
+          name = "Dmitrii Stepanidenko";
+          email = "dimitrij.stepanidenko@gmail.com";
+        };
+        core.editor = "nvim";
+      };
     };
     home-manager.enable = true;
     fish = {
@@ -55,6 +65,7 @@
     };
     direnv = {
       enable = true;
+      nix-direnv.enable = true; # ← super useful on NixOS
       #enableFishIntegration = true;
     };
     starship = {
@@ -64,24 +75,6 @@
     yazi = {
       enable = true;
       enableFishIntegration = true;
-    };
-    halloy = {
-      enable = true;
-      package = null;
-      settings = {
-        #theme = "tokyo-night-storm";
-        "buffer.channel.topic" = {
-          enabled = true;
-        };
-        "servers.liberachat" = {
-          channels = [
-            "#halloy"
-            "#nixos"
-          ];
-          nickname = "dmitrii_s";
-          server = "irc.libera.chat";
-        };
-      };
     };
   };
 }

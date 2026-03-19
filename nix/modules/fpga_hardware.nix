@@ -7,7 +7,7 @@
 }: {
   environment.systemPackages = with pkgs; [
     gtkwave
-    verilog # icarus verilog
+    iverilog # icarus verilog
     verilator
 
     systemc
@@ -67,6 +67,7 @@
 
         LABEL="openhantek_rules_end"
 
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0666", GROUP="plugdev"
 
       '';
     };
