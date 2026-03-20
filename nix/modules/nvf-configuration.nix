@@ -1,16 +1,40 @@
 {
+  inputs ? {},
   pkgs,
-  lib,
-  inputs,
+  lib ? pkgs.lib,
+  nixos-unstable,
   ...
 }: let
-  unstable = import inputs.nixos-unstable {
+  unstable = import nixos-unstable {
     system = "x86_64-linux";
     config = {
       allowUnfree = true;
     };
   };
+  # === At the top of your let ... in block (replace your old spadeQueries + spadefmt) ===
+  treeSitterSpade = unstable.tree-sitter.buildGrammar {
+    language = "spade";
+    version = "unstable-2026-03-19";
+    src = pkgs.fetchFromGitLab {
+      owner = "spade-lang";
+      repo = "tree-sitter-spade";
+      rev = "1016b4eafabaa75728569b1ba1bfbf8a849a4ec4";
+      hash = "sha256-P0lQ2BjplAGQv/4Kn4xqyajYD8yrQpjPfgVVmassY4Y=";
+    };
+    # generate = true; # uncomment ONLY if build fails (needs tree-sitter CLI in buildInputs)
+  };
+  spadeParserNvim = pkgs.runCommand "tree-sitter-spade-nvim" {} ''
+    mkdir -p $out/parser
+    cp ${unstable.tree-sitter-grammars.tree-sitter-spade}/parser $out/parser/spade.so
+  '';
+  #hasUnstable = unstable != null;
   # spadefmt (community formatter, not yet in nixpkgs)
+  #  spadeQueries = pkgs.fetchFromGitLab {
+  #    owner = "spade-lang";
+  #    repo = "tree-sitter-spade";
+  #    rev = "1016b4eafabaa75728569b1ba1bfbf8a849a4ec4"; # pin to a commit hash ideally
+  #    hash = "sha256-P0lQ2BjplAGQv/4Kn4xqyajYD8yrQpjPfgVVmassY4Y=";
+  #  };
   spadefmt = pkgs.rustPlatform.buildRustPackage {
     pname = "spadefmt";
     version = "unstable-2026-03-19";
@@ -18,12 +42,22 @@
     src = pkgs.fetchFromGitHub {
       owner = "ethanuppal";
       repo = "spadefmt";
-      rev = "main"; # pin a specific commit if you prefer
-      hash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # ← fix me
+      rev = "2238c2562517f92ffee59668d212529f1b798f9b";
+      hash = "sha256-s0AwhkwB2d2gGCOfC7LXrRFtxP6ivWT3bZ6tTg3SF9s=";
     };
 
-    cargoHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # ← fix me
+    cargoHash = "sha256-v268aDcw5bmJFgNNLejTiFyk7Rnr7zdP2zXZlU6Vp1E=";
     meta.mainProgram = "spadefmt";
+  };
+  spadeVimPlugin = pkgs.vimUtils.buildVimPlugin {
+    name = "spade-vim";
+    doInstallCheck = false;
+    src = pkgs.fetchFromGitLab {
+      owner = "spade-lang";
+      repo = "spade-vim";
+      rev = "1016b4eafabaa75728569b1ba1bfbf8a849a4ec4";
+      hash = "sha256-U4LrO89wHRPQXjILI+tttbWk23TDS2kVPaJbSS33Xvc=";
+    };
   };
 in {
   config.vim = {
@@ -56,13 +90,11 @@ in {
       tabstop = 2;
     };
     extraPlugins = {
+      "spade-vim" = {
+        package = spadeVimPlugin;
+      };
       "lsp-file-operations" = {
-        package = pkgs.fetchFromGitHub {
-          owner = "antosha417";
-          repo = "nvim-lsp-file-operations";
-          rev = "9744b738183a5adca0f916527922078a965515ed";
-          hash = "sha256-c56N0E6NA3g58IRgnTtvGmpJ+uZemdmoIsQmPcvbrHY=";
-        };
+        package = unstable.vimPlugins.nvim-lsp-file-operations;
         setup = "require('lsp-file-operations').setup {}";
         after = ["nvimTree"];
       };
@@ -404,17 +436,6 @@ in {
         };
       };
     };
-    formatter.conform-nvim = {
-      enable = true;
-      setupOpts = {
-        lsp_format = "prefer";
-        formatters_by_ft = {
-          javascript = ["prettierd" "prettier"];
-          typescript = ["prettierd" "prettier"];
-          json = ["prettierd" "prettier"];
-        };
-      };
-    };
 
     statusline.lualine.enable = true;
     telescope = {
@@ -430,55 +451,70 @@ in {
       enable = true;
     };
     treesitter = {
+      enable = true;
       fold = true;
-      grammars = [unstable.tree-sitter-grammars.tree-sitter-spade];
+      #grammars = [treeSitterSpade]; # ← this was the missing piece
+      #grammars = lib.optionals hasUnstable [unstable.tree-sitter-grammars.tree-sitter-spade];
+      #grammars = [
+      #  unstable.tree-sitter-grammars.tree-sitter-spade
+      #  unstable.python313Packages.tree-sitter-grammars.tree-sitter-spade
+      #];
     };
     # All Spade tools in PATH
-    extraPackages = [pkgs.spade pkgs.swim spadefmt];
+    extraPackages = [unstable.spade unstable.swim spadefmt];
 
-    # LSP (new declarative path)
+    # LSP (cleaned)
     lsp.servers.spade = {
       enable = true;
-      cmd = [(lib.getExe' pkgs.spade "spade-language-server")];
+      cmd = [(lib.getExe' unstable.spade "spade-language-server")];
       filetypes = ["spade"];
       root_markers = ["swim.toml"];
     };
 
-    # conform.nvim (NVF's formatter module)
     formatter.conform-nvim = {
+      enable = true;
       setupOpts = {
         format_on_save = {
           timeout_ms = 500;
           lsp_fallback = false;
         };
         formatters_by_ft = {
+          javascript = ["prettierd" "prettier"];
+          typescript = ["prettierd" "prettier"];
+          json = ["prettierd" "prettier"];
           spade = ["spadefmt"];
         };
         formatters = {
           spadefmt = {
             command = lib.getExe spadefmt;
+            stdin = false; # ← important: run on the actual file
+            args = ["$FILENAME"]; # ← passes the file path (conform magic)
           };
         };
       };
     };
 
-    # Custom Lua (replaces the old extraConfigLua)
     luaConfigRC.spade-setup = ''
-      -- Filetype detection
-      vim.filetype.add({
-        extension = { spade = "spade" },
-      })
+      vim.filetype.add({ extension = { spade = "spade" } })
+      vim.treesitter.language.register("spade", "spade")
+      vim.opt.rtp:prepend("${spadeParserNvim}")
 
-      -- Tell nvim-treesitter about our grammar
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.spade = {
-        install_info = {
-          url = "https://gitlab.com/spade-lang/tree-sitter-spade.git",
-          files = { "src/parser.c", "src/scanner.c" },
-        },
-        filetype = "spade",
-      }
+      -- -- Exact registration from Spade docs + Nix store path
+      -- local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+      -- parser_config.spade = {
+      --   install_info = {
+      --     url = "${treeSitterSpade}",  -- this is the magic Nix store path
+      --     files = { "src/parser.c" },
+      --     branch = "main",
+      --     generate_requires_npm = false,
+      --     requires_generate_from_grammar = false,
+      --   },
+      --   filetype = "spade",
+      -- }
+
+
     '';
+
     languages = {
       enableTreesitter = true;
       enableFormat = true;

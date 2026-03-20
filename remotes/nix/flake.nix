@@ -33,7 +33,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs-master.url = "github:nixos/nixpkgs";
 
@@ -76,6 +76,7 @@
     colmena,
     nixpkgs,
     nixpkgs-unstable,
+    nixos-unstable,
     sops-nix,
     vm-profile,
     nixos-generators,
@@ -279,6 +280,7 @@
             inherit pkgs;
             extraSpecialArgs = {
               inherit inputs;
+              nixos-unstable = nixos-unstable;
             };
 
             modules = [
@@ -298,7 +300,7 @@
       nixosConfigurations = {
         builder = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {inherit inputs system;};
+          specialArgs = {inherit inputs system; nixos-unstable = nixos-unstable; };
           modules = [
             sops-nix.nixosModules.sops
             vm-profile.nixosModules.default

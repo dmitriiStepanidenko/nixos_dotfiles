@@ -13,7 +13,7 @@
     nixos-25-05.url = "github:nixos/nixpkgs?ref=release-25.05";
     #nixos-25-05.url = "github:nixos/nixpkgs?ref=5eb9271c6e5096d5bb9af338448efc30b11b84f0";
     nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
-    nixos-unstable.url = "github:nixos/nixpkgs?ref=release-25.11";
+    nixos-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
 
     ventoy.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
@@ -74,6 +74,7 @@
     sccache,
     home-manager,
     nixgl,
+    nixos-unstable,
     ...
   }: let
     system = "x86_64-linux";
@@ -96,6 +97,7 @@
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs;
+            nixos-unstable = nixos-unstable;
           };
 
           modules = [
@@ -117,7 +119,8 @@
       nixos = inputs.nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
-          inherit inputs;
+          inherit inputs system;
+          nixos-unstable = nixos-unstable;
         };
         modules = [
           ({pkgs, ...}: {

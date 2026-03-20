@@ -23,6 +23,7 @@
     packages = [
       pkgs.serpl
       pkgs.ast-grep
+      pkgs.sshfs
     ];
 
     sessionPath = [

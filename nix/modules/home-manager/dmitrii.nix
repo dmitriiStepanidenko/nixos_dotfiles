@@ -6,7 +6,6 @@
 }: {
   imports = [
     #./yubikey.nix
-    #{inherit inputs;}
   ];
   home = {
     username = "dmitrii";

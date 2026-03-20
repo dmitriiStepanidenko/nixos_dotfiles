@@ -83,6 +83,8 @@ in {
       bun
 
       usbutils
+
+      tree
     ];
     zramSwap = {
       enable = true;
