@@ -24,6 +24,46 @@
       pkgs.serpl
       pkgs.ast-grep
       pkgs.sshfs
+      # ── mount script ─────────────────────────────────────
+      (pkgs.writeShellApplication {
+        name = "ssh-mount";
+        runtimeInputs = with pkgs; [sshfs util-linux]; # for mkdir + mountpoint check
+        text = ''
+          MOUNTPOINT="''${1:-$HOME/remote-mount}"
+          REMOTE="''${2:-builder:~}"   # ← change this
+
+          mkdir -p "$MOUNTPOINT"
+
+          if mountpoint -q "$MOUNTPOINT" 2>/dev/null; then
+            echo "✅ Already mounted at $MOUNTPOINT"
+            exit 0
+          fi
+
+          echo "Mounting $REMOTE → $MOUNTPOINT ..."
+          sshfs "$REMOTE" "$MOUNTPOINT" \
+            -o reconnect,ServerAliveInterval=15,ServerAliveCountMax=3 \
+            -o idmap=user,noatime,follow_symlinks,compression=yes
+
+          echo "✅ Mounted! Use 'ssh-umount' to disconnect."
+        '';
+      })
+
+      # ── unmount script ───────────────────────────────────
+      (pkgs.writeShellApplication {
+        name = "ssh-umount";
+        runtimeInputs = [pkgs.util-linux]; # umount + mountpoint
+        text = ''
+          MOUNTPOINT="''${1:-$HOME/remote-mount}"
+
+          if mountpoint -q "$MOUNTPOINT" 2>/dev/null; then
+            echo "Unmounting $MOUNTPOINT ..."
+            umount "$MOUNTPOINT" || fusermount -u "$MOUNTPOINT" 2>/dev/null
+            echo "✅ Unmounted!"
+          else
+            echo "Nothing mounted at $MOUNTPOINT"
+          fi
+        '';
+      })
     ];
 
     sessionPath = [
@@ -95,6 +135,11 @@
     home-manager.enable = true;
     fish = {
       enable = true;
+      shellAliases = {
+        # ← change to programs.bash.shellAliases if you use bash
+        mnt = "ssh-mount";
+        umnt = "ssh-umount";
+      };
     };
     direnv = {
       enable = true;
