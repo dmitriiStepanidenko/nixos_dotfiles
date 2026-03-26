@@ -452,7 +452,7 @@ in {
     };
     treesitter = {
       enable = true;
-      fold = true;
+      fold = false;
       #grammars = [treeSitterSpade]; # ← this was the missing piece
       #grammars = lib.optionals hasUnstable [unstable.tree-sitter-grammars.tree-sitter-spade];
       #grammars = [
@@ -474,10 +474,11 @@ in {
     formatter.conform-nvim = {
       enable = true;
       setupOpts = {
-        format_on_save = {
-          timeout_ms = 500;
-          lsp_fallback = false;
-        };
+        # If defined, gonna run format on save and fucked up makrdown formats
+        #format_on_save = {
+        #  timeout_ms = 500;
+        #  lsp_fallback = false;
+        #};
         formatters_by_ft = {
           javascript = ["prettierd" "prettier"];
           typescript = ["prettierd" "prettier"];
@@ -542,6 +543,10 @@ in {
         lsp.enable = true;
       };
       markdown = {
+        enable = true;
+        format.enable = true;
+      };
+      typst = {
         enable = true;
         format.enable = true;
       };

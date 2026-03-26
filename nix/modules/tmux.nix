@@ -92,7 +92,8 @@ in {
       bind -r L resize-pane -R 5
 
       # Pressing Ctrl-a locally will press Ctrl-b on remote host tmux
-      bind -n C-a send-prefix
+      # bind -n C-a send-prefix
+      bind -n C-a send-keys C-a
 
       setw -g mouse on
 

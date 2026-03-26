@@ -187,6 +187,18 @@
           ../../nix/hosts/nginx_local/default.nix
         ];
       };
+      backup_local = {...}: {
+        deployment = {
+          targetHost = "192.168.4.114";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          disko.nixosModules.disko
+          ../../nix/hosts/backup_local/default.nix
+        ];
+      };
       backup = {...}: {
         deployment = {
           targetHost = "176.123.169.226";
@@ -197,6 +209,18 @@
         imports = [
           disko.nixosModules.disko
           ../../nix/hosts/backup/default.nix
+        ];
+      };
+      dev_new = {...}: {
+        deployment = {
+          targetHost = "37.230.116.201";
+          targetPort = 22;
+          targetUser = "root";
+        };
+        time.timeZone = "Europe/Moscow";
+        imports = [
+          disko.nixosModules.disko
+          ../../nix/hosts/dev_new/default.nix
         ];
       };
       small-nfs = {...}: {
@@ -300,7 +324,10 @@
       nixosConfigurations = {
         builder = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = {inherit inputs system; nixos-unstable = nixos-unstable; };
+          specialArgs = {
+            inherit inputs system;
+            nixos-unstable = nixos-unstable;
+          };
           modules = [
             sops-nix.nixosModules.sops
             vm-profile.nixosModules.default
@@ -318,6 +345,18 @@
             variables.EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
             variables.SUDO_EDITOR = "${self.packages.${system}.my-neovim}/bin/nvim";
           };
+        };
+        dev_new = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs system;
+          };
+          modules = [
+            sops-nix.nixosModules.sops
+            vm-profile.nixosModules.default
+            disko.nixosModules.disko
+            ../../nix/hosts/dev_new/default.nix
+          ];
         };
       };
       iso = nixos-generators.nixosGenerate {

@@ -59,6 +59,8 @@ in {
     ./modules/quality_of_programming_life.nix
     ./modules/rustify.nix
     ../../nix/modules/usbguard
+    ../../nix/modules/nix-ld.nix
+    ../../nix/modules/fpga_hardware.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -706,6 +708,8 @@ in {
 
     ventoy.ventoy-full-gtk
   ];
+  programs.nix-ld.enable = true;
+  programs.nix-ld.package = pkgs.nix-ld; # or the default
 
   services.searx = {
     enable = true;

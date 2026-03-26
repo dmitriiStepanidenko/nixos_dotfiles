@@ -17,6 +17,7 @@ keys:
     - &backup age1kepnfdct2up7l9w9e7naqwlmsyrxunhv82kx45m85veu3zfpf9ds2mjhty
     - &tikv age1vs2mgejkakapsfgzlm8j3gyfxm7vmhv96pgvcf0p8y77rhlyj43spl5lwg
     - &builder age1qmvqu9y3vkm3cdzk6rna5ehqh8mkj5rmwqqs3836nd0rfgnmcscqm3kf5r
+    - &backup_local age1ue57efvhfhdmkz99gfsg0l0skdcl4uayenx4v0fa9nu6el9xp9fqvje9zz
 creation_rules:
   - path_regex: etc/nixos/.*\.(yaml)$
     key_groups:
@@ -90,3 +91,8 @@ creation_rules:
     - age:
       - *mine
       - *builder
+  - path_regex: nix/hosts/backup_local/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *backup_local

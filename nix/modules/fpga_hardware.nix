@@ -4,7 +4,18 @@
   pkgs,
   inputs,
   ...
-}: {
+}: let
+  system = pkgs.system;
+  unstable = import inputs.nixos-unstable {
+    inherit system;
+    config = {
+      allowUnfree = true;
+      #permittedInsecurePackages = [
+      #  "electron-27.3.11"
+      #];
+    };
+  };
+in {
   environment.systemPackages = with pkgs; [
     gtkwave
     iverilog # icarus verilog
@@ -28,6 +39,8 @@
     kicad
 
     openhantek6022
+
+    unstable.surfer
   ];
 
   services = {
@@ -68,7 +81,17 @@
         LABEL="openhantek_rules_end"
 
         SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", MODE="0666", GROUP="plugdev"
+        # Tang Nano 20K (Gowin GW2A) — USB-JTAG
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6010", GROUP="plugdev", MODE="0660"
+        # Tang Nano 9K / other variants (different PID)
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6014", GROUP="plugdev", MODE="0660"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6010", GROUP="plugdev", MODE="0660"
+        SUBSYSTEM=="usb_device", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6010", GROUP="plugdev", MODE="0660"
 
+        # FTDI USB-JTAG/UART for ALL FPGA dev boards (Tang Nano, TinyFPGA, etc.)
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0403", GROUP="plugdev", MODE="0660"
+
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", MODE="0666"
       '';
     };
   };

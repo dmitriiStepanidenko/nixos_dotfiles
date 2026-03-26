@@ -30,7 +30,7 @@
         runtimeInputs = with pkgs; [sshfs util-linux]; # for mkdir + mountpoint check
         text = ''
           MOUNTPOINT="''${1:-$HOME/remote-mount}"
-          REMOTE="''${2:-builder:~}"   # ← change this
+          REMOTE="''${2:-builder:/home/dmitrii}"   # ← change this
 
           mkdir -p "$MOUNTPOINT"
 
