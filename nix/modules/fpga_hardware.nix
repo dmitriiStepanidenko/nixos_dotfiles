@@ -41,6 +41,8 @@ in {
     openhantek6022
 
     unstable.surfer
+
+    openfpgaloader
   ];
 
   services = {

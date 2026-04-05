@@ -180,6 +180,8 @@ in {
     slurp # cursor position
 
     claude-code
+    # this needs for statusline to work
+    jq
 
     aider-chat-full
 

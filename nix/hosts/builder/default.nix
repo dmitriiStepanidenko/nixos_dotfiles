@@ -20,6 +20,8 @@ in {
     ../../modules/fpga_hardware.nix
     ../../modules/nix-ld.nix
     ./nix_builder.nix
+    ./rag-pipeline.nix
+    ./omniroute.nix
     inputs.wireguard.nixosModules.default
     {
       services.wireguard = {
@@ -45,6 +47,18 @@ in {
   ];
 
   config = {
+    services.ragPipeline = {
+      enable = true;
+      enableGpu = false; # ← CPU-only machine
+      publiclyExpose = true; 
+      openRouterSopsSecret = "openrouter/env";
+      lightragSopsSecret = "lightrag/auth";
+    };
+    services.omniroute = {
+      enable = true;
+      publiclyExpose = true;        # only on the server if you want internet access
+      # envFile = config.sops.secrets."omniroute/env".path;  # optional sops
+    };
     i18n = {
       defaultLocale = "en_US.UTF-8";
       supportedLocales = [
@@ -136,6 +150,16 @@ in {
           owner = config.users.users.systemd-network.name;
           mode = "0400";
           restartUnits = ["wireguard-setup.service"];
+        };
+        "openrouter/env" = {
+          owner = "root";
+          group = "root";
+          mode = "0400";
+        };
+        "lightrag/auth" = {
+          owner = "root";
+          group = "root";
+          mode = "0400";
         };
       };
     };

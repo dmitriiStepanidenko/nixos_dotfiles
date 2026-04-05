@@ -48,12 +48,12 @@ in {
     ./modules/cpu.nix
     ./modules/window_manager.nix
     ./modules/fonts_icons.nix
-    ./modules/xray.nix
+    #./modules/xray.nix
     ./modules/v2ray.nix
     ./modules/proxies.nix
     ./modules/ssh.nix
     ./modules/yubikey.nix
-    ./modules/android_dev.nix
+    #./modules/android_dev.nix
     ./modules/remote_builder.nix
     #./modules/amdgpu_patch.nix
     ./modules/quality_of_programming_life.nix

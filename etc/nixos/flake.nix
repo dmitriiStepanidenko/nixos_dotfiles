@@ -10,9 +10,7 @@
     #wireguard.url = "git+file:/home/dmitrii/tmp/wireguard-nixos-private";
 
     nixos-25-11.url = "github:nixos/nixpkgs?ref=release-25.11";
-    nixos-25-05.url = "github:nixos/nixpkgs?ref=release-25.05";
     #nixos-25-05.url = "github:nixos/nixpkgs?ref=5eb9271c6e5096d5bb9af338448efc30b11b84f0";
-    nixos-24-11.url = "github:nixos/nixpkgs?ref=nixos-24.11";
     nixos-unstable.url = "github:nixos/nixpkgs?ref=nixpkgs-unstable";
 
     ventoy.url = "github:nixos/nixpkgs?ref=nixos-unstable";

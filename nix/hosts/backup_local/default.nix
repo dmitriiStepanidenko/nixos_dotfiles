@@ -28,6 +28,7 @@
       };
     }
     ./restic.nix
+    ./uptime-kuma.nix
   ];
   config = {
     services.cloud-init.enable = false;
