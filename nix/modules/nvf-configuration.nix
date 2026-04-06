@@ -18,7 +18,7 @@
     src = pkgs.fetchFromGitLab {
       owner = "spade-lang";
       repo = "tree-sitter-spade";
-      rev = "1016b4eafabaa75728569b1ba1bfbf8a849a4ec4";
+      rev = "f4f62fcb2340d744f6df48de22b5f239beecdab5";
       hash = "sha256-P0lQ2BjplAGQv/4Kn4xqyajYD8yrQpjPfgVVmassY4Y=";
     };
     # generate = true; # uncomment ONLY if build fails (needs tree-sitter CLI in buildInputs)

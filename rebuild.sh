@@ -26,8 +26,11 @@ pushd /home/dmitrii/shared/dotfiles/etc/nixos
 #fi
 
 # Autoformat your nix files
-alejandra . &>/dev/null \
-  || ( alejandra . ; echo "formatting failed!" && exit 1)
+alejandra . &>/dev/null ||
+  (
+    alejandra .
+    echo "formatting failed!" && exit 1
+  )
 
 # Shows your changes
 git diff -U0 '*.nix'
@@ -41,48 +44,74 @@ pwd
 
 # Rebuild, output simplified errors, log trackebacks
 # Rebuild, output simplified errors, log trackebacks
-  #--show-trace -v \
+#--show-trace -v \
 #sudo nixos-rebuild switch --option eval-cache false \
 #  --max-jobs 4 --cores 15\
 #  -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-#  --flake . 2>&1 | tee nixos-switch.log || { 
-#    echo "NixOS rebuild failed!" 
-#    cat nixos-switch.log | grep -i error --color=always 
+#  --flake . 2>&1 | tee nixos-switch.log || {
+#    echo "NixOS rebuild failed!"
+#    cat nixos-switch.log | grep -i error --color=always
 #    echo "NixOS Rebuild ended with error!" | notify -silent
-#    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available 
-#    exit 1 
+#    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available
+#    exit 1
 #}
 # Rebuild, output simplified errors, log trackebacks
 
-  #--builders ""\
-#HTTPS_PROXY="socks5://127.0.0.1:10800" 
+#--builders ""\
+#HTTPS_PROXY="socks5://127.0.0.1:10800"
 #--option eval-cache false \
-HTTP_PROXY="http://127.0.0.1:10800" \
-HTTPS_PROXY="http://127.0.0.1:10800" \
-ALL_PROXY="http://127.0.0.1:10800" \
-GIT_PROXY_COMMAND="http://127.0.0.1:10800" \
-sudo nixos-rebuild switch --option eval-cache false \
+
+# ==================== PROXY SETTINGS ====================
+PROXY="http://127.0.0.1:10800"
+#PROXY="http://192.168.0.5:1080"
+# =======================================================
+#  --builders ""\
+
+sudo env \
+  HTTP_PROXY="$PROXY" \
+  HTTPS_PROXY="$PROXY" \
+  ALL_PROXY="$PROXY" \
+  http_proxy="$PROXY" \
+  https_proxy="$PROXY" \
+  all_proxy="$PROXY" \
+  GIT_PROXY_COMMAND="$PROXY" \
+  nixos-rebuild switch --option eval-cache false \
   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
   --print-build-logs \
-  --flake . &>nixos-switch.log || { 
-    echo "NixOS rebuild failed!" 
-    cat nixos-switch.log | grep -i error --color=always 
-    echo "NixOS Rebuild ended with error!" | notify -silent
-    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available 
-    exit 1 
+  --flake . &>nixos-switch.log || {
+  echo "NixOS rebuild failed!"
+  cat nixos-switch.log | grep -i error --color=always
+  echo "NixOS Rebuild ended with error!" | notify -silent
+  notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available
+  exit 1
 }
+
+#HTTP_PROXY="http://127.0.0.1:10800" \
+#HTTPS_PROXY="http://127.0.0.1:10800" \
+#ALL_PROXY="http://127.0.0.1:10800" \
+#GIT_PROXY_COMMAND="http://127.0.0.1:10800" \
+#sudo nixos-rebuild switch --option eval-cache false \
+#  -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
+#  --print-build-logs \
+#  --flake . &>nixos-switch.log || {
+#    echo "NixOS rebuild failed!"
+#    cat nixos-switch.log | grep -i error --color=always
+#    echo "NixOS Rebuild ended with error!" | notify -silent
+#    notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available
+#    exit 1
+#}
 
 # Alternative: Show nom output to terminal, save raw output to log
 # sudo nixos-rebuild switch --option eval-cache false \
 #   --max-jobs 4 --cores 15\
 #   --show-trace -v \
 #   -I nixos-config=/home/dmitrii/shared/dotfiles/etc/nixos/configuration.nix \
-#   --flake . 2> >(tee nixos-switch.log >&2) | nom || { 
-#     echo "NixOS rebuild failed!" 
-#     cat nixos-switch.log | grep -i error --color=always 
+#   --flake . 2> >(tee nixos-switch.log >&2) | nom || {
+#     echo "NixOS rebuild failed!"
+#     cat nixos-switch.log | grep -i error --color=always
 #     echo "NixOS Rebuild ended with error!" | notify -silent
-#     notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available 
-#     exit 1 
+#     notify-send -e "NixOS Rebuild ended with error!" --icon=software-update-available
+#     exit 1
 # }
 
 # Get current generation metadata

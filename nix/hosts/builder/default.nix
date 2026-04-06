@@ -53,11 +53,16 @@ in {
       publiclyExpose = true; 
       openRouterSopsSecret = "openrouter/env";
       lightragSopsSecret = "lightrag/auth";
+      mineru = {
+        enableLlmAided = true;
+        #llmModel = "qwen/qwen3.6-plus:free";
+        llmModel = "deepseek/deepseek-v3.2";
+      };
     };
     services.omniroute = {
       enable = true;
       publiclyExpose = true;        # only on the server if you want internet access
-      # envFile = config.sops.secrets."omniroute/env".path;  # optional sops
+      envFile = config.sops.secrets."omniroute/env".path;  # optional sops
     };
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -155,8 +160,15 @@ in {
           owner = "root";
           group = "root";
           mode = "0400";
+          restartUnits = ["podman-lightrag.service"];
         };
         "lightrag/auth" = {
+          owner = "root";
+          group = "root";
+          mode = "0400";
+          restartUnits = ["podman-lightrag.service"];
+        };
+        "omniroute/env" = {
           owner = "root";
           group = "root";
           mode = "0400";

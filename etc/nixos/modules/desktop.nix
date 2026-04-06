@@ -185,7 +185,8 @@ in {
 
     aider-chat-full
 
-    opencode
+    unstable.opencode
+    inputs.daniel-lightrag-mcp.packages.${system}.default
   ];
   programs.ydotool.enable = true;
   programs.noisetorch.enable = true;

@@ -60,6 +60,8 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    daniel-lightrag-mcp.url = "github:dmitriiStepanidenko/daniel-lightrag-mcp/feat/nixos-packaging";
   };
 
   outputs = inputs @ {

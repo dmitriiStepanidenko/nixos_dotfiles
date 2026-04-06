@@ -36,7 +36,7 @@ in {
     btor2tools
     z3
 
-    kicad
+    #kicad
 
     openhantek6022
 
