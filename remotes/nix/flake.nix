@@ -249,6 +249,7 @@
         system.stateVersion = pkgs.lib.mkForce "25.11";
         deployment = {
           targetHost = "192.168.0.192";
+          #targetHost = "10.252.1.22";
           targetPort = 22;
           targetUser = "root";
         };

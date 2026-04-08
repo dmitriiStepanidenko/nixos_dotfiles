@@ -187,6 +187,8 @@ in {
 
     unstable.opencode
     inputs.daniel-lightrag-mcp.packages.${system}.default
+
+    imv # image viewer
   ];
   programs.ydotool.enable = true;
   programs.noisetorch.enable = true;

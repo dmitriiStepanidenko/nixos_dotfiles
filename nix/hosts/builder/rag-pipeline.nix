@@ -124,11 +124,56 @@ in {
             GUEST_TOKEN_EXPIRE_HOURS = "24";
             MAX_GRAPH_NODES = "5000";
             GRAPH_VIEW_MAX_NODES = "3000";
+
+            ### Max concurrency requests of LLM (for both query and document processing)
+            # default 4
+            MAX_ASYNC = "12";
+            ### Number of parallel processing documents(between 2~10, MAX_ASYNC/3 is recommended)
+            # default 2
+            MAX_PARALLEL_INSERT = "4";
+            ### Max concurrency requests for Embedding
+            # default 8
+            EMBEDDING_FUNC_MAX_ASYNC = "8";
+            ### Num of chunks send to Embedding in single request
+            # default 10
+            EMBEDDING_BATCH_NUM = "10";
+
+            OPENAI_LLM_MAX_COMPLETION_TOKENS = "12000";
+            # default 9000
+            LIGHTRAG_MAX_TOKENS = "12000";
+            # default 9000
+            OPENAI_LLM_MAX_TOKENS="12000";
+            LIGHTRAG_TEMPERATURE = "0.8";
+            # none minimal low medium high xhigh
+            OPENAI_LLM_REASONING_EFFORT = "minimal";
             OPENAI_LLM_EXTRA_BODY = "{'reasoning': {'enabled': false}}";
-            #MAX_PARALLEL_INSERT = "8";
-            #MAX_ASYNC = "24";
-            #EMBEDDING_FUNC_MAX_ASYNC = "16";
-            #EMBEDDING_BATCH_NUM = "64";
+
+            ### LLM request retry and timeout settings for evaluation
+            # default 5
+            EVAL_LLM_MAX_RETRIES = "15";
+            # default 180
+            LLM_TIMEOUT = "480";
+
+            ### Number of entities or relations retrieved from KG
+            # default = 40
+            TOP_K = "40";
+            ### Maximum number or chunks for naive vector search
+            # default = 20
+            CHUNK_TOP_K = "20";
+            ### control the actual entities send to LLM
+            # default = 6000
+            MAX_ENTITY_TOKENS = "6000";
+            ### control the actual relations send to LLM
+            # default =  8000
+            MAX_RELATION_TOKENS = "8000";
+            ### control the maximum tokens send to LLM (include entities, relations and chunks)
+            # default =  30000
+            MAX_TOTAL_TOKENS = "30000";
+
+            ### Cohere rerank chunking configuration (useful for models with token limits like ColBERT)
+            RERANK_ENABLE_CHUNKING = "true";
+            RERANK_MAX_TOKENS_PER_DOC = "480";
+
             #RELATED_CHUNK_NUMBER = "10";
           };
           extraOptions = ["--restart=unless-stopped"];

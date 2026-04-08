@@ -1,10 +1,12 @@
 # omniroute.nix — Declarative OmniRoute AI Gateway (Podman)
-{ config, lib, pkgs, ... }:
-
-let
-  cfg = config.services.omniroute;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
+  cfg = config.services.omniroute;
+in {
   options.services.omniroute = {
     enable = lib.mkEnableOption "OmniRoute — Smart LLM Router & AI Gateway";
 
@@ -32,22 +34,24 @@ in
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.omniroute = {
-      image = "diegosouzapw/omniroute:latest";
+      image = "diegosouzapw/omniroute:3.5.1";
       autoStart = true;
-      ports = [ "${toString cfg.port}:20128" ];
-      volumes = [ "${cfg.dataDir}:/app/data" ];
+      ports = ["${toString cfg.port}:20128"];
+      volumes = ["${cfg.dataDir}:/app/data"];
       extraOptions = [
         "--restart=unless-stopped"
-        "--stop-timeout=40"   # required for clean SQLite WAL shutdown
+        "--stop-timeout=40" # required for clean SQLite WAL shutdown
       ];
       autoRemoveOnStop = false;
 
       environment = {
         PORT = "20128";
+        ENABLE_REQUEST_LOGS = "true"; # Main request logging
+        CALL_LOG_PIPELINE_ENABLED = "true"; # Exactly the four-stage payload capture
         # NEXT_PUBLIC_BASE_URL = "http://your-domain-or-ip:${toString cfg.port}"; # optional for OAuth
       };
 
-      environmentFiles = lib.mkIf (cfg.envFile != null) [ cfg.envFile ];
+      environmentFiles = lib.mkIf (cfg.envFile != null) [cfg.envFile];
     };
 
     # Create persistent data directory
@@ -56,8 +60,8 @@ in
     ];
 
     # Firewall (only if you want it public)
-    networking.firewall.allowedTCPPorts = lib.mkIf cfg.publiclyExpose [ cfg.port ];
+    networking.firewall.allowedTCPPorts = lib.mkIf cfg.publiclyExpose [cfg.port];
 
-    environment.systemPackages = [ pkgs.podman ];
+    environment.systemPackages = [pkgs.podman];
   };
 }

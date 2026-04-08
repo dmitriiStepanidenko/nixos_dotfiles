@@ -64,6 +64,10 @@
           fi
         '';
       })
+
+      pkgs.imagemagick # Better SVG/HEIC/JXL support + identify
+      pkgs.exiftool # Full EXIF if you want plugins
+      pkgs.ffmpegthumbnailer # Video thumbnails (bonus)
     ];
 
     sessionPath = [
@@ -105,6 +109,7 @@
     #};
   };
   programs = {
+    imv.enable = true; # Enables imv and sets up basic integration
     television = {
       enable = true;
       enableFishIntegration = true;
