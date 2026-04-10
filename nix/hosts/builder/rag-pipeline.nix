@@ -127,13 +127,13 @@ in {
 
             ### Max concurrency requests of LLM (for both query and document processing)
             # default 4
-            MAX_ASYNC = "12";
+            MAX_ASYNC = "3";
             ### Number of parallel processing documents(between 2~10, MAX_ASYNC/3 is recommended)
             # default 2
-            MAX_PARALLEL_INSERT = "4";
+            MAX_PARALLEL_INSERT = "2";
             ### Max concurrency requests for Embedding
             # default 8
-            EMBEDDING_FUNC_MAX_ASYNC = "8";
+            EMBEDDING_FUNC_MAX_ASYNC = "24";
             ### Num of chunks send to Embedding in single request
             # default 10
             EMBEDDING_BATCH_NUM = "10";
@@ -152,7 +152,7 @@ in {
             # default 5
             EVAL_LLM_MAX_RETRIES = "15";
             # default 180
-            LLM_TIMEOUT = "480";
+            LLM_TIMEOUT = "600";
 
             ### Number of entities or relations retrieved from KG
             # default = 40

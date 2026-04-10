@@ -707,6 +707,8 @@ in {
     openssl
 
     ventoy.ventoy-full-gtk
+
+    bun
   ];
   programs.nix-ld.enable = true;
   programs.nix-ld.package = pkgs.nix-ld; # or the default
