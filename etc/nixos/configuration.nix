@@ -709,6 +709,8 @@ in {
     ventoy.ventoy-full-gtk
 
     bun
+
+    nixos-firewall-tool
   ];
   programs.nix-ld.enable = true;
   programs.nix-ld.package = pkgs.nix-ld; # or the default

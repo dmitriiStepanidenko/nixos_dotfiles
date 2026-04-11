@@ -50,7 +50,7 @@ in {
     services.ragPipeline = {
       enable = true;
       enableGpu = false; # ← CPU-only machine
-      publiclyExpose = true; 
+      publiclyExpose = true;
       openRouterSopsSecret = "openrouter/env";
       lightragSopsSecret = "lightrag/auth";
       mineru = {
@@ -61,8 +61,8 @@ in {
     };
     services.omniroute = {
       enable = true;
-      publiclyExpose = true;        # only on the server if you want internet access
-      envFile = config.sops.secrets."omniroute/env".path;  # optional sops
+      publiclyExpose = true; # only on the server if you want internet access
+      envFile = config.sops.secrets."omniroute/env".path; # optional sops
     };
     i18n = {
       defaultLocale = "en_US.UTF-8";
@@ -121,6 +121,8 @@ in {
       tree
 
       blisp
+
+      inputs.daniel-lightrag-mcp.packages.${system}.default
     ];
     zramSwap = {
       enable = true;

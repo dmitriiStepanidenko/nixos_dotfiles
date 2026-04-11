@@ -64,6 +64,25 @@
         "type": "github"
       }
     },
+    "daniel-lightrag-mcp": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1775512779,
+        "narHash": "sha256-ZFDZLtOkMdaabZ0gHfbBI6F/o3xzaEAyjvlTDOfna8I=",
+        "owner": "dmitriiStepanidenko",
+        "repo": "daniel-lightrag-mcp",
+        "rev": "f1e13ffae5b981cc5bdcc52e02619c59b1367817",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dmitriiStepanidenko",
+        "ref": "feat/nixos-packaging",
+        "repo": "daniel-lightrag-mcp",
+        "type": "github"
+      }
+    },
     "disko": {
       "inputs": {
         "nixpkgs": [
@@ -421,6 +440,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1775036866,
+        "narHash": "sha256-ZojAnPuCdy657PbTq5V0Y+AHKhZAIwSIT2cb8UgAz/U=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "6201e203d09599479a3b3450ed24fa81537ebc4e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1775002709,
         "narHash": "sha256-d3Yx83vSrN+2z/loBh4mJpyRqr9aAJqlke4TkpFmRJA=",
         "owner": "nixos",
@@ -435,7 +470,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1741379970,
         "narHash": "sha256-Wh7esNh7G24qYleLvgOSY/7HlDUzWaL/n4qzlBePpiw=",
@@ -480,6 +515,7 @@
       "inputs": {
         "buildbot-nix": "buildbot-nix",
         "colmena": "colmena",
+        "daniel-lightrag-mcp": "daniel-lightrag-mcp",
         "disko": "disko",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
@@ -487,7 +523,7 @@
         "nixos-unstable": [
           "nixpkgs-unstable"
         ],
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nvf": "nvf",
         "sccache": "sccache",
@@ -523,7 +559,7 @@
     "sccache": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
       },
       "locked": {
         "lastModified": 1741571115,

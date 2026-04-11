@@ -6,7 +6,7 @@
   lib,
   ...
 }: let
-  unstable = import inputs.nixos-unstable {
+  unstable = import inputs.latest-unstable {
     system = "x86_64-linux";
     config = {
       allowUnfree = true;

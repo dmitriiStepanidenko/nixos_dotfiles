@@ -729,6 +729,22 @@
         "type": "github"
       }
     },
+    "latest-unstable": {
+      "locked": {
+        "lastModified": 1775793324,
+        "narHash": "sha256-omax7atcZbol+6HJ2RLpP+ZCFcPa5bZ65Hn71RufeWQ=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9d29d5f667d7467f98efc31881e824fa586c927e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "mnw": {
       "locked": {
         "lastModified": 1771285028,
@@ -977,6 +993,7 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprlock": "hyprlock",
+        "latest-unstable": "latest-unstable",
         "mnw": "mnw",
         "nixgl": "nixgl",
         "nixos-25-11": "nixos-25-11",
