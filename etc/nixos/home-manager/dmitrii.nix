@@ -6,9 +6,13 @@
 }: {
   imports = [
     ./hyprland.nix
+    ../../../nix/modules/home-manager/opencode.nix
     #./yubikey.nix
     #{inherit inputs;}
   ];
+  sops.defaultSopsFile = ../../../nix/modules/home-manager/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   home = {
     username = "dmitrii";
     homeDirectory = "/home/dmitrii";

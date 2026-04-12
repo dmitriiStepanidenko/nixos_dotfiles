@@ -5,6 +5,7 @@ keys:
     - &mine age19vefp7y0y8jdc4gcy4l4yq6r4q3a9u2xevj3uy8dnf6v9ak7hfls3hjejc
   - hosts:
     - &mine_laptop age1ggpnjskft839vcjzunmpdwhs9easwxr7cvd350mlqmvptw3aqdnsqpms42
+    - &mine_builder age1z9j3pw5y9zt77grs4empwuxadqw588w3jn47qla24k7cz62gwgfsyvtlnt
     - &gitea_worker_1 age1glh3xkjqh5a4zxj835g0rxhg8ypdk9ywj3p83557c3e9lleq243s6jvc4r
     - &woodpecker_agent_1 age1zeh3kcd7qqx0g7qgra975ls0u9dwhe64anr0m5lthr0aq73nuu7q6xg9ve
     - &registry age178f4qgfgku78khyclpx4lhlcjwez5v8vc854q0hg4ka92xn7xg4qlprntj
@@ -91,8 +92,18 @@ creation_rules:
     - age:
       - *mine
       - *builder
+      - *mine_builder
   - path_regex: nix/hosts/backup_local/.*\.(yaml)$
     key_groups:
     - age:
       - *mine
       - *backup_local
+  - path_regex: nix/modules/home-manager/.*\.(yaml)$
+    key_groups:
+    - age:
+      - *mine
+      - *builder
+      - *mine_builder
+      - *default_c
+      - *mine_laptop
+      

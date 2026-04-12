@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-openagent/dev/assets/oh-my-opencode/prompts.schema.json",
+  "agents": {
+    "hephaestus": {
+      "model": "omniroute/default-code",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "oracle": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "librarian": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "explore": {
+      "model": "omniroute/default-lite",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "multimodal-looker": {
+      "model": "omniroute/default"
+    },
+    "prometheus": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "metis": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "momus": {
+      "model": "omniroute/default-code",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "atlas": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "sisyphus-junior": {
+      "model": "omniroute/default-lite",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "sisyphus": {
+      "model": "omniroute/default",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    }
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "omniroute/default"
+    },
+    "ultrabrain": {
+      "model": "omniroute/default-code",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "deep": {
+      "model": "omniroute/default-code",
+      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+    },
+    "artistry": {
+      "model": "omniroute/default"
+    },
+    "quick": {
+      "model": "omniroute/default-lite"
+    },
+    "unspecified-low": {
+      "model": "omniroute/default-lite"
+    },
+    "unspecified-high": {
+      "model": "omniroute/default"
+    },
+    "writing": {
+      "model": "omniroute/default"
+    }
+  }
+}

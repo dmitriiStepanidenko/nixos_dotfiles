@@ -98,8 +98,6 @@ in {
       unstable.claude-code
 
       aider-chat-full
-
-      unstable.opencode
       nodejs_24
 
       nixos-firewall-tool

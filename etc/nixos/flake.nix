@@ -138,6 +138,7 @@
               backupFileExtension = "backup";
               extraSpecialArgs = {
                 inherit inputs;
+                machineRole = "laptop";
               };
               sharedModules = [
                 inputs.sops-nix.homeManagerModules.sops

@@ -184,8 +184,6 @@ in {
     jq
 
     aider-chat-full
-
-    unstable.opencode
     inputs.daniel-lightrag-mcp.packages.${system}.default
 
     imv # image viewer
