@@ -77,7 +77,6 @@ in
           "${cfg.passwordSecretName}" = {
             sopsFile = ./secrets.yaml;
             mode = "0400";
-            restartUnits = ["opencode-web.service"];
           };
         };
 
