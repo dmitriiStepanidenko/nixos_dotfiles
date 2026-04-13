@@ -127,7 +127,7 @@ in {
 
             ### Max concurrency requests of LLM (for both query and document processing)
             # default 4
-            MAX_ASYNC = "3";
+            MAX_ASYNC = "4";
             ### Number of parallel processing documents(between 2~10, MAX_ASYNC/3 is recommended)
             # default 2
             MAX_PARALLEL_INSERT = "2";
@@ -171,8 +171,8 @@ in {
             MAX_TOTAL_TOKENS = "30000";
 
             ### Cohere rerank chunking configuration (useful for models with token limits like ColBERT)
-            RERANK_ENABLE_CHUNKING = "true";
-            RERANK_MAX_TOKENS_PER_DOC = "480";
+            RERANK_ENABLE_CHUNKING = "false";
+            #RERANK_MAX_TOKENS_PER_DOC = "480";
 
             #RELATED_CHUNK_NUMBER = "10";
           };

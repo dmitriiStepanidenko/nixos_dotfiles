@@ -2,17 +2,16 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
   imports = [
     ./opencode.nix
     #./yubikey.nix
   ];
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
-  };
+
+  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+
   home = {
     username = "dmitrii";
     homeDirectory = "/home/dmitrii";
@@ -29,7 +28,7 @@
     ];
 
     sessionVariables = {
-      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
+      OPS_AGE_KEY_CMD = "cat $HOME/.config/sops/age/*.txt 2>/dev/null";
     };
   };
   programs = {

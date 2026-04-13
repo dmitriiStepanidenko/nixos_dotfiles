@@ -6,13 +6,12 @@
 }: {
   imports = [
     ./hyprland.nix
-    ../../../nix/modules/home-manager/opencode.nix
+    ../../../nix/modules/home-manager/dmitrii.nix
     #./yubikey.nix
     #{inherit inputs;}
   ];
-  sops.defaultSopsFile = ../../../nix/modules/home-manager/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
+  #sops.defaultSopsFile = ../../../nix/modules/home-manager/secrets.yaml;
+  #sops.defaultSopsFormat = "yaml";
   home = {
     username = "dmitrii";
     homeDirectory = "/home/dmitrii";
@@ -80,10 +79,6 @@
 
     file.".config/sops/age/age-yubikey-identity-default-c.txt" = {
       source = ../keys/users/age/age-yubikey-identity-default-c.txt;
-    };
-
-    sessionVariables = {
-      SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/age-yubikey-identity-default-c.txt";
     };
   };
   xdg = {

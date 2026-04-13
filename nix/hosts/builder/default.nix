@@ -78,6 +78,7 @@ in {
     };
     users.users.dmitrii = {
       shell = pkgs.fish;
+      linger = true;
       extraGroups = [
         "input"
         "uinput"
