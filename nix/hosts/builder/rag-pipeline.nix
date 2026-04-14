@@ -145,14 +145,17 @@ in {
             OPENAI_LLM_MAX_TOKENS="12000";
             LIGHTRAG_TEMPERATURE = "0.8";
             # none minimal low medium high xhigh
-            OPENAI_LLM_REASONING_EFFORT = "minimal";
-            OPENAI_LLM_EXTRA_BODY = "{'reasoning': {'enabled': false}}";
+            OPENAI_LLM_REASONING_EFFORT = "xhigh";
+            #OPENAI_LLM_EXTRA_BODY = "{'reasoning': {'enabled': false}}";
+
+            # default 180
+            LLM_TIMEOUT = "600";
 
             ### LLM request retry and timeout settings for evaluation
             # default 5
             EVAL_LLM_MAX_RETRIES = "15";
-            # default 180
-            LLM_TIMEOUT = "600";
+
+            EVAL_LLM_TIMEOUT="600";
 
             ### Number of entities or relations retrieved from KG
             # default = 40

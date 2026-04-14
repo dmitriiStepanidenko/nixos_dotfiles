@@ -59,6 +59,7 @@ in {
         llmModel = "deepseek/deepseek-v3.2";
       };
     };
+    networking.firewall.allowedTCPPorts = [4096];
     services.omniroute = {
       enable = true;
       publiclyExpose = true; # only on the server if you want internet access

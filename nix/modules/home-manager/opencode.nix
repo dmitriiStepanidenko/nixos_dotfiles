@@ -30,12 +30,7 @@
 in
   assert lib.assertMsg (lib.elem machineRole validMachineRoles) "nix/modules/home-manager/opencode.nix: machineRole must be one of ${lib.concatStringsSep ", " validMachineRoles}; got ${machineRole}"; {
     options.services.opencodeWeb = {
-      enable =
-        (lib.mkEnableOption "OpenCode web user service")
-        // {
-          default = machineRole == "builder";
-          defaultText = lib.literalExpression ''machineRole == "builder"'';
-        };
+      enable = lib.mkEnableOption "OpenCode web user service";
 
       hostname = lib.mkOption {
         type = lib.types.str;
@@ -56,18 +51,23 @@ in
       };
 
       passwordSecretName = lib.mkOption {
-        type = lib.types.str;
-        default = "opencode/${machineRole}/server_password";
-        defaultText = lib.literalExpression ''"opencode/${machineRole}/server_password"'';
+        type = lib.types.nullOr lib.types.str;
+        default = null;
+        example = "opencode/builder/server_password";
         description = ''
-          SOPS secret whose decrypted contents are used as an EnvironmentFile for the
-          OpenCode web service. The secret file content should look like
-          `OPENCODE_SERVER_PASSWORD=...`.
+          SOPS secret containing the raw password value for OPENCODE_SERVER_PASSWORD.
+          Set this outside the shared module for each host that enables the web service.
         '';
       };
     };
 
     config = {
+      assertions = [
+        {
+          assertion = !cfg.enable || cfg.passwordSecretName != null;
+          message = "services.opencodeWeb.passwordSecretName must be set when services.opencodeWeb.enable is true.";
+        }
+      ];
       sops.secrets =
         lib.genAttrs baseSecretNames (_: {
           sopsFile = ./secrets.yaml;
@@ -264,12 +264,12 @@ in
 
           Service = {
             Type = "simple";
-            ExecStart = "${config.programs.opencode.package}/bin/opencode web --hostname ${cfg.hostname} --port ${toString cfg.port}";
-            Environment = [
-              "HOME=${config.home.homeDirectory}"
-              "OPENCODE_SERVER_USERNAME=${cfg.username}"
-            ];
-            EnvironmentFile = config.sops.secrets.${cfg.passwordSecretName}.path;
+            ExecStart = pkgs.writeShellScript "opencode-web-wrapper" ''
+              export HOME=${lib.escapeShellArg config.home.homeDirectory}
+              export OPENCODE_SERVER_USERNAME=${lib.escapeShellArg cfg.username}
+              export OPENCODE_SERVER_PASSWORD="$(< ${lib.escapeShellArg config.sops.secrets.${cfg.passwordSecretName}.path})"
+              exec ${lib.escapeShellArg "${config.programs.opencode.package}/bin/opencode"} web --hostname ${lib.escapeShellArg cfg.hostname} --port ${lib.escapeShellArg (toString cfg.port)}
+            '';
             WorkingDirectory = config.home.homeDirectory;
             Restart = "on-failure";
             RestartSec = "5s";
