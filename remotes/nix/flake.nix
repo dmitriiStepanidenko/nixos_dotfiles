@@ -290,6 +290,7 @@
 
                 services.opencodeWeb = {
                   enable = true;
+                  autoStart = true;
                   hostname = "0.0.0.0";
                   port = 4096;
                   passwordSecretName = "opencode/builder/server_password";

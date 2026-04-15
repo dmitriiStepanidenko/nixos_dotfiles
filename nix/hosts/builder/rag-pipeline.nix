@@ -44,7 +44,13 @@
     "${cfg.dataDir}/mineru.json:/root/mineru.json:ro"
   ];
 
-  commonExtraOptions = ["--network=mineru-net" "--restart=unless-stopped"];
+  commonExtraOptions = [
+    "--network=mineru-net"
+    "--restart=unless-stopped"
+    "--dns=192.168.0.1"
+    #"--dns=1.1.1.1"
+    #"--dns=8.8.8.8"
+  ];
 
   cpuEnv = {
     MINERU_MODEL_SOURCE = "huggingface";
@@ -142,7 +148,7 @@ in {
             # default 9000
             LIGHTRAG_MAX_TOKENS = "12000";
             # default 9000
-            OPENAI_LLM_MAX_TOKENS="12000";
+            OPENAI_LLM_MAX_TOKENS = "12000";
             LIGHTRAG_TEMPERATURE = "0.8";
             # none minimal low medium high xhigh
             OPENAI_LLM_REASONING_EFFORT = "xhigh";
@@ -155,7 +161,7 @@ in {
             # default 5
             EVAL_LLM_MAX_RETRIES = "15";
 
-            EVAL_LLM_TIMEOUT="600";
+            EVAL_LLM_TIMEOUT = "600";
 
             ### Number of entities or relations retrieved from KG
             # default = 40

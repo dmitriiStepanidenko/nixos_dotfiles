@@ -711,6 +711,9 @@ in {
     bun
 
     nixos-firewall-tool
+
+    tinymist
+    pdfarranger # works with pdfs!
   ];
   programs.nix-ld.enable = true;
   programs.nix-ld.package = pkgs.nix-ld; # or the default

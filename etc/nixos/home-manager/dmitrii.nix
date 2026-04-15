@@ -203,6 +203,15 @@
       #theme = "github_light";
     };
   };
+  services.opencodeWeb = {
+    enable = true;
+    autoStart = false;
+    #hostname = "127.0.0.1";
+    hostname = "0.0.0.0";
+    port = 4096;
+    passwordSecretName = "opencode/laptop/server_password";
+  };
+
   services.gnome-keyring = {
     enable = true;
   };

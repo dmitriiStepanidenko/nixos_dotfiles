@@ -3,46 +3,50 @@
   "agents": {
     "hephaestus": {
       "model": "omniroute/default-code",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "oracle": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md",
+      "variant": "xhigh"
     },
     "librarian": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "explore": {
       "model": "omniroute/default-lite",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "multimodal-looker": {
       "model": "omniroute/default"
     },
     "prometheus": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "metis": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "momus": {
       "model": "omniroute/default-code",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "atlas": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "sisyphus-junior": {
       "model": "omniroute/default-lite",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md",
+      "variant": "medium"
     },
     "sisyphus": {
       "model": "omniroute/default",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md",
+      "reasoningEffort": "high",
+      "variant": "high"
     }
   },
   "categories": {
@@ -51,11 +55,11 @@
     },
     "ultrabrain": {
       "model": "omniroute/default-code",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "deep": {
       "model": "omniroute/default-code",
-      "prompt_append": "file:///home/dmitrii/.config/opencode/PROMPT-APPEND.md"
+      "prompt_append": "file://./PROMPT-APPEND.md"
     },
     "artistry": {
       "model": "omniroute/default"
@@ -67,10 +71,14 @@
       "model": "omniroute/default-lite"
     },
     "unspecified-high": {
-      "model": "omniroute/default"
+      "model": "omniroute/default",
+      "variant": "xhigh",
+      "reasoningEffort": "high"
     },
     "writing": {
-      "model": "omniroute/default"
+      "model": "omniroute/default",
+      "variant": "xhigh",
+      "reasoningEffort": "high"
     }
   }
 }

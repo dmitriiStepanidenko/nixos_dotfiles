@@ -50,6 +50,12 @@ in
         description = "Username used together with OPENCODE_SERVER_PASSWORD.";
       };
 
+      autoStart = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Whether Home Manager should install the service into default.target for autostart.";
+      };
+
       passwordSecretName = lib.mkOption {
         type = lib.types.nullOr lib.types.str;
         default = null;
@@ -165,6 +171,31 @@ in
                     context = 1050000;
                     output = 128000;
                   };
+                  options = {
+                    include = ["reasoning.encrypted_content"];
+                  };
+                  variants = {
+                    xhigh = {
+                      reasoningEffort = "xhigh";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    high = {
+                      reasoningEffort = "high";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    medium = {
+                      reasoningEffort = "medium";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                    low = {
+                      reasoningEffort = "low";
+                      textVerbosity = "low";
+                      reasoningSummary = "auto";
+                    };
+                  };
                 };
                 default-code = {
                   name = "Default code";
@@ -275,7 +306,7 @@ in
             RestartSec = "5s";
           };
 
-          Install = {
+          Install = lib.mkIf cfg.autoStart {
             WantedBy = ["default.target"];
           };
         };

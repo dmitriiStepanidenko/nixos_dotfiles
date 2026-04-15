@@ -34,7 +34,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.omniroute = {
-      image = "diegosouzapw/omniroute:3.5.1";
+      #image = "diegosouzapw/omniroute:3.5.1";
+      image = "diegosouzapw/omniroute:3.6.5";
       autoStart = true;
       ports = ["${toString cfg.port}:20128"];
       volumes = ["${cfg.dataDir}:/app/data"];

@@ -56,7 +56,7 @@ in {
       mineru = {
         enableLlmAided = true;
         #llmModel = "qwen/qwen3.6-plus:free";
-        llmModel = "deepseek/deepseek-v3.2";
+        llmModel = "xiaomi/mimo-v2-omni";
       };
     };
     networking.firewall.allowedTCPPorts = [4096];
