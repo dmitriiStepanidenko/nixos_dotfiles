@@ -1,30 +1,15 @@
 {
-  inputs,
   config,
   pkgs,
   ...
 }: let
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-    ${pkgs.waybar}/bin/waybar 2>&1 > ~/waybar.log &
-    ${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &
-
-    sleep 1
-
-    ${pkgs.swww}/bin/swww img ${../../../images/wanderer.jpg}
-  '';
   #hyprlandPkg = inputs.hyprland.packages."${pkgs.system}".hyprland;
   hyprlandPkg = pkgs.hyprland;
   backgroundImage = ../../../images/wanderer.jpg;
   girlImage = ../../../images/wallpaper.jpg;
   girlImageBackgroundColor = "676570";
-  animatedImage = ../../../images/anime-girl-wearing-a-hoodie.1920x1080.gif;
   wallpaperCmd = "${pkgs.swww}/bin/swww img ${girlImage} --resize fit --fill-color ${girlImageBackgroundColor} 2>&1 > \${XDG_LOG_DIR:-/home/dmitrii/logs}/swww.log";
-  sessionLockCommand = "${pkgs.swaylock}/bin/swaylock -e -d -i ${girlImage} -s fit -c ${girlImageBackgroundColor}";
-  sessionLockCommandPidof = "pidof swaylock || ${sessionLockCommand}";
-  sessionLockCommandWithLog = "${sessionLockCommandPidof} &> $XDG_LOG_DIR/swaylock.log";
-  sessionLockCommandPkill = "pkill -x swaylock; ${sessionLockCommand}";
-  sessionLockDispatchCommand = "${hyprlandPkg}/bin/hyprctl dispatch exec \"${sessionLockCommandPkill}\"";
-  #sessionLockDispatchCommand = sessionLockCommand;
+  hyprlockCommand = "pidof hyprlock || hyprlock";
   conditionalSuspendScript = pkgs.writeShellScript "conditional-suspend" ''
     # Check multiple conditions for NVIDIA presence
     nvidia_present=false
@@ -54,21 +39,6 @@
     fi
   '';
 
-  swaylockRestartText = instance: ''
-    pidof swaylock || pkill -x swaylock
-    echo "Pidof swaylock\pkill ended"
-    echo "Using Hyprland instance: ${instance}"
-    ${hyprlandPkg}/bin/hyprctl --instance ${instance} 'keyword misc:allow_session_lock_restore 1'
-    echo "Allowed session restore"
-    ${hyprlandPkg}/bin/hyprctl --instance ${instance} dispatch exec "${sessionLockCommand}"
-    echo "Dispatched new lock"
-  '';
-  swaylockRestartBin = pkgs.writeShellScriptBin "swaylock_restart" ''
-    INSTANCE=''${1:-0}
-    echo "Using Hyprland instance: $INSTANCE"
-    ${swaylockRestartText "$INSTANCE"}
-  '';
-
   wallpaperRestartBin = pkgs.writeShellScriptBin "wallpaper" ''
     ${wallpaperCmd}
   '';
@@ -76,8 +46,7 @@ in {
   imports = [
     ./waybar.nix
   ];
-  home.packages = with pkgs; [
-    swaylockRestartBin
+  home.packages = [
     wallpaperRestartBin
   ];
 
@@ -89,6 +58,7 @@ in {
       XDG_LOG_DIR = "${config.home.homeDirectory}/logs";
     };
   };
+  wayland.windowManager.hyprland.systemd.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     #package = inputs.hyprland.packages."${pkgs.system}".hyprland;
@@ -116,7 +86,6 @@ in {
         #"${pkgs.swww}/bin/swww init 2>&1 > ~/swww_init.log &"
         #"${pkgs.swww}/bin/swww img ${animatedImage} --resize fit --fill-color 66636E 2>&1 > ~/swww.log"
         wallpaperCmd
-        "${pkgs.hypridle}/bin/hypridle 2>&1 > $XDG_LOG_DIR/hypridle.log"
       ];
       "$terminal" = "alacritty";
       "$mod" = "SUPER";
@@ -163,7 +132,7 @@ in {
 
           "$mod SHIFT, S, exec, ${pkgs.hyprshot}/bin/hyprshot -m region --clipboard-only"
 
-          "CONTROL SHIFT, L, exec, ${sessionLockCommandWithLog}"
+          "CONTROL SHIFT, L, exec, ${hyprlockCommand}"
 
           ",XF86MonBrightnessUp,exec,${pkgs.brightnessctl}/bin/brightnessctl set +5%"
           ",XF86MonBrightnessDown,exec,${pkgs.brightnessctl}/bin/brightnessctl set 5%-"
@@ -190,7 +159,7 @@ in {
     };
   };
   programs.hyprlock = {
-    enable = false;
+    enable = true;
     package = null;
     #package = inputs.hyprlock.packages."${pkgs.system}".hyprlock;
     settings = {
@@ -222,17 +191,6 @@ in {
       ];
     };
   };
-  programs.swaylock = {
-    enable = true;
-    settings = {
-      color = "808080";
-      font-size = 24;
-      indicator-idle-visible = false;
-      indicator-radius = 100;
-      line-color = "ffffff";
-      show-failed-attempts = true;
-    };
-  };
   services.swaync.enable = true;
   services.swww.enable = true;
   services.swayidle = {
@@ -244,15 +202,13 @@ in {
       general = {
         after_sleep_cmd = "${hyprlandPkg}/bin/hyprctl dispatch dpms on";
         ignore_dbus_inhibit = false;
-        #lock_cmd = "${pkgs.swaylock}/bin/swaylock -fF";
-        lock_cmd = sessionLockDispatchCommand;
-        before_sleep_cmd = sessionLockDispatchCommand;
+        lock_cmd = hyprlockCommand;
+        before_sleep_cmd = "loginctl lock-session";
       };
       listener = [
         {
           timeout = 6 * 60;
-          #on-timeout = "${pkgs.swaylock}/bin/swaylock -fF";
-          on-timeout = sessionLockDispatchCommand;
+          on-timeout = hyprlockCommand;
         }
         #{
         #  timeout = 20 * 60;
@@ -291,7 +247,6 @@ in {
         profile = {
           name = "docked";
           exec = [
-            "sleep 3 && ${swaylockRestartBin}/bin/swaylock_restart"
             "sleep 3 && ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [
@@ -310,7 +265,6 @@ in {
         profile = {
           name = "undocked";
           exec = [
-            "sleep 3 && ${swaylockRestartBin}/bin/swaylock_restart"
             "sleep 3 && ${wallpaperRestartBin}/bin/wallpaper"
           ];
           outputs = [

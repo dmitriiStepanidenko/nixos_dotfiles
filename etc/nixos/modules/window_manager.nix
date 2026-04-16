@@ -1,6 +1,5 @@
 # Apps and Packages for window managers
 {
-  config,
   pkgs,
   inputs,
   ...
@@ -71,13 +70,12 @@ in {
   ];
   #programs.i3lock.enable = true;
   security.pam.services.hyprlock = {};
-  security.pam.services.swaylock = {};
 
   #services.displayManager.cosmic-greeter.enable = true;
-  services.displayManager.sddm = {
-    enable = true;
-    wayland.enable = true;
-  };
+  #services.displayManager.sddm = {
+  #  enable = true;
+  #  wayland.enable = true;
+  #};
 
   # Temporary disable due to exccesive RAM consumption during build. It eats 13 gb + AT LEAST 30 gb swap ...
   services.desktopManager.cosmic.enable = false;
@@ -134,7 +132,7 @@ in {
       #};
     };
 
-    displayManager = with pkgs; {
+    displayManager = {
       #sessionCommands = ''
       #  # Trigger xlock on suspend.
       #  ${xorg.xset}/bin/xset s 300 5
@@ -159,6 +157,18 @@ in {
       variant = "";
       options = "grp:win_space_toggle";
     };
+  };
+  services.greetd.enable = true;
+  services.displayManager.defaultSession = "hyprland";
+  programs.regreet = {
+    enable = true;
+    # For this example you'd need to have a version of Adwaita and the font Cantarell installed
+    theme.name = "Adwaita";
+    font = {
+      name = "Cantarell";
+      size = 16;
+    };
+    cursorTheme.name = "Adwaita";
   };
   # Firmwares updates
   services.fwupd.enable = true;

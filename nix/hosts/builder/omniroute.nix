@@ -49,6 +49,7 @@ in {
         PORT = "20128";
         ENABLE_REQUEST_LOGS = "true"; # Main request logging
         CALL_LOG_PIPELINE_ENABLED = "true"; # Exactly the four-stage payload capture
+        CODEX_OAUTH_CLIENT_ID = "app_EMoamEEZ73f0CkXaXp7hrann";
         # NEXT_PUBLIC_BASE_URL = "http://your-domain-or-ip:${toString cfg.port}"; # optional for OAuth
       };
 
